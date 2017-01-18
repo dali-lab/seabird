@@ -16,7 +16,7 @@ react-native run-android
 
 ## Authors
 
-Will Kaufman '20 - BackEnd Engineer
-Ijemma Onwuzulike '19 - FrontEnd Engineer
-Shuoqi Chen '18 - Designer
-Emma Demers '20 - Designer
+* Will Kaufman '20 - BackEnd Engineer
+* Ijemma Onwuzulike '19 - FrontEnd Engineer
+* Shuoqi Chen '18 - Designer
+* Emma Demers '20 - Designer
