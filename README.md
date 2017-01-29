@@ -18,5 +18,7 @@ react-native run-android
 
 * Will Kaufman '20 - BackEnd Engineer
 * Ijemma Onwuzulike '19 - FrontEnd Engineer
+* Sean Cann '17 - FrontEnd Engineer
+* Tyler Fisher '17 - FrontEnd Engineer
 * Shuoqi Chen '18 - Designer
 * Emma Demers '20 - Designer
