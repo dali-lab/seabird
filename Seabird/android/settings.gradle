@@ -1,0 +1,3 @@
+rootProject.name = 'Seabird'
+
+include ':app'
