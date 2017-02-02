@@ -15,6 +15,10 @@ export default class DDS extends Component {
     }
   };
 
+  navigate(routeName) {
+    this.props.navigator.pop();
+  }
+
   renderRow(rowData, sectionID, rowID) {
     return (
       <TouchableHighlight underlayColor='#ddd' style={{height: 44}}>
@@ -30,10 +34,12 @@ export default class DDS extends Component {
     return (
       <View style={styles.pageContent}>
         <View style={styles.mainHeader}>
+        <TouchableHighlight onPress={this.navigate.bind(this, 'dds')}>
           <Image
             source={require('./Icons/Restaurant-50.png')}
             style={styles.mainIcon}
           />
+          </TouchableHighlight>
           <Text style={styles.schoolTitle}>Dartmouth College</Text>
           <Image
             source={require('./Icons/Restaurant-50.png')}
