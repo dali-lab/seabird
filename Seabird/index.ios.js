@@ -9,6 +9,7 @@ import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Te
 
 import Root from './root';
 import DDS from './dds';
+import News from './news';
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
@@ -20,6 +21,10 @@ export default class Seabird extends Component {
 
     if (route.name == 'dds') {
       return <DDS navigator={navigator}/>
+    }
+
+    if (route.name == 'news') {
+      return <News navigator={navigator}/>
     }
   }
 

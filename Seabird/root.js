@@ -63,7 +63,7 @@ export default class Root extends Component {
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight>
+      <TouchableHighlight onPress={this.navigate.bind(this, 'news')}>
         <View style={styles.mainSection}>
         <Image
           source={require('./Icons/News-50.png')}
