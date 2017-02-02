@@ -96,7 +96,7 @@ export default class Root extends Component {
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight>
+      <TouchableHighlight onPress={this.navigate.bind(this, 'sports')}>
         <View style={styles.mainSection}>
         <Image
           source={require('./Icons/Sport-50.png')}

@@ -10,6 +10,7 @@ import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Te
 import Root from './root';
 import DDS from './dds';
 import News from './news';
+import Sports from './sports';
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
@@ -25,6 +26,10 @@ export default class Seabird extends Component {
 
     if (route.name == 'news') {
       return <News navigator={navigator}/>
+    }
+
+    if (route.name == 'sports') {
+      return <Sports navigator={navigator}/>
     }
   }
 
