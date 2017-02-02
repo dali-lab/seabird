@@ -9,10 +9,19 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight,
+  Image,
 } from 'react-native';
 
 export default class Seabird extends Component {
+
+  navigate(routeName) {
+    this.props.navigator.push({
+      name: routeName
+    })
+  }
+
   render() {
     return (
       <View style={{
@@ -32,7 +41,9 @@ export default class Seabird extends Component {
           source={require('./Icons/Restaurant-50.png')}
           style={styles.mainIcon}
         />
-          <Text style={styles.mainLabel}>DDS HOURS</Text>
+        <View style={styles.mainLabelHolder}>
+          <Text style={styles.mainLabel}>DDS Hours</Text>
+          </View>
         </View>
       </TouchableHighlight>
       <TouchableHighlight>
@@ -41,7 +52,9 @@ export default class Seabird extends Component {
           source={require('./Icons/T-Shirt-50.png')}
           style={styles.mainIcon}
         />
-          <Text style={styles.mainLabel}>LAUNDRY</Text>
+        <View style={styles.mainLabelHolder}>
+          <Text style={styles.mainLabel}>Laundry</Text>
+          </View>
         </View>
       </TouchableHighlight>
       <TouchableHighlight>
@@ -50,7 +63,9 @@ export default class Seabird extends Component {
           source={require('./Icons/News-50.png')}
           style={styles.mainIcon}
         />
-          <Text style={styles.mainLabel}>NEWS</Text>
+        <View style={styles.mainLabelHolder}>
+          <Text style={styles.mainLabel}>News</Text>
+          </View>
         </View>
       </TouchableHighlight>
       <TouchableHighlight>
@@ -59,7 +74,9 @@ export default class Seabird extends Component {
           source={require('./Icons/Map Marker-50.png')}
           style={styles.mainIcon}
         />
-          <Text style={styles.mainLabel}>CAMPUS NEWS</Text>
+        <View style={styles.mainLabelHolder}>
+          <Text style={styles.mainLabel}>Campus News</Text>
+          </View>
         </View>
       </TouchableHighlight>
       <TouchableHighlight>
@@ -68,7 +85,9 @@ export default class Seabird extends Component {
           source={require('./Icons/Calendar-50.png')}
           style={styles.mainIcon}
         />
-          <Text style={styles.mainLabel}>SCHEDULE</Text>
+        <View style={styles.mainLabelHolder}>
+          <Text style={styles.mainLabel}>Schedule</Text>
+          </View>
         </View>
       </TouchableHighlight>
       <TouchableHighlight>
@@ -77,7 +96,9 @@ export default class Seabird extends Component {
           source={require('./Icons/Sport-50.png')}
           style={styles.mainIcon}
         />
-          <Text style={styles.mainLabel}>SPORTS</Text>
+        <View style={styles.mainLabelHolder}>
+          <Text style={styles.mainLabel}>Sports</Text>
+          </View>
         </View>
       </TouchableHighlight>
       <View style={styles.nextButton}></View>
@@ -92,7 +113,7 @@ const styles = StyleSheet.create({
     width: 400,
     height: 80,
     marginTop: 20,
-    backgroundColor: 'white',
+    backgroundColor: 'gray',
   },
 
   /* Style for the six buttons on the main page */
@@ -100,12 +121,19 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.5,
     width: 150,
     height: 150,
     borderRadius: 5,
     paddingBottom: 20,
     margin: 8,
-    backgroundColor: '#ccc',
+    backgroundColor: '#80BBD8',
   },
 
   /* Style for the bottom button that moves to the next page */
@@ -118,12 +146,22 @@ const styles = StyleSheet.create({
     backgroundColor: '#99ff66',
   },
 
-  /* Style for the main labels on the main buttons */
+  /* Style for the main label holder */
+  mainLabelHolder: {
+    top: 40,
+    width: 150,
+    height: 40,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    backgroundColor: 'white',
+  },
+
+  /* Style for the main label texts on the main buttons */
   mainLabel: {
-    top: 30,
     fontSize: 18,
-    fontFamily: 'Avenir Next',
+    fontFamily: 'System',
     fontWeight: '500',
+    textAlign: 'center',
   },
 
   /* Style for the icons on the main buttons */
