@@ -48,7 +48,7 @@ export default class News extends Component {
       style={{flex: 1}}
       onNavigationStateChange=
         {this.onNavigationStateChange.bind(this)}
-      source={{uri: 'https://dartmouth.edu'}}
+      source={{uri: 'http://thedartmouth.com'}}
       />
       <View style={styles.bottomBar}>
         <TouchableOpacity
