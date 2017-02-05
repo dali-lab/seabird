@@ -33,7 +33,7 @@ export default class Root extends Component {
       <View style={styles.mainHeader}>
       <Text style={styles.schoolTitle}>Dartmouth College</Text>
       <TouchableHighlight onPress={this.navigate.bind(this, 'settings')}>
-        <Image 
+        <Image
           source={require('./Icons/Settings-50-White.png')}
           style={styles.settingsIcon}
         />
@@ -105,7 +105,9 @@ export default class Root extends Component {
           </View>
         </View>
       </TouchableHighlight>
+      <TouchableHighlight onPress={this.navigate.bind(this, 'more')}>
       <View style={styles.nextButton}></View>
+      </TouchableHighlight>
       </View>
     );
   }
