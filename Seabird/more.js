@@ -21,15 +21,11 @@ export default class More extends Component {
       <View style={styles.mainHeader}>
       <TouchableHighlight onPress={this.navigate.bind(this, 'dds')}>
         <Image
-          source={require('./Icons/Restaurant-50.png')}
-          style={styles.mainIcon}
+          source={require('./Icons/Back-50-White.png')}
+          style={styles.backIcon}
         />
         </TouchableHighlight>
         <Text style={styles.schoolTitle}>More Modules</Text>
-        <Image
-          source={require('./Icons/Restaurant-50.png')}
-          style={styles.mainIcon}
-        />
       </View>
       </View>
     )
@@ -50,7 +46,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
 
   /* Style for the school title text */
@@ -60,6 +56,13 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: '#fff',
     letterSpacing: -0.56,
+  },
+
+  /* Styles the back button */
+  backIcon: {
+    flex: 0,
+    height: 20,
+    resizeMode: 'center',
   },
 });
 
