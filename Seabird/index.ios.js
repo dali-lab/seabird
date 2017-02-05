@@ -11,6 +11,7 @@ import Root from './root';
 import DDS from './dds';
 import News from './news';
 import Sports from './sports';
+import Settings from './settings';
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
@@ -30,6 +31,10 @@ export default class Seabird extends Component {
 
     if (route.name == 'sports') {
       return <Sports navigator={navigator}/>
+    }
+
+    if (route.name == 'settings') {
+      return <Settings navigator={navigator}/>
     }
   }
 
