@@ -161,8 +161,15 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     margin: 10,
-    marginTop: 5,
-    backgroundColor: '#99ff66',
+    marginTop: 15,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 1
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.5,
+    backgroundColor: '#3c96c3',
   },
 
   /* Style for the main label holder */
