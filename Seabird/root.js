@@ -82,7 +82,7 @@ export default class Root extends Component {
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={this.navigate.bind(this, 'settings')}>
-        <View style={styles.mainSection}>
+        <View style={styles.mainSectionDarker}>
         <Image
           source={require('./Icons/Calendar-50-White.png')}
           style={styles.mainIcon}
