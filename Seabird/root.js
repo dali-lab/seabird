@@ -31,20 +31,16 @@ export default class Root extends Component {
         justifyContent: 'center',
       }}>
       <View style={styles.mainHeader}>
-      <Image
-        source={require('./Icons/Restaurant-50.png')}
-        style={styles.mainIcon}
-      />
       <Text style={styles.schoolTitle}>Dartmouth College</Text>
       <Image
-        source={require('./Icons/Restaurant-50.png')}
-        style={styles.mainIcon}
+        source={require('./Icons/Settings-50-White.png')}
+        style={styles.settingsIcon}
       />
       </View>
       <TouchableHighlight onPress={this.navigate.bind(this, 'dds')}>
-        <View style={styles.mainSection}>
+        <View style={styles.mainSectionDarker}>
         <Image
-          source={require('./Icons/Restaurant-50.png')}
+          source={require('./Icons/Restaurant-50-White.png')}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
@@ -55,7 +51,7 @@ export default class Root extends Component {
       <TouchableHighlight>
         <View style={styles.mainSection}>
         <Image
-          source={require('./Icons/T-Shirt-50.png')}
+          source={require('./Icons/T-Shirt-50-White.png')}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
@@ -66,7 +62,7 @@ export default class Root extends Component {
       <TouchableHighlight onPress={this.navigate.bind(this, 'news')}>
         <View style={styles.mainSection}>
         <Image
-          source={require('./Icons/News-50.png')}
+          source={require('./Icons/News-50-White.png')}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
@@ -75,9 +71,9 @@ export default class Root extends Component {
         </View>
       </TouchableHighlight>
       <TouchableHighlight>
-        <View style={styles.mainSection}>
+        <View style={styles.mainSectionDarker}>
         <Image
-          source={require('./Icons/Map Marker-50.png')}
+          source={require('./Icons/Map Marker-50-White.png')}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
@@ -86,9 +82,9 @@ export default class Root extends Component {
         </View>
       </TouchableHighlight>
       <TouchableHighlight>
-        <View style={styles.mainSection}>
+        <View style={styles.mainSectionDarker}>
         <Image
-          source={require('./Icons/Calendar-50.png')}
+          source={require('./Icons/Calendar-50-White.png')}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
@@ -99,7 +95,7 @@ export default class Root extends Component {
       <TouchableHighlight onPress={this.navigate.bind(this, 'sports')}>
         <View style={styles.mainSection}>
         <Image
-          source={require('./Icons/Sport-50.png')}
+          source={require('./Icons/Sport-50-White.png')}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
@@ -123,7 +119,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
 
   /* Style for the school title text */
@@ -135,7 +131,7 @@ const styles = StyleSheet.create({
     letterSpacing: -0.56,
   },
 
-  /* Style for the six buttons on the main page */
+  /* Style for the three lighter buttons on the main page */
   mainSection: {
     flexDirection: 'column',
     justifyContent: 'center',
@@ -152,7 +148,28 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingBottom: 20,
     margin: 8,
-    backgroundColor: '#80BBD8',
+    backgroundColor: '#9ECA7A',
+    opacity: 0.8,
+  },
+
+  /* Style for the three darker buttons on the main page */
+  mainSectionDarker: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowRadius: 2,
+    shadowOpacity: 0.5,
+    width: 150,
+    height: 150,
+    borderRadius: 5,
+    paddingBottom: 20,
+    margin: 8,
+    backgroundColor: '#9ECA7A',
   },
 
   /* Style for the bottom button that moves to the next page */
@@ -169,7 +186,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 2,
     shadowOpacity: 0.5,
-    backgroundColor: '#3c96c3',
+    backgroundColor: '#9ECA7A',
   },
 
   /* Style for the main label holder */
@@ -196,6 +213,13 @@ const styles = StyleSheet.create({
   mainIcon: {
     top: 10,
   },
+
+  /* Style for the settings icon up in the top bar */
+  settingsIcon: {
+    flex: 0,
+    height: 30,
+    resizeMode: 'contain',
+  }
 
 });
 

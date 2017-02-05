@@ -33,7 +33,7 @@ export default class News extends Component {
       <View style={styles.mainHeader}>
       <TouchableHighlight onPress={this.navigate.bind(this, 'dds')}>
         <Image
-          source={require('./Icons/Restaurant-50.png')}
+          source={require('./Icons/Back-50-White.png')}
           style={styles.mainIcon}
         />
         </TouchableHighlight>
