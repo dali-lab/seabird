@@ -106,7 +106,12 @@ export default class Root extends Component {
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={this.navigate.bind(this, 'more')}>
-      <View style={styles.nextButton}></View>
+      <View style={styles.nextButton}>
+      <Image
+        source={require('./Icons/Sort-Down-50-White.png')}
+        style={styles.downIcon}
+      />
+      </View>
       </TouchableHighlight>
       </View>
     );
@@ -223,6 +228,13 @@ const styles = StyleSheet.create({
     flex: 0,
     height: 30,
     resizeMode: 'contain',
+  },
+
+  /* Styles the more options down button */
+  downIcon: {
+    flex: 1,
+    height: 10,
+    resizeMode: 'center',
   }
 
 });

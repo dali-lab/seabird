@@ -34,14 +34,10 @@ export default class News extends Component {
       <TouchableHighlight onPress={this.navigate.bind(this, 'dds')}>
         <Image
           source={require('./Icons/Back-50-White.png')}
-          style={styles.mainIcon}
+          style={styles.backIcon}
         />
         </TouchableHighlight>
-        <Text style={styles.schoolTitle}>Dartmouth College</Text>
-        <Image
-          source={require('./Icons/Restaurant-50.png')}
-          style={styles.mainIcon}
-        />
+        <Text style={styles.schoolTitle}>News</Text>
       </View>
       <WebView
       ref={WEBVIEW_REF}
@@ -77,7 +73,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
 
   /* Style for the school title text */
@@ -87,6 +83,13 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: '#fff',
     letterSpacing: -0.56,
+  },
+
+  /* Styles the back button */
+  backIcon: {
+    flex: 0,
+    height: 20,
+    resizeMode: 'center',
   },
 
   /* Styles the bottom web view navigation banner */
