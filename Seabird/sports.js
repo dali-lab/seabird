@@ -51,7 +51,10 @@ export default class Sports extends Component {
           disabled={!this.state.canGoBack}
           onPress={this.onBack.bind(this)}
           >
-          <Text style={styles.bottomBarText}>Go Back</Text>
+          <Image
+            source={require('./Icons/Back-50-White.png')}
+            style={styles.backIcon}
+          />
         </TouchableOpacity>
       </View>
       </View>
