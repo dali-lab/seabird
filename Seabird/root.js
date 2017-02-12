@@ -75,7 +75,7 @@ export default class Root extends Component {
       <TouchableHighlight>
         <View style={styles.mainSectionDarker}>
         <Image
-          source={require('./Icons/Map Marker-50-White.png')}
+          source={require('./Icons/Map-Marker-50-White.png')}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>

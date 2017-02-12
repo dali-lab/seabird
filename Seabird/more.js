@@ -27,6 +27,8 @@ export default class More extends Component {
         </TouchableHighlight>
         <Text style={styles.schoolTitle}>More Modules</Text>
       </View>
+      <ScrollView>
+      </ScrollView>
       </View>
     )
   }

@@ -14,6 +14,9 @@ import Sports from './sports';
 import Settings from './settings';
 import More from './more';
 
+var Datastore = require('react-native-local-mongodb')
+  , db = new Datastore();
+
 export default class Seabird extends Component {
   // Initialize the hardcoded data
 

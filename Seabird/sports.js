@@ -23,6 +23,10 @@ export default class Sports extends Component {
     this.refs[WEBVIEW_REF].goBack();
   };
 
+  onForward() {
+    this.refs[WEBVIEW_REF].goForward();
+  };
+
   navigate(routeName) {
     this.props.navigator.pop();
   };
@@ -50,6 +54,15 @@ export default class Sports extends Component {
         <TouchableOpacity
           disabled={!this.state.canGoBack}
           onPress={this.onBack.bind(this)}
+          >
+          <Image
+            source={require('./Icons/Back-50-White.png')}
+            style={styles.backIcon}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          disabled={!this.state.canGoForward}
+          onPress={this.onForward.bind(this)}
           >
           <Image
             source={require('./Icons/Back-50-White.png')}
