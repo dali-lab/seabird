@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput } from 'react-native';
+import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput, Button } from 'react-native';
 
 
 var ddsLocations = ['FOCO', 'THE HOP', 'NOVACK', 'COLLIS'];
@@ -18,26 +18,32 @@ export default class Settings extends Component {
     }
   };
 
-  navigate(routeName) {
+  navigatePop() {
     this.props.navigator.pop();
   }
 
-  renderRow(rowData, sectionID, rowID) {
-    return (
-      <TouchableHighlight underlayColor='#ddd' style={{height: 44}}>
-        <View>
-          <Text style={styles.listItem} numberOfLines={1}>{rowData}</Text>
-          <View style={styles.divider}/>
-        </View>
-      </TouchableHighlight>
-    )
+  navigatePush(routeName) {
+    this.props.navigator.push({
+      name: routeName
+    })
   }
+
+  // renderRow(rowData, sectionID, rowID) {
+  //   return (
+  //     <TouchableHighlight underlayColor='#ddd' style={{height: 44}}>
+  //       <View>
+  //         <Text style={styles.listItem} numberOfLines={1}>{rowData}</Text>
+  //         <View style={styles.divider}/>
+  //       </View>
+  //     </TouchableHighlight>
+  //   )
+  // }
 
   render() {
     return (
       <View style={styles.pageContent}>
         <View style={styles.mainHeader}>
-          <TouchableHighlight onPress={this.navigate.bind(this, 'settings')}>
+          <TouchableHighlight onPress={this.navigatePop.bind(this, 'settings')}>
             <Image
               source={require('./Icons/Back-50-White.png')}
               style={styles.backIcon}
@@ -77,6 +83,13 @@ export default class Settings extends Component {
               }}
               value={this.state.userEmail}
               placeholder="Enter your email here"
+            />
+
+            <Button
+              onPress={this.navigatePush.bind(this, 'dds')}
+              title="Customize"
+              color="#841584"
+              accessibilityLabel="Learn more about this purple button"
             />
 
           </View>
@@ -158,7 +171,8 @@ const styles = StyleSheet.create({
   textInput: {
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1,
+    borderWidth: 0,
+    marginBottom: 20,
   },
 
   /* Style for the current meal swipe */
@@ -167,6 +181,7 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     fontWeight: '600',
     textAlign: 'center',
+    marginBottom: 30,
   },
 
   /* Style for the menu option */

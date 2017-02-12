@@ -35,7 +35,7 @@ export default class Sports extends Component {
     return (
       <View style={styles.container}>
       <View style={styles.mainHeader}>
-      <TouchableHighlight onPress={this.navigate.bind(this, 'dds')}>
+      <TouchableHighlight onPress={this.navigatePop.bind(this, 'sports')}>
         <Image
           source={require('./Icons/Back-50-White.png')}
           style={styles.backIcon}

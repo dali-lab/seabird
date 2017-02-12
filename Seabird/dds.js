@@ -15,7 +15,7 @@ export default class DDS extends Component {
     }
   };
 
-  navigate(routeName) {
+  navigatePop(routeName) {
     this.props.navigator.pop();
   }
 
@@ -34,7 +34,7 @@ export default class DDS extends Component {
     return (
       <View style={styles.pageContent}>
         <View style={styles.mainHeader}>
-        <TouchableHighlight onPress={this.navigate.bind(this, 'dds')}>
+        <TouchableHighlight onPress={this.navigatePop.bind(this, 'dds')}>
           <Image
             source={require('./Icons/Back-50-White.png')}
             style={styles.backIcon}
