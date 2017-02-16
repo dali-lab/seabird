@@ -1,4 +1,4 @@
-# Seabird Apps
+# Seabird Apps :ocean: :bird: :iphone:
 
 Seabird Apps is a Dartmouth Start-Up founded by Dartmouth '17s. The purpose of this company is to create clean and efficient applications for schools, college and high schools alike, to allows any user become more accustomed to the school.
 
@@ -22,7 +22,7 @@ The following images are the most recent implementations and designs for the pro
 - Designers have been using Sketch primarily for this project
   - Sketch gives the designers the ability to share designs quickly and easily. They are able to export CSS attributes, making it easier for the developers when implementing the designs. Sketch also makes the task of presenting the latest mockups a lot seamless for a team.
 
-## Setup
+## Setup :wrench:
 
 To set up the environment, enter your terminal and follow the instructions:
 
@@ -49,7 +49,7 @@ brew install node
 5. Clone the [Seabird Repo](https://github.com/dali-lab/seabird-backend)
   - Make sure to clone in the same general directory
 
-### Installation
+### Installation :hammer:
 ```
 # clone repository and install node modules
 cd seabird-backend
