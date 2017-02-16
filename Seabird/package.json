@@ -9,7 +9,8 @@
   "dependencies": {
     "react": "15.4.2",
     "react-native": "0.40.0",
-    "react-native-local-mongodb": "^1.8.2"
+    "react-native-local-mongodb": "^1.8.2",
+    "react-native-sortable-listview": "^0.1.1"
   },
   "devDependencies": {
     "babel-jest": "18.0.0",

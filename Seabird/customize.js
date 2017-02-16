@@ -1,18 +1,56 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput, Button } from 'react-native';
 
+let SortableListView = require('react-native-sortable-listview');
 
-export default class Settings extends Component {
-  // Initialize the hardcoded data
+let data = {
+  a: {text: 'food'},
+  b: {text: 'events'},
+  c: {text: 'map'},
+  d: {text: 'schedule'},
+  e: {text: 'sports'},
+  f: {text: 'news'},
+  g: {text: 'blitz'},
+  h: {text: 'laundry'},
+}
+
+let order = Object.keys(data); //Array of keys
+
+let RowComponent = React.createClass({
+  render: function() {
+    return (
+      <TouchableHighlight
+        underlayColor={'#eee'}
+        delayLongPress={500} /* 500ms hold delay */
+        style={{padding: 25, backgroundColor: "#F8F8F8", borderBottomWidth:1, borderColor: '#eee'}} 
+        {...this.props.sortHandlers}
+      >
+        <Text>{this.props.data.text}</Text>
+      </TouchableHighlight>
+    );
+  }
+})
+
+let MyComponent = React.createClass({
+  render: function() {
+    return <SortableListView
+          style={{flex: 1}}
+          data={data}
+          order={order}
+          onRowMoved={e => {
+            order.splice(e.to, 0, order.splice(e.from, 1)[0]);
+            this.forceUpdate();
+          }}
+          renderRow={row => <RowComponent data={row} />}
+        />
+  }
+});
+
+
+export default class Customize extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      bounceValue: new Animated.Value(0),
-      userFirstName: '',
-      userLastName: '',
-      userEmail: '',
-    }
   };
 
   navigatePop() {
@@ -35,55 +73,18 @@ export default class Settings extends Component {
               style={styles.backIcon}
             />
           </TouchableHighlight>
-          <Text style={styles.schoolTitle}>Settings</Text>
+          <Text style={styles.schoolTitle}>Customize</Text>
         </View>
         <View style={styles.mainContent}>
-          <View style={styles.contentHeader}>
-            <Text style={styles.settingsTitle}>Hi, ___!</Text>
-
-            <Text style={styles.settingsText}>First Name: </Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={(text) => {
-                this.setState({userFirstName: text});
-              }}
-              value={this.state.userFirstName}
-              placeholder="Enter your first name here"
-            />
-
-            <Text style={styles.settingsText}>Last Name: </Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={(text) => {
-                this.setState({userLastName: text});
-              }}
-              value={this.state.userLastName}
-              placeholder="Enter your last name here"
-            />
-
-            <Text style={styles.settingsText}>Email: </Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={(text) => {
-                this.setState({userEmail: text});
-              }}
-              value={this.state.userEmail}
-              placeholder="Enter your email here"
-            />
-
-            <Button
-              onPress={this.navigatePush.bind(this, 'mycomponent')}
-              title="Customize"
-              color="#841584"
-              accessibilityLabel="Learn more about this purple button"
-            />
-
-          </View>
+          <Text style={styles.settingsTitle}>Press and hold to sort</Text>
+          <MyComponent />
         </View>
       </View>
     )
   }
 }
+
+
 
 const styles = StyleSheet.create({
   /* Style for the enter page */
@@ -127,7 +128,7 @@ const styles = StyleSheet.create({
     width: 350,
     height: 525,
     backgroundColor: 'white',
-    flexDirection: 'row',
+    flexDirection: 'column',
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
@@ -137,6 +138,7 @@ const styles = StyleSheet.create({
     width: 325,
     height: 125,
     marginTop: 20,
+    backgroundColor: 'red',
   },
 
   /* Style for the intro phrase */
@@ -191,4 +193,8 @@ const styles = StyleSheet.create({
 
 });
 
-AppRegistry.registerComponent('Settings', () => Settings);
+
+
+
+AppRegistry.registerComponent('Customize', () => Customize);
+
