@@ -4,6 +4,14 @@ Seabird Apps is a Dartmouth Start-Up founded by Dartmouth '17s. The purpose of t
 
 This specific application is for the Dartmouth App. This app is being built in React Native which deploys on both iOS and Android.
 
+The following images are the most recent implementations and designs for the project:
+
+![Implemented Design 1](https://github.com/dali-lab/seabird/tree/master/Seabird/Screeshots/home-screen.png "Home Screen")
+
+![Implemented Design 2](https://github.com/dali-lab/seabird/tree/master/Seabird/Screeshots/news-screen.png "News Screen")
+
+![Implemented Design 3](https://github.com/dali-lab/seabird/tree/master/Seabird/Screeshots/dds-screen.png "DDS Screen")
+
 ## Architecture
 
 - React Native is used for the frontend development of this project
