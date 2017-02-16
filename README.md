@@ -12,6 +12,7 @@ The following images are the most recent implementations and designs for the pro
 
 ![Implemented Design 3](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/dds-screen.png "DDS Screen")
 
+
 ## Architecture
 
 - React Native is used for the frontend development of this project
