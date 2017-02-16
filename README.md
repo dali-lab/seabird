@@ -13,7 +13,7 @@ The following images are the most recent implementations and designs for the pro
 ![Implemented Design 3](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/dds-screen.png "DDS Screen")
 
 
-## Architecture
+## Architecture :boom:
 
 - React Native is used for the frontend development of this project
   - A main aspect of this project is to deploy on both iOS and Android; React Native gives this project the ability to do so.
@@ -49,7 +49,7 @@ brew install node
 5. Clone the [Seabird Repo](https://github.com/dali-lab/seabird-backend)
   - Make sure to clone in the same general directory
 
-### Installation :hammer:
+### Installation :triangular_ruler:
 ```
 # clone repository and install node modules
 cd seabird-backend
@@ -63,7 +63,7 @@ For in-depth references and information, please refer to the Facebook website.
 [Node for Windows](https://nodejs.org/en/download/)
 
 
-## Deployment
+## Deployment :rocket:
 Pull from this repo and open up the Xcode project and deploy the project on an emulator or on your own phone. If you want to run this application on your Android device, connect your phone to your computer and run the following code in main directory on your command-line:
 
 ### Starting the Server
@@ -74,7 +74,7 @@ n a separate shell, run `mongod &` to start mongodb server.
 npm run dev
 ```
 
-## API Documentation
+## API Documentation :books:
 
 All endpoints are at the `/api/*` path. URLs expressed below are just the paths, not the entire root URL.
 
@@ -128,7 +128,7 @@ All endpoints are at the `/api/*` path. URLs expressed below are just the paths,
   }
   ```
 
-## Authors
+## Authors :pencil:
 
 * Will Kaufman '20 - BackEnd Engineer
 * Ijemma Onwuzulike '19 - FrontEnd Engineer
@@ -137,6 +137,7 @@ All endpoints are at the `/api/*` path. URLs expressed below are just the paths,
 * Shuoqi Chen '18 - Designer
 * Emma Demers '20 - Designer
 
-## Acknowledgments
+## Acknowledgments :mag:
 [React Native Documentation](https://facebook.github.io/react-native/docs/getting-started.html)
+
 [MongoDB Documentation](https://docs.mongodb.com/)
