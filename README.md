@@ -6,11 +6,11 @@ This specific application is for the Dartmouth App. This app is being built in R
 
 The following images are the most recent implementations and designs for the project:
 
-![Implemented Design 1](https://github.com/dali-lab/seabird/tree/master/Seabird/Screeshots/home-screen.png "Home Screen")
+![Implemented Design 1](https://github.com/dali-lab/seabird/tree/master/Seabird/Screenshots/home-screen.png "Home Screen")
 
-![Implemented Design 2](https://github.com/dali-lab/seabird/tree/master/Seabird/Screeshots/news-screen.png "News Screen")
+![Implemented Design 2](https://github.com/dali-lab/seabird/tree/master/Seabird/Screenshots/news-screen.png "News Screen")
 
-![Implemented Design 3](https://github.com/dali-lab/seabird/tree/master/Seabird/Screeshots/dds-screen.png "DDS Screen")
+![Implemented Design 3](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/dds-screen.png "DDS Screen")
 
 ## Architecture
 
