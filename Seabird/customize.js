@@ -22,7 +22,7 @@ let RowComponent = React.createClass({
       <TouchableHighlight
         underlayColor={'#eee'}
         delayLongPress={500} /* 500ms hold delay */
-        style={{padding: 25, backgroundColor: "#F8F8F8", borderBottomWidth:1, borderColor: '#eee'}} 
+        style={{padding: 25, backgroundColor: "#F8F8F8", borderBottomWidth:1, borderColor: '#eee'}}
         {...this.props.sortHandlers}
       >
         <Text>{this.props.data.text}</Text>
@@ -197,4 +197,3 @@ const styles = StyleSheet.create({
 
 
 AppRegistry.registerComponent('Customize', () => Customize);
-
