@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TouchableOpacity } from 'react-native';
 
-var WEBVIEW_REF = 'webview';
+const WEBVIEW_REF = 'webview';
+
+const URL = 'http://thedartmouth.com';
 
 export default class News extends Component {
   // Initialize the hardcoded data
@@ -50,7 +52,7 @@ export default class News extends Component {
       style={{flex: 1}}
       onNavigationStateChange=
         {this.onNavigationStateChange.bind(this)}
-      source={{uri: 'http://thedartmouth.com'}}
+      source={{uri: URL}}
       />
       <View style={styles.bottomBar}>
         <TouchableOpacity
