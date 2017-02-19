@@ -22,6 +22,15 @@ export default class Root extends Component {
     })
   }
 
+  testingGet() {
+    fetch('http://localhost:3000/api/schools/58a0c251ed202b214aff3a08/views/58a0c251ed202b214aff3a0b')
+    .then((response) => response.json())
+    .then((responseJson) => {
+        console.log(responseJson.url)
+      })
+    console.log('Ijemma was here')
+  }
+
   render() {
     return (
       <View style={{
@@ -105,7 +114,8 @@ export default class Root extends Component {
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight onPress={this.navigate.bind(this, 'more')}>
+      {/*onPress={this.navigate.bind(this, 'more')}>*/}
+      <TouchableHighlight onPress={this.testingGet}>
       <View style={styles.nextButton}>
       <Image
         source={require('./Icons/Sort-Down-50-White.png')}
