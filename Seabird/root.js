@@ -1,8 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 
 import React, { Component } from 'react';
 import {
@@ -13,6 +8,52 @@ import {
   TouchableHighlight,
   Image,
 } from 'react-native';
+
+
+
+const COLOR1 = '#9ECA7A'; // used for 3/6 buttons and the Next button (NOTE: original color)
+const COLOR2 = '#AAD984'; // used for the other 3/6 buttons
+const SCHOOL_NAME = 'Dartmouth College'; // used for the title bar (although this will eventually be an image)
+
+
+const HOME_PORTALS = [
+  {
+    'txtName': 'DDS Hours',
+    'navName': 'dds',
+    'imgName': require('./Icons/Restaurant-50-White.png'),
+  },
+  {
+    'txtName': 'Laundry',
+    'navName': null,
+    'imgName': require('./Icons/T-Shirt-50-White.png'),
+  },
+  {
+    'txtName': 'News',
+    'navName': 'news',
+    'imgName': require('./Icons/News-50-White.png'),
+  },
+  {
+    'txtName': 'Campus Map',
+    'navName': null,
+    'imgName': require('./Icons/Map-Marker-50-White.png'),
+  },
+  {
+    'txtName': 'Schedule',
+    'navName': null,
+    'imgName': require('./Icons/Calendar-50-White.png'),
+  },
+  {
+    'txtName': 'Sports',
+    'navName': 'sports',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+];
+
+
+
+
+
+
 
 export default class Root extends Component {
 
@@ -30,81 +71,89 @@ export default class Root extends Component {
         alignItems: 'flex-start',
         justifyContent: 'center',
       }}>
+
       <View style={styles.mainHeader}>
-      <Text style={styles.schoolTitle}>Dartmouth College</Text>
-      <TouchableHighlight onPress={this.navigate.bind(this, 'settings')}>
-        <Image
-          source={require('./Icons/Settings-50-White.png')}
-          style={styles.settingsIcon}
-        />
-      </TouchableHighlight>
+        <Text style={styles.schoolTitle}>{SCHOOL_NAME}</Text>
+        <TouchableHighlight onPress={this.navigate.bind(this, 'settings')}>
+          <Image
+            source={require('./Icons/Settings-50-White.png')}
+            style={styles.settingsIcon}
+          />
+        </TouchableHighlight>
       </View>
-      <TouchableHighlight onPress={this.navigate.bind(this, 'dds')}>
+
+      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[0]['navName'])}>
         <View style={styles.mainSectionDarker}>
         <Image
-          source={require('./Icons/Restaurant-50-White.png')}
+          source={HOME_PORTALS[0]['imgName']}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>DDS Hours</Text>
+          <Text style={styles.mainLabel}>{HOME_PORTALS[0]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight>
+
+      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[1]['navName'])}>
         <View style={styles.mainSection}>
         <Image
-          source={require('./Icons/T-Shirt-50-White.png')}
+          source={HOME_PORTALS[1]['imgName']}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>Laundry</Text>
+          <Text style={styles.mainLabel}>{HOME_PORTALS[1]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight onPress={this.navigate.bind(this, 'news')}>
+
+      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[2]['navName'])}>
         <View style={styles.mainSection}>
         <Image
-          source={require('./Icons/News-50-White.png')}
+          source={HOME_PORTALS[2]['imgName']}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>News</Text>
+          <Text style={styles.mainLabel}>{HOME_PORTALS[2]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight>
+
+      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[3]['navName'])}>
         <View style={styles.mainSectionDarker}>
         <Image
-          source={require('./Icons/Map-Marker-50-White.png')}
+          source={HOME_PORTALS[3]['imgName']}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>Campus News</Text>
+          <Text style={styles.mainLabel}>{HOME_PORTALS[3]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight>
+
+      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[4]['navName'])}>
         <View style={styles.mainSectionDarker}>
         <Image
-          source={require('./Icons/Calendar-50-White.png')}
+          source={HOME_PORTALS[4]['imgName']}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>Schedule</Text>
+          <Text style={styles.mainLabel}>{HOME_PORTALS[4]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight onPress={this.navigate.bind(this, 'sports')}>
+
+<TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[5]['navName'])}>
         <View style={styles.mainSection}>
         <Image
-          source={require('./Icons/Sport-50-White.png')}
+          source={HOME_PORTALS[5]['imgName']}
           style={styles.mainIcon}
         />
         <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>Sports</Text>
+          <Text style={styles.mainLabel}>{HOME_PORTALS[5]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
+
       <TouchableHighlight onPress={this.navigate.bind(this, 'more')}>
       <View style={styles.nextButton}>
       <Image
@@ -157,8 +206,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingBottom: 20,
     margin: 8,
-    backgroundColor: '#9ECA7A',
-    opacity: 0.8,
+    backgroundColor: COLOR1,
+    // opacity: 0.8,
   },
 
   /* Style for the three darker buttons on the main page */
@@ -178,7 +227,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingBottom: 20,
     margin: 8,
-    backgroundColor: '#9ECA7A',
+    backgroundColor: COLOR2,
   },
 
   /* Style for the bottom button that moves to the next page */
@@ -195,7 +244,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 2,
     shadowOpacity: 0.5,
-    backgroundColor: '#9ECA7A',
+    backgroundColor: COLOR1,
   },
 
   /* Style for the main label holder */
