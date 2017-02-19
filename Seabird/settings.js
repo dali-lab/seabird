@@ -72,7 +72,7 @@ export default class Settings extends Component {
             />
 
             <Button
-              onPress={this.navigatePush.bind(this, 'mycomponent')}
+              onPress={this.navigatePush.bind(this, 'customize')}
               title="Customize"
               color="#841584"
               accessibilityLabel="Learn more about this purple button"

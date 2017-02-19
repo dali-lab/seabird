@@ -57,9 +57,10 @@ const HOME_PORTALS = [
 
 export default class Root extends Component {
 
-  navigate(routeName) {
+  navigate(routeName, transitionType='normal') {
     this.props.navigator.push({
-      name: routeName
+      name: routeName,
+      transitionType: transitionType
     })
   }
 
@@ -74,7 +75,7 @@ export default class Root extends Component {
 
       <View style={styles.mainHeader}>
         <Text style={styles.schoolTitle}>{SCHOOL_NAME}</Text>
-        <TouchableHighlight onPress={this.navigate.bind(this, 'settings')}>
+        <TouchableHighlight onPress={this.navigate.bind(this, 'settings', 'down')}>
           <Image
             source={require('./Icons/Settings-50-White.png')}
             style={styles.settingsIcon}
@@ -84,83 +85,83 @@ export default class Root extends Component {
 
       <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[0]['navName'])}>
         <View style={styles.mainSectionDarker}>
-        <Image
-          source={HOME_PORTALS[0]['imgName']}
-          style={styles.mainIcon}
-        />
-        <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>{HOME_PORTALS[0]['txtName']}</Text>
+          <Image
+            source={HOME_PORTALS[0]['imgName']}
+            style={styles.mainIcon}
+          />
+          <View style={styles.mainLabelHolder}>
+            <Text style={styles.mainLabel}>{HOME_PORTALS[0]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
 
       <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[1]['navName'])}>
         <View style={styles.mainSection}>
-        <Image
-          source={HOME_PORTALS[1]['imgName']}
-          style={styles.mainIcon}
-        />
-        <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>{HOME_PORTALS[1]['txtName']}</Text>
+          <Image
+            source={HOME_PORTALS[1]['imgName']}
+            style={styles.mainIcon}
+          />
+          <View style={styles.mainLabelHolder}>
+            <Text style={styles.mainLabel}>{HOME_PORTALS[1]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
 
       <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[2]['navName'])}>
         <View style={styles.mainSection}>
-        <Image
-          source={HOME_PORTALS[2]['imgName']}
-          style={styles.mainIcon}
-        />
-        <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>{HOME_PORTALS[2]['txtName']}</Text>
+          <Image
+            source={HOME_PORTALS[2]['imgName']}
+            style={styles.mainIcon}
+          />
+          <View style={styles.mainLabelHolder}>
+            <Text style={styles.mainLabel}>{HOME_PORTALS[2]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
 
       <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[3]['navName'])}>
         <View style={styles.mainSectionDarker}>
-        <Image
-          source={HOME_PORTALS[3]['imgName']}
-          style={styles.mainIcon}
-        />
-        <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>{HOME_PORTALS[3]['txtName']}</Text>
+          <Image
+            source={HOME_PORTALS[3]['imgName']}
+            style={styles.mainIcon}
+          />
+          <View style={styles.mainLabelHolder}>
+            <Text style={styles.mainLabel}>{HOME_PORTALS[3]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
 
       <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[4]['navName'])}>
         <View style={styles.mainSectionDarker}>
-        <Image
-          source={HOME_PORTALS[4]['imgName']}
-          style={styles.mainIcon}
-        />
-        <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>{HOME_PORTALS[4]['txtName']}</Text>
+          <Image
+            source={HOME_PORTALS[4]['imgName']}
+            style={styles.mainIcon}
+          />
+          <View style={styles.mainLabelHolder}>
+            <Text style={styles.mainLabel}>{HOME_PORTALS[4]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
 
-<TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[5]['navName'])}>
+      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[5]['navName'])}>
         <View style={styles.mainSection}>
-        <Image
-          source={HOME_PORTALS[5]['imgName']}
-          style={styles.mainIcon}
-        />
-        <View style={styles.mainLabelHolder}>
-          <Text style={styles.mainLabel}>{HOME_PORTALS[5]['txtName']}</Text>
+          <Image
+            source={HOME_PORTALS[5]['imgName']}
+            style={styles.mainIcon}
+          />
+          <View style={styles.mainLabelHolder}>
+            <Text style={styles.mainLabel}>{HOME_PORTALS[5]['txtName']}</Text>
           </View>
         </View>
       </TouchableHighlight>
 
-      <TouchableHighlight onPress={this.navigate.bind(this, 'more')}>
-      <View style={styles.nextButton}>
-      <Image
-        source={require('./Icons/Sort-Down-50-White.png')}
-        style={styles.downIcon}
-      />
-      </View>
+      <TouchableHighlight onPress={ this.navigate.bind(this, 'more', 'up')}>
+        <View style={styles.nextButton}>
+          <Image
+            source={require('./Icons/Sort-Down-50-White.png')}
+            style={styles.downIcon}
+          />
+        </View>
       </TouchableHighlight>
       </View>
     );
