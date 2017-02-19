@@ -15,9 +15,6 @@ import Settings from './settings';
 import More from './more';
 import Customize from './customize';
 
-var Datastore = require('react-native-local-mongodb')
-  , db = new Datastore();
-
 export default class Seabird extends Component {
   // Initialize the hardcoded data
 
@@ -63,7 +60,7 @@ export default class Seabird extends Component {
       if(route.transitionType === 'down') {
         return Navigator.SceneConfigs.VerticalDownSwipeJump
       }
-      return Navigator.SceneConfigs.PushFromRight 
+      return Navigator.SceneConfigs.PushFromRight
   }
 
   render() {

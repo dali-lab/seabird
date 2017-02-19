@@ -64,6 +64,15 @@ export default class Root extends Component {
     })
   }
 
+  testingGet() {
+    fetch('http://localhost:3000/api/schools/58a0c251ed202b214aff3a08/views/58a0c251ed202b214aff3a0b')
+    .then((response) => response.json())
+    .then((responseJson) => {
+        console.log(responseJson.url)
+      })
+    console.log('Ijemma was here')
+  }
+
   render() {
     return (
       <View style={{
@@ -154,7 +163,6 @@ export default class Root extends Component {
           </View>
         </View>
       </TouchableHighlight>
-
       <TouchableHighlight onPress={ this.navigate.bind(this, 'more', 'up')}>
         <View style={styles.nextButton}>
           <Image
