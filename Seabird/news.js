@@ -15,12 +15,18 @@ export default class News extends Component {
 
   onNavigationStateChange(navState) {
     this.setState({
-      canGoBack: navState.canGoBack
+      canGoBack: navState.canGoBack,
+      forwardButtonEnabled: navState.canGoForward,
+      url: navState.url
     });
   };
 
-  onBack() {
+  goBack() {
     this.refs[WEBVIEW_REF].goBack();
+  };
+
+  goForward = () => {
+    this.refs[WEBVIEW_REF].goForward();
   };
 
   navigatePop(routeName) {
@@ -49,10 +55,19 @@ export default class News extends Component {
       <View style={styles.bottomBar}>
         <TouchableOpacity
           disabled={!this.state.canGoBack}
-          onPress={this.onBack.bind(this)}
+          onPress={this.goBack.bind(this)}
           >
           <Image
             source={require('./Icons/Back-50-White.png')}
+            style={styles.backIcon}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          disabled={!this.state.forwardButtonEnabled}
+          onPress={this.goForward}
+          >
+          <Image
+            source={require('./Icons/Forward-50-White.png')}
             style={styles.backIcon}
           />
         </TouchableOpacity>
@@ -90,8 +105,15 @@ const styles = StyleSheet.create({
 
   /* Styles the back button */
   backIcon: {
-    flex: 0,
+    flex: .5,
     height: 20,
+    resizeMode: 'center',
+  },
+
+  /* Styles the forward button */
+  forwardIcon: {
+    flex: .5,
+    height: 20, 
     resizeMode: 'center',
   },
 
