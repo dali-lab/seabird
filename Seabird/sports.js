@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TouchableOpacity } from 'react-native';
 
-var WEBVIEW_REF = 'webview';
+const WEBVIEW_REF = 'webview';
+
+const URL = 'http://dartmouthsports.com';
 
 export default class Sports extends Component {
   // Initialize the hardcoded data
@@ -27,7 +29,7 @@ export default class Sports extends Component {
     this.refs[WEBVIEW_REF].goForward();
   };
 
-  navigate(routeName) {
+  navigatePop(routeName) {
     this.props.navigator.pop();
   };
 
@@ -48,7 +50,7 @@ export default class Sports extends Component {
       style={{flex: 1}}
       onNavigationStateChange=
         {this.onNavigationStateChange.bind(this)}
-      source={{uri: 'http://dartmouthsports.com'}}
+      source={{uri: URL}}
       />
       <View style={styles.bottomBar}>
         <TouchableOpacity

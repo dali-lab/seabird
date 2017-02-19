@@ -13,12 +13,18 @@ import News from './news';
 import Sports from './sports';
 import Settings from './settings';
 import More from './more';
+import Customize from './customize';
 
 var Datastore = require('react-native-local-mongodb')
   , db = new Datastore();
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
+
+  constructor(props) {
+    super(props);
+    this.configureScene = this.configureScene.bind(this);
+  };
 
   renderScene(route, navigator) {
     if (route.name == 'root') {
@@ -44,6 +50,20 @@ export default class Seabird extends Component {
     if (route.name == 'more') {
       return <More navigator={navigator}/>
     }
+
+    if (route.name == 'customize') {
+      return <Customize navigator={navigator}/>
+    }
+  }
+
+  configureScene(route, routeStack){
+      if(route.transitionType === 'up') {
+        return Navigator.SceneConfigs.VerticalUpSwipeJump
+      }
+      if(route.transitionType === 'down') {
+        return Navigator.SceneConfigs.VerticalDownSwipeJump
+      }
+      return Navigator.SceneConfigs.PushFromRight 
   }
 
   render() {
@@ -51,9 +71,11 @@ export default class Seabird extends Component {
         <Navigator
           initialRoute={{name: 'root', title: 'My Initial Scene', index: 0}}
           renderScene={this.renderScene.bind(this)}
+          configureScene={ this.configureScene }
         />
       )
     }
 };
+
 
 AppRegistry.registerComponent('Seabird', () => Seabird);

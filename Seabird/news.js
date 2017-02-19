@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TouchableOpacity } from 'react-native';
 
-var WEBVIEW_REF = 'webview';
+const WEBVIEW_REF = 'webview';
+
+const URL = 'http://thedartmouth.com';
 
 export default class News extends Component {
   // Initialize the hardcoded data
@@ -15,12 +17,18 @@ export default class News extends Component {
 
   onNavigationStateChange(navState) {
     this.setState({
-      canGoBack: navState.canGoBack
+      canGoBack: navState.canGoBack,
+      forwardButtonEnabled: navState.canGoForward,
+      url: navState.url
     });
   };
 
-  onBack() {
+  goBack() {
     this.refs[WEBVIEW_REF].goBack();
+  };
+
+  goForward = () => {
+    this.refs[WEBVIEW_REF].goForward();
   };
 
   navigatePop(routeName) {
@@ -44,15 +52,24 @@ export default class News extends Component {
       style={{flex: 1}}
       onNavigationStateChange=
         {this.onNavigationStateChange.bind(this)}
-      source={{uri: 'http://thedartmouth.com'}}
+      source={{uri: URL}}
       />
       <View style={styles.bottomBar}>
         <TouchableOpacity
           disabled={!this.state.canGoBack}
-          onPress={this.onBack.bind(this)}
+          onPress={this.goBack.bind(this)}
           >
           <Image
             source={require('./Icons/Back-50-White.png')}
+            style={styles.backIcon}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          disabled={!this.state.forwardButtonEnabled}
+          onPress={this.goForward}
+          >
+          <Image
+            source={require('./Icons/Forward-50-White.png')}
             style={styles.backIcon}
           />
         </TouchableOpacity>
@@ -90,8 +107,15 @@ const styles = StyleSheet.create({
 
   /* Styles the back button */
   backIcon: {
-    flex: 0,
+    flex: .5,
     height: 20,
+    resizeMode: 'center',
+  },
+
+  /* Styles the forward button */
+  forwardIcon: {
+    flex: .5,
+    height: 20, 
     resizeMode: 'center',
   },
 
