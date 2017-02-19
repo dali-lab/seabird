@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput, Button } from 'react-native';
+import { BackButton } from './backButton'
 
 let SortableListView = require('react-native-sortable-listview');
 
@@ -67,12 +68,7 @@ export default class Customize extends Component {
     return (
       <View style={styles.pageContent}>
         <View style={styles.mainHeader}>
-          <TouchableHighlight onPress={this.navigatePop.bind(this, 'settings')}>
-            <Image
-              source={require('./Icons/Back-50-White.png')}
-              style={styles.backIcon}
-            />
-          </TouchableHighlight>
+          <BackButton navigator={this.props.navigator} />
           <Text style={styles.schoolTitle}>Customize</Text>
         </View>
         <View style={styles.mainContent}>

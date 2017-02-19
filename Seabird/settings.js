@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput, Button } from 'react-native';
+import { BackButton } from './backButton'
 
 
 export default class Settings extends Component {
@@ -29,12 +30,7 @@ export default class Settings extends Component {
     return (
       <View style={styles.pageContent}>
         <View style={styles.mainHeader}>
-          <TouchableHighlight onPress={this.navigatePop.bind(this, 'settings')}>
-            <Image
-              source={require('./Icons/Back-50-White.png')}
-              style={styles.backIcon}
-            />
-          </TouchableHighlight>
+          <BackButton navigator={this.props.navigator} />
           <Text style={styles.schoolTitle}>Settings</Text>
         </View>
         <View style={styles.mainContent}>
@@ -75,7 +71,6 @@ export default class Settings extends Component {
               onPress={this.navigatePush.bind(this, 'customize')}
               title="Customize"
               color="#841584"
-              accessibilityLabel="Learn more about this purple button"
             />
 
           </View>
@@ -113,13 +108,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     letterSpacing: -0.56,
     textAlign: 'center',
-  },
-
-  /* Styles the back button */
-  backIcon: {
-    flex: 0,
-    height: 20,
-    resizeMode: 'center',
   },
 
   /* Style for the main section that will hold all the of the DDS content */
