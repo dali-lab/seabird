@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView } from 'react-native';
-
+import { BackButton } from './backButton'
 
 var ddsLocations = ['FOCO', 'THE HOP', 'NOVACK', 'COLLIS'];
 export default class DDS extends Component {
@@ -14,10 +14,6 @@ export default class DDS extends Component {
       dataSource: dataSource.cloneWithRows(ddsLocations),
     }
   };
-
-  navigatePop(routeName) {
-    this.props.navigator.pop();
-  }
 
   renderRow(rowData, sectionID, rowID) {
     return (
@@ -34,12 +30,7 @@ export default class DDS extends Component {
     return (
       <View style={styles.pageContent}>
         <View style={styles.mainHeader}>
-        <TouchableHighlight onPress={this.navigatePop.bind(this, 'dds')}>
-          <Image
-            source={require('./Icons/Back-50-White.png')}
-            style={styles.backIcon}
-          />
-          </TouchableHighlight>
+          <BackButton navigator={this.props.navigator} />
           <Text style={styles.schoolTitle}>DDS</Text>
         </View>
         <View style={styles.mainContent}>

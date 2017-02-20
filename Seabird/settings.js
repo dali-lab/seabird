@@ -16,10 +16,6 @@ export default class Settings extends Component {
     }
   };
 
-  navigatePop() {
-    this.props.navigator.pop();
-  }
-
   navigatePush(routeName) {
     this.props.navigator.push({
       name: routeName

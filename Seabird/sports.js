@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TouchableOpacity } from 'react-native';
+import { BackButton } from './backButton'
 
 const WEBVIEW_REF = 'webview';
 
@@ -29,20 +30,11 @@ export default class Sports extends Component {
     this.refs[WEBVIEW_REF].goForward();
   };
 
-  navigatePop(routeName) {
-    this.props.navigator.pop();
-  };
-
   render() {
     return (
       <View style={styles.container}>
       <View style={styles.mainHeader}>
-      <TouchableHighlight onPress={this.navigatePop.bind(this, 'sports')}>
-        <Image
-          source={require('./Icons/Back-50-White.png')}
-          style={styles.backIcon}
-        />
-        </TouchableHighlight>
+        <BackButton navigator={this.props.navigator} />
         <Text style={styles.schoolTitle}>Sports</Text>
       </View>
       <WebView
