@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput, Button } from 'react-native';
-import { BackButton } from './backButton'
+import { NavBar } from './navBar';
+
+const NAVBAR_TEXT = 'Customize';
 
 let SortableListView = require('react-native-sortable-listview');
 
@@ -67,10 +69,7 @@ export default class Customize extends Component {
   render() {
     return (
       <View style={styles.pageContent}>
-        <View style={styles.mainHeader}>
-          <BackButton navigator={this.props.navigator} />
-          <Text style={styles.schoolTitle}>Customize</Text>
-        </View>
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
           <Text style={styles.settingsTitle}>Press and hold to sort</Text>
           <MyComponent />
@@ -88,28 +87,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-  },
-
-  /* Style for the header section that holds the school name and crest */
-  mainHeader: {
-    width: 400,
-    height: 70,
-    marginBottom: 20,
-    backgroundColor: '#2b2b2b',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-
-  /* Style for the school title text */
-  schoolTitle: {
-    fontSize: 23,
-    fontFamily: 'System',
-    fontWeight: '300',
-    color: '#fff',
-    letterSpacing: -0.56,
-    textAlign: 'center',
   },
 
   /* Styles the back button */
