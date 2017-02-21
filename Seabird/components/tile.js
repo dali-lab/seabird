@@ -1,43 +1,61 @@
-// import React, { Component } from 'react';
-// import { TouchableHighlight, Image, StyleSheet, Text, View } from 'react-native';
-// import { BackButton } from './backButton';
+import React, { Component } from 'react';
+import { TouchableHighlight, Image, StyleSheet, Text, View } from 'react-native';
 
-// export class NavBar extends Component {
+export class Tile extends Component {
 
-//   navigatePop() {
-//     this.props.navigator.pop();
-//   }
+  navigatePop() {
+    this.props.navigator.pop();
+  }
 
-//   render() {
-//     return (
-//       <View style={styles.mainHeader}>
-//         <BackButton navigator={this.props.navigator} />
-//         <Text style={styles.schoolTitle}>{this.props.text}</Text>
-//       </View>
-//     );
-//   }
-// }
+  navigate(routeName, transitionType='normal') {
+    this.props.navigator.push({
+      name: routeName,
+      transitionType: transitionType
+    })
+  }
+
+  render() {
+    return (
+      <TouchableHighlight onPress={this.navigate.bind(this, this.props.navName)}>
+        <View style={this.props.style}>
+          <Image
+            source={this.props.imgSource}
+            style={styles.mainIcon}
+          />
+          <View style={styles.mainLabelHolder}>
+            <Text style={styles.mainLabel}>{this.props.text}</Text>
+          </View>
+        </View>
+      </TouchableHighlight>
+    );
+  }
+}
 
 
-// const styles = StyleSheet.create({
-//   /* Style for the header section that holds the school name and crest */
-//   mainHeader: {
-//     width: 400,
-//     height: 70,
-//     marginBottom: 20,
-//     backgroundColor: '#2b2b2b',
-//     flexDirection: 'row',
-//     flexWrap: 'wrap',
-//     alignItems: 'center',
-//     justifyContent: 'flex-start',
-//   },
+const styles = StyleSheet.create({
+  /* Style for the icons on the main buttons */
+  mainIcon: {
+    top: 10,
+  },
 
-//   /* Style for the school title text */
-//   schoolTitle: {
-//     fontSize: 23,
-//     fontFamily: 'System',
-//     fontWeight: '300',
-//     color: '#fff',
-//     letterSpacing: -0.56,
-//   },
-// });
+  /* Style for the main label holder */
+  mainLabelHolder: {
+    top: 40,
+    width: 150,
+    height: 45,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
+    backgroundColor: 'white',
+  },
+
+  /* Style for the main label texts on the main buttons */
+  mainLabel: {
+    fontSize: 16,
+    fontFamily: 'System',
+    fontWeight: '500',
+    textAlign: 'center',
+    color: '#444',
+    paddingTop: 10,
+  },
+
+});
