@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput, Button } from 'react-native';
-import { NavBar } from './navBar';
+import { NavBar } from './components/navBar';
 
 
 const NAVBAR_TEXT = 'Settings';

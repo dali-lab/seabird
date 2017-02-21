@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView } from 'react-native';
-import { NavBar } from './navBar';
+import { NavBar } from './components/navBar';
 
 const ddsLocations = ['FOCO', 'THE HOP', 'NOVACK', 'COLLIS'];
 const NAVBAR_TEXT = 'Food';

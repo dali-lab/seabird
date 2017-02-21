@@ -11,7 +11,7 @@ export class BackButton extends Component {
     return (
       <TouchableHighlight onPress={this.navigatePop.bind(this, 'backbutton')}>
         <Image
-          source={require('./Icons/Back-50-White.png')}
+          source={require('../Icons/Back-50-White.png')}
           style={
             {
               flex: 0,

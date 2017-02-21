@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TouchableOpacity } from 'react-native';
-import { NavBar } from './navBar';
+import { NavBar } from './components/navBar';
 
 const WEBVIEW_REF = 'webview';
 const URL = 'http://dartmouthsports.com';
