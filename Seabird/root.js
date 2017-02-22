@@ -7,14 +7,15 @@ import {
   View,
   TouchableHighlight,
   Image,
+  Dimensions,
 } from 'react-native';
 
 
 
-const COLOR1 = '#9ECA7A'; // used for 3/6 buttons and the Next button (NOTE: original color)
-const COLOR2 = '#AAD984'; // used for the other 3/6 buttons
+const COLOR1 = '#73D9A4'; // used for 3/6 buttons and the Next button (NOTE: original color)
+const COLOR2 = '#4CCE8B'; // used for the other 3/6 buttons
 const SCHOOL_NAME = 'Dartmouth College'; // used for the title bar (although this will eventually be an image)
-
+var {height, width} = Dimensions.get('window');
 
 const HOME_PORTALS = [
   {
@@ -65,12 +66,11 @@ export default class Root extends Component {
   }
 
   testingGet() {
-    fetch('http://localhost:3000/api/schools/58a0c251ed202b214aff3a08/views/58a0c251ed202b214aff3a0b')
+    fetch('http://localhost:3000/api/')
     .then((response) => response.json())
     .then((responseJson) => {
-        console.log(responseJson.url)
+        console.log(responseJson.message)
       })
-    console.log('Ijemma was here')
   }
 
   render() {
@@ -83,7 +83,7 @@ export default class Root extends Component {
       }}>
 
       <View style={styles.mainHeader}>
-        <Text style={styles.schoolTitle}>{SCHOOL_NAME}</Text>
+        <Text style={styles.schoolTitle} onPress={this.testingGet}>{SCHOOL_NAME}</Text>
         <TouchableHighlight onPress={this.navigate.bind(this, 'settings', 'down')}>
           <Image
             source={require('./Icons/Settings-50-White.png')}
@@ -179,10 +179,10 @@ export default class Root extends Component {
 const styles = StyleSheet.create({
   /* Style for the header section that holds the school name and crest */
   mainHeader: {
-    width: 400,
+    width: width,
     height: 70,
-    marginBottom: 15,
-    backgroundColor: '#2b2b2b',
+    marginBottom: 2,
+    backgroundColor: 'white',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     fontSize: 23,
     fontFamily: 'System',
     fontWeight: '300',
-    color: '#fff',
+    color: '#000',
     letterSpacing: -0.56,
   },
 
@@ -203,20 +203,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowRadius: 2,
-    shadowOpacity: 0.5,
-    width: 150,
-    height: 150,
-    borderRadius: 5,
+    width: width/2.05,
+    height: height/4,
     paddingBottom: 20,
-    margin: 8,
+    margin: 2,
     backgroundColor: COLOR1,
-    // opacity: 0.8,
   },
 
   /* Style for the three darker buttons on the main page */
@@ -224,18 +215,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowRadius: 2,
-    shadowOpacity: 0.5,
-    width: 150,
-    height: 150,
-    borderRadius: 5,
+    width: width/2.05,
+    height: height/4,
     paddingBottom: 20,
-    margin: 8,
+    margin: 2,
     backgroundColor: COLOR2,
   },
 
@@ -263,16 +246,15 @@ const styles = StyleSheet.create({
     height: 45,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    backgroundColor: 'white',
   },
 
   /* Style for the main label texts on the main buttons */
   mainLabel: {
-    fontSize: 16,
+    fontSize: 20,
     fontFamily: 'System',
-    fontWeight: '500',
+    fontWeight: '400',
     textAlign: 'center',
-    color: '#444',
+    color: '#fff',
     paddingTop: 10,
   },
 
