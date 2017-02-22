@@ -43,18 +43,15 @@ const styles = StyleSheet.create({
     top: 40,
     width: 150,
     height: 45,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
-    backgroundColor: 'white',
   },
 
   /* Style for the main label texts on the main buttons */
   mainLabel: {
-    fontSize: 16,
+    fontSize: 20,
     fontFamily: 'System',
-    fontWeight: '500',
+    fontWeight: '400',
     textAlign: 'center',
-    color: '#444',
+    color: '#fff',
     paddingTop: 10,
   },
 

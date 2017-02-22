@@ -208,33 +208,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     margin: 10,
     marginTop: 15,
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowRadius: 2,
-    shadowOpacity: 0.5,
     backgroundColor: COLOR1,
-  },
-
-  /* Style for the main label holder */
-  mainLabelHolder: {
-    top: 40,
-    width: 150,
-    height: 45,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
-  },
-
-  /* Style for the main label texts on the main buttons */
-  mainLabel: {
-    fontSize: 20,
-    fontFamily: 'System',
-    fontWeight: '400',
-    textAlign: 'center',
-    color: '#fff',
-    paddingTop: 10,
   },
 
   /* Style for the icons on the main buttons */
