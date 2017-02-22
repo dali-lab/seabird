@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, Dimensions } from 'react-native';
 import { NavBar } from './components/navBar';
 
-const ddsLocations = ['FOCO':'11AM - 3:30PM', 'THE HOP':'11AM - 3:30PM', 'NOVACK':'11AM - 3:30PM', 'COLLIS':'11AM - 3:30PM'];
+const ddsLocations = [
+  {location: 'FOCO', hours: '11AM - 3:30PM'},
+  {location: 'THE HOP', hours: '11AM - 3:30PM'},
+  {location: 'NOVACK', hours: '11AM - 3:30PM'},
+  {location: 'COLLIS', hours: '11AM - 3:30PM'}
+];
 const NAVBAR_TEXT = 'Food';
 const {height, width} = Dimensions.get('window');
 
@@ -14,13 +19,21 @@ export default class DDS extends Component {
     var locations = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid != r2.guid});
     this.state = {
       bounceValue: new Animated.Value(0),
-      locationSource: locations.cloneWithRows(ddsLocations),
+      locationSource: locations.cloneWithRows(this.timesLocations()),
     }
   };
 
+  timesLocations(){
+    var dataList = []
+    for (var i = 0; i < ddsLocations.length; i++) {
+      dataList.push(ddsLocations[i].hours + " " + ddsLocations[i].location);
+    }
+    return dataList;
+  }
+
   renderRow(rowData, sectionID, rowID) {
     return (
-      <TouchableHighlight underlayColor='#ddd' style={{height: 44}}>
+      <TouchableHighlight underlayColor='#ddd' style={{height: 50}}>
         <View>
           <Text style={styles.listItem} numberOfLines={1}>{rowData}</Text>
           <View style={styles.divider}/>
@@ -125,7 +138,8 @@ const styles = StyleSheet.create({
   },
 
   listItem: {
-    fontSize: 22,
+    width: width,
+    fontSize: 20,
     fontFamily: 'System',
     fontWeight: '400',
     borderBottomWidth: 1,
