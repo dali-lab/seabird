@@ -10,6 +10,8 @@ import {
   Dimensions,
 } from 'react-native';
 
+import { Tile } from './components/tile';
+
 
 
 const COLOR1 = '#73D9A4'; // used for 3/6 buttons and the Next button (NOTE: original color)
@@ -92,77 +94,54 @@ export default class Root extends Component {
         </TouchableHighlight>
       </View>
 
-      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[0]['navName'])}>
-        <View style={styles.mainSectionDarker}>
-          <Image
-            source={HOME_PORTALS[0]['imgName']}
-            style={styles.mainIcon}
-          />
-          <View style={styles.mainLabelHolder}>
-            <Text style={styles.mainLabel}>{HOME_PORTALS[0]['txtName']}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <Tile
+        navigator={this.props.navigator}
+        navName={HOME_PORTALS[0]['navName']}
+        imgSource={HOME_PORTALS[0]['imgName']}
+        text={HOME_PORTALS[0]['txtName']}
+        style={styles.homeTile1}
+      />
 
-      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[1]['navName'])}>
-        <View style={styles.mainSection}>
-          <Image
-            source={HOME_PORTALS[1]['imgName']}
-            style={styles.mainIcon}
-          />
-          <View style={styles.mainLabelHolder}>
-            <Text style={styles.mainLabel}>{HOME_PORTALS[1]['txtName']}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <Tile
+        navigator={this.props.navigator}
+        navName={HOME_PORTALS[1]['navName']}
+        imgSource={HOME_PORTALS[1]['imgName']}
+        text={HOME_PORTALS[1]['txtName']}
+        style={styles.homeTile2}
+      />
 
-      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[2]['navName'])}>
-        <View style={styles.mainSection}>
-          <Image
-            source={HOME_PORTALS[2]['imgName']}
-            style={styles.mainIcon}
-          />
-          <View style={styles.mainLabelHolder}>
-            <Text style={styles.mainLabel}>{HOME_PORTALS[2]['txtName']}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <Tile
+        navigator={this.props.navigator}
+        navName={HOME_PORTALS[2]['navName']}
+        imgSource={HOME_PORTALS[2]['imgName']}
+        text={HOME_PORTALS[2]['txtName']}
+        style={styles.homeTile2}
+      />
 
-      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[3]['navName'])}>
-        <View style={styles.mainSectionDarker}>
-          <Image
-            source={HOME_PORTALS[3]['imgName']}
-            style={styles.mainIcon}
-          />
-          <View style={styles.mainLabelHolder}>
-            <Text style={styles.mainLabel}>{HOME_PORTALS[3]['txtName']}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <Tile
+        navigator={this.props.navigator}
+        navName={HOME_PORTALS[3]['navName']}
+        imgSource={HOME_PORTALS[3]['imgName']}
+        text={HOME_PORTALS[3]['txtName']}
+        style={styles.homeTile1}
+      />
 
-      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[4]['navName'])}>
-        <View style={styles.mainSectionDarker}>
-          <Image
-            source={HOME_PORTALS[4]['imgName']}
-            style={styles.mainIcon}
-          />
-          <View style={styles.mainLabelHolder}>
-            <Text style={styles.mainLabel}>{HOME_PORTALS[4]['txtName']}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <Tile
+        navigator={this.props.navigator}
+        navName={HOME_PORTALS[4]['navName']}
+        imgSource={HOME_PORTALS[4]['imgName']}
+        text={HOME_PORTALS[4]['txtName']}
+        style={styles.homeTile1}
+      />
 
-      <TouchableHighlight onPress={this.navigate.bind(this, HOME_PORTALS[5]['navName'])}>
-        <View style={styles.mainSection}>
-          <Image
-            source={HOME_PORTALS[5]['imgName']}
-            style={styles.mainIcon}
-          />
-          <View style={styles.mainLabelHolder}>
-            <Text style={styles.mainLabel}>{HOME_PORTALS[5]['txtName']}</Text>
-          </View>
-        </View>
-      </TouchableHighlight>
+      <Tile
+        navigator={this.props.navigator}
+        navName={HOME_PORTALS[5]['navName']}
+        imgSource={HOME_PORTALS[5]['imgName']}
+        text={HOME_PORTALS[5]['txtName']}
+        style={styles.homeTile2}
+      />
+
       <TouchableHighlight onPress={ this.navigate.bind(this, 'more', 'up')}>
         <View style={styles.nextButton}>
           <Image
@@ -198,8 +177,8 @@ const styles = StyleSheet.create({
     letterSpacing: -0.56,
   },
 
-  /* Style for the three lighter buttons on the main page */
-  mainSection: {
+  /* Style for three of the main home screen tile buttons */
+  homeTile1: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -210,8 +189,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR1,
   },
 
-  /* Style for the three darker buttons on the main page */
-  mainSectionDarker: {
+  /* Style for the other three of the main home screen tile buttons */
+  homeTile2: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -236,6 +215,7 @@ const styles = StyleSheet.create({
     },
     shadowRadius: 2,
     shadowOpacity: 0.5,
+<<<<<<< HEAD
     backgroundColor: COLOR1,
   },
 
