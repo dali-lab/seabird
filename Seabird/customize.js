@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput, Button } from 'react-native';
+import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput, Button, Dimensions} from 'react-native';
 import { NavBar } from './components/navBar';
 
 const NAVBAR_TEXT = 'Customize';
+const {width, height} = Dimensions.get('window');
 
 let SortableListView = require('react-native-sortable-listview');
 
@@ -25,7 +26,7 @@ let RowComponent = React.createClass({
       <TouchableHighlight
         underlayColor={'#eee'}
         delayLongPress={500} /* 500ms hold delay */
-        style={{padding: 25, backgroundColor: "#F8F8F8", borderBottomWidth:1, borderColor: '#eee'}}
+        style={styles.settingsList}
         {...this.props.sortHandlers}
       >
         <Text>{this.props.data.text}</Text>
@@ -37,7 +38,7 @@ let RowComponent = React.createClass({
 let MyComponent = React.createClass({
   render: function() {
     return <SortableListView
-          style={{flex: 1}}
+          style={{flex: 1, width: width,}}
           data={data}
           order={order}
           onRowMoved={e => {
@@ -71,7 +72,7 @@ export default class Customize extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
-          <Text style={styles.settingsTitle}>Press and hold to sort</Text>
+          <Text style={styles.settingsTitle}>Customize your homepage!</Text>
           <MyComponent />
         </View>
       </View>
@@ -100,10 +101,12 @@ const styles = StyleSheet.create({
   mainContent: {
     width: 350,
     height: 525,
-    backgroundColor: 'white',
+    backgroundColor: '#ddd',
     flexDirection: 'column',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    width: width,
+    height: height,
   },
 
   /* Style for the section that holds the swipe headers */
@@ -131,23 +134,24 @@ const styles = StyleSheet.create({
 
   /* Style for the current meal swipe */
   settingsTitle: {
-    fontSize: 28,
+    fontSize: 16,
     fontFamily: 'System',
-    fontWeight: '600',
+    fontWeight: '300',
     textAlign: 'center',
+    marginTop: 10,
     marginBottom: 30,
   },
 
-  /* Style for the menu option */
-  oldThing: {
-    fontSize: 12,
-    fontFamily: 'System',
-    textAlign: 'left',
-    marginTop: 7,
+  contentInformation: {
+    width: width,
   },
 
-  contentInformation: {
-    width: 250,
+  settingsList: {
+    padding: 25,
+    backgroundColor: "#FBFBFB",
+    borderBottomWidth:1,
+    borderColor: '#eee',
+    width: width,
   },
 
   listItem: {
