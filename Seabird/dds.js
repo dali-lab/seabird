@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView } from 'react-native';
+import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, Dimensions } from 'react-native';
 import { NavBar } from './components/navBar';
 
-const ddsLocations = ['FOCO', 'THE HOP', 'NOVACK', 'COLLIS'];
+const ddsLocations = ['FOCO':'11AM - 3:30PM', 'THE HOP':'11AM - 3:30PM', 'NOVACK':'11AM - 3:30PM', 'COLLIS':'11AM - 3:30PM'];
 const NAVBAR_TEXT = 'Food';
-
+const {height, width} = Dimensions.get('window');
 
 export default class DDS extends Component {
   // Initialize the hardcoded data
 
   constructor(props) {
     super(props);
-    var dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid != r2.guid});
+    var locations = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid != r2.guid});
     this.state = {
       bounceValue: new Animated.Value(0),
-      dataSource: dataSource.cloneWithRows(ddsLocations),
+      locationSource: locations.cloneWithRows(ddsLocations),
     }
   };
 
@@ -35,12 +35,16 @@ export default class DDS extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
+          <Image
+            source={require('./Icons/breakfast.jpg')}
+            style={styles.imageContainer}>
             <Text style={styles.mealIntro}>The current swipe is</Text>
             <Text style={styles.currentSwipe}>BREAKFAST: $5.25</Text>
             <Text style={styles.menuOptions}>See full menus here</Text>
+          </Image>
           </View>
           <View style={styles.contentInformation}>
-            <ListView dataSource={this.state.dataSource} renderRow={this.renderRow.bind(this)}>
+            <ListView dataSource={this.state.locationSource} renderRow={this.renderRow.bind(this)}>
             </ListView>
           </View>
         </View>
@@ -66,17 +70,8 @@ const styles = StyleSheet.create({
 
   /* Style for the main section that will hold all the of the DDS content */
   mainContent: {
-    width: 350,
-    height: 525,
+    width: width,
     backgroundColor: 'white',
-    shadowColor: '#000000',
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowRadius: 2,
-    shadowOpacity: 0.5,
-    borderRadius: 5,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -86,7 +81,17 @@ const styles = StyleSheet.create({
   contentHeader: {
     width: 325,
     height: 125,
-    marginTop: 20,
+    marginTop: -2,
+  },
+
+  /* Style for the image container */
+  imageContainer: {
+    flex: 1,
+    width: width,
+    height: height/2,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   /* Style for the intro phrase */
@@ -94,6 +99,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'System',
     textAlign: 'center',
+    color: '#fff',
   },
 
   /* Style for the current meal swipe */
@@ -102,6 +108,7 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     fontWeight: '600',
     textAlign: 'center',
+    color: '#fff',
   },
 
   /* Style for the menu option */
@@ -110,6 +117,7 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     textAlign: 'center',
     marginTop: 7,
+    color: '#fff',
   },
 
   contentInformation: {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { TouchableHighlight, Image, StyleSheet, Text, View } from 'react-native';
+import { TouchableHighlight, Image, StyleSheet, Text, View, Dimensions} from 'react-native';
 import { BackButton } from './backButton';
+
+const {height, width} = Dimensions.get('window');
 
 export class NavBar extends Component {
 
@@ -18,18 +20,17 @@ export class NavBar extends Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   /* Style for the header section that holds the school name and crest */
   mainHeader: {
-    width: 400,
+    width: width,
     height: 70,
-    marginBottom: 20,
-    backgroundColor: '#2b2b2b',
+    marginBottom: 2,
+    backgroundColor: '#4CCE8B',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-around',
   },
 
   /* Style for the school title text */
