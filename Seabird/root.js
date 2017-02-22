@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   Image,
   Dimensions,
+  ScrollView,
 } from 'react-native';
 
 import { Tile } from './components/tile';
@@ -50,12 +51,6 @@ const HOME_PORTALS = [
   },
 ];
 
-
-
-
-
-
-
 export default class Root extends Component {
 
   navigate(routeName, transitionType='normal') {
@@ -81,12 +76,15 @@ export default class Root extends Component {
         alignItems: 'flex-start',
         justifyContent: 'center',
       }}>
-
       <View style={styles.mainHeader}>
+      <Image
+        source={require('./Icons/User-Menu-Male-48.png')}
+        style={styles.settingsIcon}
+      />
         <Text style={styles.schoolTitle} onPress={this.testingGet}>{SCHOOL_NAME}</Text>
         <TouchableHighlight onPress={this.navigate.bind(this, 'settings', 'down')}>
           <Image
-            source={require('./Icons/Settings-50-White.png')}
+            source={require('./Icons/Settings-48.png')}
             style={styles.settingsIcon}
           />
         </TouchableHighlight>
@@ -140,6 +138,7 @@ export default class Root extends Component {
         style={styles.homeTile2}
       />
 
+
       <TouchableHighlight onPress={ this.navigate.bind(this, 'more', 'up')}>
         <View style={styles.nextButton}>
           <Image
@@ -157,13 +156,14 @@ const styles = StyleSheet.create({
   /* Style for the header section that holds the school name and crest */
   mainHeader: {
     width: width,
-    height: 70,
+    height: 60,
     marginBottom: 2,
     backgroundColor: 'white',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-around',
+    marginTop: 20,
   },
 
   /* Style for the school title text */

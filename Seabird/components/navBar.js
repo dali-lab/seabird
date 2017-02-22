@@ -40,5 +40,8 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: '#fff',
     letterSpacing: -0.56,
+    textAlign: 'center',
+    flex: 2,
+    marginRight: 50,
   },
 });
