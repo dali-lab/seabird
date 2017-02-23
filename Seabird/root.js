@@ -60,12 +60,15 @@ export default class Root extends Component {
     })
   }
 
-  testingGet() {
-    fetch('http://localhost:3000/api/')
+  testingGET(url) {
+    fetch(url)
     .then((response) => response.json())
     .then((responseJson) => {
         console.log(responseJson.message)
       })
+    .catch((error =>
+      console.error(error)
+    ))
   }
 
   render() {
@@ -81,8 +84,8 @@ export default class Root extends Component {
         source={require('./Icons/User-Menu-Male-48.png')}
         style={styles.settingsIcon}
       />
-        <Text style={styles.schoolTitle} onPress={this.testingGet}>{SCHOOL_NAME}</Text>
-        <TouchableHighlight onPress={this.navigate.bind(this, 'settings', 'down')}>
+        <Text style={styles.schoolTitle} onPress={this.testingGET('http://localhost:3000/api')}>{SCHOOL_NAME}</Text>
+        <TouchableHighlight onPress={this.navigate.bind(this, 'customize', 'down')}>
           <Image
             source={require('./Icons/Settings-48.png')}
             style={styles.settingsIcon}

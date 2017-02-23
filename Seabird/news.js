@@ -38,7 +38,7 @@ export default class News extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <WebView
         ref={WEBVIEW_REF}
-        style={{flex: 1}}
+        style={{flex: 1, marginTop: -2}}
         onNavigationStateChange=
           {this.onNavigationStateChange.bind(this)}
         source={{uri: URL}}
@@ -76,15 +76,15 @@ const styles = StyleSheet.create({
 
   /* Styles the back button */
   backIcon: {
-    flex: .5,
+    flex: 1,
     height: 20,
     resizeMode: 'center',
   },
 
   /* Styles the forward button */
   forwardIcon: {
-    flex: .5,
-    height: 20, 
+    flex: 1,
+    height: 20,
     resizeMode: 'center',
   },
 
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: 50,
-    backgroundColor: '#2b2b2b',
+    backgroundColor: '#EAEAEA',
   }
 });
 

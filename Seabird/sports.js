@@ -36,7 +36,7 @@ export default class Sports extends Component {
       <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
       <WebView
       ref={WEBVIEW_REF}
-      style={{flex: 1}}
+      style={{flex: 1, marginTop: -2}}
       onNavigationStateChange=
         {this.onNavigationStateChange.bind(this)}
       source={{uri: URL}}
@@ -56,7 +56,7 @@ export default class Sports extends Component {
           onPress={this.onForward.bind(this)}
           >
           <Image
-            source={require('./Icons/Back-50-White.png')}
+            source={require('./Icons/Forward-50-White.png')}
             style={styles.backIcon}
           />
         </TouchableOpacity>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     height: 50,
-    backgroundColor: '#2b2b2b',
+    backgroundColor: '#EAEAEA',
   }
 });
 
