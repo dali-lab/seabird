@@ -9,6 +9,8 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  ListView,
+  Animated,
 } from 'react-native';
 
 import { Tile } from './components/tile';
@@ -49,6 +51,22 @@ const HOME_PORTALS = [
     'navName': 'sports',
     'imgName': require('./Icons/Sport-50-White.png'),
   },
+  {
+    'txtName': 'Green Print',
+    'navName': null,
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Dominos',
+    'navName': null,
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Schedule',
+    'navName': null,
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+
 ];
 
 export default class Root extends Component {
@@ -71,6 +89,49 @@ export default class Root extends Component {
     ))
   }
 
+  constructor(props) {
+    super(props);
+    var tiles = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid != r2.guid});
+    this.state = {
+      bounceValue: new Animated.Value(0),
+      homeSource: tiles.cloneWithRows(HOME_PORTALS),
+    }
+  };
+
+  renderRow(rowData, sectionID, rowID) {
+    if (rowID == 0 || rowID == 3 || rowID == 4) {
+    return (
+        <Tile
+          navigator={this.props.navigator}
+          navName={HOME_PORTALS[rowID]['navName']}
+          imgSource={HOME_PORTALS[rowID]['imgName']}
+          text={HOME_PORTALS[rowID]['txtName']}
+          style={styles.homeTile2}
+        />
+    )
+  }
+  else if (rowID == 1 || rowID == 2 || rowID == 5) {
+    return (
+        <Tile
+          navigator={this.props.navigator}
+          navName={HOME_PORTALS[rowID]['navName']}
+          imgSource={HOME_PORTALS[rowID]['imgName']}
+          text={HOME_PORTALS[rowID]['txtName']}
+          style={styles.homeTile1}
+        />
+    )
+  }
+  return (
+      <Tile
+        navigator={this.props.navigator}
+        navName={HOME_PORTALS[rowID]['navName']}
+        imgSource={HOME_PORTALS[rowID]['imgName']}
+        text={HOME_PORTALS[rowID]['txtName']}
+        style={styles.homeTile3}
+      />
+  )
+  }
+
   render() {
     return (
       <View style={{
@@ -79,6 +140,7 @@ export default class Root extends Component {
         alignItems: 'flex-start',
         justifyContent: 'center',
       }}>
+
       <View style={styles.mainHeader}>
       <Image
         source={require('./Icons/User-Menu-Male-48.png')}
@@ -93,63 +155,16 @@ export default class Root extends Component {
         </TouchableHighlight>
       </View>
 
-      <Tile
-        navigator={this.props.navigator}
-        navName={HOME_PORTALS[0]['navName']}
-        imgSource={HOME_PORTALS[0]['imgName']}
-        text={HOME_PORTALS[0]['txtName']}
-        style={styles.homeTile1}
-      />
+      <View>
 
-      <Tile
-        navigator={this.props.navigator}
-        navName={HOME_PORTALS[1]['navName']}
-        imgSource={HOME_PORTALS[1]['imgName']}
-        text={HOME_PORTALS[1]['txtName']}
-        style={styles.homeTile2}
-      />
+      <ListView
+        dataSource={this.state.homeSource}
+        renderRow={this.renderRow.bind(this)}
+        contentContainerStyle={styles.grid}>
+      </ListView>
 
-      <Tile
-        navigator={this.props.navigator}
-        navName={HOME_PORTALS[2]['navName']}
-        imgSource={HOME_PORTALS[2]['imgName']}
-        text={HOME_PORTALS[2]['txtName']}
-        style={styles.homeTile2}
-      />
+      </View>
 
-      <Tile
-        navigator={this.props.navigator}
-        navName={HOME_PORTALS[3]['navName']}
-        imgSource={HOME_PORTALS[3]['imgName']}
-        text={HOME_PORTALS[3]['txtName']}
-        style={styles.homeTile1}
-      />
-
-      <Tile
-        navigator={this.props.navigator}
-        navName={HOME_PORTALS[4]['navName']}
-        imgSource={HOME_PORTALS[4]['imgName']}
-        text={HOME_PORTALS[4]['txtName']}
-        style={styles.homeTile1}
-      />
-
-      <Tile
-        navigator={this.props.navigator}
-        navName={HOME_PORTALS[5]['navName']}
-        imgSource={HOME_PORTALS[5]['imgName']}
-        text={HOME_PORTALS[5]['txtName']}
-        style={styles.homeTile2}
-      />
-
-
-      <TouchableHighlight onPress={ this.navigate.bind(this, 'more', 'up')}>
-        <View style={styles.nextButton}>
-          <Image
-            source={require('./Icons/Sort-Down-50-White.png')}
-            style={styles.downIcon}
-          />
-        </View>
-      </TouchableHighlight>
       </View>
     );
   }
@@ -195,12 +210,29 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: width/2.05,
-    height: height/4,
-    paddingBottom: 20,
+    width: width / 2.05,
+    height: height / 4,
     margin: 2,
     backgroundColor: COLOR2,
   },
+
+  /* Style for the smaller tiles on the home screen */
+  homeTile3: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: width / 3.1,
+    height: height / 6,
+    margin: 2,
+    backgroundColor: COLOR1,
+  },
+
+  grid: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
+        height: height * 1.05,
+    },
 
   /* Style for the bottom button that moves to the next page */
   nextButton: {

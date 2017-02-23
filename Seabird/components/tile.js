@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { TouchableHighlight, Image, StyleSheet, Text, View } from 'react-native';
+import { TouchableHighlight, Image, StyleSheet, Text, View, Dimensions } from 'react-native';
+
+const {height, width} = Dimensions.get('window');
 
 export class Tile extends Component {
 
@@ -41,7 +43,6 @@ const styles = StyleSheet.create({
   /* Style for the main label holder */
   mainLabelHolder: {
     top: 40,
-    width: 150,
     height: 45,
   },
 
@@ -52,7 +53,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     textAlign: 'center',
     color: '#fff',
-    paddingTop: 10,
   },
 
 });
