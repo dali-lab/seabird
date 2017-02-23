@@ -63,7 +63,7 @@ const HOME_PORTALS = [
   },
   {
     'txtName': 'Schedule',
-    'navName': null,
+    'navName': 'schedule',
     'imgName': require('./Icons/Sport-50-White.png'),
   },
 

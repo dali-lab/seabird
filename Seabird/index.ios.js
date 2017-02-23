@@ -14,6 +14,7 @@ import Sports from './sports';
 import Settings from './settings';
 import More from './more';
 import Customize from './customize';
+import Schedule from './schedule';
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
@@ -50,6 +51,10 @@ export default class Seabird extends Component {
 
     if (route.name == 'customize') {
       return <Customize navigator={navigator}/>
+    }
+
+    if (route.name == 'schedule') {
+      return <Schedule navigator={navigator}/>
     }
   }
 
