@@ -35,6 +35,7 @@ export default class DDS extends Component {
   };
 
   GET = (codes) => {
+    ddsLocations = []
     for (i = 0; i < codes.length; i++) {
       fetch('http://localhost:3000/api/schools/' + codes[i].schoolID + '/' + codes[i].view + '/' + codes[i].viewID)
       .then((response) => response.json())
