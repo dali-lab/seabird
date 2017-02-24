@@ -159,10 +159,12 @@ export default class Root extends Component {
       }}>
 
       <View style={styles.mainHeader}>
-      <Image
-        source={require('./Icons/User-Menu-Male-48.png')}
-        style={styles.settingsIcon}
-      />
+        <TouchableHighlight onPress={this.navigate.bind(this, 'settings', 'down')}>
+          <Image
+            source={require('./Icons/User-Menu-Male-48.png')}
+            style={styles.settingsIcon}
+          />
+        </TouchableHighlight>
         <Text style={styles.schoolTitle}>{SCHOOL_NAME}</Text>
         <TouchableHighlight onPress={this.navigate.bind(this, 'customize', 'down')}>
           <Image
