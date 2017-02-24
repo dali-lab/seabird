@@ -146,7 +146,7 @@ export default class Root extends Component {
         source={require('./Icons/User-Menu-Male-48.png')}
         style={styles.settingsIcon}
       />
-        <Text style={styles.schoolTitle} onPress={() => {this.GET('', '', '')}}>{SCHOOL_NAME}</Text>
+        <Text style={styles.schoolTitle}>{SCHOOL_NAME}</Text>
         <TouchableHighlight onPress={this.navigate.bind(this, 'customize', 'down')}>
           <Image
             source={require('./Icons/Settings-48.png')}
@@ -227,6 +227,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR1,
   },
 
+  /* Styles the grid format of the list view */
   grid: {
         flexDirection: 'row',
         flexWrap: 'wrap',

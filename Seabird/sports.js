@@ -10,6 +10,8 @@ import {
   ScrollView,
   ListView,
   Animated,
+  WebView,
+  TouchableOpacity,
 } from 'react-native';
 import { NavBar } from './components/navBar';
 

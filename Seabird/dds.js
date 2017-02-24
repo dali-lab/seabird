@@ -13,15 +13,10 @@ import {
 } from 'react-native';
 import { NavBar } from './components/navBar';
 
-var ddsLocations = [
-  {location: 'FOCO', hours: '11AM - 3:30PM'},
-  {location: 'THE HOP', hours: '11AM - 3:30PM'},
-  {location: 'NOVACK', hours: '11AM - 3:30PM'},
-  {location: 'COLLIS', hours: '11AM - 3:30PM'}
-];
-const callCodes = [
+var ddsLocations = []
+var callCodes = [
   {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb0698'},
-  {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb069d'}
+  {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb069d'},
 ]
 const NAVBAR_TEXT = 'Food';
 const {height, width} = Dimensions.get('window');
@@ -43,15 +38,10 @@ export default class DDS extends Component {
     for (i = 0; i < codes.length; i++) {
       fetch('http://localhost:3000/api/schools/' + codes[i].schoolID + '/' + codes[i].view + '/' + codes[i].viewID)
       .then((response) => response.json())
-      .catch((error =>
-        console.error(error)
-      ))
       .then((responseJson) => {
         receivedJSON = responseJson
-          ddsLocations[i].location = responseJson.name
-          ddsLocations[i].hours = responseJson.times
-          console.log(ddsLocations[i].location + '    ' + i)
-          console.log('Final DDS Locations: ' + ddsLocations[0].location)
+          ddsLocations.push(responseJson.times[0].startTime + ' - ' + responseJson.times[0].endTime)
+          ddsLocations.push(responseJson.name)
           console.log(responseJson)
         })
       .catch((error =>
@@ -63,7 +53,8 @@ export default class DDS extends Component {
   timesLocations(){
     var dataList = []
     for (var i = 0; i < ddsLocations.length; i++) {
-      dataList.push(ddsLocations[i].hours + " " + ddsLocations[i].location);
+      /* Separates the hours and locations to be in their own slots in the array */
+      dataList.push(ddsLocations[i])
     }
     return dataList;
   }
@@ -72,8 +63,7 @@ export default class DDS extends Component {
     return (
       <TouchableHighlight underlayColor='#ddd' style={{height: 50}}>
         <View>
-          <Text style={styles.listItem} numberOfLines={1}>{rowData}</Text>
-          <View style={styles.divider}/>
+          <Text style={styles.listItem}>{rowData}</Text>
         </View>
       </TouchableHighlight>
     )
@@ -88,14 +78,25 @@ export default class DDS extends Component {
           <Image
             source={require('./Icons/breakfast.jpg')}
             style={styles.imageContainer}>
-            <Text style={styles.mealIntro}>The current swipe is</Text>
-            <Text style={styles.currentSwipe}>BREAKFAST: $5.25</Text>
-            <Text style={styles.menuOptions}>See full menus here</Text>
+            <Text style={styles.mealIntro}>Current swipe:</Text>
+            <Text style={styles.currentSwipe}>BREAKFAST</Text>
+            <Text style={styles.currentSwipe}>$5.25</Text>
           </Image>
           </View>
+          <View style={styles.infoLabels}>
+            <Text>Hours</Text>
+            <Text>Locations</Text>
+          </View>
           <View style={styles.contentInformation}>
-            <ListView dataSource={this.state.locationSource} renderRow={this.renderRow.bind(this)}>
+            <ListView
+              dataSource={this.state.locationSource}
+              renderRow={this.renderRow.bind(this)}
+              contentContainerStyle={styles.grid}
+              enableEmptySections={true}>
             </ListView>
+            <TouchableHighlight style={styles.CTA}>
+              <Text style={styles.menuOptions}>full menus</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -122,7 +123,6 @@ const styles = StyleSheet.create({
   mainContent: {
     width: width,
     backgroundColor: 'white',
-    flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
@@ -138,15 +138,16 @@ const styles = StyleSheet.create({
   imageContainer: {
     flex: 1,
     width: width,
-    height: height/2,
+    height: height,
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
+    transform: [{scale: height / 470}]
   },
 
   /* Style for the intro phrase */
   mealIntro: {
-    fontSize: 18,
+    fontSize: 12,
     fontFamily: 'System',
     textAlign: 'center',
     color: '#fff',
@@ -154,39 +155,63 @@ const styles = StyleSheet.create({
 
   /* Style for the current meal swipe */
   currentSwipe: {
-    fontSize: 28,
+    fontSize: 22,
     fontFamily: 'System',
-    fontWeight: '600',
+    fontWeight: '500',
     textAlign: 'center',
     color: '#fff',
   },
 
   /* Style for the menu option */
   menuOptions: {
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: 'System',
     textAlign: 'center',
-    marginTop: 7,
-    color: '#fff',
+    marginTop: 12,
+    color: '#89E1A9',
   },
 
   contentInformation: {
-    width: 250,
+    width: width,
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+
+  /* Style for the view that will hold the labels */
+  infoLabels: {
+    width: width,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    marginTop: 50,
+  },
+
+  /* Styles the grid format of the list view */
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
   },
 
   listItem: {
-    width: width,
+    width: width / 2,
     fontSize: 20,
     fontFamily: 'System',
     fontWeight: '400',
     borderBottomWidth: 1,
     borderBottomColor: 'black',
+    textAlign: 'center',
   },
 
-  /* Style for the divider in the list */
-  divider: {
-    height: 1,
-    backgroundColor: '#bbb',
+  /* Style for the Call To Action button */
+  CTA: {
+    width: width / 2,
+    height: 50,
+    borderWidth: 2,
+    borderColor: '#89E1A9',
+    borderRadius: 25,
+    marginTop: 50,
   },
 
 });
