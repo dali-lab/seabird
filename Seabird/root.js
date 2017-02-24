@@ -54,7 +54,7 @@ const HOME_PORTALS = [
   {
     'txtName': 'Green Print',
     'navName': null,
-    'imgName': require('./Icons/Sport-50-White.png'),
+    'imgName': require('./Icons/Print-50-White.png'),
   },
   {
     'txtName': 'Dominos',
@@ -78,11 +78,11 @@ export default class Root extends Component {
     })
   }
 
-  testingGET(url) {
-    fetch(url)
+  GET = (schoolID, view, viewID) => {
+    fetch('http://localhost:3000/api/schools/' + schoolID + '/' + view + '/' + viewID)
     .then((response) => response.json())
     .then((responseJson) => {
-        console.log(responseJson.message)
+        console.log(responseJson)
       })
     .catch((error =>
       console.error(error)
@@ -146,7 +146,7 @@ export default class Root extends Component {
         source={require('./Icons/User-Menu-Male-48.png')}
         style={styles.settingsIcon}
       />
-        <Text style={styles.schoolTitle} onPress={this.testingGET('http://localhost:3000/api')}>{SCHOOL_NAME}</Text>
+        <Text style={styles.schoolTitle} onPress={() => {this.GET('', '', '')}}>{SCHOOL_NAME}</Text>
         <TouchableHighlight onPress={this.navigate.bind(this, 'customize', 'down')}>
           <Image
             source={require('./Icons/Settings-48.png')}

@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
-import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, Dimensions } from 'react-native';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight,
+  Image,
+  Dimensions,
+  ScrollView,
+  ListView,
+  Animated,
+} from 'react-native';
 import { NavBar } from './components/navBar';
 
-const ddsLocations = [
+var ddsLocations = [
   {location: 'FOCO', hours: '11AM - 3:30PM'},
   {location: 'THE HOP', hours: '11AM - 3:30PM'},
   {location: 'NOVACK', hours: '11AM - 3:30PM'},
   {location: 'COLLIS', hours: '11AM - 3:30PM'}
 ];
+const callCodes = [
+  {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb0698'},
+  {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb069d'}
+]
 const NAVBAR_TEXT = 'Food';
 const {height, width} = Dimensions.get('window');
+const recievedJSON = []
 
 export default class DDS extends Component {
   // Initialize the hardcoded data
@@ -22,6 +38,27 @@ export default class DDS extends Component {
       locationSource: locations.cloneWithRows(this.timesLocations()),
     }
   };
+
+  GET = (codes) => {
+    for (i = 0; i < codes.length; i++) {
+      fetch('http://localhost:3000/api/schools/' + codes[i].schoolID + '/' + codes[i].view + '/' + codes[i].viewID)
+      .then((response) => response.json())
+      .catch((error =>
+        console.error(error)
+      ))
+      .then((responseJson) => {
+        receivedJSON = responseJson
+          ddsLocations[i].location = responseJson.name
+          ddsLocations[i].hours = responseJson.times
+          console.log(ddsLocations[i].location + '    ' + i)
+          console.log('Final DDS Locations: ' + ddsLocations[0].location)
+          console.log(responseJson)
+        })
+      .catch((error =>
+        console.error(error)
+      ))
+    }
+  }
 
   timesLocations(){
     var dataList = []
@@ -44,7 +81,7 @@ export default class DDS extends Component {
 
   render() {
     return (
-      <View style={styles.pageContent}>
+      <View style={styles.pageContent} onPress={this.GET(callCodes) }>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>

@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
-import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView, TextInput, Button } from 'react-native';
+import {
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  TouchableHighlight,
+  Image,
+  Dimensions,
+  ScrollView,
+  ListView,
+  Animated,
+} from 'react-native';
 import { NavBar } from './components/navBar';
 
 
