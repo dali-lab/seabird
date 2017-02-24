@@ -19,14 +19,12 @@ export class Tile extends Component {
   render() {
     return (
       <TouchableHighlight onPress={this.navigate.bind(this, this.props.navName)}>
-        <View style={this.props.style}>
+        <View style={this.props.tileStyle}>
           <Image
             source={this.props.imgSource}
-            style={styles.mainIcon}
+            style={styles.icon}
           />
-          <View style={styles.mainLabelHolder}>
-            <Text style={styles.mainLabel}>{this.props.text}</Text>
-          </View>
+          <Text style={this.props.textStyle}>{this.props.text}</Text>
         </View>
       </TouchableHighlight>
     );
@@ -36,18 +34,19 @@ export class Tile extends Component {
 
 const styles = StyleSheet.create({
   /* Style for the icons on the main buttons */
-  mainIcon: {
+  icon: {
     top: 10,
   },
 
   /* Style for the main label holder */
-  mainLabelHolder: {
+  textHolder: {
     top: 40,
     height: 45,
   },
 
   /* Style for the main label texts on the main buttons */
-  mainLabel: {
+  tileText: {
+    top: 40,
     fontSize: 20,
     fontFamily: 'System',
     fontWeight: '400',
