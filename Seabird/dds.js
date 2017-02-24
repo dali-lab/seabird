@@ -10,6 +10,7 @@ import {
   ScrollView,
   ListView,
   Animated,
+  AsyncStorage,
 } from 'react-native';
 import { NavBar } from './components/navBar';
 
@@ -20,7 +21,7 @@ var callCodes = [
 ]
 const NAVBAR_TEXT = 'Food';
 const {height, width} = Dimensions.get('window');
-const recievedJSON = []
+var receivedJSON = []
 
 export default class DDS extends Component {
   // Initialize the hardcoded data
@@ -43,7 +44,7 @@ export default class DDS extends Component {
         receivedJSON = responseJson
           ddsLocations.push(responseJson.times[0].startTime + ' - ' + responseJson.times[0].endTime)
           ddsLocations.push(responseJson.name)
-          console.log(responseJson)
+          //console.log(responseJson)
         })
       .catch((error =>
         console.error(error)
@@ -71,8 +72,9 @@ export default class DDS extends Component {
   }
 
   render() {
+    this.GET(callCodes)
     return (
-      <View style={styles.pageContent} onPress={this.GET(callCodes) }>
+      <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
@@ -174,7 +176,8 @@ const styles = StyleSheet.create({
 
   contentInformation: {
     width: width,
-    justifyContent: 'center',
+    flexDirection:'column',
+    alignItems:'center',
     marginTop: 30,
   },
 
@@ -212,7 +215,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#89E1A9',
     borderRadius: 25,
-    marginTop: 50,
+    marginTop: 40,
   },
 
 });
