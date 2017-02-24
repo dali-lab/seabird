@@ -71,6 +71,16 @@ const HOME_PORTALS = [
     'navName': 'schedule',
     'imgName': require('./Icons/Sport-50-White.png'),
   },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
 ];
 
 export default class Root extends Component {
