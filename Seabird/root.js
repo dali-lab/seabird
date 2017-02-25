@@ -43,7 +43,7 @@ const HOME_PORTALS = [
   },
   {
     'txtName': 'Schedule',
-    'navName': null,
+    'navName': 'schedule',
     'imgName': require('./Icons/Calendar-50-White.png'),
   },
   {
@@ -66,7 +66,21 @@ const HOME_PORTALS = [
     'navName': 'schedule',
     'imgName': require('./Icons/Sport-50-White.png'),
   },
-
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
 ];
 
 export default class Root extends Component {
@@ -106,7 +120,8 @@ export default class Root extends Component {
           navName={HOME_PORTALS[rowID]['navName']}
           imgSource={HOME_PORTALS[rowID]['imgName']}
           text={HOME_PORTALS[rowID]['txtName']}
-          style={styles.homeTile2}
+          tileStyle={styles.tile2}
+          textStyle={styles.tileText1}
         />
     )
   }
@@ -117,7 +132,8 @@ export default class Root extends Component {
           navName={HOME_PORTALS[rowID]['navName']}
           imgSource={HOME_PORTALS[rowID]['imgName']}
           text={HOME_PORTALS[rowID]['txtName']}
-          style={styles.homeTile1}
+          tileStyle={styles.tile1}
+          textStyle={styles.tileText1}
         />
     )
   }
@@ -127,7 +143,8 @@ export default class Root extends Component {
         navName={HOME_PORTALS[rowID]['navName']}
         imgSource={HOME_PORTALS[rowID]['imgName']}
         text={HOME_PORTALS[rowID]['txtName']}
-        style={styles.homeTile3}
+        tileStyle={styles.tile3}
+        textStyle={styles.tileText2}
       />
   )
   }
@@ -142,10 +159,12 @@ export default class Root extends Component {
       }}>
 
       <View style={styles.mainHeader}>
-      <Image
-        source={require('./Icons/User-Menu-Male-48.png')}
-        style={styles.settingsIcon}
-      />
+        <TouchableHighlight onPress={this.navigate.bind(this, 'settings', 'down')}>
+          <Image
+            source={require('./Icons/User-Menu-Male-48.png')}
+            style={styles.settingsIcon}
+          />
+        </TouchableHighlight>
         <Text style={styles.schoolTitle}>{SCHOOL_NAME}</Text>
         <TouchableHighlight onPress={this.navigate.bind(this, 'customize', 'down')}>
           <Image
@@ -194,11 +213,11 @@ const styles = StyleSheet.create({
   },
 
   /* Style for three of the main home screen tile buttons */
-  homeTile1: {
+  tile1: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: width/2.05,
+    width: width/2.1,
     height: height/4,
     paddingBottom: 20,
     margin: 2,
@@ -206,34 +225,55 @@ const styles = StyleSheet.create({
   },
 
   /* Style for the other three of the main home screen tile buttons */
-  homeTile2: {
+  tile2: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: width / 2.05,
+    width: width / 2.1,
     height: height / 4,
     margin: 2,
     backgroundColor: COLOR2,
   },
 
   /* Style for the smaller tiles on the home screen */
-  homeTile3: {
+  tile3: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: width / 3.1,
+    width: width / 3.18,
     height: height / 6,
     margin: 2,
     backgroundColor: COLOR1,
   },
 
+  /* Style for the main label texts on the main buttons */
+  tileText1: {
+    top: 40,
+    fontSize: 20,
+    fontFamily: 'System',
+    fontWeight: '400',
+    textAlign: 'center',
+    color: '#fff',
+  },
+
+  /* Style for the main label texts on the main buttons */
+  tileText2: {
+    top: 15,
+    fontSize: 20,
+    fontFamily: 'System',
+    fontWeight: '400',
+    textAlign: 'center',
+    color: '#fff',
+  },
+
   /* Styles the grid format of the list view */
   grid: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-        height: height * 1.05,
-    },
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    height: height * 1.05,
+  },
 
   /* Style for the bottom button that moves to the next page */
   nextButton: {

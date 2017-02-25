@@ -10,6 +10,8 @@ import {
   ScrollView,
   ListView,
   Animated,
+  TextInput,
+  Button,
 } from 'react-native';
 import { NavBar } from './components/navBar';
 
