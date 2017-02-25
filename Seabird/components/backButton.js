@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { TouchableHighlight, Image } from 'react-native';
+import { 
+  TouchableHighlight, 
+  Image 
+} from 'react-native';
 
 export class BackButton extends Component {
 

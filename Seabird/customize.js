@@ -5,11 +5,7 @@ import {
   Text,
   View,
   TouchableHighlight,
-  Image,
   Dimensions,
-  ScrollView,
-  ListView,
-  Animated,
 } from 'react-native';
 import { NavBar } from './components/navBar';
 

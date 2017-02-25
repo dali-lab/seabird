@@ -5,7 +5,12 @@
  * 1/15/17
  */
 import React, { Component } from 'react';
-import { Image, Animated, StyleSheet, LinkingIOS, ScrollView, ListView, View, Text, Navigator, AppRegistry, PropTypes, TouchableHighlight, WebView } from 'react-native';
+import { 
+  StyleSheet,
+  LinkingIOS,
+  Navigator,
+  AppRegistry,
+} from 'react-native';
 
 import Root from './root';
 import DDS from './dds';

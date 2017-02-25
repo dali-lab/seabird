@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { TouchableHighlight, Image, StyleSheet, Text, View, Dimensions} from 'react-native';
+import {
+  StyleSheet, 
+  Text, 
+  View, 
+  Dimensions
+} from 'react-native';
 import { BackButton } from './backButton';
 
 const {height, width} = Dimensions.get('window');

@@ -7,7 +7,6 @@ import {
   TouchableHighlight,
   Image,
   Dimensions,
-  ScrollView,
   ListView,
   Animated,
   AsyncStorage,

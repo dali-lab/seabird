@@ -8,7 +8,6 @@ import {
   TouchableHighlight,
   Image,
   Dimensions,
-  ScrollView,
   ListView,
   Animated,
 } from 'react-native';
