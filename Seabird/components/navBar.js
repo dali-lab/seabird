@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, 
-  Text, 
-  View, 
-  Dimensions
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
 } from 'react-native';
 import { BackButton } from './backButton';
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export class NavBar extends Component {
 

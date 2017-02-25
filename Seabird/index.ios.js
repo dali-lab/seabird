@@ -5,9 +5,7 @@
  * 1/15/17
  */
 import React, { Component } from 'react';
-import { 
-  StyleSheet,
-  LinkingIOS,
+import {
   Navigator,
   AppRegistry,
 } from 'react-native';
@@ -27,62 +25,62 @@ export default class Seabird extends Component {
   constructor(props) {
     super(props);
     this.configureScene = this.configureScene.bind(this);
-  };
+  }
 
   renderScene(route, navigator) {
-    if (route.name == 'root') {
-      return <Root navigator={navigator}/>
+    if (route.name === 'root') {
+      return <Root navigator={navigator} />;
     }
 
-    if (route.name == 'dds') {
-      return <DDS navigator={navigator}/>
+    if (route.name === 'dds') {
+      return <DDS navigator={navigator} />;
     }
 
-    if (route.name == 'news') {
-      return <News navigator={navigator}/>
+    if (route.name === 'news') {
+      return <News navigator={navigator} />;
     }
 
-    if (route.name == 'sports') {
-      return <Sports navigator={navigator}/>
+    if (route.name === 'sports') {
+      return <Sports navigator={navigator} />;
     }
 
-    if (route.name == 'settings') {
-      return <Settings navigator={navigator}/>
+    if (route.name === 'settings') {
+      return <Settings navigator={navigator} />;
     }
 
-    if (route.name == 'more') {
-      return <More navigator={navigator}/>
+    if (route.name === 'more') {
+      return <More navigator={navigator} />;
     }
 
-    if (route.name == 'customize') {
-      return <Customize navigator={navigator}/>
+    if (route.name === 'customize') {
+      return <Customize navigator={navigator} />;
     }
 
-    if (route.name == 'schedule') {
-      return <Schedule navigator={navigator}/>
+    if (route.name === 'schedule') {
+      return <Schedule navigator={navigator} />;
     }
   }
 
   configureScene(route, routeStack){
-      if(route.transitionType === 'up') {
-        return Navigator.SceneConfigs.VerticalUpSwipeJump
-      }
-      if(route.transitionType === 'down') {
-        return Navigator.SceneConfigs.VerticalDownSwipeJump
-      }
-      return Navigator.SceneConfigs.PushFromRight
+    if (route.transitionType === 'up') {
+      return Navigator.SceneConfigs.VerticalUpSwipeJump;
+    }
+    if (route.transitionType === 'down') {
+      return Navigator.SceneConfigs.VerticalDownSwipeJump;
+    }
+    return Navigator.SceneConfigs.PushFromRight;
   }
 
   render() {
     return (
-        <Navigator
-          initialRoute={{name: 'root', title: 'My Initial Scene', index: 0}}
-          renderScene={this.renderScene.bind(this)}
-          configureScene={ this.configureScene }
-        />
-      )
-    }
-};
+      <Navigator
+        initialRoute={{ name: 'root', title: 'My Initial Scene', index: 0 }}
+        renderScene={this.renderScene.bind(this)}
+        configureScene={this.configureScene}
+      />
+    );
+  }
+}
 
 
 AppRegistry.registerComponent('Seabird', () => Seabird);

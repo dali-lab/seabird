@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import {
   TouchableHighlight,
-  Image, 
-  StyleSheet, 
-  Text, 
-  View, 
+  Image,
+  StyleSheet,
+  Text,
+  View,
   Dimensions,
 } from 'react-native';
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export class Tile extends Component {
 
@@ -16,7 +16,7 @@ export class Tile extends Component {
     this.props.navigator.pop();
   }
 
-  navigate(routeName, transitionType='normal') {
+  navigate(routeName, transitionType = 'normal') {
     this.props.navigator.push({
       name: routeName,
       transitionType: transitionType
