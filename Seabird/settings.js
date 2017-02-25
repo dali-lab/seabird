@@ -7,6 +7,7 @@ import {
   Animated,
   TextInput,
   Button,
+  AsyncStorage
 } from 'react-native';
 import { NavBar } from './components/navBar';
 
@@ -38,13 +39,13 @@ export default class Settings extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down' />
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
-            <Text style={styles.settingsTitle}>Hi, ___!</Text>
-
+            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName}!</Text>
             <Text style={styles.settingsText}>First Name: </Text>
             <TextInput
               style={styles.textInput}
               onChangeText={(text) => {
                 this.setState({userFirstName: text});
+                AsyncStorage.setItem("userFirstName", text); // once working, add to other fields
               }}
               value={this.state.userFirstName}
               placeholder="Enter your first name here"
