@@ -4,5 +4,8 @@ module.exports = {
         "react",
         "jsx-a11y",
         "import"
-    ]
+    ],
+    "rules": {
+    	"indent": [ 2, 4 ]
+    },
 };

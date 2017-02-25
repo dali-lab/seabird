@@ -63,6 +63,9 @@ export default class Customize extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      tileOrder: [],
+    };
   }
 
   navigatePop() {
