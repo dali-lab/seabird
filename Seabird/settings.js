@@ -37,6 +37,12 @@ export default class Settings extends Component {
         AsyncStorage.getItem("userFirstName").then((value) => {
             this.setState({"userFirstName": value});
         }).done();
+        AsyncStorage.getItem("userLastName").then((value) => {
+            this.setState({"userLastName": value});
+        }).done();
+        AsyncStorage.getItem("userEmail").then((value) => {
+            this.setState({"userEmail": value});
+        }).done();
     }
 
     saveData(key, value) {
@@ -50,13 +56,13 @@ export default class Settings extends Component {
             <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down' />
             <View style={styles.mainContent}>
             <View style={styles.contentHeader}>
-            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName}!</Text>
+            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName} a {this.state.userLastName}!</Text>
             <Text style={styles.settingsText}>First Name: </Text>
             <TextInput
             style={styles.textInput}
             onChangeText={(text) => {
                 this.setState({userFirstName: text});
-                saveData("userFirstName", text)
+                this.saveData("userFirstName", text);
             }}
             value={this.state.userFirstName}
             placeholder="Enter your first name here"
@@ -67,6 +73,7 @@ export default class Settings extends Component {
             style={styles.textInput}
             onChangeText={(text) => {
                 this.setState({userLastName: text});
+                this.saveData("userLastName", text);
             }}
             value={this.state.userLastName}
             placeholder="Enter your last name here"
@@ -77,6 +84,7 @@ export default class Settings extends Component {
             style={styles.textInput}
             onChangeText={(text) => {
                 this.setState({userEmail: text});
+                this.saveData("userEmail", text);
             }}
             value={this.state.userEmail}
             placeholder="Enter your email here"
