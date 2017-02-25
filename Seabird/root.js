@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: width/2.05,
+    width: width/2.1,
     height: height/4,
     paddingBottom: 20,
     margin: 2,
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: width / 2.05,
+    width: width / 2.1,
     height: height / 4,
     margin: 2,
     backgroundColor: COLOR2,
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: width / 3.1,
+    width: width / 3.18,
     height: height / 6,
     margin: 2,
     backgroundColor: COLOR1,
@@ -268,11 +268,12 @@ const styles = StyleSheet.create({
 
   /* Styles the grid format of the list view */
   grid: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
-        height: height * 1.05,
-    },
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    height: height * 1.05,
+  },
 
   /* Style for the bottom button that moves to the next page */
   nextButton: {
