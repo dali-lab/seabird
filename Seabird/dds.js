@@ -11,6 +11,7 @@ import {
   ListView,
   Animated,
   AsyncStorage,
+  Modal,
 } from 'react-native';
 import { NavBar } from './components/navBar';
 
@@ -28,11 +29,19 @@ export default class DDS extends Component {
 
   constructor(props) {
     super(props);
-    var locations = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid != r2.guid});
+    var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
     this.state = {
       bounceValue: new Animated.Value(0),
       locationSource: locations.cloneWithRows(this.timesLocations()),
+      load: true
     }
+
+    setInterval(() => {
+      this.setState({
+          locationSource: this.state.locationSource.cloneWithRows(ddsLocations),
+          load: false,
+      });
+    }, 500);
   };
 
   GET = (codes) => {

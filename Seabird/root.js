@@ -53,7 +53,7 @@ const HOME_PORTALS = [
   },
   {
     'txtName': 'Green Print',
-    'navName': null,
+    'navName': 'tutorial',
     'imgName': require('./Icons/Print-50-White.png'),
   },
   {

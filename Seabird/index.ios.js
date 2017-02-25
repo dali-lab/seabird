@@ -15,6 +15,7 @@ import Settings from './settings';
 import More from './more';
 import Customize from './customize';
 import Schedule from './schedule';
+import Tutorial from './tutorial';
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
@@ -55,6 +56,10 @@ export default class Seabird extends Component {
 
     if (route.name == 'schedule') {
       return <Schedule navigator={navigator}/>
+    }
+
+    if (route.name == 'tutorial') {
+      return <Tutorial navigator={navigator}/>
     }
   }
 
