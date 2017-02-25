@@ -40,7 +40,7 @@ export default class Settings extends Component {
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down' />
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
             <Text style={styles.settingsTitle}>Hi, ___!</Text>

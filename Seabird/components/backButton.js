@@ -8,19 +8,37 @@ export class BackButton extends Component {
   }
 
   render() {
-    return (
-      <TouchableHighlight onPress={this.navigatePop.bind(this, 'backbutton')}>
-        <Image
-          source={require('../Icons/Back-50-White.png')}
-          style={
-            {
-              flex: 0,
-              height: 20,
-              resizeMode: 'center',
+    if (this.props.type === 'down') {
+      return (
+        <TouchableHighlight onPress={this.navigatePop.bind(this, 'backbutton')}>
+          <Image
+            source={require('../Icons/Back-50-White-Down.png')}
+            style={
+              {
+                flex: 0,
+                height: 20,
+                resizeMode: 'center',
+              }
             }
-          }
-        />
-      </TouchableHighlight>
-    );
+          />
+        </TouchableHighlight>
+      );
+    }
+    else {
+      return (
+        <TouchableHighlight onPress={this.navigatePop.bind(this, 'backbutton')}>
+          <Image
+            source={require('../Icons/Back-50-White.png')}
+            style={
+              {
+                flex: 0,
+                height: 20,
+                resizeMode: 'center',
+              }
+            }
+          />
+        </TouchableHighlight>
+      );
+    }
   }
 }

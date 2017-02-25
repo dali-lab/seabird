@@ -13,7 +13,7 @@ export class NavBar extends Component {
   render() {
     return (
       <View style={styles.mainHeader}>
-        <BackButton navigator={this.props.navigator} />
+        <BackButton navigator={this.props.navigator} type={this.props.type} />
         <Text style={styles.schoolTitle}>{this.props.text}</Text>
       </View>
     );

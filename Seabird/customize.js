@@ -81,7 +81,7 @@ export default class Customize extends Component {
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down' />
         <View style={styles.mainContent}>
           <Text style={styles.settingsTitle}>Customize your homepage!</Text>
           <MyComponent />
