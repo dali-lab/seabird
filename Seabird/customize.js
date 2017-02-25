@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
+import { AppRegistry,
   StyleSheet,
   Text,
   View,
@@ -10,24 +9,24 @@ import {
 import { NavBar } from './components/navBar';
 
 const NAVBAR_TEXT = 'Customize';
-const {width, height} = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
-let SortableListView = require('react-native-sortable-listview');
+const SortableListView = require('react-native-sortable-listview');
 
-let data = {
-  a: {text: 'food'},
-  b: {text: 'events'},
-  c: {text: 'map'},
-  d: {text: 'schedule'},
-  e: {text: 'sports'},
-  f: {text: 'news'},
-  g: {text: 'blitz'},
-  h: {text: 'laundry'},
-}
+const data = {
+  a: { text: 'food' },
+  b: { text: 'events' },
+  c: { text: 'map' },
+  d: { text: 'schedule' },
+  e: { text: 'sports' },
+  f: { text: 'news' },
+  g: { text: 'blitz' },
+  h: { text: 'laundry' },
+};
 
-let order = Object.keys(data); //Array of keys
+const order = Object.keys(data); // Array of keys
 
-let RowComponent = React.createClass({
+const RowComponent = React.createClass({
   render: function() {
     return (
       <TouchableHighlight
@@ -39,22 +38,24 @@ let RowComponent = React.createClass({
         <Text>{this.props.data.text}</Text>
       </TouchableHighlight>
     );
-  }
-})
+  },
+});
 
-let MyComponent = React.createClass({
+const MyComponent = React.createClass({
   render: function() {
-    return <SortableListView
-          style={{flex: 1, width: width,}}
-          data={data}
-          order={order}
-          onRowMoved={e => {
-            order.splice(e.to, 0, order.splice(e.from, 1)[0]);
-            this.forceUpdate();
-          }}
-          renderRow={row => <RowComponent data={row} />}
-        />
-  }
+    return (
+      <SortableListView
+        style={{ flex: 1, width: width }}
+        data={data}
+        order={order}
+        onRowMoved={e => {
+          order.splice(e.to, 0, order.splice(e.from, 1)[0]);
+          this.forceUpdate();
+        }}
+        renderRow={row => <RowComponent data={row} />}
+      />
+    );
+  },
 });
 
 
@@ -62,7 +63,7 @@ export default class Customize extends Component {
 
   constructor(props) {
     super(props);
-  };
+  }
 
   navigatePop() {
     this.props.navigator.pop();
@@ -70,8 +71,8 @@ export default class Customize extends Component {
 
   navigatePush(routeName) {
     this.props.navigator.push({
-      name: routeName
-    })
+      name: routeName,
+    });
   }
 
   render() {
@@ -83,11 +84,9 @@ export default class Customize extends Component {
           <MyComponent />
         </View>
       </View>
-    )
+    );
   }
 }
-
-
 
 const styles = StyleSheet.create({
   /* Style for the enter page */

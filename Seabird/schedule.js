@@ -5,16 +5,12 @@ import {
   Text,
   View,
   TouchableHighlight,
-  Image,
   Dimensions,
-  ScrollView,
-  ListView,
-  Animated,
 } from 'react-native';
 import { NavBar } from './components/navBar';
 
 const NAVBAR_TEXT = 'Schedule';
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 export default class Schedule extends Component {
   // Initialize the hardcoded data
@@ -41,17 +37,19 @@ export default class Schedule extends Component {
         <View style={styles.mainContent}>
           <Text style={styles.contentHeader}> Save your schedule here! </Text>
           <TouchableHighlight onPress={this.saveSchedule()}>
-          <View style={styles.uploadImage}>
-            <Text style={{
-              color: '#89E1A9',
-              textAlign: 'center',
-              marginTop: 14,
-          }}>Upload an Image</Text>
+            <View style={styles.uploadImage}>
+              <Text
+                style={{
+                  color: '#89E1A9',
+                  textAlign: 'center',
+                  marginTop: 14,
+                }}
+              >Upload an Image</Text>
             </View>
           </TouchableHighlight>
         </View>
       </View>
-    )
+    );
   }
 }
 
@@ -95,7 +93,7 @@ const styles = StyleSheet.create({
     borderColor: '#89E1A9',
     borderWidth: 2,
     marginTop: 100,
-  }
+  },
 });
 
 AppRegistry.registerComponent('Schedule', () => Schedule);
