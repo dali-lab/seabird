@@ -3,11 +3,11 @@ import { AppRegistry,
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
+  AsyncStorage,
   Dimensions,
 } from 'react-native';
 import { NavBar } from './components/navBar';
-import { MyComponent } from './components/customizeList';
+import { CustomizeList } from './components/customizeList';
 
 const { width, height } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
@@ -20,6 +20,12 @@ export default class Customize extends Component {
     this.state = {
       tileOrder: [],
     };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('tileOrder').then((value) => {
+        this.setState({ tileOrder: value });
+    }).done();
   }
 
   navigatePop() {
@@ -38,7 +44,7 @@ export default class Customize extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down' />
         <View style={styles.mainContent}>
           <Text style={styles.settingsTitle}>Customize your homepage!</Text>
-          <MyComponent />
+          <CustomizeList />
         </View>
       </View>
     );

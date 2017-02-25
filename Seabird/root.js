@@ -10,6 +10,7 @@ import {
   Dimensions,
   ListView,
   Animated,
+  AsyncStorage,
 } from 'react-native';
 
 import { Tile } from './components/tile';
@@ -138,8 +139,15 @@ export default class Root extends Component {
     this.state = {
       bounceValue: new Animated.Value(0),
       homeSource: tiles.cloneWithRows(HOME_PORTALS),
+      tileOrder: [],
     }
   };
+
+  componentDidMount() {
+    AsyncStorage.getItem('tileOrder').then((value) => {
+        this.setState({ tileOrder: value });
+    }).done();
+  }
 
   renderRow(rowData, sectionID, rowID) {
     if (rowID == 0 || rowID == 3 || rowID == 4) {
@@ -180,6 +188,7 @@ export default class Root extends Component {
 
   // TODO: consider using ScrollView instead to load all home tiles at beginning
   render() {
+    console.log(this.state.tileOrder);
     return (
       <View style={{
         flexDirection: 'row',

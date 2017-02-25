@@ -4,6 +4,7 @@ import {
   Text,
   TouchableHighlight,
   Dimensions,
+  AsyncStorage,
 } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -39,10 +40,14 @@ const RowComponent = React.createClass({
 });
 
 
-export class MyComponent extends Component {
+export class CustomizeList extends Component {
 
   navigatePop() {
     this.props.navigator.pop();
+  }
+
+  saveData(key, value) {
+    AsyncStorage.setItem(key, value);
   }
 
   render() {
@@ -53,6 +58,7 @@ export class MyComponent extends Component {
         order={order}
         onRowMoved={e => {
           order.splice(e.to, 0, order.splice(e.from, 1)[0]);
+          this.saveData('tileOrder', order.toString());
           this.forceUpdate();
         }}
         renderRow={row => <RowComponent data={row} />}
