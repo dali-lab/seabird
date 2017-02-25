@@ -81,6 +81,36 @@ const HOME_PORTALS = [
     'navName': 'schedule',
     'imgName': require('./Icons/Sport-50-White.png'),
   },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
 ];
 
 export default class Root extends Component {
@@ -149,6 +179,7 @@ export default class Root extends Component {
   )
   }
 
+  // TODO: consider using ScrollView instead to load all home tiles at beginning
   render() {
     return (
       <View style={{
@@ -272,7 +303,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    height: height * 1.05,
+    height: height * 1.60,
   },
 
   /* Style for the bottom button that moves to the next page */
@@ -302,8 +333,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 10,
     resizeMode: 'center',
-  }
-
+  },
 });
 
 AppRegistry.registerComponent('Root', () => Root);
