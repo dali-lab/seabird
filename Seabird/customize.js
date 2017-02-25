@@ -7,56 +7,10 @@ import { AppRegistry,
   Dimensions,
 } from 'react-native';
 import { NavBar } from './components/navBar';
+import { MyComponent } from './components/customizeList';
 
-const NAVBAR_TEXT = 'Customize';
 const { width, height } = Dimensions.get('window');
-
-const SortableListView = require('react-native-sortable-listview');
-
-const data = {
-  a: { text: 'food' },
-  b: { text: 'events' },
-  c: { text: 'map' },
-  d: { text: 'schedule' },
-  e: { text: 'sports' },
-  f: { text: 'news' },
-  g: { text: 'blitz' },
-  h: { text: 'laundry' },
-};
-
-const order = Object.keys(data); // Array of keys
-
-const RowComponent = React.createClass({
-  render: function() {
-    return (
-      <TouchableHighlight
-        underlayColor={'#eee'}
-        delayLongPress={500} /* 500ms hold delay */
-        style={styles.settingsList}
-        {...this.props.sortHandlers}
-      >
-        <Text>{this.props.data.text}</Text>
-      </TouchableHighlight>
-    );
-  },
-});
-
-const MyComponent = React.createClass({
-  render: function() {
-    return (
-      <SortableListView
-        style={{ flex: 1, width: width }}
-        data={data}
-        order={order}
-        onRowMoved={e => {
-          order.splice(e.to, 0, order.splice(e.from, 1)[0]);
-          this.forceUpdate();
-        }}
-        renderRow={row => <RowComponent data={row} />}
-      />
-    );
-  },
-});
+const NAVBAR_TEXT = 'Customize';
 
 
 export default class Customize extends Component {
@@ -178,8 +132,5 @@ const styles = StyleSheet.create({
   },
 
 });
-
-
-
 
 AppRegistry.registerComponent('Customize', () => Customize);
