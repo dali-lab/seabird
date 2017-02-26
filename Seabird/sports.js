@@ -28,17 +28,17 @@ export default class Sports extends Component {
     }
   };
 
-  onNavigationStateChange(navState) {
+  onNavigationStateChange = (navState) => {
     this.setState({
       canGoBack: navState.canGoBack
     });
   };
 
-  onBack() {
+  onBack = () => {
     this.refs[WEBVIEW_REF].goBack();
   };
 
-  onForward() {
+  onForward = () => {
     this.refs[WEBVIEW_REF].goForward();
   };
 
@@ -56,19 +56,19 @@ export default class Sports extends Component {
       <View style={styles.bottomBar}>
         <TouchableOpacity
           disabled={!this.state.canGoBack}
-          onPress={this.onBack.bind(this)}
+          onPress={this.goBack}
           >
           <Image
-            source={require('./Icons/Back-50-White.png')}
+            source={require('./Icons/Back-50-Gray.png')}
             style={styles.backIcon}
           />
         </TouchableOpacity>
         <TouchableOpacity
           disabled={!this.state.canGoForward}
-          onPress={this.onForward.bind(this)}
+          onPress={this.onForward}
           >
           <Image
-            source={require('./Icons/Forward-50-White.png')}
+            source={require('./Icons/Forward-50-Gray.png')}
             style={styles.backIcon}
           />
         </TouchableOpacity>

@@ -14,9 +14,14 @@ import { NavBar } from './components/navBar';
 
 const WEBVIEW_REF = 'webview';
 const URL = 'http://thedartmouth.com';
-const NAVBAR_TEXT = 'News';
+const NAVBAR_TEXT = 'Map';
 
-export default class News extends Component {
+var urls = []
+var callCodes = [
+  {schoolID: '58aa0107e437067dcebb0693', view: 'views', viewID: '58aa0107e437067dcebb069c'},
+]
+
+export default class Map extends Component {
   // Initialize the hardcoded data
 
   constructor(props) {
@@ -42,7 +47,25 @@ export default class News extends Component {
     this.refs[WEBVIEW_REF].goForward();
   };
 
+  GET = (codes) => {
+    urls = []
+    for (i = 0; i < codes.length; i++) {
+      fetch('http://localhost:3000/api/schools/' + codes[i].schoolID + '/' + codes[i].view + '/' + codes[i].viewID)
+      .then((response) => response.json())
+      .then((responseJson) => {
+          urls.push(responseJson.url)
+          URL = responseJson.url
+          console.log('url: ' + URL)
+          //console.log(responseJson)
+        })
+      .catch((error =>
+        console.error(error)
+      ))
+    }
+  }
+
   render() {
+    this.GET(callCodes)
     return (
       <View style={styles.container}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
@@ -53,26 +76,6 @@ export default class News extends Component {
           {this.onNavigationStateChange.bind(this)}
         source={{uri: URL}}
         />
-        <View style={styles.bottomBar}>
-          <TouchableOpacity
-            disabled={!this.state.canGoBack}
-            onPress={this.goBack}
-            >
-            <Image
-              source={require('./Icons/Back-50-Gray.png')}
-              style={styles.backIcon}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            disabled={!this.state.canGoForward}
-            onPress={this.goForward}
-            >
-            <Image
-              source={require('./Icons/Forward-50-Gray.png')}
-              style={styles.backIcon}
-            />
-          </TouchableOpacity>
-        </View>
       </View>
     )
   }
@@ -109,4 +112,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('News', () => News);
+AppRegistry.registerComponent('Map', () => Map);

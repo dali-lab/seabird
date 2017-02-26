@@ -19,6 +19,7 @@ import More from './more';
 import Customize from './customize';
 import Schedule from './schedule';
 import Tutorial from './tutorial';
+import Map from './map'
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
@@ -63,6 +64,10 @@ export default class Seabird extends Component {
 
     if (route.name == 'tutorial') {
       return <Tutorial navigator={navigator}/>
+    }
+
+    if (route.name == 'map') {
+      return <Map navigator={navigator}/>
     }
   }
 

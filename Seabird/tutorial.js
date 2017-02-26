@@ -28,7 +28,7 @@ export default class Tutorial extends Component {
     }
   };
 
-  onNavigationStateChange(navState) {
+  onNavigationStateChange = (navState) => {
     this.setState({
       canGoBack: navState.canGoBack,
       forwardButtonEnabled: navState.canGoForward,

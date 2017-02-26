@@ -8,32 +8,28 @@ import {
 } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
-
 const SortableListView = require('react-native-sortable-listview');
+const customOrder = [
+  {position: '1', text: 'DDS Hours' },
+  {position: '2', text: 'Laundry' },
+  {position: '3', text: 'News' },
+  {position: '4', text: 'Campus Map' },
+  {position: '5', text: 'Schedule' },
+  {position: '6', text: 'Sports' },
+];
 
-const data = {
-  a: { text: 'food' },
-  b: { text: 'events' },
-  c: { text: 'map' },
-  d: { text: 'schedule' },
-  e: { text: 'sports' },
-  f: { text: 'news' },
-  g: { text: 'blitz' },
-  h: { text: 'laundry' },
-};
-
-const order = Object.keys(data); // Array of keys
+const order = Object.keys(customOrder); // Array of keys
 
 const RowComponent = React.createClass({
   render() {
     return (
       <TouchableHighlight
         underlayColor={'#eee'}
-        delayLongPress={500} /* 500ms hold delay */
+        delayLongPress={300} /* 500ms hold delay */
         style={styles.settingsList}
         {...this.props.sortHandlers}
       >
-        <Text>{this.props.data.text}</Text>
+        <Text>{this.props.customOrder.text}</Text>
       </TouchableHighlight>
     );
   },
@@ -42,26 +38,36 @@ const RowComponent = React.createClass({
 
 export class CustomizeList extends Component {
 
-  navigatePop() {
+  navigatePop = () => {
     this.props.navigator.pop();
   }
 
-  saveData(key, value) {
+  saveData = (key, value) => {
     AsyncStorage.setItem(key, value);
   }
 
+  printOrder = () => {
+    var finalString = ''
+    for (i = 0; i < customOrder.length; i++) {
+      finalString += ' ' + customOrder[i].position
+    }
+    console.log(finalString);
+    console.log(order);
+  }
+
   render() {
+    this.printOrder()
     return (
       <SortableListView
         style={{ flex: 1, width: width }}
-        data={data}
+        data={customOrder}
         order={order}
         onRowMoved={e => {
           order.splice(e.to, 0, order.splice(e.from, 1)[0]);
           this.saveData('tileOrder', order.toString());
           this.forceUpdate();
         }}
-        renderRow={row => <RowComponent data={row} />}
+        renderRow={row => <RowComponent customOrder={row} />}
       />
     );
   }

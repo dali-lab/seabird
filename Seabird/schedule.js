@@ -16,9 +16,9 @@ const { height, width } = Dimensions.get('window');
 export default class Schedule extends Component {
   // Initialize the hardcoded data
 
-  saveSchedule() {
+  saveSchedule = () => {
     // Send a POST request to store user image in the database
-    /*fetch('https://localhost:3000/api/', {
+    fetch('https://localhost:3000/api/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -28,7 +28,10 @@ export default class Schedule extends Component {
         user: 'user1',
         image: 'text_representation_of_image',
       })
-    })*/
+    })
+    .catch((error =>
+      console.error(error)
+    ))
   }
 
   render() {
@@ -45,7 +48,7 @@ export default class Schedule extends Component {
               }}
             />
           </View>
-          <TouchableHighlight onPress={this.saveSchedule()}>
+          <TouchableHighlight onPress={() => this.saveSchedule()}>
             <View style={styles.uploadImage}>
               <Text
                 style={{

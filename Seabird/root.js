@@ -38,7 +38,7 @@ const HOME_PORTALS = [
   },
   {
     'txtName': 'Campus Map',
-    'navName': null,
+    'navName': 'map',
     'imgName': require('./Icons/Map-Marker-50-White.png'),
   },
   {
@@ -62,53 +62,8 @@ const HOME_PORTALS = [
     'imgName': require('./Icons/Sport-50-White.png'),
   },
   {
-    'txtName': 'Schedule',
-    'navName': 'schedule',
-    'imgName': require('./Icons/Sport-50-White.png'),
-  },
-  {
     'txtName': 'Another',
-    'navName': 'schedule',
-    'imgName': require('./Icons/Sport-50-White.png'),
-  },
-  {
-    'txtName': 'Another',
-    'navName': 'schedule',
-    'imgName': require('./Icons/Sport-50-White.png'),
-  },
-  {
-    'txtName': 'Another',
-    'navName': 'schedule',
-    'imgName': require('./Icons/Sport-50-White.png'),
-  },
-  {
-    'txtName': 'Another',
-    'navName': 'schedule',
-    'imgName': require('./Icons/Sport-50-White.png'),
-  },
-  {
-    'txtName': 'Another',
-    'navName': 'schedule',
-    'imgName': require('./Icons/Sport-50-White.png'),
-  },
-  {
-    'txtName': 'Another',
-    'navName': 'schedule',
-    'imgName': require('./Icons/Sport-50-White.png'),
-  },
-  {
-    'txtName': 'Another',
-    'navName': 'schedule',
-    'imgName': require('./Icons/Sport-50-White.png'),
-  },
-  {
-    'txtName': 'Another',
-    'navName': 'schedule',
-    'imgName': require('./Icons/Sport-50-White.png'),
-  },
-  {
-    'txtName': 'Another',
-    'navName': 'schedule',
+    'navName': null,
     'imgName': require('./Icons/Sport-50-White.png'),
   },
 ];
@@ -311,7 +266,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    height: height * 1.60,
+    height: height * 1.1,
   },
 
   /* Style for the bottom button that moves to the next page */

@@ -32,15 +32,13 @@ export default class DDS extends Component {
     this.state = {
       bounceValue: new Animated.Value(0),
       locationSource: locations.cloneWithRows(this.timesLocations()),
-      load: true
     }
-
-    setInterval(() => {
       this.setState({
           locationSource: this.state.locationSource.cloneWithRows(ddsLocations),
-          load: false,
       });
-    }, 500);
+
+      //this.forceUpdate();
+
   };
 
   GET = (codes) => {
@@ -60,7 +58,7 @@ export default class DDS extends Component {
     }
   }
 
-  timesLocations(){
+  timesLocations = () => {
     var dataList = []
     for (var i = 0; i < ddsLocations.length; i++) {
       /* Separates the hours and locations to be in their own slots in the array */
@@ -69,7 +67,7 @@ export default class DDS extends Component {
     return dataList;
   }
 
-  renderRow(rowData, sectionID, rowID) {
+  renderRow = (rowData, sectionID, rowID) => {
     return (
       <TouchableHighlight underlayColor='#ddd' style={{height: 50}}>
         <View>
@@ -80,9 +78,8 @@ export default class DDS extends Component {
   }
 
   render() {
-    this.GET(callCodes)
     return (
-      <View style={styles.pageContent}>
+      <View style={styles.pageContent} onPress={this.GET(callCodes)}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
