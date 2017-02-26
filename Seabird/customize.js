@@ -1,72 +1,32 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
+import { AppRegistry,
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
-  Image,
+  AsyncStorage,
   Dimensions,
-  ScrollView,
-  ListView,
-  Animated,
 } from 'react-native';
 import { NavBar } from './components/navBar';
+import { CustomizeList } from './components/customizeList';
 
+const { width, height } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
-const {width, height} = Dimensions.get('window');
-
-let SortableListView = require('react-native-sortable-listview');
-
-let data = {
-  a: {text: 'food'},
-  b: {text: 'events'},
-  c: {text: 'map'},
-  d: {text: 'schedule'},
-  e: {text: 'sports'},
-  f: {text: 'news'},
-  g: {text: 'blitz'},
-  h: {text: 'laundry'},
-}
-
-let order = Object.keys(data); //Array of keys
-
-let RowComponent = React.createClass({
-  render: function() {
-    return (
-      <TouchableHighlight
-        underlayColor={'#eee'}
-        delayLongPress={500} /* 500ms hold delay */
-        style={styles.settingsList}
-        {...this.props.sortHandlers}
-      >
-        <Text>{this.props.data.text}</Text>
-      </TouchableHighlight>
-    );
-  }
-})
-
-let MyComponent = React.createClass({
-  render: function() {
-    return <SortableListView
-          style={{flex: 1, width: width,}}
-          data={data}
-          order={order}
-          onRowMoved={e => {
-            order.splice(e.to, 0, order.splice(e.from, 1)[0]);
-            this.forceUpdate();
-          }}
-          renderRow={row => <RowComponent data={row} />}
-        />
-  }
-});
 
 
 export default class Customize extends Component {
 
   constructor(props) {
     super(props);
-  };
+    this.state = {
+      tileOrder: [],
+    };
+  }
+
+  componentDidMount() {
+    AsyncStorage.getItem('tileOrder').then((value) => {
+        this.setState({ tileOrder: value });
+    }).done();
+  }
 
   navigatePop() {
     this.props.navigator.pop();
@@ -74,24 +34,22 @@ export default class Customize extends Component {
 
   navigatePush(routeName) {
     this.props.navigator.push({
-      name: routeName
-    })
+      name: routeName,
+    });
   }
 
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down' />
         <View style={styles.mainContent}>
           <Text style={styles.settingsTitle}>Customize your homepage!</Text>
-          <MyComponent />
+          <CustomizeList />
         </View>
       </View>
-    )
+    );
   }
 }
-
-
 
 const styles = StyleSheet.create({
   /* Style for the enter page */
@@ -180,8 +138,5 @@ const styles = StyleSheet.create({
   },
 
 });
-
-
-
 
 AppRegistry.registerComponent('Customize', () => Customize);

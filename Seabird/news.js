@@ -4,11 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
   Image,
   Dimensions,
-  ScrollView,
-  ListView,
   Animated,
   WebView,
   TouchableOpacity,
@@ -32,12 +29,12 @@ export default class News extends Component {
   onNavigationStateChange(navState) {
     this.setState({
       canGoBack: navState.canGoBack,
-      forwardButtonEnabled: navState.canGoForward,
+      canGoForward: navState.canGoForward,
       url: navState.url
     });
   };
 
-  goBack() {
+  goBack = () => {
     this.refs[WEBVIEW_REF].goBack();
   };
 
@@ -59,19 +56,19 @@ export default class News extends Component {
         <View style={styles.bottomBar}>
           <TouchableOpacity
             disabled={!this.state.canGoBack}
-            onPress={this.goBack.bind(this)}
+            onPress={this.goBack}
             >
             <Image
-              source={require('./Icons/Back-50-White.png')}
+              source={require('./Icons/Back-50-Gray.png')}
               style={styles.backIcon}
             />
           </TouchableOpacity>
           <TouchableOpacity
-            disabled={!this.state.forwardButtonEnabled}
+            disabled={!this.state.canGoForward}
             onPress={this.goForward}
             >
             <Image
-              source={require('./Icons/Forward-50-White.png')}
+              source={require('./Icons/Forward-50-Gray.png')}
               style={styles.backIcon}
             />
           </TouchableOpacity>

@@ -8,9 +8,9 @@ import {
   TouchableHighlight,
   Image,
   Dimensions,
-  ScrollView,
   ListView,
   Animated,
+  AsyncStorage,
 } from 'react-native';
 
 import { Tile } from './components/tile';
@@ -81,6 +81,36 @@ const HOME_PORTALS = [
     'navName': 'schedule',
     'imgName': require('./Icons/Sport-50-White.png'),
   },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
+  {
+    'txtName': 'Another',
+    'navName': 'schedule',
+    'imgName': require('./Icons/Sport-50-White.png'),
+  },
 ];
 
 export default class Root extends Component {
@@ -109,8 +139,15 @@ export default class Root extends Component {
     this.state = {
       bounceValue: new Animated.Value(0),
       homeSource: tiles.cloneWithRows(HOME_PORTALS),
+      tileOrder: [],
     }
   };
+
+  componentDidMount() {
+    AsyncStorage.getItem('tileOrder').then((value) => {
+        this.setState({ tileOrder: value });
+    }).done();
+  }
 
   renderRow(rowData, sectionID, rowID) {
     if (rowID == 0 || rowID == 3 || rowID == 4) {
@@ -149,7 +186,9 @@ export default class Root extends Component {
   )
   }
 
+  // TODO: consider using ScrollView instead to load all home tiles at beginning
   render() {
+    console.log(this.state.tileOrder);
     return (
       <View style={{
         flexDirection: 'row',
@@ -272,7 +311,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    height: height * 1.05,
+    height: height * 1.60,
   },
 
   /* Style for the bottom button that moves to the next page */
@@ -302,8 +341,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 10,
     resizeMode: 'center',
-  }
-
+  },
 });
 
 AppRegistry.registerComponent('Root', () => Root);
