@@ -59,7 +59,7 @@ export default class Map extends Component {
           //console.log(responseJson)
         })
       .catch((error =>
-        console.error(error)
+        console.log(error)
       ))
     }
   }

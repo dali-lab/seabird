@@ -11,96 +11,78 @@ import {
 } from 'react-native';
 import { NavBar } from './components/navBar';
 
-
 const NAVBAR_TEXT = 'Settings';
 
 export default class Settings extends Component {
-  // Initialize the hardcoded data
+    // Initialize the hardcoded data
 
-  constructor(props) {
-      super(props);
-      this.state = {
-          bounceValue: new Animated.Value(0),
-          userFirstName: '',
-          userLastName: '',
-          userEmail: '',
-      };
-  };
+    constructor(props) {
+        super(props);
+        this.state = {
+            bounceValue: new Animated.Value(0),
+            userFirstName: '',
+            userLastName: '',
+            userEmail: '',
+        };
+    }
 
-  componentDidMount() {
-      AsyncStorage.getItem('userFirstName').then((value) => {
-          this.setState({ userFirstName: value });
-      }).done();
-      AsyncStorage.getItem('userLastName').then((value) => {
-          this.setState({ userLastName: value });
-      }).done();
-      AsyncStorage.getItem('userEmail').then((value) => {
-          this.setState({ userEmail: value });
-      }).done();
-  }
+    componentDidMount() {
+        AsyncStorage.getItem('userFirstName').then((value) => {
+            this.setState({userFirstName: value})
+        }).done();
+        AsyncStorage.getItem('userLastName').then((value) => {
+            this.setState({userLastName: value})
+        }).done();
+        AsyncStorage.getItem('userEmail').then((value) => {
+            this.setState({userEmail: value})
+        }).done();
+    }
 
-  navigatePush(routeName) {
-    this.props.navigator.push({
-      name: routeName,
-    });
-  }
+    navigatePush(routeName) {
+        this.props.navigator.push({name: routeName})
+    }
 
-  saveData(key, value) {
-    AsyncStorage.setItem(key, value);
-    this.setState({ key: value });
-  }
+    saveData(key, value) {
+        AsyncStorage.setItem(key, value);
+        this.setState({key: value})
+    }
 
-  render() {
-    return (
-      <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down' />
-        <View style={styles.mainContent}>
-          <View style={styles.contentHeader}>
-            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName} a {this.state.userLastName}!</Text>
-            <Text style={styles.settingsText}>First Name: </Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={(text) => {
-                  this.setState({ userFirstName: text });
-                  this.saveData('userFirstName', text);
-              }}
-              value={this.state.userFirstName}
-              placeholder="Enter your first name here"
-            />
+    render() {
+        return (
+            <View style={styles.pageContent}>
+                <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down'/>
+                <View style={styles.mainContent}>
+                    <View style={styles.contentHeader}>
+                        <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName}
+                            a {this.state.userLastName}!</Text>
+                        <Text style={styles.settingsText}>First Name:
+                        </Text>
+                        <TextInput style={styles.textInput} onChangeText={(text) => {
+                            this.setState({userFirstName: text});
+                            this.saveData('userFirstName', text);
+                        }} value={this.state.userFirstName} placeholder="Enter your first name here"/>
 
-            <Text style={styles.settingsText}>Last Name: </Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={(text) => {
-                  this.setState({ userLastName: text });
-                  this.saveData('userLastName', text);
-              }}
-              value={this.state.userLastName}
-              placeholder="Enter your last name here"
-            />
+                        <Text style={styles.settingsText}>Last Name:
+                        </Text>
+                        <TextInput style={styles.textInput} onChangeText={(text) => {
+                            this.setState({userLastName: text});
+                            this.saveData('userLastName', text);
+                        }} value={this.state.userLastName} placeholder="Enter your last name here"/>
 
-            <Text style={styles.settingsText}>Email: </Text>
-            <TextInput
-              style={styles.textInput}
-              onChangeText={(text) => {
-                  this.setState({ userEmail: text });
-                  this.saveData('userEmail', text);
-              }}
-              value={this.state.userEmail}
-              placeholder="Enter your email here"
-            />
+                        <Text style={styles.settingsText}>Email:
+                        </Text>
+                        <TextInput style={styles.textInput} onChangeText={(text) => {
+                            this.setState({userEmail: text});
+                            this.saveData('userEmail', text);
+                        }} value={this.state.userEmail} placeholder="Enter your email here"/>
 
-            <Button
-              onPress={this.navigatePush.bind(this, 'customize')}
-              title="Customize"
-              color="#841584"
-            />
+                        <Button onPress={this.navigatePush.bind(this, 'customize')} title="Customize" color="#841584"/>
 
-          </View>
-        </View>
-      </View>
-    );
-  }
+                    </View>
+                </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -177,7 +159,6 @@ const styles = StyleSheet.create({
         height: 1,
         backgroundColor: '#bbb',
     },
-
 });
 
 AppRegistry.registerComponent('Settings', () => Settings);

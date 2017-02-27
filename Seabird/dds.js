@@ -11,6 +11,7 @@ import {
   Animated,
   AsyncStorage,
   Modal,
+  ReactPropTypes
 } from 'react-native';
 import { NavBar } from './components/navBar';
 
@@ -33,29 +34,37 @@ export default class DDS extends Component {
       bounceValue: new Animated.Value(0),
       locationSource: locations.cloneWithRows(this.timesLocations()),
     }
-      this.setState({
-          locationSource: this.state.locationSource.cloneWithRows(ddsLocations),
-      });
-
-      //this.forceUpdate();
 
   };
 
   GET = (codes) => {
-    ddsLocations = []
-    for (i = 0; i < codes.length; i++) {
-      fetch('http://localhost:3000/api/schools/' + codes[i].schoolID + '/' + codes[i].view + '/' + codes[i].viewID)
-      .then((response) => response.json())
-      .then((responseJson) => {
-        receivedJSON = responseJson
-          ddsLocations.push(responseJson.times[0].startTime + ' - ' + responseJson.times[0].endTime)
-          ddsLocations.push(responseJson.name)
-          //console.log(responseJson)
-        })
-      .catch((error =>
-        console.error(error)
-      ))
-    }
+    return new Promise((resolve, reject) => {
+      ddsLocations = []
+        fetch('http://localhost:3000/api/schools/' + codes.schoolID + '/' + codes.view + '/' + codes.viewID)
+        .then((response) => response.json())
+        .then((responseJson) => {
+            ddsLocations.push(responseJson.times[0].startTime + ' - ' + responseJson.times[0].endTime)
+            ddsLocations.push(responseJson.name)
+            var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+            this.setState({
+                locationSource: locations.cloneWithRows(ddsLocations),
+            });
+            console.log(responseJson)
+          })
+        .catch((error =>
+          console.log(error)
+        ))
+    })
+
+  }
+
+
+  componentWillMount() {
+    var promise = new Promise((resolve, reject) => {
+      for (i = 0; i < callCodes.length; i++) {
+        this.GET(callCodes[i])
+      }
+    })
   }
 
   timesLocations = () => {
@@ -78,8 +87,9 @@ export default class DDS extends Component {
   }
 
   render() {
+
     return (
-      <View style={styles.pageContent} onPress={this.GET(callCodes)}>
+      <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
@@ -168,6 +178,9 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     color: '#fff',
+    textShadowColor: '#000',
+    textShadowOffset: {width: 0.1, height: 0.1},
+    textShadowRadius: 1,
   },
 
   /* Style for the menu option */
