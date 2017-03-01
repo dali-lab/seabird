@@ -27,7 +27,7 @@ The following images are the most recent implementations and designs for the pro
 
 1. Run `npm install` to get all the `node_modules` for the project
 
-Please refer to the [seabird-backend](https://github.com/dali-lab/seabird-backend) repo for futher information.
+2. Refer to the [seabird-backend](https://github.com/dali-lab/seabird-backend) repo for futher information.
 
 ## Style Guide
 
@@ -35,10 +35,10 @@ Using the [AirBnb](https://github.com/airbnb/javascript) styleguide for Javascri
 
 ## Authors :pencil:
 
-* Will Kaufman '20 - BackEnd Engineer
-* Ijemma Onwuzulike '19 - FrontEnd Engineer
-* Sean Cann '17 - FrontEnd Engineer
-* Tyler Fisher '17 - FrontEnd Engineer
+* Will Kaufman '20 - Backend Engineer
+* Ijemma Onwuzulike '19 - Front-end Engineer
+* Sean Cann '17 - Front-end Engineer & Partner
+* Tyler Fisher '17 - Front-end Engineer & Partner
 * Shuoqi Chen '18 - Designer
 * Emma Demers '20 - Designer
 
