@@ -17,6 +17,7 @@ The following images are the most recent implementations and designs for the pro
 
 - React Native is used for the frontend development of this project
   - A main aspect of this project is to deploy on both iOS and Android; React Native gives this project the ability to do so.
+  - Make sure to `npm install` to ensure that all of your `node_modules` are all in place
 - For the backend, Express, Mongoose, and MongoDB are all being used to store the user's information, keep track of module details and links, and also track the general content and designs for each page.
   - Originally the information was stored in a Google Spreadsheet, which was inefficient and non-scalable, so we decided to use well-documented options that would be easy to use as more information is being used in the application.
 - Designers have been using Sketch primarily for this project
@@ -24,109 +25,13 @@ The following images are the most recent implementations and designs for the pro
 
 ## Setup :wrench:
 
-To set up the environment, enter your terminal and follow the instructions:
+1. Run `npm install` to get all the `node_modules` for the project
 
-1. Install Homebrew:
-```
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/install)"
-brew update
-```
+Please refer to the [seabird-backend](https://github.com/dali-lab/seabird-backend) repo for futher information.
 
-2. Install Node (Mac):
-```
-brew install node
-```
+## Style Guide
 
-3. [Mongodb](https://docs.mongodb.com/manual/installation/#mongodb-community-edition)
-
-  ```
-  brew install mongodb
-  sudo mkdir -p /data/db
-  sudo chmod 777 /data/db # allow write access
-  ```
-
-4. Clone this repo
-5. Clone the [Seabird Repo](https://github.com/dali-lab/seabird-backend)
-  - Make sure to clone in the same general directory
-
-### Installation :triangular_ruler:
-```
-# clone repository and install node modules
-cd seabird-backend
-npm install
-```
-
-For in-depth references and information, please refer to the Facebook website.
-
-[React Native Setup](https://facebook.github.io/react-native/docs/getting-started.html)
-
-[Node for Windows](https://nodejs.org/en/download/)
-
-
-## Deployment :rocket:
-Pull from this repo and open up the Xcode project and deploy the project on an emulator or on your own phone. If you want to run this application on your Android device, connect your phone to your computer and run the following code in main directory on your command-line:
-
-### Starting the Server
-n a separate shell, run `mongod &` to start mongodb server.
-
-```
-# start backend in dev mode
-npm run dev
-```
-
-## API Documentation :books:
-
-All endpoints are at the `/api/*` path. URLs expressed below are just the paths, not the entire root URL.
-
-### Get view by school and view ID
-
-- **URL** `/schools/:school_id/views/:view_id`
-- **Method:** `GET`
-
--  **URL Params**
-
-   **Required:**
-
-   `school_id`: alphanumeric id of school
-
-   `view_id`: alphanumeric id of view
-
-- **Data Params**
-
-    none
-
-- **Success Response:**
-
-  - **Code:** 200 <br />
-    **Content:** `{
-      name: String,
-      school_id: Schema.Types.ObjectId,
-      type: String,
-      text: String,
-      url: String,
-      rendered: Boolean,
-      hours_id: Schema.Types.ObjectId,
-    }`
-
-- **Sample Call:**
-
-  ```javascript
-  request.get('/api/schools/58a0b218c312dd67becff87d/views/58a0b219c312dd67becff87f', (err, res, body) => {
-    console.log(body);
-  })
-  ```
-
-  Would get something like
-
-  ```javascript
-  {
-    "_id":"58a0b219c312dd67becff87f",
-    "url":"https://m.dartmouth.edu/map/",
-    "school_id":"58a0b218c312dd67becff87d",
-    "name":"Map",
-    "__v":0
-  }
-  ```
+Using the [AirBnb](https://github.com/airbnb/javascript) styleguide for Javascript for this project
 
 ## Authors :pencil:
 
@@ -136,6 +41,13 @@ All endpoints are at the `/api/*` path. URLs expressed below are just the paths,
 * Tyler Fisher '17 - FrontEnd Engineer
 * Shuoqi Chen '18 - Designer
 * Emma Demers '20 - Designer
+
+### Project Documents
+1. [Project Proposal](https://github.com/dali-lab/seabird/blob/master/Seabird/Documents/Seabird Apps Project Proposal.docx "Project Proposal")
+
+2. [Feature Specs](https://github.com/dali-lab/seabird/blob/master/Seabird/Documents/Seabird Apps Feature Spec.docx "Feature Spec")
+
+3. [User Personas](https://github.com/dali-lab/seabird/blob/master/Seabird/Documents/Seabird Apps User Personas.docx "User Personas")
 
 ## Acknowledgments :mag:
 [React Native Documentation](https://facebook.github.io/react-native/docs/getting-started.html)
