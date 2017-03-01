@@ -38,37 +38,38 @@ export default class DDS extends Component {
   };
 
   GET = (codes) => {
-    return new Promise((resolve, reject) => {
-      ddsLocations = []
-        fetch('http://localhost:3000/api/schools/' + codes.schoolID + '/' + codes.view + '/' + codes.viewID)
-        .then((response) => response.json())
-        .then((responseJson) => {
-            ddsLocations.push(responseJson.times[0].startTime + ' - ' + responseJson.times[0].endTime)
-            ddsLocations.push(responseJson.name)
-            var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
-            this.setState({
-                locationSource: locations.cloneWithRows(ddsLocations),
-            });
-            console.log(ddsLocations)
-          })
-        .catch((error =>
-          console.log(error)
-        ))
-    })
-
+    return new Promise(
+      function(resolve, reject) {
+        ddsLocations = []
+          fetch('http://localhost:3000/api/schools/' + codes.schoolID + '/' + codes.view + '/' + codes.viewID)
+          .then((response) => response.json())
+          .then((responseJson) => {
+              ddsLocations.push(responseJson.times[0].startTime + ' - ' + responseJson.times[0].endTime)
+              ddsLocations.push(responseJson.name)
+              resolve(ddsLocations)
+              reject('ERROR')
+              //console.log(ddsLocations)
+            })
+          .catch((error =>
+            console.log(error)
+          ))
+      }
+    )
   }
 
 
   componentWillMount() {
-    var promise = new Promise((resolve, reject) => {
-      for (i = 0; i < callCodes.length; i++) {
-        this.GET(callCodes[i])
-        var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+    var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+
+    for (i = 0; i < callCodes.length; i++) {
+      this.GET(callCodes[i])
+      .then(result => {
         this.setState({
-            locationSource: locations.cloneWithRows(ddsLocations),
+            locationSource: locations.cloneWithRows(result),
         });
-      }
-    })
+        return result
+      }).done();
+    }
   }
 
   timesLocations = () => {
@@ -91,7 +92,7 @@ export default class DDS extends Component {
   }
 
   render() {
-
+  //console.log(this.state.locationSource)
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
