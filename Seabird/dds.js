@@ -45,6 +45,10 @@ export default class DDS extends Component {
         .then((responseJson) => {
             ddsLocations.push(responseJson.times[0].startTime + ' - ' + responseJson.times[0].endTime)
             ddsLocations.push(responseJson.name)
+            var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+            this.setState({
+                locationSource: locations.cloneWithRows(ddsLocations),
+            });
             console.log(ddsLocations)
           })
         .catch((error =>
