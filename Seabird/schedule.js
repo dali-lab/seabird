@@ -57,7 +57,8 @@ export default class Schedule extends Component {
 const styles = StyleSheet.create({
     /* Style for the enter page */
     pageContent: {
-        flexDirection: 'column',
+        flex: 1,
+        flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center'
     },
@@ -71,7 +72,6 @@ const styles = StyleSheet.create({
 
     /* Style for the main section that will hold all the of the Schedule content */
     mainContent: {
-        marginTop: 70,
         backgroundColor: 'white',
         flexDirection: 'column',
         justifyContent: 'center',
@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
     /* Style for the main section that will hold all the of the Schedule content */
     scheduleImage: {
         height: height / 2,
-        backgroundColor: '#FF0000',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center'

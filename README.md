@@ -7,9 +7,7 @@ This specific application is for the Dartmouth App. This app is being built in R
 The following images are the most recent implementations and designs for the project:
 
 ![Implemented Design 1](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/home-screen.png "Home Screen")
-
 ![Implemented Design 2](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/news-screen.png "News Screen")
-
 ![Implemented Design 3](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/dds-screen.png "DDS Screen")
 
 More designs for the application can be found [here](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots)
@@ -46,11 +44,11 @@ Using the [AirBnb](https://github.com/airbnb/javascript) style guide for Javascr
 * Emma Demers '20 - Designer
 
 ### Project Documents
-1. [Project Proposal](https://github.com/dali-lab/seabird/blob/master/Seabird/Documents/Seabird Apps Project Proposal.docx "Project Proposal")
+1. [Project Proposal](https://docs.google.com/a/dali.dartmouth.edu/document/d/116sH23XuA61NVD2zhG5YXH1Cp6bWP_jM68CUCFll2Lc/edit?usp=sharing "Project Proposal")
 
-2. [Feature Specs](https://github.com/dali-lab/seabird/blob/master/Seabird/Documents/Seabird Apps Feature Spec.docx "Feature Spec")
+2. [Feature Specs](https://docs.google.com/a/dali.dartmouth.edu/document/d/1pURueULJ0mw4Emk4YI_jxupdnmr6WMisqSNCqzBqHy8/edit?usp=sharing "Feature Spec")
 
-3. [User Personas](https://github.com/dali-lab/seabird/blob/master/Seabird/Documents/Seabird Apps User Personas.docx "User Personas")
+3. [User Personas](https://docs.google.com/a/dali.dartmouth.edu/document/d/1m__HeHLbQqkQo75OVXKxPoYWWWLUpn3QlCppB-6jwKI/edit?usp=sharing "User Personas")
 
 4. [User Flow](https://github.com/dali-lab/seabird/blob/master/Seabird/Documents/user flow.pdf "User Flow")
 

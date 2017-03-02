@@ -32,7 +32,7 @@ export default class DDS extends Component {
     var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
     this.state = {
       bounceValue: new Animated.Value(0),
-      locationSource: locations.cloneWithRows(this.timesLocations()),
+      locationSource: locations.cloneWithRows(ddsLocations),
     }
 
   };
@@ -47,41 +47,31 @@ export default class DDS extends Component {
               ddsLocations.push(responseJson.times[0].startTime + ' - ' + responseJson.times[0].endTime)
               ddsLocations.push(responseJson.name)
               resolve(ddsLocations)
-              reject('ERROR')
               //console.log(ddsLocations)
             })
-          .catch((error =>
+          .catch((error) => {
             console.log(error)
-          ))
+            reject(error)
+          });
       }
     )
   }
 
 
   componentWillMount() {
-    var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
-
     for (i = 0; i < callCodes.length; i++) {
       this.GET(callCodes[i])
-      .then(result => {
+      .then((result) => {
         this.setState({
-            locationSource: locations.cloneWithRows(result),
+            locationSource: this.state.locationSource.cloneWithRows(result),
         });
         return result
       }).done();
     }
   }
 
-  timesLocations = () => {
-    var dataList = []
-    for (var i = 0; i < ddsLocations.length; i++) {
-      /* Separates the hours and locations to be in their own slots in the array */
-      dataList.push(ddsLocations[i])
-    }
-    return dataList;
-  }
-
   renderRow = (rowData, sectionID, rowID) => {
+    console.log(rowData);
     return (
       <TouchableHighlight underlayColor='#ddd' style={{height: 50}}>
         <View>
@@ -98,13 +88,13 @@ export default class DDS extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
-          <Image
-            source={require('./Icons/breakfast.jpg')}
-            style={styles.imageContainer}>
-            <Text style={styles.mealIntro}>Current swipe:</Text>
-            <Text style={styles.currentSwipe}>BREAKFAST</Text>
-            <Text style={styles.currentSwipe}>$5.25</Text>
-          </Image>
+            <Image
+              source={require('./Icons/breakfast.jpg')}
+              style={styles.imageContainer}>
+              <Text style={styles.mealIntro}>Current swipe:</Text>
+              <Text style={styles.currentSwipe}>BREAKFAST</Text>
+              <Text style={styles.currentSwipe}>$5.25</Text>
+            </Image>
           </View>
           <View style={styles.infoLabels}>
             <Text>Hours</Text>
@@ -132,6 +122,7 @@ const styles = StyleSheet.create({
   pageContent: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    flex: 1,
     justifyContent: 'center',
   },
 
@@ -144,7 +135,6 @@ const styles = StyleSheet.create({
 
   /* Style for the main section that will hold all the of the DDS content */
   mainContent: {
-    width: width,
     backgroundColor: 'white',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -154,7 +144,7 @@ const styles = StyleSheet.create({
   contentHeader: {
     width: 325,
     height: 125,
-    marginTop: -2,
+    marginTop: - (height / 2.85),
   },
 
   /* Style for the image container */
