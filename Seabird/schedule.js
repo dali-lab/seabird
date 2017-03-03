@@ -18,14 +18,17 @@ export default class Schedule extends Component {
 
     saveSchedule = () => {
         // Send a POST request to store user image in the database
-        fetch('https://localhost:3000/api/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({user: 'user1', image: 'text_representation_of_image'})
-        }).catch((error => console.log(error)))
+        fetch('http://localhost:3000/api/', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            firstParam: 'yourValue',
+            secondParam: 'yourOtherValue',
+          })
+        })
     }
 
     render() {

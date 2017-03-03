@@ -38,7 +38,7 @@ const HOME_PORTALS = [
         'imgName': require('./Icons/Map-Marker-50-White.png')
     }, {
         'txtName': 'Schedule',
-        'navName': 'schedule',
+        'navName': 'tutorial',
         'imgName': require('./Icons/Calendar-50-White.png')
     }, {
         'txtName': 'Sports',

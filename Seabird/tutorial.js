@@ -21,6 +21,10 @@ const {height, width} = Dimensions.get('window');
 export default class Tutorial extends Component {
     // Initialize the hardcoded data
 
+    navigate(routeName, transitionType = 'normal') {
+        this.props.navigator.push({name: routeName, transitionType: transitionType})
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -45,7 +49,7 @@ export default class Tutorial extends Component {
                         <Text style={styles.header3}>3. Save everything</Text>
                         <Text style={styles.header3}>4. Access your passwords whenever you want!</Text>
                     </View>
-                    <TouchableHighlight style={styles.CTA}>
+                    <TouchableHighlight style={styles.CTA} onPress={this.navigate.bind(this, 'schedule', 'normal')}>
                         <Text style={styles.CTAText}>Let's Go!</Text>
                     </TouchableHighlight>
                 </View>
