@@ -25,7 +25,6 @@ const {height, width} = Dimensions.get('window');
 var receivedJSON = []
 
 export default class DDS extends Component {
-  // Initialize the hardcoded data
 
   constructor(props) {
     super(props);

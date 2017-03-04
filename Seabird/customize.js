@@ -10,7 +10,7 @@ import {
 import { NavBar } from './components/navBar';
 import { CustomizeList } from './components/customizeList';
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
 
 export default class Customize extends Component {
@@ -18,7 +18,7 @@ export default class Customize extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tileOrder: [],
+            tileOrder: []
         };
     }
 
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         textAlign: 'center',
         marginTop: 10,
-        marginBottom: 30,
+        marginBottom: 30
     },
 
     contentInformation: {

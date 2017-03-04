@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'space-around',
-        marginTop: 20
+        marginTop: 20,
     },
 
     /* Style for the school title text */
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
         fontFamily: 'System',
         fontWeight: '300',
         color: '#000',
-        letterSpacing: -0.56
+        letterSpacing: -0.56,
     },
 
     /* Style for three of the main home screen tile buttons */
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
         height: height / 4,
         paddingBottom: 20,
         margin: 2,
-        backgroundColor: COLOR1
+        backgroundColor: COLOR1,
     },
 
     /* Style for the other three of the main home screen tile buttons */
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
         width: width / 2.1,
         height: height / 4,
         margin: 2,
-        backgroundColor: COLOR2
+        backgroundColor: COLOR2,
     },
 
     /* Style for the smaller tiles on the home screen */
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
         width: width / 3.18,
         height: height / 6,
         margin: 2,
-        backgroundColor: COLOR1
+        backgroundColor: COLOR1,
     },
 
     /* Style for the main label texts on the main buttons */
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
         fontFamily: 'System',
         fontWeight: '400',
         textAlign: 'center',
-        color: '#fff'
+        color: '#fff',
     },
 
     /* Style for the main label texts on the main buttons */
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
         fontFamily: 'System',
         fontWeight: '400',
         textAlign: 'center',
-        color: '#fff'
+        color: '#fff',
     },
 
     /* Styles the grid format of the list view */
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'flex-start',
-        height: height * 1.1
+        height: height * 1.1,
     },
 
     /* Style for the bottom button that moves to the next page */
@@ -223,26 +223,26 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         margin: 10,
         marginTop: 15,
-        backgroundColor: COLOR1
+        backgroundColor: COLOR1,
     },
 
     /* Style for the icons on the main buttons */
     mainIcon: {
-        top: 10
+        top: 10,
     },
 
     /* Style for the settings icon up in the top bar */
     settingsIcon: {
         flex: 0,
         height: 30,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
     },
 
     /* Styles the more options down button */
     downIcon: {
         flex: 1,
         height: 10,
-        resizeMode: 'center'
+        resizeMode: 'center',
     }
 });
 
