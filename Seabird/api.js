@@ -3,7 +3,7 @@ import { NavBar } from './components/navBar';
 
 
 // returns all the dining hours
-export function getDiningHours(codes) {
+export function apiGetDiningHours(codes) {
   const output = new Promise(
     function(resolve, reject) {
       ddsLocations = [];
@@ -23,4 +23,20 @@ export function getDiningHours(codes) {
     }
   );
   return output;
+}
+
+
+// Send a POST request to store user image in the database
+export function apiSaveSchedule() {
+  fetch('http://localhost:3000/api/', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      firstParam: 'yourValue',
+      secondParam: 'yourOtherValue',
+    })
+  })
 }

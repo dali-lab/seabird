@@ -8,28 +8,13 @@ import {
     Dimensions,
     Image,
 } from 'react-native';
-import {NavBar} from './components/navBar';
+import { NavBar } from './components/navBar';
+import { apiSaveSchedule } from './api';
 
 const NAVBAR_TEXT = 'Schedule';
 const {height, width} = Dimensions.get('window');
 
 export default class Schedule extends Component {
-    // Initialize the hardcoded data
-
-    saveSchedule = () => {
-        // Send a POST request to store user image in the database
-        fetch('http://localhost:3000/api/', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            firstParam: 'yourValue',
-            secondParam: 'yourOtherValue',
-          })
-        })
-    }
 
   render() {
     return (
@@ -44,7 +29,7 @@ export default class Schedule extends Component {
               marginTop: height / 4,
             }}
           />
-          <TouchableHighlight onPress={() => this.saveSchedule()}>
+          <TouchableHighlight onPress={() => apiSaveSchedule()}>
             <View style={styles.uploadImage}>
               <Text
                 style={{

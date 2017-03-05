@@ -14,7 +14,7 @@ import {
   ReactPropTypes
 } from 'react-native';
 import { NavBar } from './components/navBar';
-import { getDiningHours } from './api'
+import { apiGetDiningHours } from './api'
 
 var ddsLocations = []
 var callCodes = [
@@ -37,16 +37,15 @@ export default class DDS extends Component {
       bounceValue: new Animated.Value(0),
       locationSource: locations.cloneWithRows(ddsLocations),
     }
-    // this.getDiningHours = this.getDiningHours.bind(this);
   };
 
 
   componentWillMount() {
     for (i = 0; i < callCodes.length; i++) {
-      getDiningHours(callCodes[i])
+      apiGetDiningHours(callCodes[i])
       .then((result) => {
         this.setState({
-            locationSource: this.state.locationSource.cloneWithRows(result),
+          locationSource: this.state.locationSource.cloneWithRows(result),
         });
         return result
       }).done();
