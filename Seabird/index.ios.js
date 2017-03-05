@@ -28,43 +28,43 @@ export default class Seabird extends Component {
 
     renderScene(route, navigator) {
         if (route.name === 'root') {
-            return <Root navigator={navigator}/>;
+            return <Root navigator={navigator} />;
         }
 
         if (route.name === 'dds') {
-            return <DDS navigator={navigator}/>;
+            return <DDS navigator={navigator} />;
         }
 
         if (route.name === 'news') {
-            return <News navigator={navigator}/>;
+            return <News navigator={navigator} />;
         }
 
         if (route.name === 'sports') {
-            return <Sports navigator={navigator}/>;
+            return <Sports navigator={navigator} />;
         }
 
         if (route.name === 'settings') {
-            return <Settings navigator={navigator}/>;
+            return <Settings navigator={navigator} />;
         }
 
         if (route.name === 'more') {
-            return <More navigator={navigator}/>;
+            return <More navigator={navigator} />;
         }
 
         if (route.name === 'customize') {
-            return <Customize navigator={navigator}/>;
+            return <Customize navigator={navigator} />;
         }
 
         if (route.name === 'schedule') {
-            return <Schedule navigator={navigator}/>;
+            return <Schedule navigator={navigator} />;
         }
 
         if (route.name == 'tutorial') {
-            return <Tutorial navigator={navigator}/>
+            return <Tutorial navigator={navigator} />
         }
 
         if (route.name == 'map') {
-            return <Map navigator={navigator}/>
+            return <Map navigator={navigator} />
         }
     }
 
@@ -83,7 +83,7 @@ export default class Seabird extends Component {
             name: 'root',
             title: 'My Initial Scene',
             index: 0
-        }} renderScene={this.renderScene.bind(this)} configureScene={this.configureScene}/>);
+        }} renderScene={this.renderScene.bind(this)} configureScene={this.configureScene} />);
     }
 }
 
