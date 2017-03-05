@@ -10,7 +10,7 @@ import {
 import { NavBar } from './components/navBar';
 import { CustomizeList } from './components/customizeList';
 
-const { height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
 
 export default class Customize extends Component {
@@ -18,22 +18,22 @@ export default class Customize extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tileOrder: []
+            tileOrder: [],
         };
     }
 
     componentDidMount() {
         AsyncStorage.getItem('tileOrder').then((value) => {
-            this.setState({tileOrder: value})
+            this.setState({ tileOrder: value });
         }).done();
     }
 
     navigatePop() {
-        this.props.navigator.pop()
+        this.props.navigator.pop();
     }
 
     navigatePush(routeName) {
-        this.props.navigator.push({name: routeName})
+        this.props.navigator.push({ name: routeName });
     }
 
     render() {
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         textAlign: 'center',
         marginTop: 10,
-        marginBottom: 30
+        marginBottom: 30,
     },
 
     contentInformation: {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 
     settingsList: {
         padding: 25,
-        backgroundColor: "#FBFBFB",
+        backgroundColor: '#FBFBFB',
         borderBottomWidth: 1,
         borderColor: '#eee',
         width: width,
