@@ -28,23 +28,23 @@ export default class Settings extends Component {
 
     componentDidMount() {
         AsyncStorage.getItem('userFirstName').then((value) => {
-            this.setState({userFirstName: value})
+            this.setState({ userFirstName: value });
         }).done();
         AsyncStorage.getItem('userLastName').then((value) => {
-            this.setState({userLastName: value})
+            this.setState({ userLastName: value });
         }).done();
         AsyncStorage.getItem('userEmail').then((value) => {
-            this.setState({userEmail: value})
+            this.setState({ userEmail: value });
         }).done();
     }
 
     navigatePush(routeName) {
-        this.props.navigator.push({name: routeName})
+        this.props.navigator.push({ name: routeName });
     }
 
     saveData(key, value) {
         AsyncStorage.setItem(key, value);
-        this.setState({key: value})
+        this.setState({ key: value });
     }
 
     render() {
@@ -54,7 +54,7 @@ export default class Settings extends Component {
                 <View style={styles.mainContent}>
                     <View style={styles.contentHeader}>
                         <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName}
-                            a {this.state.userLastName}!</Text>
+                            &nbsp;{this.state.userLastName}!</Text>
                         <Text style={styles.settingsText}>First Name:
                         </Text>
                         <TextInput style={styles.textInput} onChangeText={(text) => {
