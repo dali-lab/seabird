@@ -14,11 +14,15 @@ import {
   ReactPropTypes
 } from 'react-native';
 import { NavBar } from './components/navBar';
+import { getDiningHours } from './api'
 
 var ddsLocations = []
 var callCodes = [
-  {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb0698'},
-  {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb069d'},
+  {schoolID: '58bc146e0f30433ec4d0e8f8', view: 'hours', viewID: '58bc146e0f30433ec4d0e8fe'},
+  {schoolID: '58bc146e0f30433ec4d0e8f8', view: 'hours', viewID: '58bc146e0f30433ec4d0e905'},
+  {schoolID: '58bc146e0f30433ec4d0e8f8', view: 'hours', viewID: '58bc146e0f30433ec4d0e902'},
+  // {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb0698'},
+  // {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb069d'},
 ]
 const NAVBAR_TEXT = 'Food';
 const {height, width} = Dimensions.get('window');
@@ -33,33 +37,13 @@ export default class DDS extends Component {
       bounceValue: new Animated.Value(0),
       locationSource: locations.cloneWithRows(ddsLocations),
     }
-
+    // this.getDiningHours = this.getDiningHours.bind(this);
   };
-
-  GET = (codes) => {
-    return new Promise(
-      function(resolve, reject) {
-        ddsLocations = []
-          fetch('http://localhost:3000/api/schools/' + codes.schoolID + '/' + codes.view + '/' + codes.viewID)
-          .then((response) => response.json())
-          .then((responseJson) => {
-              ddsLocations.push(responseJson.times[0].startTime + ' - ' + responseJson.times[0].endTime)
-              ddsLocations.push(responseJson.name)
-              resolve(ddsLocations)
-              //console.log(ddsLocations)
-            })
-          .catch((error) => {
-            console.log(error)
-            reject(error)
-          });
-      }
-    )
-  }
 
 
   componentWillMount() {
     for (i = 0; i < callCodes.length; i++) {
-      this.GET(callCodes[i])
+      getDiningHours(callCodes[i])
       .then((result) => {
         this.setState({
             locationSource: this.state.locationSource.cloneWithRows(result),
