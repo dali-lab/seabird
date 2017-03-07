@@ -50,7 +50,11 @@ Using the [AirBnb](https://github.com/airbnb/javascript) style guide for Javascr
 
 3. [User Personas](https://docs.google.com/a/dali.dartmouth.edu/document/d/1m__HeHLbQqkQo75OVXKxPoYWWWLUpn3QlCppB-6jwKI/edit?usp=sharing "User Personas")
 
-4. [User Flow](https://github.com/dali-lab/seabird/blob/master/Seabird/Documents/user flow.pdf "User Flow")
+4. [User Flow](https://drive.google.com/open?id=0BzOSaA4mjaaGbUpScXJvN0ZOdDg "User Flow")
+
+5. [Current Designs](https://drive.google.com/open?id=0B3gzFbdZqpokSnNncDBQYVJMODg "Current Designs")
+
+6. [Style Guide](https://drive.google.com/open?id=0BzOSaA4mjaaGRlBwZDJJTm9pR3c "Style Guide")
 
 ## Acknowledgments :mag:
 [React Native Documentation](https://facebook.github.io/react-native/docs/getting-started.html)
