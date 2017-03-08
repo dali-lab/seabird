@@ -21,12 +21,12 @@ const {height, width} = Dimensions.get('window');
 
 const HOME_PORTALS = [
     {
-        'txtName': 'DDS Hours',
+        'txtName': 'Dining',
         'navName': 'dds',
         'imgName': require('./Icons/Restaurant-50-White.png')
     }, {
         'txtName': 'Laundry',
-        'navName': null,
+        'navName': 'news',
         'imgName': require('./Icons/T-Shirt-50-White.png')
     }, {
         'txtName': 'News',
@@ -38,7 +38,7 @@ const HOME_PORTALS = [
         'imgName': require('./Icons/Map-Marker-50-White.png')
     }, {
         'txtName': 'Schedule',
-        'navName': 'tutorial',
+        'navName': 'schedule',
         'imgName': require('./Icons/Calendar-50-White.png')
     }, {
         'txtName': 'Sports',
@@ -50,11 +50,11 @@ const HOME_PORTALS = [
         'imgName': require('./Icons/Print-50-White.png')
     }, {
         'txtName': 'Dominos',
-        'navName': null,
+        'navName': 'news',
         'imgName': require('./Icons/Sport-50-White.png')
     }, {
         'txtName': 'Another',
-        'navName': null,
+        'navName': 'tutorial',
         'imgName': require('./Icons/Sport-50-White.png')
     }
 ];

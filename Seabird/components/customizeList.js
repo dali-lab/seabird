@@ -10,7 +10,7 @@ import {
 const { width, height } = Dimensions.get('window');
 const SortableListView = require('react-native-sortable-listview');
 const customOrder = [
-  {position: '1', text: 'DDS Hours' },
+  {position: '1', text: 'Dining' },
   {position: '2', text: 'Laundry' },
   {position: '3', text: 'News' },
   {position: '4', text: 'Campus Map' },

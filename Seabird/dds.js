@@ -24,7 +24,7 @@ var callCodes = [
   // {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb0698'},
   // {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb069d'},
 ]
-const NAVBAR_TEXT = 'Food';
+const NAVBAR_TEXT = 'Dining';
 const {height, width} = Dimensions.get('window');
 var receivedJSON = []
 
@@ -42,13 +42,14 @@ export default class DDS extends Component {
 
   componentWillMount() {
     for (i = 0; i < callCodes.length; i++) {
-      apiGetDiningHours(callCodes[i])
-      .then((result) => {
+      const result = ['5:00pm - 8:30pm', 'Foco', '7:00am - 8:00pm', 'Collis', '8:00am - 9:00pm', 'Hop', '7:30am - 2:00am', 'Novack', '8:00am - 8:00pm', 'KAF'];
+      // apiGetDiningHours(callCodes[i])
+      // .then((result) => {
         this.setState({
           locationSource: this.state.locationSource.cloneWithRows(result),
         });
-        return result
-      }).done();
+      //   return result
+      // }).done();
     }
   }
 
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
   contentHeader: {
     width: 325,
     height: 125,
-    marginTop: - (height / 2.85),
+    marginTop: - (height / 8),
   },
 
   /* Style for the image container */
@@ -210,7 +211,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#89E1A9',
     borderRadius: 25,
-    marginTop: 40,
+    marginTop: 20,
   },
 
 });

@@ -17,6 +17,8 @@ const {height, width} = Dimensions.get('window');
 export default class Schedule extends Component {
 
   render() {
+    // NOTE: put this in TouchableHighlight:
+    //   onPress={() => apiSaveSchedule()}
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
@@ -29,7 +31,7 @@ export default class Schedule extends Component {
               marginTop: height / 4,
             }}
           />
-          <TouchableHighlight onPress={() => apiSaveSchedule()}>
+          <TouchableHighlight>
             <View style={styles.uploadImage}>
               <Text
                 style={{
