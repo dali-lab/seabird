@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     /* Style for the header section that holds the school name and crest */
     mainHeader: {
         width: width,
-        height: 70,
+        height: 60,
         marginBottom: 2,
-        backgroundColor: '#4CCE8B',
+        backgroundColor: '#00713A',
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',

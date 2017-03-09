@@ -14,8 +14,8 @@ import {
 
 import {Tile} from './components/tile';
 
-const COLOR1 = '#73D9A4'; // used for 3/6 buttons and the Next button (NOTE: original color)
-const COLOR2 = '#4CCE8B'; // used for the other 3/6 buttons
+const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: original color)
+const COLOR2 = '#01964d'; // used for the other 3/6 buttons
 const SCHOOL_NAME = 'Dartmouth College'; // used for the title bar (although this will eventually be an image)
 const {height, width,} = Dimensions.get('window');
 

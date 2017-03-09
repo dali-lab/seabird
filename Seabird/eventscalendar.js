@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
   AsyncStorage,
-  Dimensions,
+  Dimensions
 } from 'react-native';
 import Calendar from 'react-native-calendar';
 import moment from 'moment';
 import {NavBar} from './components/navBar';
 import {CustomizeList} from './components/customizeList';
 
-const { height, width } = Dimensions.get('window');
+const {height, width,} = Dimensions.get('window');
 const NAVBAR_TEXT = 'Events';
 const customDayHeadings = [
   'Sun',
@@ -24,18 +24,18 @@ const customDayHeadings = [
   'Sat',
 ];
 const customMonthNames = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
+  'January',
+  'Feburary',
+  'March',
+  'April',
   'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 export default class EventsCalendar extends Component {
@@ -66,18 +66,27 @@ export default class EventsCalendar extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down'/>
         <View style={styles.mainContent}>
-          <Calendar eventDates={['2016-07-03', '2016-07-05', '2016-07-28', '2016-07-30',]} events={[{
-              date: '2016-07-04',
+          <Calendar
+          /* Call any API related function to get event dates and times */
+            eventDates={['2017-03-16', '2017-03-16']}
+            /*events={[{
+              date: '2017-03-16',
               hasEventCircle: {
                 backgroundColor: 'powderblue'
-              },
+              }
             }
-          ]} scrollEnabled showControls dayHeadings={customDayHeadings} monthNames={customMonthNames} titleFormat={'MMMM YYYY'} prevButtonText={'Prev'} nextButtonText={'Next'}
-          showEventIndicators
-          eventDates={['2016-11-01', '2016-11-07', '2016-11-19']}
-          onDateSelect={(date) => this.setState({selectedDate: date})} onTouchPrev={(e) => console.log('onTouchPrev: ', e)} onTouchNext={(e) => console.log('onTouchNext: ', e)} onSwipePrev={(e) => console.log('onSwipePrev: ', e)} onSwipeNext={(e) => console.log('onSwipeNext', e)}
-          customStyle={customStyle}
-          />
+          ]}*/
+            scrollEnabled
+            showControls
+            dayHeadings={customDayHeadings}
+            monthNames={customMonthNames}
+            titleFormat={'MMMM YYYY'}
+            prevButtonText={'Prev'}
+            nextButtonText={'Next'}
+            showEventIndicators
+            onDateSelect={(date) => this.setState({ selectedDate: date })}
+            weekStart={0}
+            onTouchPrev={(e) => console.log('onTouchPrev: ', e)} onTouchNext={(e) => console.log('onTouchNext: ', e)} onSwipePrev={(e) => console.log('onSwipePrev: ', e)} onSwipeNext={(e) => console.log('onSwipeNext', e)} customStyle={customStyle}/>
         </View>
       </View>
     );
@@ -128,26 +137,42 @@ const styles = StyleSheet.create({
 });
 
 const customStyle = {
+  calendarHeading: {
+    borderTopWidth: 0,
+    borderBottomWidth: 0,
+    height: height / 15,
+  },
   calendarContainer: {
     backgroundColor: 'white',
   },
   controlButtonText: {
-      color: 'blue',
-    },
-    currentDayCircle: {
-      backgroundColor: 'blue',
-    },
-    currentDayText: {
-      color: 'blue',
-    },
-    dayHeading: {
-      color: 'blue',
-    },
-    eventIndicator: {
-      backgroundColor: 'blue',
-      width: 10,
-      height: 10,
-    },
+    color: 'blue',
+  },
+  currentDayCircle: {
+    backgroundColor: 'blue',
+  },
+  currentDayText: {
+    color: 'blue',
+  },
+  dayHeading: {
+    color: '#00713A',
+  },
+  weekendHeading: {
+    color: '#00713A',
+  },
+  eventIndicator: {
+    backgroundColor: 'blue',
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+  },
+  weekRow: {
+    height: height / 10,
+  },
+  weekendDayText: {
+    color: 'black',
+  },
+
 };
 
 AppRegistry.registerComponent('EventsCalendar', () => EventsCalendar);
