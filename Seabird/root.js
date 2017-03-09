@@ -50,7 +50,7 @@ const HOME_PORTALS = [
     'imgName': require('./Icons/Print-50-White.png'),
   }, {
     'txtName': 'Dominos',
-    'navName': 'news',
+    'navName': 'null',
     'imgName': require('./Icons/Pizza-50-White.png'),
   }, {
     'txtName': 'Another',

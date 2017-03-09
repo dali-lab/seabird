@@ -70,11 +70,11 @@ export default class DDS extends Component {
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
             <Image
-              source={require('./Icons/breakfast.jpg')}
+              source={require('./Icons/breakfast-dark.png')}
               style={styles.imageContainer}>
               <Text style={styles.mealIntro}>Current swipe:</Text>
               <Text style={styles.currentSwipe}>BREAKFAST</Text>
-              <Text style={styles.currentSwipe}>$5.25</Text>
+              <Text style={styles.currentSwipeSub}>$5.25</Text>
             </Image>
           </View>
           <View style={styles.infoLabels}>
@@ -149,14 +149,26 @@ const styles = StyleSheet.create({
 
   /* Style for the current meal swipe */
   currentSwipe: {
-    fontSize: 22,
+    fontSize: 26,
     fontFamily: 'System',
-    fontWeight: '500',
+    fontWeight: '600',
     textAlign: 'center',
     color: '#fff',
-    textShadowColor: '#000',
+    /*textShadowColor: '#000',
     textShadowOffset: {width: 0.1, height: 0.1},
-    textShadowRadius: 1,
+    textShadowRadius: 1,*/
+  },
+
+  /* Style for the current meal swipe sub text */
+  currentSwipeSub: {
+    fontSize: 26,
+    fontFamily: 'System',
+    fontWeight: '400',
+    textAlign: 'center',
+    color: '#fff',
+    /*textShadowColor: '#000',
+    textShadowOffset: {width: 0.1, height: 0.1},
+    textShadowRadius: 1,*/
   },
 
   /* Style for the menu option */
