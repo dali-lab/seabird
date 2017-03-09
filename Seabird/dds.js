@@ -52,7 +52,6 @@ export default class DDS extends Component {
   }
 
   renderRow = (rowData, sectionID, rowID) => {
-    console.log(rowData);
     return (
       <TouchableHighlight underlayColor='#ddd' style={{height: 50}}>
         <View>
@@ -101,9 +100,9 @@ export default class DDS extends Component {
 const styles = StyleSheet.create({
   /* Style for the enter page */
   pageContent: {
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    flex: 1,
     justifyContent: 'center',
   },
 

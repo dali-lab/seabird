@@ -7,6 +7,7 @@ import {
   AsyncStorage,
   Dimensions,
   TouchableHighlight,
+  ListView,
 } from 'react-native';
 import {NavBar} from './components/navBar';
 import {CustomizeList} from './components/customizeList';
@@ -17,9 +18,10 @@ const NAVBAR_TEXT = 'Events';
 export default class Events extends Component {
 
   constructor(props) {
-    super(props);
+    super();
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      tileOrder: []
+      dataSource: ds.cloneWithRows(['row 1', 'row 2', 'row 3', 'row 4']),
     };
   }
 
@@ -41,14 +43,30 @@ export default class Events extends Component {
     this.props.navigator.push({name: routeName});
   }
 
+  renderRow = (rowData, sectionID, rowID) => {
+    if (rowData == 'row 1') {
+      return(
+        <Text style={styles.listHeader}>{rowData}</Text>
+      )
+    }
+    else {
+      return(
+        <Text style={styles.listEvents}>{rowData}</Text>
+      )
+    }
+  }
+
   render() {
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down'/>
         <View style={styles.mainContent}>
-          <Text style={styles.settingsTitle}>Customize your homepage!</Text>
+          <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow.bind(this)}
+          />
           <TouchableHighlight style={styles.CTA} onPress={this.navigate.bind(this, 'eventscalendar', 'normal')}>
-            <Text style={styles.CTAText}>full menus</Text>
+            <Text style={styles.CTAText}>Calendar View</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -57,6 +75,15 @@ export default class Events extends Component {
 }
 
 const styles = StyleSheet.create({
+
+  /* Style for the main section that will hold all the of the DDS content */
+  mainContent: {
+    backgroundColor: 'white',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
+
   /* Style for the header section that holds the school name and crest */
   mainHeader: {
     width: width,
@@ -96,6 +123,21 @@ const styles = StyleSheet.create({
     borderColor: '#89E1A9',
     borderRadius: 25,
     marginTop: 20,
+  },
+
+  /* Styles for the list headers above the events */
+  listHeader: {
+    height: height / 25,
+    backgroundColor: '#d5d5d5'
+  },
+
+  /* Styles for the list events */
+  listEvents: {
+    height: height / 11,
+    backgroundColor: 'white',
+    fontSize: 22,
+    borderBottomWidth: 2,
+    borderBottomColor: '#d5d5d5',
   },
 });
 
