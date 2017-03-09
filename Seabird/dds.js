@@ -21,8 +21,6 @@ var callCodes = [
   {schoolID: '58bc146e0f30433ec4d0e8f8', view: 'hours', viewID: '58bc146e0f30433ec4d0e8fe'},
   {schoolID: '58bc146e0f30433ec4d0e8f8', view: 'hours', viewID: '58bc146e0f30433ec4d0e905'},
   {schoolID: '58bc146e0f30433ec4d0e8f8', view: 'hours', viewID: '58bc146e0f30433ec4d0e902'},
-  // {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb0698'},
-  // {schoolID: '58aa0107e437067dcebb0693', view: 'hours', viewID: '58aa0107e437067dcebb069d'},
 ]
 const NAVBAR_TEXT = 'Dining';
 const {height, width} = Dimensions.get('window');
@@ -170,6 +168,7 @@ const styles = StyleSheet.create({
     color: '#89E1A9',
   },
 
+  /* Style for te content information */
   contentInformation: {
     width: width,
     flexDirection:'column',
@@ -186,7 +185,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
 
-  /* Styles the grid format of the list view */
+  /* Style for the grid format of the list view */
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -194,6 +193,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
+  /* Style for the list items */
   listItem: {
     width: width / 2,
     fontSize: 20,
@@ -202,6 +202,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: 'black',
     textAlign: 'center',
+    paddingLeft: 15,
   },
 
   /* Style for the Call To Action button */

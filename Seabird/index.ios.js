@@ -4,12 +4,14 @@
  * DALI Lab - Seabird Apps
  * 1/15/17
  */
-import React, { Component } from 'react';
-import { Navigator, AppRegistry } from 'react-native';
+import React, {Component} from 'react';
+import {Navigator, AppRegistry,} from 'react-native';
 
 import Root from './root';
 import DDS from './dds';
 import News from './news';
+import Events from './events';
+import EventsCalendar from './eventscalendar';
 import Sports from './sports';
 import Settings from './settings';
 import More from './more';
@@ -19,72 +21,80 @@ import Tutorial from './tutorial';
 import Map from './map'
 
 export default class Seabird extends Component {
-    // Initialize the hardcoded data
+  // Initialize the hardcoded data
 
-    constructor(props) {
-        super(props);
-        this.configureScene = this.configureScene.bind(this);
+  constructor(props) {
+    super(props);
+    this.configureScene = this.configureScene.bind(this);
+  }
+
+  renderScene(route, navigator) {
+    if (route.name === 'root') {
+      return <Root navigator={navigator}/>;
     }
 
-    renderScene(route, navigator) {
-        if (route.name === 'root') {
-            return <Root navigator={navigator} />;
-        }
-
-        if (route.name === 'dds') {
-            return <DDS navigator={navigator} />;
-        }
-
-        if (route.name === 'news') {
-            return <News navigator={navigator} />;
-        }
-
-        if (route.name === 'sports') {
-            return <Sports navigator={navigator} />;
-        }
-
-        if (route.name === 'settings') {
-            return <Settings navigator={navigator} />;
-        }
-
-        if (route.name === 'more') {
-            return <More navigator={navigator} />;
-        }
-
-        if (route.name === 'customize') {
-            return <Customize navigator={navigator} />;
-        }
-
-        if (route.name === 'schedule') {
-            return <Schedule navigator={navigator} />;
-        }
-
-        if (route.name == 'tutorial') {
-            return <Tutorial navigator={navigator} />
-        }
-
-        if (route.name == 'map') {
-            return <Map navigator={navigator} />
-        }
+    if (route.name === 'dds') {
+      return <DDS navigator={navigator}/>;
     }
 
-    configureScene(route, routeStack) {
-        if (route.transitionType === 'up') {
-            return Navigator.SceneConfigs.VerticalUpSwipeJump;
-        }
-        if (route.transitionType === 'down') {
-            return Navigator.SceneConfigs.VerticalDownSwipeJump;
-        }
-        return Navigator.SceneConfigs.PushFromRight;
+    if (route.name === 'news') {
+      return <News navigator={navigator}/>;
     }
 
-    render() {
-        return (<Navigator initialRoute={{
-            name: 'root',
-            title: 'My Initial Scene',
-            index: 0
-        }} renderScene={this.renderScene.bind(this)} configureScene={this.configureScene} />);
+    if (route.name === 'events') {
+      return <Events navigator={navigator}/>;
     }
+
+    if (route.name === 'eventscalendar') {
+      return <EventsCalendar navigator={navigator}/>;
+    }
+
+    if (route.name === 'sports') {
+      return <Sports navigator={navigator}/>;
+    }
+
+    if (route.name === 'settings') {
+      return <Settings navigator={navigator}/>;
+    }
+
+    if (route.name === 'more') {
+      return <More navigator={navigator}/>;
+    }
+
+    if (route.name === 'customize') {
+      return <Customize navigator={navigator}/>;
+    }
+
+    if (route.name === 'schedule') {
+      return <Schedule navigator={navigator}/>;
+    }
+
+    if (route.name == 'tutorial') {
+      return <Tutorial navigator={navigator}/>
+    }
+
+    if (route.name == 'map') {
+      return <Map navigator={navigator}/>
+    }
+  }
+
+  configureScene(route, routeStack) {
+    if (route.transitionType === 'up') {
+      return Navigator.SceneConfigs.VerticalUpSwipeJump;
+    }
+    if (route.transitionType === 'down') {
+      return Navigator.SceneConfigs.VerticalDownSwipeJump;
+    }
+    return Navigator.SceneConfigs.PushFromRight;
+  }
+
+  render() {
+    return (<Navigator initialRoute={{
+      name: 'root',
+      title: 'My Initial Scene',
+      index: 0,
+    }} renderScene={this.renderScene.bind(this)} configureScene={this.configureScene}/>);
+  }
 }
 
 AppRegistry.registerComponent('Seabird', () => Seabird);

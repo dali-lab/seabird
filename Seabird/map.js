@@ -13,7 +13,7 @@ import {
 import { NavBar } from './components/navBar';
 
 const WEBVIEW_REF = 'webview';
-const URL = 'http://thedartmouth.com';
+const URL = 'https://m.dartmouth.edu/map/';
 const NAVBAR_TEXT = 'Map';
 
 var urls = []
