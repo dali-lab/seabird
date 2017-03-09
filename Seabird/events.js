@@ -21,7 +21,7 @@ export default class Events extends Component {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2', 'row 3', 'row 4']),
+      dataSource: ds.cloneWithRows(['row 1', 'row 2', 'row 3', 'row 4', 'row 1', 'row 2', 'row 3', 'row 4']),
     };
   }
 
@@ -44,6 +44,7 @@ export default class Events extends Component {
   }
 
   renderRow = (rowData, sectionID, rowID) => {
+    /* Expects items to have specific format to distinguish between date and event information */
     if (rowData == 'row 1') {
       return(
         <Text style={styles.listHeader}>{rowData}</Text>

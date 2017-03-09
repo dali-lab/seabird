@@ -86,7 +86,11 @@ export default class EventsCalendar extends Component {
             showEventIndicators
             onDateSelect={(date) => this.setState({ selectedDate: date })}
             weekStart={0}
-            onTouchPrev={(e) => console.log('onTouchPrev: ', e)} onTouchNext={(e) => console.log('onTouchNext: ', e)} onSwipePrev={(e) => console.log('onSwipePrev: ', e)} onSwipeNext={(e) => console.log('onSwipeNext', e)} customStyle={customStyle}/>
+            onTouchPrev={(e) => console.log('onTouchPrev: ', e)} onTouchNext={(e) => console.log('onTouchNext: ', e)} onSwipePrev={(e) => console.log('onSwipePrev: ', e)} onSwipeNext={(e) => console.log('onSwipeNext', e)} customStyle={customStyle}
+            />
+        </View>
+        <View style={styles.eventContent}>
+          <Text>Howdy this is a test</Text>
         </View>
       </View>
     );
@@ -133,6 +137,11 @@ const styles = StyleSheet.create({
     borderColor: '#89E1A9',
     borderRadius: 25,
     marginTop: 20,
+  },
+
+  /* Style for the events container that holds the information */
+  eventContent: {
+
   },
 });
 
