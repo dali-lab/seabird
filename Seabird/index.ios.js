@@ -4,8 +4,8 @@
  * DALI Lab - Seabird Apps
  * 1/15/17
  */
-import React, {Component} from 'react';
-import {Navigator, AppRegistry,} from 'react-native';
+import React, { Component } from 'react';
+import { Navigator, AppRegistry } from 'react-native';
 
 import Root from './root';
 import DDS from './dds';
@@ -18,7 +18,8 @@ import More from './more';
 import Customize from './customize';
 import Schedule from './schedule';
 import Tutorial from './tutorial';
-import Map from './map'
+import Map from './map';
+import EventDetail from './eventdetail';
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
@@ -30,51 +31,55 @@ export default class Seabird extends Component {
 
   renderScene(route, navigator) {
     if (route.name === 'root') {
-      return <Root navigator={navigator}/>;
+      return <Root navigator={navigator} />;
     }
 
     if (route.name === 'dds') {
-      return <DDS navigator={navigator}/>;
+      return <DDS navigator={navigator} />;
     }
 
     if (route.name === 'news') {
-      return <News navigator={navigator}/>;
+      return <News navigator={navigator} />;
     }
 
     if (route.name === 'events') {
-      return <Events navigator={navigator}/>;
+      return <Events navigator={navigator} />;
     }
 
     if (route.name === 'eventscalendar') {
-      return <EventsCalendar navigator={navigator}/>;
+      return <EventsCalendar navigator={navigator} />;
     }
 
     if (route.name === 'sports') {
-      return <Sports navigator={navigator}/>;
+      return <Sports navigator={navigator} />;
     }
 
     if (route.name === 'settings') {
-      return <Settings navigator={navigator}/>;
+      return <Settings navigator={navigator} />;
     }
 
     if (route.name === 'more') {
-      return <More navigator={navigator}/>;
+      return <More navigator={navigator} />;
     }
 
     if (route.name === 'customize') {
-      return <Customize navigator={navigator}/>;
+      return <Customize navigator={navigator} />;
     }
 
     if (route.name === 'schedule') {
-      return <Schedule navigator={navigator}/>;
+      return <Schedule navigator={navigator} />;
     }
 
     if (route.name == 'tutorial') {
-      return <Tutorial navigator={navigator}/>
+      return <Tutorial navigator={navigator} />;
     }
 
     if (route.name == 'map') {
-      return <Map navigator={navigator}/>
+      return <Map navigator={navigator} />;
+    }
+
+    if (route.name === 'eventdetail') {
+      return <EventDetail navigator={navigator} />;
     }
   }
 
@@ -89,11 +94,13 @@ export default class Seabird extends Component {
   }
 
   render() {
-    return (<Navigator initialRoute={{
-      name: 'root',
-      title: 'My Initial Scene',
-      index: 0,
-    }} renderScene={this.renderScene.bind(this)} configureScene={this.configureScene}/>);
+    return (<Navigator
+      initialRoute={{
+        name: 'root',
+        title: 'My Initial Scene',
+        index: 0,
+      }} renderScene={this.renderScene.bind(this)} configureScene={this.configureScene}
+    />);
   }
 }
 

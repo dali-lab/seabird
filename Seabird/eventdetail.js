@@ -13,15 +13,15 @@ import {NavBar} from './components/navBar';
 import {CustomizeList} from './components/customizeList';
 
 const { height, width } = Dimensions.get('window');
-const NAVBAR_TEXT = 'Events';
+const NAVBAR_TEXT = '';
 
-export default class Events extends Component {
+export default class EventDetail extends Component {
 
   constructor(props) {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2', 'row 3', 'row 4', 'row 1', 'row 2', 'row 3', 'row 4', 'row 1', 'row 2', 'row 3', 'row 4', 'row 1', 'row 2', 'row 3', 'row 4', 'row 1', 'row 2', 'row 3', 'row 4', 'row 1', 'row 2', 'row 3', 'row 4', 'row 1', 'row 2', 'row 3', 'row 4', 'row 1', 'row 2', 'row 3', 'row 4']),
+      dataSource: ds.cloneWithRows(['row 1', 'row 2', 'row 3', 'row 4']),
     };
   }
 
@@ -29,6 +29,10 @@ export default class Events extends Component {
     AsyncStorage.getItem('tileOrder').then((value) => {
       this.setState({tileOrder: value});
     }).done();
+  }
+
+  renderScene(route, navigator) {
+    console.log(route.name)
   }
 
   navigate(routeName, transitionType = 'normal') {
@@ -40,9 +44,7 @@ export default class Events extends Component {
   }
 
   navigatePush(routeName) {
-    this.props.navigator.push({
-      name: routeName,
-    });
+    this.props.navigator.push({name: routeName});
   }
 
   renderRow = (rowData, sectionID, rowID) => {
@@ -54,7 +56,7 @@ export default class Events extends Component {
     }
     else {
       return(
-        <Text style={styles.listEvents} onPress={this.navigate.bind(this, 'eventdetail', 'normal')}>{rowData}</Text>
+        <Text style={styles.listEvents}>{rowData}</Text>
       )
     }
   }
@@ -62,15 +64,9 @@ export default class Events extends Component {
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down'/>
+        <NavBar navigator={this.props.navigator} text={this.props.data} type='down'/>
         <View style={styles.mainContent}>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this.renderRow.bind(this)}
-          />
-          <TouchableHighlight style={styles.CTA} onPress={this.navigate.bind(this, 'eventscalendar', 'normal')}>
-            <Text style={styles.CTAText}>Calendar View</Text>
-          </TouchableHighlight>
+
         </View>
       </View>
     );
@@ -108,44 +104,6 @@ const styles = StyleSheet.create({
     color: '#000',
     letterSpacing: -0.56,
   },
-
-  /* Style for the menu option */
-  CTAText: {
-    fontSize: 16,
-    fontFamily: 'System',
-    textAlign: 'center',
-    marginTop: 12,
-    color: '#89E1A9',
-  },
-
-  /* Style for the Call To Action button */
-  CTA: {
-    width: width / 2,
-    height: 50,
-    borderWidth: 2,
-    borderColor: '#89E1A9',
-    borderRadius: 25,
-    marginTop: 20,
-  },
-
-  /* Styles for the list headers above the events */
-  listHeader: {
-    paddingTop: 5,
-    paddingLeft: 5,
-    height: height / 25,
-    backgroundColor: '#d5d5d5'
-  },
-
-  /* Styles for the list events */
-  listEvents: {
-    paddingTop: height / 45,
-    paddingLeft: 10,
-    height: height / 11,
-    backgroundColor: 'white',
-    fontSize: 22,
-    borderBottomWidth: 2,
-    borderBottomColor: '#d5d5d5',
-  },
 });
 
-AppRegistry.registerComponent('Events', () => Events);
+AppRegistry.registerComponent('EventDetail', () => EventDetail);

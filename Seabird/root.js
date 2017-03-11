@@ -53,8 +53,8 @@ const HOME_PORTALS = [
     'navName': 'null',
     'imgName': require('./Icons/Pizza-50-White.png'),
   }, {
-    'txtName': 'Another',
-    'navName': 'tutorial',
+    'txtName': 'Combo Keeper',
+    'navName': 'combokeeper',
     'imgName': require('./Icons/Sport-50-White.png'),
   },
 ];
