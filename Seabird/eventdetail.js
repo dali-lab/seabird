@@ -90,10 +90,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  /* Style for the main section that will hold all the of the DDS content */
+  /* Style for the main section that will hold all the of the content */
   mainContent: {
     backgroundColor: 'white',
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-start',
     flexDirection: 'column',
     flex: 1,
   },

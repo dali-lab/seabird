@@ -20,6 +20,8 @@ import Schedule from './schedule';
 import Tutorial from './tutorial';
 import Map from './map';
 import EventDetail from './eventdetail';
+import ComboKeeper from './combokeeper';
+import Dominos from './dominos';
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
@@ -80,6 +82,14 @@ export default class Seabird extends Component {
 
     if (route.name === 'eventdetail') {
       return <EventDetail navigator={navigator} />;
+    }
+
+    if (route.name === 'combokeeper') {
+      return <ComboKeeper navigator={navigator} />;
+    }
+
+    if (route.name === 'dominos') {
+      return <Dominos navigator={navigator} />;
     }
   }
 

@@ -46,12 +46,13 @@ export default class Events extends Component {
   }
 
   renderRow = (rowData, sectionID, rowID) => {
-    /* Expects items to have specific format to distinguish between date and event information */
+    /* Form dates to distinguish from events */
     if (rowData == 'row 1') {
       return(
         <Text style={styles.listHeader}>{rowData}</Text>
       )
     }
+    /* Every event that is not a date */
     else {
       return(
         <Text style={styles.listEvents} onPress={this.navigate.bind(this, 'eventdetail', 'normal')}>{rowData}</Text>
@@ -79,7 +80,7 @@ export default class Events extends Component {
 
 const styles = StyleSheet.create({
 
-  /* Style for the main section that will hold all the of the DDS content */
+  /* Style for the main section that will hold all the of the content */
   mainContent: {
     backgroundColor: 'white',
     flexWrap: 'wrap',

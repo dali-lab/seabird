@@ -11,11 +11,23 @@ export class NavBar extends Component {
   }
 
   render() {
+    if (this.props.rightButton != null) {
+      console.log('what');
+      return (
+        <View style={styles.mainHeader}>
+          <BackButton navigator={this.props.navigator} type={this.props.type} />
+          <Text style={styles.schoolTitle}>{this.props.text}</Text>
+          <Text style={styles.schoolTitle}>{this.props.rightButton}</Text>
+        </View>
+
+      );
+    }
     return (
       <View style={styles.mainHeader}>
-        <BackButton navigator={this.props.navigator} type={this.props.type}/>
+        <BackButton navigator={this.props.navigator} type={this.props.type} />
         <Text style={styles.schoolTitle}>{this.props.text}</Text>
       </View>
+
     );
   }
 }
@@ -23,7 +35,7 @@ export class NavBar extends Component {
 const styles = StyleSheet.create({
   /* Style for the header section that holds the school name and crest */
   mainHeader: {
-    width: width,
+    width,
     height: 60,
     backgroundColor: '#00713A',
     flexDirection: 'row',
