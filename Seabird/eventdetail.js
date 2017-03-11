@@ -66,7 +66,18 @@ export default class EventDetail extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={this.props.data} type='down'/>
         <View style={styles.mainContent}>
-
+          <View style={{flex: 7}}>
+            <Text style={styles.eventDate}>Tuesday, February 21</Text>
+          </View>
+          <View style={{flex: 2, flexDirection: 'row', alignSelf: 'center'}}>
+          <Text style={styles.eventHour}>5PM:</Text>
+          <Text style={styles.eventHour}> </Text>
+          <Text style={styles.eventTitle}>Free Ramunto's & Music</Text>
+          </View>
+          <View style={{flex: 30}}>
+            <Text style={styles.eventLocation}>@ Trikap</Text>
+            {/* This is where we would add the event tags */}
+          </View>
         </View>
       </View>
     );
@@ -75,12 +86,16 @@ export default class EventDetail extends Component {
 
 const styles = StyleSheet.create({
 
+  pageContent: {
+    flex: 1,
+  },
+
   /* Style for the main section that will hold all the of the DDS content */
   mainContent: {
     backgroundColor: 'white',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     flexDirection: 'column',
+    flex: 1,
   },
 
   /* Style for the header section that holds the school name and crest */
@@ -103,6 +118,33 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: '#000',
     letterSpacing: -0.56,
+  },
+
+  /* Style for the event's date */
+  eventDate: {
+    marginTop: height / 20,
+    fontSize: 28,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
+
+  /* Style for the event's time */
+  eventHour: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#00713A',
+  },
+
+  /* Style for the event's title */
+  eventTitle: {
+    fontSize: 22,
+    fontWeight: '400',
+  },
+
+  /* Style for the event's location */
+  eventLocation: {
+    textAlign: 'center',
+    marginLeft: -(width / 1.7),
   },
 });
 
