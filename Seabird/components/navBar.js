@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, TouchableHighlight } from 'react-native';
 import { BackButton } from './backButton';
 
 const { width } = Dimensions.get('window');
@@ -12,12 +12,19 @@ export class NavBar extends Component {
 
   render() {
     if (this.props.rightButton != null) {
-      console.log('what');
       return (
         <View style={styles.mainHeader}>
-          <BackButton navigator={this.props.navigator} type={this.props.type} />
-          <Text style={styles.schoolTitle}>{this.props.text}</Text>
-          <Text style={styles.schoolTitle}>{this.props.rightButton}</Text>
+          <View style={{ flex: 2 }}>
+            <BackButton navigator={this.props.navigator} type={this.props.type} />
+          </View>
+          <View style={{ flex: 5, marginTop: 15 }}>
+            <Text style={styles.schoolTitle}>{this.props.text}</Text>
+          </View>
+          <View style={{ flex: 1 }}>
+            <TouchableHighlight underlayColor="transparent" onPress={this.props.rightButtonFunction}>
+              <Text style={styles.schoolTitleThird}>{this.props.rightButton}</Text>
+            </TouchableHighlight>
+          </View>
         </View>
 
       );
@@ -41,7 +48,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'flex-end',
   },
 
   /* Style for the school title text */
@@ -54,5 +61,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     flex: 2,
     marginRight: 50,
+  },
+
+  /* Second style for the school title text */
+  schoolTitleSecond: {
+    fontSize: 23,
+    fontFamily: 'System',
+    fontWeight: '300',
+    color: '#fff',
+    letterSpacing: -0.56,
+    textAlign: 'center',
+    flex: 3,
+    marginRight: 50,
+  },
+
+  /* Third style for the school title text */
+  schoolTitleThird: {
+    fontSize: 18,
+    fontFamily: 'System',
+    fontWeight: '300',
+    color: '#fff',
+    letterSpacing: -0.56,
   },
 });

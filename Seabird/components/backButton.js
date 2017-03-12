@@ -13,7 +13,7 @@ export class BackButton extends Component {
   render() {
     if (this.props.type === 'down') {
       return (
-        <TouchableHighlight onPress={this.navigatePop.bind(this, 'backbutton')}>
+        <TouchableHighlight underlayColor="transparent" onPress={this.navigatePop.bind(this, 'backbutton')}>
           <Image
             source={require('../Icons/Back-50-White-Down.png')}
             style={{
@@ -26,7 +26,7 @@ export class BackButton extends Component {
       );
     }
     return (
-      <TouchableHighlight onPress={this.navigatePop.bind(this, 'backbutton')}>
+      <TouchableHighlight underlayColor="transparent" onPress={this.navigatePop.bind(this, 'backbutton')}>
         <Image
           source={require('../Icons/Back-50-White.png')}
           style={{

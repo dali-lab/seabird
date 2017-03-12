@@ -18,7 +18,7 @@ export default class Customize extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tileOrder: []
+      tileOrder: [],
     };
   }
 
@@ -33,15 +33,15 @@ export default class Customize extends Component {
   }
 
   navigatePush(routeName) {
-    this.props.navigator.push({name: routeName});
+    this.props.navigator.push({ name: routeName });
   }
 
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down'/>
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
-          
+          <CustomizeList />
         </View>
       </View>
     );
@@ -71,8 +71,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    width: width,
-    height: height,
+    width,
+    height,
   },
 
   /* Style for the section that holds the swipe headers */
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
 
   contentInformation: {
-    width: width,
+    width,
   },
 
   settingsList: {
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FBFBFB',
     borderBottomWidth: 1,
     borderColor: '#eee',
-    width: width,
+    width,
   },
 
   listItem: {

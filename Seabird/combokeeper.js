@@ -27,38 +27,50 @@ export default class ComboKeeper extends Component {
     const locations = new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 });
     this.state = {
       bounceValue: new Animated.Value(0),
+      numberText: '',
+      comboText: '',
+      passwordText: '',
+      otherText: '',
     };
+  }
+
+  saveCombos = (number, combination, password, other) => {
+    console.log("Ijemma was here: " + number + ", " + combination + ", " + password + ", " + other)
   }
 
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} rightButton={'Save'} />
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} rightButton={'Save'} rightButtonFunction={() => this.saveCombos(this.state.numberText, this.state.comboText, this.state.passwordText, this.state.otherText)}/>
         <View style={styles.mainContent}>
           <Text style={styles.inputLabel}>Hinman Box Number</Text>
           <TextInput
             style={styles.smallInput}
             placeholder="i.e. HB 0000"
-            onChangeText={text => this.setState({ text })}
+            selectionColor="#058e4b"
+            onChangeText={numberText => this.setState({ numberText })}
           />
           <Text style={styles.inputLabel}>Hinman Box Combination</Text>
           <TextInput
             style={styles.smallInput}
             placeholder="i.e. Z-Z"
-            onChangeText={text => this.setState({ text })}
+            selectionColor="#058e4b"
+            onChangeText={comboText => this.setState({ comboText })}
           />
           <Text style={styles.inputLabel}>Canvas Password</Text>
           <TextInput
             style={styles.smallInput}
             placeholder="i.e. password123"
-            onChangeText={text => this.setState({ text })}
+            selectionColor="#058e4b"
+            onChangeText={passwordText => this.setState({ passwordText })}
           />
           <Text style={styles.inputLabel}>Other Services</Text>
           <TextInput
             style={styles.largeInput}
-            placeholder="Type here to translate!"
+            placeholder=""
+            selectionColor="#058e4b"
             multiline
-            onChangeText={text => this.setState({ text })}
+            onChangeText={otherText => this.setState({ otherText })}
           />
         </View>
       </View>
