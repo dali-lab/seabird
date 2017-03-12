@@ -63,7 +63,7 @@ export default class Events extends Component {
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type='down'/>
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
           <ListView
             dataSource={this.state.dataSource}

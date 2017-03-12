@@ -64,7 +64,7 @@ export default class EventDetail extends Component {
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={this.props.data} type='down'/>
+        <NavBar navigator={this.props.navigator} text={this.props.data} />
         <View style={styles.mainContent}>
           <View style={{flex: 7}}>
             <Text style={styles.eventDate}>Tuesday, February 21</Text>
