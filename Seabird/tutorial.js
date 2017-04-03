@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignItems: 'center',
+        flex: 1,
         marginTop: -2
     },
 
