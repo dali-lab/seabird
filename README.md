@@ -24,11 +24,16 @@ More designs for the application can be found [here](https://github.com/dali-lab
 
 ## Setup :wrench:
 
-1. Clone this repository `git clone https://github.com/dali-lab/seabird.git`
+1. Open terminal and go to the directory (folder) you want to copy the repo into.
+  - `cd` is the Change Directory function in the terminal. To change to the next directory, type `cd ./dest_directory`
 
-2. Go into the main directory and install all the necessary modules `cd seabird/Seabird && npm install`
+2.  Clone this repository `git clone https://github.com/dali-lab/seabird.git`
 
-3. Refer to the [seabird-backend](https://github.com/dali-lab/seabird-backend) repository for reference for the backend
+3. Go into the main directory and install all the necessary modules `cd seabird/Seabird && npm install`
+
+4. `cd` into the `/ios` directory and then `open Seabird.xcodeworkspace`
+
+5. Refer to the [seabird-backend](https://github.com/dali-lab/seabird-backend) repository for reference for the backend
 
 ## Style Guide
 

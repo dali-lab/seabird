@@ -67,7 +67,7 @@ export default class Events extends Component {
         <View style={styles.mainContent}>
           <ListView
             dataSource={this.state.dataSource}
-            renderRow={this.renderRow.bind(this)}
+            renderRow={this.renderRow}
           />
           <TouchableHighlight style={styles.CTA} onPress={this.navigate.bind(this, 'eventscalendar', 'normal')}>
             <Text style={styles.CTAText}>Calendar View</Text>

@@ -22,16 +22,16 @@ import Map from './map';
 import EventDetail from './eventdetail';
 import ComboKeeper from './combokeeper';
 import Dominos from './dominos';
+import Testing from './testing';
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data
 
   constructor(props) {
     super(props);
-    this.configureScene = this.configureScene.bind(this);
   }
 
-  renderScene(route, navigator) {
+  renderScene = (route, navigator) => {
     if (route.name === 'root') {
       return <Root navigator={navigator} />;
     }
@@ -91,9 +91,13 @@ export default class Seabird extends Component {
     if (route.name === 'dominos') {
       return <Dominos navigator={navigator} />;
     }
+
+    if (route.name === 'testing') {
+      return <Testing navigator={navigator} />;
+    }
   }
 
-  configureScene(route, routeStack) {
+  configureScene = (route, routeStack) => {
     if (route.transitionType === 'up') {
       return Navigator.SceneConfigs.VerticalUpSwipeJump;
     }
@@ -109,7 +113,7 @@ export default class Seabird extends Component {
         name: 'root',
         title: 'My Initial Scene',
         index: 0,
-      }} renderScene={this.renderScene.bind(this)} configureScene={this.configureScene}
+      }} renderScene={this.renderScene} configureScene={this.configureScene}
     />);
   }
 }

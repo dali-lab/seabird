@@ -83,7 +83,7 @@ export default class DDS extends Component {
           <View style={styles.contentInformation}>
             <ListView
               dataSource={this.state.locationSource}
-              renderRow={this.renderRow.bind(this)}
+              renderRow={this.renderRow}
               contentContainerStyle={styles.grid}
               enableEmptySections={true}>
             </ListView>

@@ -12,6 +12,49 @@ import { CustomizeList } from './components/customizeList';
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
+import SortableGrid from 'react-native-sortable-grid';
+
+// React Dragable
+
+const HOME_PORTALS = [
+  {
+    txtName: 'Dining',
+    navName: 'dds',
+    imgName: require('./Icons/Restaurant-50-White.png'),
+  }, {
+    txtName: 'Events',
+    navName: 'events',
+    imgName: require('./Icons/T-Shirt-50-White.png'),
+  }, {
+    txtName: 'News',
+    navName: 'news',
+    imgName: require('./Icons/News-50-White.png'),
+  }, {
+    txtName: 'Campus Map',
+    navName: 'map',
+    imgName: require('./Icons/Map-Marker-50-White.png'),
+  }, {
+    txtName: 'Schedule',
+    navName: 'schedule',
+    imgName: require('./Icons/Calendar-50-White.png'),
+  }, {
+    txtName: 'Sports',
+    navName: 'sports',
+    imgName: require('./Icons/Sport-50-White.png'),
+  }, {
+    txtName: 'Green Print',
+    navName: 'tutorial',
+    imgName: require('./Icons/Print-50-White.png'),
+  }, {
+    txtName: 'Dominos',
+    navName: 'dominos',
+    imgName: require('./Icons/Pizza-50-White.png'),
+  }, {
+    txtName: 'Combo Keeper',
+    navName: 'combokeeper',
+    imgName: require('./Icons/Sport-50-White.png'),
+  },
+];
 
 export default class Customize extends Component {
 
@@ -41,7 +84,17 @@ export default class Customize extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
-          <CustomizeList />
+          {/* <CustomizeList />*/}
+
+          <SortableGrid
+            itemsPerRow={4}
+            dragActivationTreshold={100}
+            onDragRelease={itemOrder => console.log('Drag was released, the blocks are in the following order: ', itemOrder)}
+          >
+            {HOME_PORTALS.map((letter, index) => (<View key={index}>
+              <Text>{letter.txtName}</Text>
+            </View>))}
+          </SortableGrid>
         </View>
       </View>
     );
@@ -65,14 +118,11 @@ const styles = StyleSheet.create({
 
   /* Style for the main section that will hold all the of the DDS content */
   mainContent: {
-    width: 350,
-    height: 525,
     backgroundColor: '#ddd',
     flexDirection: 'column',
     flexWrap: 'wrap',
     justifyContent: 'center',
     width,
-    height,
   },
 
   /* Style for the section that holds the swipe headers */
