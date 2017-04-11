@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, TouchableHighlight, Dimensions, AsyncStorage} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  Dimensions,
+  AsyncStorage
+} from 'react-native';
 
 const {width, height,} = Dimensions.get('window');
 const SortableListView = require('react-native-sortable-listview');

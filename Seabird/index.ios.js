@@ -5,6 +5,15 @@
  * 1/15/17
  */
 import React, { Component } from 'react';
+import {
+  Header,
+  Link,
+  nativeHistory,
+  Route,
+  Router,
+  StackRoute,
+  withRouter,
+} from 'react-router-native';
 import { Navigator, AppRegistry } from 'react-native';
 
 import Root from './root';

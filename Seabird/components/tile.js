@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { TouchableHighlight, Image, StyleSheet, Text, View } from 'react-native';
+import {
+  TouchableHighlight,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 export class Tile extends Component {
 

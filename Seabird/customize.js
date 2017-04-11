@@ -6,6 +6,7 @@ import {
   View,
   AsyncStorage,
   Dimensions,
+  ScrollView,
 } from 'react-native';
 import { NavBar } from './components/navBar';
 import { CustomizeList } from './components/customizeList';
@@ -85,16 +86,19 @@ export default class Customize extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
           {/* <CustomizeList />*/}
-
-          <SortableGrid
-            itemsPerRow={4}
-            dragActivationTreshold={100}
-            onDragRelease={itemOrder => console.log('Drag was released, the blocks are in the following order: ', itemOrder)}
-          >
-            {HOME_PORTALS.map((letter, index) => (<View key={index}>
-              <Text>{letter.txtName}</Text>
-            </View>))}
-          </SortableGrid>
+          <ScrollView>
+            <SortableGrid
+              itemsPerRow={2}
+              dragActivationTreshold={100}
+              onDragRelease={itemOrder => console.log('Drag was released, the blocks are in the following order: ', itemOrder)}
+              style={styles.grid}
+            >
+              {HOME_PORTALS.map((letter, index) => (
+                <View style={styles.option} key={index}>
+                  <Text style={styles.optionText}>{letter.txtName}</Text>
+                </View>))}
+            </SortableGrid>
+          </ScrollView>
         </View>
       </View>
     );
@@ -118,7 +122,6 @@ const styles = StyleSheet.create({
 
   /* Style for the main section that will hold all the of the DDS content */
   mainContent: {
-    backgroundColor: '#ddd',
     flexDirection: 'column',
     flexWrap: 'wrap',
     justifyContent: 'center',
@@ -182,6 +185,28 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     backgroundColor: '#bbb',
+  },
+
+  /* Style for the options for the customized tiles */
+  option: {
+    justifyContent: 'center',
+    borderRadius: 5,
+    width: width / 4.5,
+    height: height / 10,
+    backgroundColor: 'white',
+    backgroundColor: '#ddd',
+  },
+
+  /* Style for the options' text */
+  optionText: {
+    fontSize: 12,
+    textAlign: 'center',
+  },
+
+  /* Style for the Sortable Grid */
+  grid: {
+    height: 30,
+    backgroundColor: 'white',
   },
 });
 
