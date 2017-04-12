@@ -57,7 +57,6 @@ export default class DDS extends Component {
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
-        <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
             <Image
               source={require('./Icons/breakfast-dark.png')}
@@ -68,8 +67,8 @@ export default class DDS extends Component {
             </Image>
           </View>
           <View style={styles.infoLabels}>
-            <Text>Hours</Text>
-            <Text>Locations</Text>
+            <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
+            <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
           </View>
           <View style={styles.contentInformation}>
             <ListView
@@ -82,7 +81,6 @@ export default class DDS extends Component {
               <Text style={styles.menuOptions}>full menus</Text>
             </TouchableHighlight>
           </View>
-        </View>
       </View>
     )
   }
@@ -92,9 +90,8 @@ const styles = StyleSheet.create({
   /* Style for the enter page */
   pageContent: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     flexWrap: 'wrap',
-    justifyContent: 'center',
   },
 
   /* Styles the back button */
@@ -104,18 +101,11 @@ const styles = StyleSheet.create({
     resizeMode: 'center',
   },
 
-  /* Style for the main section that will hold all the of the DDS content */
-  mainContent: {
-    backgroundColor: 'white',
-    flexWrap: 'wrap',
-    //justifyContent: 'center',
-  },
-
   /* Style for the section that holds the swipe headers */
   contentHeader: {
     width: 325,
     height: 125,
-    marginTop: - (height / 8),
+    marginTop: (height / 27),
   },
 
   /* Style for the image container */
@@ -144,9 +134,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     color: '#fff',
-    /*textShadowColor: '#000',
-    textShadowOffset: {width: 0.1, height: 0.1},
-    textShadowRadius: 1,*/
   },
 
   /* Style for the current meal swipe sub text */
@@ -156,9 +143,6 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     textAlign: 'center',
     color: '#fff',
-    /*textShadowColor: '#000',
-    textShadowOffset: {width: 0.1, height: 0.1},
-    textShadowRadius: 1,*/
   },
 
   /* Style for the menu option */
@@ -173,18 +157,19 @@ const styles = StyleSheet.create({
   /* Style for te content information */
   contentInformation: {
     width: width,
-    flexDirection:'column',
+    flexDirection: 'column',
     alignItems:'center',
+    height: height / 3,
     marginTop: 30,
   },
 
   /* Style for the view that will hold the labels */
   infoLabels: {
-    width: width,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     marginTop: 50,
+    height: 30,
   },
 
   /* Style for the grid format of the list view */
