@@ -17,11 +17,6 @@ import { NavBar } from './components/navBar';
 import { apiGetDiningHours } from './api'
 
 var ddsLocations = []
-var callCodes = [
-  {schoolID: '58bc146e0f30433ec4d0e8f8', view: 'hours', viewID: '58bc146e0f30433ec4d0e8fe'},
-  {schoolID: '58bc146e0f30433ec4d0e8f8', view: 'hours', viewID: '58bc146e0f30433ec4d0e905'},
-  {schoolID: '58bc146e0f30433ec4d0e8f8', view: 'hours', viewID: '58bc146e0f30433ec4d0e902'},
-]
 const NAVBAR_TEXT = 'Dining';
 const {height, width} = Dimensions.get('window');
 var receivedJSON = []
@@ -39,17 +34,14 @@ export default class DDS extends Component {
 
 
   componentWillMount() {
-    for (i = 0; i < callCodes.length; i++) {
-      const result = ['5:00pm - 8:30pm', 'Foco', '7:00am - 8:00pm', 'Collis', '8:00am - 9:00pm', 'Hop', '7:30am - 2:00am', 'Novack', '8:00am - 8:00pm', 'KAF'];
-      // apiGetDiningHours(callCodes[i])
-      // .then((result) => {
+      apiGetDiningHours('buffer')
+      .then((result) => {
         this.setState({
           locationSource: this.state.locationSource.cloneWithRows(result),
         });
-      //   return result
-      // }).done();
+         return result
+       }).done();
     }
-  }
 
   renderRow = (rowData, sectionID, rowID) => {
     return (
@@ -62,7 +54,6 @@ export default class DDS extends Component {
   }
 
   render() {
-  //console.log(this.state.locationSource)
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
@@ -117,7 +108,7 @@ const styles = StyleSheet.create({
   mainContent: {
     backgroundColor: 'white',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    //justifyContent: 'center',
   },
 
   /* Style for the section that holds the swipe headers */
