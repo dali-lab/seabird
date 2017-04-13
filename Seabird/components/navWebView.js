@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 import { BackButton } from './backButton';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 const WEBVIEW_REF = 'webview';
 
-export class NavWebView extends WebView  {
+export class NavWebView extends Component  {
 
   onNavigationStateChange = (navState) => {
       this.setState({canGoBack: navState.canGoBack, canGoForward: navState.canGoForward, url: navState.url});
@@ -30,12 +30,11 @@ export class NavWebView extends WebView  {
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1, flexDirection: 'column'}}>
       <WebView ref={WEBVIEW_REF} style={{
           flex: 1,
-          marginTop: -2
       }} onNavigationStateChange={this.onNavigationStateChange} source={{
-          uri: 'http://thedartmouth.com'//this.props.source
+          uri: this.props.source.uri
       }}/>
       <View style={styles.bottomBar}>
           <TouchableOpacity disabled={!this.canGoBack} onPress={this.goBack}>

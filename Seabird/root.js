@@ -172,6 +172,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width / 2.1,
     height: height / 4,
+    paddingBottom: 20,
     margin: 2,
     backgroundColor: COLOR2
   },
