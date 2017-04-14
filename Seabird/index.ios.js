@@ -18,10 +18,9 @@ import { Navigator, AppRegistry } from 'react-native';
 
 import Root from './root';
 import DDS from './dds';
-import News from './news';
+import News from './web';
 import Events from './events';
 import EventsCalendar from './eventscalendar';
-import Sports from './sports';
 import Settings from './settings';
 import More from './more';
 import Customize from './customize';
@@ -30,7 +29,6 @@ import Tutorial from './tutorial';
 import Map from './map';
 import EventDetail from './eventdetail';
 import ComboKeeper from './combokeeper';
-import Dominos from './dominos';
 import Testing from './testing';
 
 export default class Seabird extends Component {
@@ -49,7 +47,7 @@ export default class Seabird extends Component {
       return <DDS navigator={navigator} />;
     }
 
-    if (route.name === 'news') {
+    if (route.name === 'web') {
       return <News navigator={navigator} />;
     }
 
@@ -61,7 +59,7 @@ export default class Seabird extends Component {
       return <EventsCalendar navigator={navigator} />;
     }
 
-    if (route.name === 'sports') {
+    if (route.name === 'web') {
       return <Sports navigator={navigator} />;
     }
 
@@ -97,7 +95,7 @@ export default class Seabird extends Component {
       return <ComboKeeper navigator={navigator} />;
     }
 
-    if (route.name === 'dominos') {
+    if (route.name === 'web') {
       return <Dominos navigator={navigator} />;
     }
 
@@ -126,5 +124,17 @@ export default class Seabird extends Component {
     />);
   }
 }
+
+/*const Home = () => (
+  <Root />
+);
+
+const Seabird = () => (
+  <NativeRouter>
+    <View style={{ flex: 1, backgroundColor: 'white' }}>
+      <Route exact path="/" component={Home} />
+    </View>
+  </NativeRouter>
+);*/
 
 AppRegistry.registerComponent('Seabird', () => Seabird);

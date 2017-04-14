@@ -12,12 +12,12 @@ import {
   AsyncStorage,
 } from 'react-native';
 
-import {Tile} from './components/tile';
+import { Tile } from './components/tile';
 
 const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: original color)
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons
 const SCHOOL_NAME = 'Dartmouth College'; // used for the title bar (although this will eventually be an image)
-const {height, width,} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 
 const HOME_PORTALS = [
   {
@@ -29,8 +29,8 @@ const HOME_PORTALS = [
     'navName': 'events',
     'imgName': require('./Icons/T-Shirt-50-White.png'),
   }, {
-    'txtName': 'News',
-    'navName': 'news',
+    'txtName': 'WebView',
+    'navName': 'web',
     'imgName': require('./Icons/News-50-White.png'),
   }, {
     'txtName': 'Campus Map',
@@ -41,17 +41,17 @@ const HOME_PORTALS = [
     'navName': 'schedule',
     'imgName': require('./Icons/Calendar-50-White.png'),
   }, {
-    'txtName': 'Sports',
-    'navName': 'sports',
-    'imgName': require('./Icons/Sport-50-White.png'),
+    'txtName': 'WebView',
+    'navName': 'web',
+    'imgName': require('./Icons/News-50-White.png'),
   }, {
     'txtName': 'Green Print',
     'navName': 'tutorial',
     'imgName': require('./Icons/Print-50-White.png'),
   }, {
-    'txtName': 'Dominos',
-    'navName': 'dominos',
-    'imgName': require('./Icons/Pizza-50-White.png'),
+    'txtName': 'WebView',
+    'navName': 'web',
+    'imgName': require('./Icons/News-50-White.png'),
   }, {
     'txtName': 'Combo Keeper',
     'navName': 'combokeeper',

@@ -33,7 +33,7 @@ export default class DDS extends Component {
   };
 
 
-  componentWillMount() {
+  componentDidMount() {
       apiGetDiningHours('buffer')
       .then((result) => {
         this.setState({
@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     flexWrap: 'wrap',
+    backgroundColor: 'white',
   },
 
   /* Styles the back button */

@@ -15,8 +15,6 @@ const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
 import SortableGrid from 'react-native-sortable-grid';
 
-// React Dragable
-
 const HOME_PORTALS = [
   {
     txtName: 'Dining',
@@ -85,7 +83,6 @@ export default class Customize extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
-          {/* <CustomizeList />*/}
           <ScrollView>
             <SortableGrid
               itemsPerRow={2}
@@ -191,10 +188,11 @@ const styles = StyleSheet.create({
   option: {
     justifyContent: 'center',
     borderRadius: 5,
-    width: width / 4.5,
-    height: height / 10,
+    width: width / 2.5,
+    height: height / 4.5,
     backgroundColor: 'white',
     backgroundColor: '#ddd',
+    alignSelf: 'center',
   },
 
   /* Style for the options' text */

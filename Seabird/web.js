@@ -2,26 +2,18 @@ import React, { Component } from 'react';
 import {
     AppRegistry,
     StyleSheet,
-    Text,
     View,
-    Image,
-    Dimensions,
-    ScrollView,
-    ListView,
     Animated,
     WebView,
-    TouchableOpacity,
 } from 'react-native';
 import { NavBar } from './components/navBar';
 import { NavWebView } from './components/navWebView';
 
 const WEBVIEW_REF = 'webview';
-const URL = 'http://dartmouthsports.com';
-const NAVBAR_TEXT = 'Sports';
+const URL = 'http://thedartmouth.com';
+const NAVBAR_TEXT = 'Web';
 
-export default class Sports extends Component {
-    // Initialize the hardcoded data
-
+export default class Web extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,23 +36,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
-    /* Styles the back button */
-  backIcon: {
-    flex: 0,
-    height: 20,
-    resizeMode: 'center',
-  },
-
-    /* Styles the bottom web view navigation banner */
-  bottomBar: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    height: 50,
-    backgroundColor: '#EAEAEA',
-  },
 });
 
-AppRegistry.registerComponent('Sports', () => Sports);
+AppRegistry.registerComponent('Web', () => Web);
