@@ -16,6 +16,7 @@ import {
 } from 'react-router-native';
 import { Navigator, AppRegistry } from 'react-native';
 import EventItem from './components/eventItem';
+import OneSignal from 'react-native-onesignal';
 
 import Root from './screens/root';
 import DDS from './screens/dds';
@@ -32,10 +33,46 @@ import ComboKeeper from './screens/combokeeper';
 import Testing from './screens/testing';
 
 export default class Seabird extends Component {
-  // Initialize the hardcoded data
 
   constructor(props) {
     super(props);
+  }
+
+  componentWillMount() {
+    OneSignal.addEventListener('received', this.onReceived);
+    OneSignal.addEventListener('opened', this.onOpened);
+    OneSignal.addEventListener('registered', this.onRegistered);
+    OneSignal.addEventListener('ids', this.onIds);
+    // Sending multiple tags
+    OneSignal.sendTags({"UserID": "12345", "UserName": "Sean", "UserYear": "2017"});
+    // Calling promptLocation
+    OneSignal.promptLocation();
+  }
+
+  componentWillUnmount() {
+    OneSignal.removeEventListener('received', this.onReceived);
+    OneSignal.removeEventListener('opened', this.onOpened);
+    OneSignal.removeEventListener('registered', this.onRegistered);
+    OneSignal.removeEventListener('ids', this.onIds);
+  }
+
+  onReceived(notification) {
+    console.log("Notification received: ", notification);
+  }
+
+  onOpened(openResult) {
+    console.log('Message: ', openResult.notification.payload.body);
+    console.log('Data: ', openResult.notification.payload.additionalData);
+    console.log('isActive: ', openResult.notification.isAppInFocus);
+    console.log('openResult: ', openResult);
+  }
+
+  onRegistered(notifData) {
+    console.log("Device had been registered for push notifications!", notifData);
+  }
+
+  onIds(device) {
+	   console.log('Device info: ', device);
   }
 
   renderScene = (route, navigator) => {
@@ -43,8 +80,8 @@ export default class Seabird extends Component {
       return <Root navigator={navigator} />;
     }
 
-    if (route.name === 'dds') {
-      return <DDS navigator={navigator} />;
+    if (route.name === 'dining') {
+      return <Dining navigator={navigator} />;
     }
 
     if (route.name === 'web') {
