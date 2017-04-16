@@ -32,7 +32,6 @@ import ComboKeeper from './combokeeper';
 import Testing from './testing';
 
 export default class Seabird extends Component {
-  // Initialize the hardcoded data
 
   constructor(props) {
     super(props);
