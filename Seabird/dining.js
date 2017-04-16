@@ -16,19 +16,19 @@ import {
 import { NavBar } from './components/navBar';
 import { apiGetDiningHours } from './api'
 
-var ddsLocations = []
+var diningLocations = []
 const NAVBAR_TEXT = 'Dining';
 const {height, width} = Dimensions.get('window');
 var receivedJSON = []
 
-export default class DDS extends Component {
+export default class Dining extends Component {
 
   constructor(props) {
     super(props);
     var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
     this.state = {
       bounceValue: new Animated.Value(0),
-      locationSource: locations.cloneWithRows(ddsLocations),
+      locationSource: locations.cloneWithRows(diningLocations),
     }
   };
 
@@ -205,4 +205,4 @@ const styles = StyleSheet.create({
 
 });
 
-AppRegistry.registerComponent('DDS', () => DDS);
+AppRegistry.registerComponent('Dining', () => Dining);

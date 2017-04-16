@@ -17,7 +17,7 @@ import {
 import { Navigator, AppRegistry } from 'react-native';
 
 import Root from './root';
-import DDS from './dds';
+import Dining from './dining';
 import News from './web';
 import Events from './events';
 import EventsCalendar from './eventscalendar';
@@ -80,8 +80,8 @@ export default class Seabird extends Component {
       return <Root navigator={navigator} />;
     }
 
-    if (route.name === 'dds') {
-      return <DDS navigator={navigator} />;
+    if (route.name === 'dining') {
+      return <Dining navigator={navigator} />;
     }
 
     if (route.name === 'web') {
