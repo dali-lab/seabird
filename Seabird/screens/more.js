@@ -3,17 +3,16 @@ import {
     AppRegistry,
     StyleSheet,
     View,
+    ScrollView,
     Animated,
-    WebView,
 } from 'react-native';
-import { NavBar } from './components/navBar';
-import { NavWebView } from './components/navWebView';
+import { NavBar } from './../components/navBar';
 
-const WEBVIEW_REF = 'webview';
-const URL = 'http://thedartmouth.com';
-const NAVBAR_TEXT = 'Web';
+const NAVBAR_TEXT = 'More Modules';
 
-export default class Web extends Component {
+export default class More extends Component {
+    // Initialize the hardcoded data
+
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +24,7 @@ export default class Web extends Component {
     return (
       <View style={styles.container}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
-        <NavWebView source={{ uri: URL }} ref={WEBVIEW_REF} />
+        <ScrollView />
       </View>
     );
   }
@@ -36,6 +35,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+
+    /* Styles the back button */
+  backIcon: {
+    flex: 0,
+    height: 20,
+    resizeMode: 'center',
+  },
 });
 
-AppRegistry.registerComponent('Web', () => Web);
+AppRegistry.registerComponent('More', () => More);

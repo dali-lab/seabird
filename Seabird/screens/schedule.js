@@ -8,8 +8,8 @@ import {
     Dimensions,
     Image,
 } from 'react-native';
-import { NavBar } from './components/navBar';
-import { apiSaveSchedule } from './api';
+import { NavBar } from './../components/navBar';
+import { apiSaveSchedule } from './../api';
 
 const NAVBAR_TEXT = 'Schedule';
 const { height, width } = Dimensions.get('window');
@@ -25,7 +25,7 @@ export default class Schedule extends Component {
         <View style={styles.mainContent}>
           <View style={{ flex: 1 }}>
             <Image
-              source={require('./Icons/General-Schedule.png')}
+              source={require('./../Icons/General-Schedule.png')}
               style={{
                 height: (height / 100) * 70,
                 width: (width / 100) * 70,

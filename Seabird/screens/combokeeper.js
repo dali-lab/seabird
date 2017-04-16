@@ -14,7 +14,7 @@ import {
   ReactPropTypes,
   TextInput,
 } from 'react-native';
-import { NavBar } from './components/navBar';
+import { NavBar } from './../components/navBar';
 
 const NAVBAR_TEXT = 'Combo Keeper';
 const { height, width } = Dimensions.get('window');

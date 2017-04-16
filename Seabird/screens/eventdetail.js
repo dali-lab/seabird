@@ -9,8 +9,8 @@ import {
   TouchableHighlight,
   ListView,
 } from 'react-native';
-import {NavBar} from './components/navBar';
-import {CustomizeList} from './components/customizeList';
+import {NavBar} from './../components/navBar';
+import {CustomizeList} from './../components/customizeList';
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = '';

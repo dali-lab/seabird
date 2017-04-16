@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Calendar from 'react-native-calendar';
 import moment from 'moment';
-import { NavBar } from './components/navBar';
+import { NavBar } from './../components/navBar';
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Events';

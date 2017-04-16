@@ -8,8 +8,8 @@ import {
   Dimensions,
   ScrollView,
 } from 'react-native';
-import { NavBar } from './components/navBar';
-import { CustomizeList } from './components/customizeList';
+import { NavBar } from './../components/navBar';
+import { CustomizeList } from './../components/customizeList';
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
@@ -19,39 +19,39 @@ const HOME_PORTALS = [
   {
     txtName: 'Dining',
     navName: 'dds',
-    imgName: require('./Icons/Restaurant-50-White.png'),
+    imgName: require('./../Icons/Restaurant-50-White.png'),
   }, {
     txtName: 'Events',
     navName: 'events',
-    imgName: require('./Icons/T-Shirt-50-White.png'),
+    imgName: require('./../Icons/T-Shirt-50-White.png'),
   }, {
     txtName: 'News',
     navName: 'news',
-    imgName: require('./Icons/News-50-White.png'),
+    imgName: require('./../Icons/News-50-White.png'),
   }, {
     txtName: 'Campus Map',
     navName: 'map',
-    imgName: require('./Icons/Map-Marker-50-White.png'),
+    imgName: require('./../Icons/Map-Marker-50-White.png'),
   }, {
     txtName: 'Schedule',
     navName: 'schedule',
-    imgName: require('./Icons/Calendar-50-White.png'),
+    imgName: require('./../Icons/Calendar-50-White.png'),
   }, {
     txtName: 'Sports',
     navName: 'sports',
-    imgName: require('./Icons/Sport-50-White.png'),
+    imgName: require('./../Icons/Sport-50-White.png'),
   }, {
     txtName: 'Green Print',
     navName: 'tutorial',
-    imgName: require('./Icons/Print-50-White.png'),
+    imgName: require('./../Icons/Print-50-White.png'),
   }, {
     txtName: 'Dominos',
     navName: 'dominos',
-    imgName: require('./Icons/Pizza-50-White.png'),
+    imgName: require('./../Icons/Pizza-50-White.png'),
   }, {
     txtName: 'Combo Keeper',
     navName: 'combokeeper',
-    imgName: require('./Icons/Sport-50-White.png'),
+    imgName: require('./../Icons/Sport-50-White.png'),
   },
 ];
 
@@ -61,6 +61,7 @@ export default class Customize extends Component {
     super(props);
     this.state = {
       tileOrder: [],
+      scrolling: true,
     };
   }
 
@@ -78,16 +79,20 @@ export default class Customize extends Component {
     this.props.navigator.push({ name: routeName });
   }
 
+  // onDragRelease={itemOrder => console.log('Drag was released, the blocks are in the following order: ', itemOrder)}
+
   render() {
+    console.log(this.state.scrolling);
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
-          <ScrollView>
+          <ScrollView scrollEnabled={this.state.scrolling}>
             <SortableGrid
               itemsPerRow={2}
-              dragActivationTreshold={100}
-              onDragRelease={itemOrder => console.log('Drag was released, the blocks are in the following order: ', itemOrder)}
+              dragActivationTreshold={200}
+              onDragStart={() => this.setState({ scrolling: false })}
+              onDragRelease={() => this.setState({ scrolling: true })}
               style={styles.grid}
             >
               {HOME_PORTALS.map((letter, index) => (

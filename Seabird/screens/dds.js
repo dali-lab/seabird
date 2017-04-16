@@ -13,8 +13,8 @@ import {
   Modal,
   ReactPropTypes
 } from 'react-native';
-import { NavBar } from './components/navBar';
-import { apiGetDiningHours } from './api'
+import { NavBar } from './../components/navBar';
+import { apiGetDiningHours } from './../api'
 
 var ddsLocations = []
 const NAVBAR_TEXT = 'Dining';
@@ -59,7 +59,7 @@ export default class DDS extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
           <View style={styles.contentHeader}>
             <Image
-              source={require('./Icons/breakfast-dark.png')}
+              source={require('./../Icons/breakfast-dark.png')}
               style={styles.imageContainer}>
               <Text style={styles.mealIntro}>Current swipe:</Text>
               <Text style={styles.currentSwipe}>BREAKFAST</Text>

@@ -9,61 +9,60 @@ import {
   Dimensions,
   ListView,
   Animated,
-  AsyncStorage
+  AsyncStorage,
 } from 'react-native';
 
-import {Tile} from './components/tile';
+import { Tile } from './../components/tile';
 
-const COLOR1 = '#000'; // used for 3/6 buttons and the Next button (NOTE: original color)
+const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: original color)
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons
 const SCHOOL_NAME = 'Dartmouth College'; // used for the title bar (although this will eventually be an image)
-const {height, width} = Dimensions.get('window');
-import SortableGrid from 'react-native-sortable-grid'
+const { height, width } = Dimensions.get('window');
 
 const HOME_PORTALS = [
   {
     'txtName': 'Dining',
     'navName': 'dds',
-    'imgName': require('./Icons/Restaurant-50-White.png')
+    'imgName': require('./../Icons/Restaurant-50-White.png'),
   }, {
     'txtName': 'Events',
     'navName': 'events',
-    'imgName': require('./Icons/T-Shirt-50-White.png')
+    'imgName': require('./../Icons/T-Shirt-50-White.png'),
   }, {
-    'txtName': 'News',
-    'navName': 'news',
-    'imgName': require('./Icons/News-50-White.png')
+    'txtName': 'WebView',
+    'navName': 'web',
+    'imgName': require('./../Icons/News-50-White.png'),
   }, {
     'txtName': 'Campus Map',
     'navName': 'map',
-    'imgName': require('./Icons/Map-Marker-50-White.png')
+    'imgName': require('./../Icons/Map-Marker-50-White.png'),
   }, {
     'txtName': 'Schedule',
     'navName': 'schedule',
-    'imgName': require('./Icons/Calendar-50-White.png')
+    'imgName': require('./../Icons/Calendar-50-White.png'),
   }, {
-    'txtName': 'Sports',
-    'navName': 'sports',
-    'imgName': require('./Icons/Sport-50-White.png')
+    'txtName': 'WebView',
+    'navName': 'web',
+    'imgName': require('./../Icons/News-50-White.png'),
   }, {
     'txtName': 'Green Print',
-    'navName': 'testing',
-    'imgName': require('./Icons/Print-50-White.png')
+    'navName': 'tutorial',
+    'imgName': require('./../Icons/Print-50-White.png'),
   }, {
-    'txtName': 'Dominos',
-    'navName': 'dominos',
-    'imgName': require('./Icons/Pizza-50-White.png')
+    'txtName': 'WebView',
+    'navName': 'web',
+    'imgName': require('./../Icons/News-50-White.png'),
   }, {
     'txtName': 'Combo Keeper',
     'navName': 'combokeeper',
-    'imgName': require('./Icons/Sport-50-White.png')
+    'imgName': require('./../Icons/Sport-50-White.png'),
   },
 ];
 
-export default class Testing extends Component {
+export default class Root extends Component {
 
   navigate(routeName, transitionType = 'normal') {
-    this.props.navigator.push({name: routeName, transitionType: transitionType})
+    this.props.navigator.push({name: routeName, transitionType: transitionType,})
   }
 
   GET = (schoolID, view, viewID) => {
@@ -80,7 +79,7 @@ export default class Testing extends Component {
     this.state = {
       bounceValue: new Animated.Value(0),
       homeSource: tiles.cloneWithRows(HOME_PORTALS),
-      tileOrder: []
+      tileOrder: [],
     }
   };
 
@@ -103,17 +102,20 @@ export default class Testing extends Component {
   render() {
     console.log(this.state.tileOrder);
     return (
-      <View style={{/*flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'center',*/
-      paddingTop: 30,
+      <View style={{
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
       }}>
 
-        {/*<View style={styles.mainHeader}>
+        <View style={styles.mainHeader}>
           <TouchableHighlight underlayColor="transparent" onPress={this.navigate.bind(this, 'settings', 'down')}>
-            <Image source={require('./Icons/User-Menu-Male-48.png')} style={styles.settingsIcon}/>
+            <Image source={require('./../Icons/User-Menu-Male-48.png')} style={styles.settingsIcon}/>
           </TouchableHighlight>
           <Text style={styles.schoolTitle}>{SCHOOL_NAME}</Text>
           <TouchableHighlight underlayColor="transparent" onPress={this.navigate.bind(this, 'customize', 'down')}>
-            <Image source={require('./Icons/Settings-48.png')} style={styles.settingsIcon}/>
+            <Image source={require('./../Icons/Settings-48.png')} style={styles.settingsIcon}/>
           </TouchableHighlight>
         </View>
 
@@ -121,20 +123,7 @@ export default class Testing extends Component {
 
           <ListView dataSource={this.state.homeSource} renderRow={this.renderRow.bind(this)} contentContainerStyle={styles.grid}></ListView>
 
-        </View>*/}
-        <SortableGrid
-          itemsPerRow = {2}
-        >
-          {HOME_PORTALS.map((letter, index) =>
-            <View key={index}>
-            {index == 0 || index == 3 || index == 4  ? <Tile navigator={this.props.navigator} navName={letter.navName} imgSource={letter.imgName} text={letter.txtName} tileStyle={styles.tile2} textStyle={styles.tileText1}/> : null}
-
-            {index == 1 || index == 2 || index == 5  ? <Tile navigator={this.props.navigator} navName={letter.navName} imgSource={letter.imgName} text={letter.txtName} tileStyle={styles.tile1} textStyle={styles.tileText1}/> : null}
-
-            {index >= 6 ? <Tile navigator={this.props.navigator} navName={letter.navName} imgSource={letter.imgName} text={letter.txtName} tileStyle={styles.tile3} textStyle={styles.tileText1}/> : null}
-            </View>
-          )}
-        </SortableGrid>
+        </View>
 
       </View>
     );
@@ -152,7 +141,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginTop: 20,
+    marginTop: 20
   },
 
   /* Style for the school title text */
@@ -161,7 +150,7 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     fontWeight: '300',
     color: '#000',
-    letterSpacing: -0.56,
+    letterSpacing: -0.56
   },
 
   /* Style for three of the main home screen tile buttons */
@@ -173,7 +162,7 @@ const styles = StyleSheet.create({
     height: height / 4,
     paddingBottom: 20,
     margin: 2,
-    backgroundColor: COLOR1,
+    backgroundColor: COLOR1
   },
 
   /* Style for the other three of the main home screen tile buttons */
@@ -183,8 +172,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width / 2.1,
     height: height / 4,
+    paddingBottom: 20,
     margin: 2,
-    backgroundColor: COLOR2,
+    backgroundColor: COLOR2
   },
 
   /* Style for the smaller tiles on the home screen */
@@ -195,7 +185,7 @@ const styles = StyleSheet.create({
     width: width / 3.18,
     height: height / 6,
     margin: 2,
-    backgroundColor: COLOR1,
+    backgroundColor: COLOR1
   },
 
   /* Style for the main label texts on the main buttons */
@@ -205,7 +195,7 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     fontWeight: '400',
     textAlign: 'center',
-    color: '#fff',
+    color: '#fff'
   },
 
   /* Style for the main label texts on the main buttons */
@@ -215,7 +205,7 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     fontWeight: '400',
     textAlign: 'center',
-    color: '#fff',
+    color: '#fff'
   },
 
   /* Styles the grid format of the list view */
@@ -224,7 +214,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    height: height * 1.1,
+    height: height * 1.1
   },
 
   /* Style for the bottom button that moves to the next page */
@@ -234,7 +224,7 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     margin: 10,
     marginTop: 15,
-    backgroundColor: COLOR1,
+    backgroundColor: COLOR1
   },
 
   /* Style for the icons on the main buttons */
@@ -246,15 +236,15 @@ const styles = StyleSheet.create({
   settingsIcon: {
     flex: 0,
     height: 30,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
 
   /* Styles the more options down button */
   downIcon: {
     flex: 1,
     height: 10,
-    resizeMode: 'center',
-  }
+    resizeMode: 'center'
+  },
 });
 
-AppRegistry.registerComponent('Testing', () => Testing);
+AppRegistry.registerComponent('Root', () => Root);

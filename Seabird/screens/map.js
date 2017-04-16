@@ -10,7 +10,7 @@ import {
   WebView,
   TouchableOpacity,
 } from 'react-native';
-import { NavBar } from './components/navBar';
+import { NavBar } from './../components/navBar';
 
 const WEBVIEW_REF = 'webview';
 const URL = 'https://m.dartmouth.edu/map/';

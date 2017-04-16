@@ -23,7 +23,6 @@ export function apiGetDiningHours(codes) {
   return output;
 }
 
-
 // Send a POST request to store user image in the database
 export function apiSaveSchedule() {
   fetch('http://localhost:3000/api/', {

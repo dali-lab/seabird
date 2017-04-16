@@ -15,21 +15,21 @@ import {
   withRouter,
 } from 'react-router-native';
 import { Navigator, AppRegistry } from 'react-native';
+import EventItem from './components/eventItem';
 
-import Root from './root';
-import DDS from './dds';
-import News from './web';
-import Events from './events';
-import EventsCalendar from './eventscalendar';
-import Settings from './settings';
-import More from './more';
-import Customize from './customize';
-import Schedule from './schedule';
-import Tutorial from './tutorial';
-import Map from './map';
-import EventDetail from './eventdetail';
-import ComboKeeper from './combokeeper';
-import Testing from './testing';
+import Root from './screens/root';
+import DDS from './screens/dds';
+import News from './screens/web';
+import EventsCalendar from './screens/eventscalendar';
+import Settings from './screens/settings';
+import More from './screens/more';
+import Customize from './screens/customize';
+import Schedule from './screens/schedule';
+import Tutorial from './screens/tutorial';
+import Map from './screens/map';
+import EventDetail from './screens/eventdetail';
+import ComboKeeper from './screens/combokeeper';
+import Testing from './screens/testing';
 
 export default class Seabird extends Component {
   // Initialize the hardcoded data

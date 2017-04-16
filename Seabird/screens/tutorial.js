@@ -13,7 +13,7 @@ import {
     WebView,
     TouchableOpacity
 } from 'react-native';
-import {NavBar} from './components/navBar';
+import {NavBar} from './../components/navBar';
 
 const NAVBAR_TEXT = '';
 const {height, width} = Dimensions.get('window');
