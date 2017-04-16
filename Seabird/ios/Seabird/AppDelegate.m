@@ -18,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   self.oneSignal = [[RCTOneSignal alloc] initWithLaunchOptions:launchOptions
-                                                         appId:@"YOUR_ONESIGNAL_APP_ID"];
+                                                         appId:@"566bac65-c2f3-4693-8c31-d0015a2946d2"];
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
