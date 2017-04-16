@@ -44,7 +44,9 @@ export default class Seabird extends Component {
     OneSignal.addEventListener('registered', this.onRegistered);
     OneSignal.addEventListener('ids', this.onIds);
     // Sending multiple tags
-    OneSignal.sendTags({"key": "value", "key2": "value2"});
+    OneSignal.sendTags({"UserID": "12345", "UserName": "Sean", "UserYear": "2017"});
+    // Calling promptLocation
+    OneSignal.promptLocation();
   }
 
   componentWillUnmount() {
