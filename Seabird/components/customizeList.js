@@ -59,8 +59,6 @@ export class CustomizeList extends Component {
     for (i = 0; i < customOrder.length; i++) {
       finalString += ' ' + customOrder[i].position
     }
-    console.log(finalString);
-    console.log(order);
   }
 
   render() {

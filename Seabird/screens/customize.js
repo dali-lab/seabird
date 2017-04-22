@@ -79,10 +79,7 @@ export default class Customize extends Component {
     this.props.navigator.push({ name: routeName });
   }
 
-  // onDragRelease={itemOrder => console.log('Drag was released, the blocks are in the following order: ', itemOrder)}
-
   render() {
-    console.log(this.state.scrolling);
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
@@ -93,6 +90,8 @@ export default class Customize extends Component {
               dragActivationTreshold={100}
               onDragStart={() => this.setState({ scrolling: false })}
               onDragRelease={() => this.setState({ scrolling: true })}
+              onDragRelease={itemOrder => AsyncStorage.setItem('customList', JSON.stringify(itemOrder))}
+              onDragRelease={() => console.log('save to async')}
               style={styles.grid}
             >
               {HOME_PORTALS.map((letter, index) => (

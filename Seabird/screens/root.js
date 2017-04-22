@@ -77,10 +77,20 @@ export default class Root extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     AsyncStorage.getItem('tileOrder').then((value) => {
       this.setState({ tileOrder: value });
     }).done();
+    AsyncStorage.getItem('customList').then((value) => {
+      const list = JSON.parse(value);
+      console.log(list);
+      for (let i = 0; i < HOME_PORTALS.length; i++) {
+        temp = HOME_PORTALS[i];
+        HOME_PORTALS[i] = HOME_PORTALS[list.itemOrder[i].key];
+        HOME_PORTALS[list.itemOrder[i].key] = temp;
+      }
+    }).done();
+    this.render();
   }
 
   renderRow(rowData, sectionID, rowID) {
