@@ -90,7 +90,7 @@ export default class Customize extends Component {
           <ScrollView scrollEnabled={this.state.scrolling}>
             <SortableGrid
               itemsPerRow={2}
-              dragActivationTreshold={200}
+              dragActivationTreshold={100}
               onDragStart={() => this.setState({ scrolling: false })}
               onDragRelease={() => this.setState({ scrolling: true })}
               style={styles.grid}

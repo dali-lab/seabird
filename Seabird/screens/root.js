@@ -102,6 +102,7 @@ export default class Root extends Component {
           flexWrap: 'wrap',
           alignItems: 'flex-start',
           justifyContent: 'center',
+          backgroundColor: 'white',
         }}
       >
 

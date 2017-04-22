@@ -18,9 +18,11 @@ import { Navigator, AppRegistry } from 'react-native';
 import EventItem from './components/eventItem';
 import OneSignal from 'react-native-onesignal';
 
+import Login from './screens/login';
 import Root from './screens/root';
-import DDS from './screens/dds';
+import Dining from './screens/dining';
 import News from './screens/web';
+import Events from './screens/events';
 import EventsCalendar from './screens/eventscalendar';
 import Settings from './screens/settings';
 import More from './screens/more';
@@ -76,6 +78,10 @@ export default class Seabird extends Component {
   }
 
   renderScene = (route, navigator) => {
+    if (route.name === 'login') {
+      return <Login navigator={navigator} />;
+    }
+
     if (route.name === 'root') {
       return <Root navigator={navigator} />;
     }
@@ -116,11 +122,11 @@ export default class Seabird extends Component {
       return <Schedule navigator={navigator} />;
     }
 
-    if (route.name == 'tutorial') {
+    if (route.name === 'tutorial') {
       return <Tutorial navigator={navigator} />;
     }
 
-    if (route.name == 'map') {
+    if (route.name === 'map') {
       return <Map navigator={navigator} />;
     }
 
@@ -139,6 +145,10 @@ export default class Seabird extends Component {
     if (route.name === 'testing') {
       return <Testing navigator={navigator} />;
     }
+
+    if (route.name === 'dining') {
+      return <Dining navigator={navigator} />;
+    }
   }
 
   configureScene = (route, routeStack) => {
@@ -152,13 +162,22 @@ export default class Seabird extends Component {
   }
 
   render() {
-    return (<Navigator
+    return (
+      /*<Navigator
       initialRoute={{
         name: 'root',
         title: 'My Initial Scene',
+        indelx: 0,
+      }} renderScene={this.renderScene} configureScene={this.configureScene}
+    />*/
+    <Navigator
+      initialRoute={{
+        name: 'login',
+        title: 'My Initial Scene',
         index: 0,
       }} renderScene={this.renderScene} configureScene={this.configureScene}
-    />);
+    />
+  );
   }
 }
 
