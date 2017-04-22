@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { NavBar } from './components/navBar';
 
-
-// returns all the dining hours
-export function apiGetDiningHours(codes) {
+// Gets data from DB.
+export function queryDB(child) {
   const output = new Promise(
     (resolve, reject) => {
       ddsLocations = [];
-      fetch('https://secret-dusk-76389.herokuapp.com/users')
+      fetch("https://sbackend-25143.firebaseio.com/" + child + ".json")
       .then(response => response.json())
       .then((responseJson) => {
         console.log('responseJson');
@@ -23,17 +21,17 @@ export function apiGetDiningHours(codes) {
   return output;
 }
 
-// Send a POST request to store user image in the database
-export function apiSaveSchedule() {
-  fetch('http://localhost:3000/api/', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      firstParam: 'yourValue',
-      secondParam: 'yourOtherValue',
-    }),
-  });
+// Writes data to the DB.
+export function saveToDB(child) {
+    fetch("https://sbackend-25143.firebaseio.com/" + child + ".json", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            firstName: "Mr.",
+            lastName: "Saxobeat"
+        })
+    });
 }
+

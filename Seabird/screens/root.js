@@ -96,7 +96,6 @@ export default class Root extends Component {
     AsyncStorage.getItem('homeOrder').then((value) => {
       this.setState({ HOME_PORTALS: JSON.parse(value) });
     }).done();
-    // console.log('rerendering');
     return (
       <View
         style={{
@@ -135,12 +134,11 @@ const styles = StyleSheet.create({
     width,
     height: 60,
     marginBottom: 2,
-    backgroundColor: 'white',
+    backgroundColor: '#00713A',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginTop: 20,
   },
 
   /* Style for the school title text */

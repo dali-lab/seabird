@@ -9,41 +9,41 @@ import {
   Dimensions,
   ListView,
   Animated,
-  AsyncStorage,
-  Modal,
-  ReactPropTypes
 } from 'react-native';
 import { NavBar } from './../components/navBar';
-import { apiGetDiningHours } from './../api'
+import { queryDB } from "./../api"
+import { saveToDB } from "./../api"
 
-var diningLocations = []
-const NAVBAR_TEXT = 'Dining';
 const {height, width} = Dimensions.get('window');
-var receivedJSON = []
+const NAVBAR_TEXT = 'Dining';
+
+let diningLocations = [];
 
 export default class Dining extends Component {
 
   constructor(props) {
     super(props);
-    var locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+    let locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
     this.state = {
       bounceValue: new Animated.Value(0),
       locationSource: locations.cloneWithRows(diningLocations),
-    }
+    };
+    queryDB("age")
   };
 
+    // apiGetDiningHours();
 
-  componentDidMount() {
-      apiGetDiningHours('buffer')
-      .then((result) => {
-        this.setState({
-          locationSource: this.state.locationSource.cloneWithRows(result),
-        });
-         return result
-       }).done();
-    }
+  // componentDidMount() {
+  //     apiGetDiningHours('buffer')
+  //     .then((result) => {
+  //       this.setState({
+  //         locationSource: this.state.locationSource.cloneWithRows(result),
+  //       });
+  //        return result
+  //      }).done();
+  //   }
 
-  renderRow = (rowData, sectionID, rowID) => {
+  renderRow = (rowData) => {
     return (
       <TouchableHighlight underlayColor='#ddd' style={{height: 50}}>
         <View>
@@ -51,7 +51,7 @@ export default class Dining extends Component {
         </View>
       </TouchableHighlight>
     )
-  }
+  };
 
   render() {
     return (

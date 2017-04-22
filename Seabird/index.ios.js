@@ -159,17 +159,10 @@ export default class Seabird extends Component {
       return Navigator.SceneConfigs.VerticalDownSwipeJump;
     }
     return Navigator.SceneConfigs.PushFromRight;
-  }
+  };
 
   render() {
     return (
-      /*<Navigator
-      initialRoute={{
-        name: 'root',
-        title: 'My Initial Scene',
-        indelx: 0,
-      }} renderScene={this.renderScene} configureScene={this.configureScene}
-    />*/
     <Navigator
       initialRoute={{
         name: 'login',
@@ -180,17 +173,5 @@ export default class Seabird extends Component {
   );
   }
 }
-
-/*const Home = () => (
-  <Root />
-);
-
-const Seabird = () => (
-  <NativeRouter>
-    <View style={{ flex: 1, backgroundColor: 'white' }}>
-      <Route exact path="/" component={Home} />
-    </View>
-  </NativeRouter>
-);*/
 
 AppRegistry.registerComponent('Seabird', () => Seabird);
