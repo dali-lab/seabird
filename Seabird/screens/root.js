@@ -18,47 +18,6 @@ const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: ori
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
-
-const HOME_PORTALS = [
-  {
-    txtName: 'Dining',
-    navName: 'dining',
-    imgName: require('./../Icons/Restaurant-50-White.png'),
-  }, {
-    txtName: 'Events',
-    navName: 'events',
-    imgName: require('./../Icons/T-Shirt-50-White.png'),
-  }, {
-    txtName: 'WebView',
-    navName: 'web',
-    imgName: require('./../Icons/News-50-White.png'),
-  }, {
-    txtName: 'Campus Map',
-    navName: 'map',
-    imgName: require('./../Icons/Map-Marker-50-White.png'),
-  }, {
-    txtName: 'Schedule',
-    navName: 'schedule',
-    imgName: require('./../Icons/Calendar-50-White.png'),
-  }, {
-    txtName: 'WebView',
-    navName: 'web',
-    imgName: require('./../Icons/News-50-White.png'),
-  }, {
-    txtName: 'Green Print',
-    navName: 'tutorial',
-    imgName: require('./../Icons/Print-50-White.png'),
-  }, {
-    txtName: 'WebView',
-    navName: 'web',
-    imgName: require('./../Icons/News-50-White.png'),
-  }, {
-    txtName: 'Combo Keeper',
-    navName: 'combokeeper',
-    imgName: require('./../Icons/Sport-50-White.png'),
-  },
-];
-
 export default class Root extends Component {
 
   navigate(routeName, transitionType = 'normal') {
@@ -67,13 +26,51 @@ export default class Root extends Component {
 
   constructor(props) {
     super(props);
-    const tiles = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1.guid != r2.guid,
-    });
     this.state = {
       bounceValue: new Animated.Value(0),
-      homeSource: tiles.cloneWithRows(HOME_PORTALS),
       tileOrder: [],
+      HOME_PORTALS: [
+        {
+          txtName: 'Dining',
+          navName: 'dining',
+          imgName: require('./../Icons/Restaurant-50-White.png'),
+        }, {
+          txtName: 'Events',
+          navName: 'events',
+          imgName: require('./../Icons/T-Shirt-50-White.png'),
+        }, {
+          txtName: 'WebView',
+          navName: 'web',
+          imgName: require('./../Icons/News-50-White.png'),
+        }, {
+          txtName: 'Campus Map',
+          navName: 'map',
+          imgName: require('./../Icons/Map-Marker-50-White.png'),
+        }, {
+          txtName: 'Schedule',
+          navName: 'schedule',
+          imgName: require('./../Icons/Calendar-50-White.png'),
+        }, {
+          txtName: 'WebView',
+          navName: 'web',
+          imgName: require('./../Icons/News-50-White.png'),
+        }, {
+          txtName: 'Green Print',
+          navName: 'tutorial',
+          imgName: require('./../Icons/Print-50-White.png'),
+        }, {
+          txtName: 'WebView',
+          navName: 'web',
+          imgName: require('./../Icons/News-50-White.png'),
+        }, {
+          txtName: 'Combo Keeper',
+          navName: 'combokeeper',
+          imgName: require('./../Icons/Sport-50-White.png'),
+        },
+      ],
+      homeSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => true,
+      }).cloneWithRows([1, 1, 1, 1, 1, 1, 1, 1, 1]),
     };
   }
 
@@ -81,30 +78,25 @@ export default class Root extends Component {
     AsyncStorage.getItem('tileOrder').then((value) => {
       this.setState({ tileOrder: value });
     }).done();
-    AsyncStorage.getItem('customList').then((value) => {
-      const list = JSON.parse(value);
-      console.log(list);
-      for (let i = 0; i < HOME_PORTALS.length; i++) {
-        temp = HOME_PORTALS[i];
-        HOME_PORTALS[i] = HOME_PORTALS[list.itemOrder[i].key];
-        HOME_PORTALS[list.itemOrder[i].key] = temp;
-      }
-    }).done();
+    AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
+
     this.render();
   }
 
   renderRow(rowData, sectionID, rowID) {
     if (rowID == 0 || rowID == 3 || rowID == 4) {
-      return (<Tile navigator={this.props.navigator} navName={HOME_PORTALS[rowID].navName} imgSource={HOME_PORTALS[rowID].imgName} text={HOME_PORTALS[rowID].txtName} tileStyle={styles.tile2} textStyle={styles.tileText1} />);
+      return (<Tile navigator={this.props.navigator} navName={this.state.HOME_PORTALS[rowID].navName} imgSource={this.state.HOME_PORTALS[rowID].imgName} text={this.state.HOME_PORTALS[rowID].txtName} tileStyle={styles.tile2} textStyle={styles.tileText1} />);
     } else if (rowID == 1 || rowID == 2 || rowID == 5) {
-      return (<Tile navigator={this.props.navigator} navName={HOME_PORTALS[rowID].navName} imgSource={HOME_PORTALS[rowID].imgName} text={HOME_PORTALS[rowID].txtName} tileStyle={styles.tile1} textStyle={styles.tileText1} />);
+      return (<Tile navigator={this.props.navigator} navName={this.state.HOME_PORTALS[rowID].navName} imgSource={this.state.HOME_PORTALS[rowID].imgName} text={this.state.HOME_PORTALS[rowID].txtName} tileStyle={styles.tile1} textStyle={styles.tileText1} />);
     }
-    return (<Tile navigator={this.props.navigator} navName={HOME_PORTALS[rowID].navName} imgSource={HOME_PORTALS[rowID].imgName} text={HOME_PORTALS[rowID].txtName} tileStyle={styles.tile3} textStyle={styles.tileText2} />);
+    return (<Tile navigator={this.props.navigator} navName={this.state.HOME_PORTALS[rowID].navName} imgSource={this.state.HOME_PORTALS[rowID].imgName} text={this.state.HOME_PORTALS[rowID].txtName} tileStyle={styles.tile3} textStyle={styles.tileText2} />);
   }
 
-  // TODO: consider using ScrollView instead to load all home tiles at beginning
   render() {
-    console.log(this.state.tileOrder);
+    AsyncStorage.getItem('homeOrder').then((value) => {
+      this.setState({ HOME_PORTALS: JSON.parse(value) });
+    }).done();
+    // console.log('rerendering');
     return (
       <View
         style={{
