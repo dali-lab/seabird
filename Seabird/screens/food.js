@@ -14,10 +14,10 @@ import {CustomizeList} from './../components/customizeList';
 import EventItem from './../components/eventItem';
 
 const { height, width } = Dimensions.get('window');
-const NAVBAR_TEXT = 'Events';
+const NAVBAR_TEXT = 'Food';
 
-// reading xml
-const xmlURL = "https://spreadsheets.google.com/feeds/list/1W1CvcU9EllQs-DBo4KFz5HM_a67svd1Xj_3CxiZCVIA/1/public/values";
+// info for reading xml file (google sheet)
+const xmlURL = "https://spreadsheets.google.com/feeds/list/12cYH8vNOcIla4MNboj-MPinTEERDjJM9dEWWoBnsNtk/1/public/values";
 var DOMParser = require('xmldom').DOMParser;
 const parser = new DOMParser();
 const xmlDoc = null;
@@ -27,6 +27,7 @@ request.onreadystatechange = (e) => {
   if (request.readyState !== 4) {
     return;
   }
+
   if (request.status === 200) {
     responseXML = request.responseText;
     xmlDoc = parser.parseFromString(responseXML);
@@ -39,7 +40,8 @@ request.onreadystatechange = (e) => {
 request.open('GET', xmlURL);
 request.send();
 
-export default class Events extends Component {
+
+export default class Food extends Component {
 
   constructor(props) {
     super();
@@ -47,32 +49,30 @@ export default class Events extends Component {
     this.state = {
       dataSource: ds.cloneWithRows([
         xmlDoc.getElementsByTagName("title")[1].childNodes[0].data,
-        xmlDoc.getElementsByTagName("content")[1].childNodes[0].data,
         xmlDoc.getElementsByTagName("title")[2].childNodes[0].data,
-        xmlDoc.getElementsByTagName("content")[2].childNodes[0].data,
         xmlDoc.getElementsByTagName("title")[3].childNodes[0].data,
-        xmlDoc.getElementsByTagName("content")[3].childNodes[0].data,
         xmlDoc.getElementsByTagName("title")[4].childNodes[0].data,
-        xmlDoc.getElementsByTagName("content")[4].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("title")[5].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[5].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("title")[6].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[6].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("title")[7].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[7].childNodes[0].data,
+        xmlDoc.getElementsByTagName("title")[5].childNodes[0].data,
+        xmlDoc.getElementsByTagName("title")[6].childNodes[0].data,
+        xmlDoc.getElementsByTagName("title")[7].childNodes[0].data,
+        xmlDoc.getElementsByTagName("title")[8].childNodes[0].data,
+        xmlDoc.getElementsByTagName("title")[9].childNodes[0].data,
+        xmlDoc.getElementsByTagName("title")[10].childNodes[0].data,
+        xmlDoc.getElementsByTagName("title")[11].childNodes[0].data,
+        xmlDoc.getElementsByTagName("title")[12].childNodes[0].data,
+        xmlDoc.getElementsByTagName("title")[13].childNodes[0].data,
         '...and some more...',
       ]),
     };
   }
 
-  componentDidMount() {
-    // to get all items, use the following, with i ranging from 1 to length of list (?):
-    //  console.log(xmlDoc.getElementsByTagName("title")[i].childNodes[0]);
-    //  console.log(xmlDoc.getElementsByTagName("content")[i].childNodes[0]);
-    AsyncStorage.getItem('tileOrder').then((value) => {
-      this.setState({tileOrder: value});
-    }).done();
-  }
+  // componentDidMount() {
+  //   console.log("Parsed info: ");
+  //   console.log(xmlDoc.getElementsByTagName("title"));
+  //   AsyncStorage.getItem('tileOrder').then((value) => {
+  //     this.setState({tileOrder: value});
+  //   }).done();
+  // }
 
   navigate(routeName, transitionType = 'normal') {
     this.props.navigator.push({name: routeName, transitionType: transitionType,})
@@ -90,7 +90,7 @@ export default class Events extends Component {
 
   renderRow = (rowData, sectionID, rowID) => {
     /* Form dates to distinguish from events */
-    if (rowData == 'today') {
+    if ((rowData == 'OPEN NOW:') || (rowData == 'CLOSED NOW:')) {
       return(
         <Text style={styles.listHeader}>{rowData}</Text>
       )
@@ -98,7 +98,7 @@ export default class Events extends Component {
     /* Every event that is not a date */
     else {
       return(
-        <Text style={styles.listEvents} onPress={this.navigate.bind(this, 'eventdetail', 'normal')}>{rowData}</Text>
+        <Text style={styles.listItem} onPress={this.navigate.bind(this, 'eventdetail', 'normal')}>{rowData}</Text>
       )
     }
   }
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
   },
 
   /* Styles for the list events */
-  listEvents: {
+  listItem: {
     paddingTop: height / 45,
     paddingLeft: 10,
     height: height / 11,
@@ -193,4 +193,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('Events', () => Events);
+AppRegistry.registerComponent('Food', () => Food);

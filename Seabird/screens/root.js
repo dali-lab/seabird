@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import { Tile } from './../components/tile';
+import { NavBar } from "./../components/navBar2"
 
 const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: original color)
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons
@@ -59,9 +60,9 @@ export default class Root extends Component {
           navName: 'tutorial',
           imgName: require('./../Icons/Print-50-White.png'),
         }, {
-          txtName: 'WebView',
-          navName: 'web',
-          imgName: require('./../Icons/News-50-White.png'),
+          txtName: 'Food',
+          navName: 'food',
+          imgName: require('./../Icons/Restaurant-50-White.png'),
         }, {
           txtName: 'Combo Keeper',
           navName: 'combokeeper',
@@ -108,13 +109,7 @@ export default class Root extends Component {
       >
 
         <View style={styles.mainHeader}>
-          <TouchableHighlight underlayColor="transparent" onPress={this.navigate.bind(this, 'settings', 'down')}>
-            <Image source={require('./../Icons/User-Menu-Male-48.png')} style={styles.settingsIcon} />
-          </TouchableHighlight>
-          <Text style={styles.schoolTitle}>{SCHOOL_NAME}</Text>
-          <TouchableHighlight underlayColor="transparent" onPress={this.navigate.bind(this, 'customize', 'down')}>
-            <Image source={require('./../Icons/Settings-48.png')} style={styles.settingsIcon} />
-          </TouchableHighlight>
+          <NavBar navigator={this.props.navigator}/>
         </View>
 
         <View>
