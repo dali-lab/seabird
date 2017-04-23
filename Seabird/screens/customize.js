@@ -42,6 +42,7 @@ export default class Customize extends Component {
   }
 
   rearrange = (value) => {
+    this.setState({ scrolling: true })
     var newHome = HOME_PORTALS
     for (var i = 0; i < HOME_PORTALS.length; i++) {
         newHome[i] = HOME_PORTALS[value.itemOrder[i].key]
@@ -64,7 +65,6 @@ export default class Customize extends Component {
               itemsPerRow={2}
               dragActivationTreshold={100}
               onDragStart={() => this.setState({ scrolling: false })}
-              onDragRelease={() => this.setState({ scrolling: true })}
               onDragRelease={itemOrder => this.rearrange(itemOrder)}
               style={styles.grid}
             >
