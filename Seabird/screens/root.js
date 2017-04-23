@@ -60,9 +60,9 @@ export default class Root extends Component {
           navName: 'tutorial',
           imgName: require('./../Icons/Print-50-White.png'),
         }, {
-          txtName: 'WebView',
-          navName: 'web',
-          imgName: require('./../Icons/News-50-White.png'),
+          txtName: 'Food',
+          navName: 'food',
+          imgName: require('./../Icons/Restaurant-50-White.png'),
         }, {
           txtName: 'Combo Keeper',
           navName: 'combokeeper',

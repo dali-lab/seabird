@@ -33,6 +33,7 @@ import Map from './screens/map';
 import EventDetail from './screens/eventdetail';
 import ComboKeeper from './screens/combokeeper';
 import Testing from './screens/testing';
+import Food from './screens/food';
 
 export default class Seabird extends Component {
 
@@ -148,6 +149,10 @@ export default class Seabird extends Component {
 
     if (route.name === 'dining') {
       return <Dining navigator={navigator} />;
+    }
+
+    if (route.name === 'food') {
+      return <Food navigator={navigator} />;
     }
   }
 
