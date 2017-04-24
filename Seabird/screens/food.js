@@ -1,3 +1,7 @@
+// NOTE:
+// THIS FILE IS BUILT AND USED FOR TESTING BY SEAN
+// THINGS IN THIS FILE ARE STILL IN PROGRESS AND MAY BE FOR TESTING PURPOSES ONLY
+
 import React, {Component} from 'react';
 import {
   AppRegistry,
