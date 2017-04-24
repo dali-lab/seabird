@@ -35,8 +35,6 @@ request.onreadystatechange = (e) => {
   if (request.status === 200) {
     responseXML = request.responseText;
     xmlDoc = parser.parseFromString(responseXML);
-    // console.log('success', responseXML);
-    // console.log('success2', xmlDoc);
   } else {
     console.warn('error');
   }
@@ -59,14 +57,6 @@ export default class Food extends Component {
       dataSource: ds.cloneWithRows(dataRows),
     };
   }
-
-  // componentDidMount() {
-  //   console.log("Parsed info: ");
-  //   console.log(xmlDoc.getElementsByTagName("title"));
-  //   AsyncStorage.getItem('tileOrder').then((value) => {
-  //     this.setState({tileOrder: value});
-  //   }).done();
-  // }
 
   navigate(routeName, transitionType = 'normal') {
     this.props.navigator.push({name: routeName, transitionType: transitionType,})

@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: "green",
-    borderRadius: 5,
+    borderRadius: 3,
   },
 
   /* Style for the section's title for each item */
@@ -89,5 +89,4 @@ const styles = StyleSheet.create({
     marginTop: height / 40,
   },
 
-  /* Style for the grid of the list view */
 });

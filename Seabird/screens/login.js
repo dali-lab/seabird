@@ -12,8 +12,12 @@ import {
 
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
+var firebase = require("firebase/app");
+require("firebase/auth");
+require("firebase/database");
 
 export default class Root extends Component {
+
 
   navigate(routeName, transitionType = 'normal') {
     this.props.navigator.push({ name: routeName, transitionType });
@@ -36,7 +40,27 @@ export default class Root extends Component {
     });
   };
 
+  login = (email, password) => {
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode + ": " + errorMessage)
+    });
+      this.props.navigator.push({name: 'root'})
+  }
+
+  signup = (email, password) => {
+    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorCode + ": " + errorMessage)
+    });
+  }
+
   // TODO: consider using ScrollView instead to load all home tiles at beginning
+  // this.navigate.bind(this, 'root')
   render() {
     return (
       <View
@@ -62,13 +86,18 @@ export default class Root extends Component {
           value={this.state.username}
         />
         <TextInput
+          secureTextEntry={true}
           style={styles.credentials}
           onChangeText={password => this.setState({ password })}
           onFocus={() => this.updateText(this.state.username, '')}
           value={this.state.password}
         />
-        <TouchableHighlight style={styles.login} onPress={this.navigate.bind(this, 'root')}>
+        <TouchableHighlight style={styles.login} onPress={() => this.login(this.state.username, this.state.password)}>
           <Text style={styles.loginText}>LOG IN</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight style={styles.login} onPress={() => this.signup(this.state.username, this.state.password)}>
+          <Text style={styles.loginText}>SIGN UP</Text>
         </TouchableHighlight>
       </View>
     );

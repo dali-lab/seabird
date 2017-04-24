@@ -43,17 +43,20 @@ export default class Customize extends Component {
 
   rearrange = (value) => {
     this.setState({ scrolling: true })
-    var newHome = HOME_PORTALS
+    console.log("Before the change")
+    console.log(value)
+    console.log("After the change")
+    console.log(HOME_PORTALS)
+    var newHome = []
     for (var i = 0; i < HOME_PORTALS.length; i++) {
+      console.log(HOME_PORTALS[value.itemOrder[i].key]);
         newHome[i] = HOME_PORTALS[value.itemOrder[i].key]
     }
-    console.log(newHome)
     AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
   }
 
   render() {
     AsyncStorage.getItem('homeOrder').then((value) => {
-      // console.log(JSON.parse(value));
       HOME_PORTALS = JSON.parse(value);
     }).done();
     return (

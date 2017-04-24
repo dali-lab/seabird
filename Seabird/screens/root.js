@@ -83,7 +83,7 @@ export default class Root extends Component {
     AsyncStorage.getItem('tileOrder').then((value) => {
       this.setState({ tileOrder: value });
     }).done();
-    AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
+    // AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
 
     this.render();
   }

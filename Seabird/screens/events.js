@@ -69,9 +69,6 @@ export default class Events extends Component {
     // to get all items, use the following, with i ranging from 1 to length of list (?):
     //  console.log(xmlDoc.getElementsByTagName("title")[i].childNodes[0]);
     //  console.log(xmlDoc.getElementsByTagName("content")[i].childNodes[0]);
-    AsyncStorage.getItem('tileOrder').then((value) => {
-      this.setState({tileOrder: value});
-    }).done();
   }
 
   navigate(routeName, transitionType = 'normal') {
