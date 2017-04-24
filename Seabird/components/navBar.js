@@ -20,10 +20,10 @@ export class NavBar extends Component {
     if (this.props.rightButton != null) {
       return (
         <View style={styles.mainHeader}>
-          <View style={{ flex: 2 }}>
+          <View style={{ flex: 6 }}>
             <BackButton navigator={this.props.navigator} type={this.props.type} />
           </View>
-          <View style={{ flex: 5, marginTop: 15 }}>
+          <View style={{ flex: 1, marginTop: 15 }}>
             <Text style={styles.schoolTitle}>{this.props.text}</Text>
           </View>
           <View style={{ flex: 1 }}>

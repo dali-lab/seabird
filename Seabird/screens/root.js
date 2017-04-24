@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import { Tile } from './../components/tile';
-import { NavBar } from "./../components/navBar2"
+import { NavBar } from './../components/navBar2';
 
 const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: original color)
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons
@@ -67,11 +67,15 @@ export default class Root extends Component {
           txtName: 'Combo Keeper',
           navName: 'combokeeper',
           imgName: require('./../Icons/Sport-50-White.png'),
-        },
+        }, {
+          txtName: 'Testing',
+          navName: 'testing',
+          imgName: require('./../Icons/News-50-White.png'),
+        }
       ],
       homeSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => true,
-      }).cloneWithRows([1, 1, 1, 1, 1, 1, 1, 1, 1]),
+      }).cloneWithRows([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ]),
     };
   }
 
@@ -109,11 +113,9 @@ export default class Root extends Component {
       >
 
         <View style={styles.mainHeader}>
-          <NavBar navigator={this.props.navigator}/>
+          <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton={{true}}/>
         </View>
-
         <View>
-
           <ListView dataSource={this.state.homeSource} renderRow={this.renderRow.bind(this)} contentContainerStyle={styles.grid} />
 
         </View>
@@ -206,7 +208,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    height: height * 1.1,
+    height: height * 1.2,
   },
 
   /* Style for the bottom button that moves to the next page */
