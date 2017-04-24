@@ -50,23 +50,13 @@ export default class Food extends Component {
   constructor(props) {
     super();
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const numItems = xmlDoc.getElementsByTagName("title").length;
+    var dataRows = [];
+    for (i = 1; i < numItems; i++) {
+      dataRows.push(xmlDoc.getElementsByTagName("title")[i].childNodes[0].data);
+    }
     this.state = {
-      dataSource: ds.cloneWithRows([
-        xmlDoc.getElementsByTagName("title")[1].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[2].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[3].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[4].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[5].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[6].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[7].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[8].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[9].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[10].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[11].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[12].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[13].childNodes[0].data,
-        '...and some more...',
-      ]),
+      dataSource: ds.cloneWithRows(dataRows),
     };
   }
 
@@ -97,6 +87,11 @@ export default class Food extends Component {
     if ((rowData == 'OPEN NOW:') || (rowData == 'CLOSED NOW:')) {
       return(
         <Text style={styles.listHeader}>{rowData}</Text>
+      )
+    }
+    else if (rowData.substring(0,3) == ' **') {
+      return(
+        <Text style={styles.listItemEmphasized}>{rowData}</Text>
       )
     }
     /* Every event that is not a date */
@@ -176,22 +171,37 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 
-  /* Styles for the list headers above the events */
+  /* Styles for the list headers above the item */
   listHeader: {
     paddingTop: 5,
     paddingLeft: 5,
     height: height / 25,
     backgroundColor: '#d5d5d5',
     fontSize: 14,
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 
-  /* Styles for the list events */
+  /* Styles for the emphasized list item */
+  listItemEmphasized: {
+    paddingTop: height / 45,
+    paddingLeft: 10,
+    height: height / 20,
+    backgroundColor: 'white',
+    fontSize: 16,
+    borderBottomWidth: 2,
+    borderBottomColor: '#d5d5d5',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+
+  /* Styles for the list item */
   listItem: {
     paddingTop: height / 45,
     paddingLeft: 10,
-    height: height / 11,
+    height: height / 20,
     backgroundColor: 'white',
-    fontSize: 18,
+    fontSize: 16,
     borderBottomWidth: 2,
     borderBottomColor: '#d5d5d5',
   },
