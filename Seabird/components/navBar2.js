@@ -11,7 +11,6 @@ import {
 // This is a navigation bar containing two buttons on either side, and text in the center.
 const { width } = Dimensions.get('window');
 
-
 export class NavBar extends Component {
 
   navigate(routeName, transitionType = 'normal') {
@@ -38,7 +37,6 @@ const styles = StyleSheet.create({
   mainHeader: {
     width,
     height: 60,
-    marginBottom: 2,
     backgroundColor: '#00713A',
     flexDirection: 'row',
     flexWrap: 'wrap',

@@ -12,9 +12,9 @@ import {
   Route,
   Router,
   StackRoute,
-  withRouter,
+  withRouter
 } from 'react-router-native';
-import { Navigator, AppRegistry } from 'react-native';
+import { Navigator, AppRegistry, } from 'react-native';
 import EventItem from './components/eventItem';
 import OneSignal from 'react-native-onesignal';
 
@@ -44,152 +44,153 @@ const firebaseConfig = {
   databaseURL: "https://sbackend-25143.firebaseio.com",
   projectId: "sbackend-25143",
   storageBucket: "sbackend-25143.appspot.com",
-  messagingSenderId: "227373370187",
+  messagingSenderId: "227373370187"
 };
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseApp = firebase.initializeApp( firebaseConfig );
 
 export default class Seabird extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
   }
 
-  componentWillMount() {
-    OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', this.onOpened);
-    OneSignal.addEventListener('registered', this.onRegistered);
-    OneSignal.addEventListener('ids', this.onIds);
+  componentWillMount( ) {
+    OneSignal.addEventListener( 'received', this.onReceived );
+    OneSignal.addEventListener( 'opened', this.onOpened );
+    OneSignal.addEventListener( 'registered', this.onRegistered );
+    OneSignal.addEventListener( 'ids', this.onIds );
     // Sending multiple tags
-    OneSignal.sendTags({"UserID": "12345", "UserName": "Sean", "UserYear": "2017"});
+    OneSignal.sendTags({ "UserID": "12345", "UserName": "Sean", "UserYear": "2017", });
     // Calling promptLocation
-    OneSignal.promptLocation();
+    OneSignal.promptLocation( );
   }
 
-  componentWillUnmount() {
-    OneSignal.removeEventListener('received', this.onReceived);
-    OneSignal.removeEventListener('opened', this.onOpened);
-    OneSignal.removeEventListener('registered', this.onRegistered);
-    OneSignal.removeEventListener('ids', this.onIds);
+  componentWillUnmount( ) {
+    OneSignal.removeEventListener( 'received', this.onReceived );
+    OneSignal.removeEventListener( 'opened', this.onOpened );
+    OneSignal.removeEventListener( 'registered', this.onRegistered );
+    OneSignal.removeEventListener( 'ids', this.onIds );
   }
 
-  onReceived(notification) {
-    console.log("Notification received: ", notification);
+  onReceived( notification ) {
+    // console.log("Notification received: ", notification);
   }
 
-  onOpened(openResult) {
-    console.log('Message: ', openResult.notification.payload.body);
-    console.log('Data: ', openResult.notification.payload.additionalData);
-    console.log('isActive: ', openResult.notification.isAppInFocus);
-    console.log('openResult: ', openResult);
+  onOpened( openResult ) {
+    // console.log('Message: ', openResult.notification.payload.body);
+    // console.log('Data: ', openResult.notification.payload.additionalData);
+    // console.log('isActive: ', openResult.notification.isAppInFocus);
+    // console.log('openResult: ', openResult);
   }
 
-  onRegistered(notifData) {
-    console.log("Device had been registered for push notifications!", notifData);
+  onRegistered( notifData ) {
+    // console.log("Device had been registered for push notifications!", notifData);
   }
 
-  onIds(device) {
-	   console.log('Device info: ', device);
+  onIds( device ) {
+    // console.log('Device info: ', device);
   }
 
-  renderScene = (route, navigator) => {
-    if (route.name === 'login') {
-      return <Login navigator={navigator} />;
+  renderScene = ( route, navigator ) => {
+    if ( route.name === 'login' ) {
+      return <Login navigator={navigator}/>;
     }
 
-    if (route.name === 'root') {
-      return <Root navigator={navigator} />;
+    if ( route.name === 'root' ) {
+      return <Root navigator={navigator}/>;
     }
 
-    if (route.name === 'dining') {
-      return <Dining navigator={navigator} />;
+    if ( route.name === 'dining' ) {
+      return <Dining navigator={navigator}/>;
     }
 
-    if (route.name === 'web') {
-      return <News navigator={navigator} />;
+    if ( route.name === 'web' ) {
+      return <News navigator={navigator}/>;
     }
 
-    if (route.name === 'events') {
-      return <Events navigator={navigator} />;
+    if ( route.name === 'events' ) {
+      return <Events navigator={navigator}/>;
     }
 
-    if (route.name === 'eventscalendar') {
-      return <EventsCalendar navigator={navigator} />;
+    if ( route.name === 'eventscalendar' ) {
+      return <EventsCalendar navigator={navigator}/>;
     }
 
-    if (route.name === 'web') {
-      return <Sports navigator={navigator} />;
+    if ( route.name === 'web' ) {
+      return <Sports navigator={navigator}/>;
     }
 
-    if (route.name === 'settings') {
-      return <Settings navigator={navigator} />;
+    if ( route.name === 'settings' ) {
+      return <Settings navigator={navigator}/>;
     }
 
-    if (route.name === 'more') {
-      return <More navigator={navigator} />;
+    if ( route.name === 'more' ) {
+      return <More navigator={navigator}/>;
     }
 
-    if (route.name === 'customize') {
-      return <Customize navigator={navigator} />;
+    if ( route.name === 'customize' ) {
+      return <Customize navigator={navigator}/>;
     }
 
-    if (route.name === 'schedule') {
-      return <Schedule navigator={navigator} />;
+    if ( route.name === 'schedule' ) {
+      return <Schedule navigator={navigator}/>;
     }
 
-    if (route.name === 'tutorial') {
-      return <Tutorial navigator={navigator} />;
+    if ( route.name === 'tutorial' ) {
+      return <Tutorial navigator={navigator}/>;
     }
 
-    if (route.name === 'map') {
-      return <Map navigator={navigator} />;
+    if ( route.name === 'map' ) {
+      return <Map navigator={navigator}/>;
     }
 
-    if (route.name === 'eventdetail') {
-      return <EventDetail navigator={navigator} />;
+    if ( route.name === 'eventdetail' ) {
+      return <EventDetail navigator={navigator}/>;
     }
 
-    if (route.name === 'combokeeper') {
-      return <ComboKeeper navigator={navigator} />;
+    if ( route.name === 'combokeeper' ) {
+      return <ComboKeeper navigator={navigator}/>;
     }
 
-    if (route.name === 'web') {
-      return <Dominos navigator={navigator} />;
+    if ( route.name === 'web' ) {
+      return <Dominos navigator={navigator}/>;
     }
 
-    if (route.name === 'testing') {
-      return <Testing navigator={navigator} />;
+    if ( route.name === 'testing' ) {
+      return <Testing navigator={navigator}/>;
     }
 
-    if (route.name === 'dining') {
-      return <Dining navigator={navigator} />;
+    if ( route.name === 'dining' ) {
+      return <Dining navigator={navigator}/>;
     }
 
-    if (route.name === 'food') {
-      return <Food navigator={navigator} />;
+    if ( route.name === 'food' ) {
+      return <Food navigator={navigator}/>;
     }
   }
 
-  configureScene = (route, routeStack) => {
-    if (route.transitionType === 'up') {
+  configureScene = ( route, routeStack ) => {
+    if ( route.transitionType === 'up' ) {
       return Navigator.SceneConfigs.VerticalUpSwipeJump;
     }
-    if (route.transitionType === 'down') {
+    if ( route.transitionType === 'down' ) {
       return Navigator.SceneConfigs.VerticalDownSwipeJump;
     }
     return Navigator.SceneConfigs.PushFromRight;
   };
 
-  render() {
-    return (
-    <Navigator
+  render( ) {
+    return ( <Navigator
       initialRoute={{
         name: 'login',
         title: 'My Initial Scene',
-        index: 0,
-      }} renderScene={this.renderScene} configureScene={this.configureScene}
-    />
-  );
+        index: 0
+      }}
+      renderScene={this.renderScene}
+      configureScene={this.configureScene}
+      
+      /> );
   }
 }
 
-AppRegistry.registerComponent('Seabird', () => Seabird);
+AppRegistry.registerComponent( 'Seabird', ( ) => Seabird );

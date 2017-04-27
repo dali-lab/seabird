@@ -31,18 +31,6 @@ export default class Dining extends Component {
     queryDB("age")
   };
 
-    // apiGetDiningHours();
-
-  // componentDidMount() {
-  //     apiGetDiningHours('buffer')
-  //     .then((result) => {
-  //       this.setState({
-  //         locationSource: this.state.locationSource.cloneWithRows(result),
-  //       });
-  //        return result
-  //      }).done();
-  //   }
-
   renderRow = (rowData) => {
     return (
       <TouchableHighlight underlayColor='#ddd' style={{height: 50}}>
@@ -56,7 +44,7 @@ export default class Dining extends Component {
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
           <View style={styles.contentHeader}>
             <Image
               source={require('./../Icons/breakfast-dark.png')}

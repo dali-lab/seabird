@@ -35,12 +35,13 @@ export default class Testing extends Component {
     });
     this.state = {
       bounceValue: new Animated.Value(0),
+      items: [],
+      itemsSource: ds.cloneWithRows([]),
     };
   }
 
   // TODO: consider using ScrollView instead to load all home tiles at beginning
   render() {
-    console.log(this.state.tileOrder);
     return (
       <View
         style={{
@@ -48,7 +49,7 @@ export default class Testing extends Component {
           flexWrap: 'wrap',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          backgroundColor: 'white',
+          backgroundColor: '#fff',
         }}
       >
         <NavBar navigator={this.props.navigator} text="Testing" />

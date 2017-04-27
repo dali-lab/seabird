@@ -14,6 +14,7 @@ import {
 
 import { Tile } from './../components/tile';
 import { NavBar } from './../components/navBar2';
+import Carousel from 'react-native-snap-carousel';
 
 const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: original color)
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons
@@ -29,7 +30,6 @@ export default class Root extends Component {
     super(props);
     this.state = {
       bounceValue: new Animated.Value(0),
-      tileOrder: [],
       HOME_PORTALS: [
         {
           txtName: 'Dining',
@@ -71,17 +71,20 @@ export default class Root extends Component {
           txtName: 'Testing',
           navName: 'testing',
           imgName: require('./../Icons/News-50-White.png'),
-        }
+        },
       ],
       homeSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => true,
-      }).cloneWithRows([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ]),
+      }).cloneWithRows([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
     };
   }
 
   componentWillMount() {
     AsyncStorage.getItem('tileOrder').then((value) => {
       this.setState({ tileOrder: value });
+    }).done();
+    AsyncStorage.getItem('homeOrder').then((value) => {
+      this.setState({ HOME_PORTALS: JSON.parse(value) });
     }).done();
     // AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
 
@@ -104,17 +107,24 @@ export default class Root extends Component {
     return (
       <View
         style={{
-          flexDirection: 'row',
-          flexWrap: 'wrap',
+          flexDirection: 'row',     // Comment out for swiping left and right
+          flexWrap: 'wrap',         // Comment out for swiping left and right
           alignItems: 'flex-start',
-          justifyContent: 'center',
+          justifyContent: 'center', // Comment out for swiping left and right
           backgroundColor: 'white',
         }}
       >
 
         <View style={styles.mainHeader}>
-          <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton={{true}}/>
+          <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" />
         </View>
+        {/* <ScrollView
+          style={styles.scrollview}
+          indicatorStyle={'white'}
+          scrollEventThrottle={200}
+        >
+          <View style={{ width, height, backgroundColor: 'black' }} />
+        </ScrollView>*/}
         <View>
           <ListView dataSource={this.state.homeSource} renderRow={this.renderRow.bind(this)} contentContainerStyle={styles.grid} />
 

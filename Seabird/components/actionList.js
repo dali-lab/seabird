@@ -24,6 +24,7 @@ export class ActionList extends Component {
     this.state = {
       items: [],
       itemsSource: ds.cloneWithRows([]),
+      buttonText: 'Star',
     };
   }
 
@@ -35,16 +36,19 @@ export class ActionList extends Component {
     // Fetch the data from Firebase and update the itemsSource object
     this.setState({ itemsSource: ds.cloneWithRows([1, 1, 1, 1, 1, 1, 1, 1]) });
   }
+
   completeAction = () => {
     // Send the new information to the database
+    // Update the state of the button
+    this.setState({ buttonText: 'Pressed' });
   }
 
   renderRow(rowData, sectionID, rowID) {
     return (
       <View style={styles.itemSection}>
         <Text style={styles.itemTitle}>Building Location</Text>
-        <TouchableHighlight style={styles.itemAction} onPress={this.completeAction(this)}>
-          <Text>Star</Text>
+        <TouchableHighlight style={styles.itemAction} onPress={()=> this.completeAction(this)}>
+          <Text>{this.state.buttonText}</Text>
         </TouchableHighlight>
       </View>
     );

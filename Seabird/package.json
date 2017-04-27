@@ -15,6 +15,7 @@
     "react-native-calendar": "^0.10.0",
     "react-native-local-mongodb": "^1.8.2",
     "react-native-onesignal": "^3.0.3",
+    "react-native-snap-carousel": "^2.1.2",
     "react-native-sortable-grid": "^2.0.0",
     "react-native-sortable-list": "0.0.5",
     "react-native-sortable-listview": "^0.1.1",

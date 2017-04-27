@@ -32,7 +32,7 @@ export default class EventDetail extends Component {
   }
 
   renderScene(route, navigator) {
-    console.log(route.name)
+    // console.log(route.name)
   }
 
   navigate(routeName, transitionType = 'normal') {

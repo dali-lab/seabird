@@ -37,13 +37,13 @@ export default class ComboKeeper extends Component {
   }
 
   saveCombos = ( number, combination, password, other ) => {
-    console.log( "Ijemma was here: " + number + ", " + combination + ", " + password + ", " + other )
+    // Save the combos to the database
   }
 
   render( ) {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} rightButton={'Save'} rightButtonFunction={( ) => this.saveCombos( this.state.numberText, this.state.comboText, this.state.passwordText, this.state.otherText )}/>
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} rightButton={'Save'} rightButtonFunction={() => this.saveCombos( this.state.numberText, this.state.comboText, this.state.passwordText, this.state.otherText )}/>
         <View style={styles.mainContent}>
           <Text style={styles.inputLabel}>Hinman Box Number</Text>
           <TextInput style={styles.smallInput} placeholder="i.e. HB 0000" selectionColor="#058e4b" onChangeText={numberText => this.setState({ numberText })}/>

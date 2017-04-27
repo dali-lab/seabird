@@ -55,7 +55,7 @@ export default class Map extends Component {
       .then((responseJson) => {
           urls.push(responseJson.url)
           URL = responseJson.url
-          console.log('url: ' + URL)
+          // console.log('url: ' + URL)
           //console.log(responseJson)
         })
       .catch((error =>
