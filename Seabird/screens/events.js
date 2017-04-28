@@ -60,7 +60,7 @@ export default class Events extends Component {
         // xmlDoc.getElementsByTagName("content")[6].childNodes[0].data,
         // xmlDoc.getElementsByTagName("title")[7].childNodes[0].data,
         // xmlDoc.getElementsByTagName("content")[7].childNodes[0].data,
-        '...and some more...',
+        '...and some more....',
       ]),
     };
   }
