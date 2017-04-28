@@ -80,11 +80,10 @@ export default class Root extends Component {
   }
 
   componentWillMount() {
-    AsyncStorage.getItem('tileOrder').then((value) => {
-      this.setState({ tileOrder: value });
-    }).done();
     AsyncStorage.getItem('homeOrder').then((value) => {
-      this.setState({ HOME_PORTALS: JSON.parse(value) });
+      if (value != null) {
+        this.setState({ HOME_PORTALS: JSON.parse(value) });
+      }
     }).done();
     // AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
 

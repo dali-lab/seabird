@@ -30,7 +30,7 @@ export default class Testing extends Component {
 
   constructor(props) {
     super(props);
-    const tiles = new ListView.DataSource({
+    const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1.guid != r2.guid,
     });
     this.state = {
