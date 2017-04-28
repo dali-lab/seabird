@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import { Tile } from './../components/tile';
-import { NavBar } from './../components/navBar2';
+import { NavBar } from './../components/navBar';
 import Carousel from 'react-native-snap-carousel';
 
 const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: original color)
@@ -83,10 +83,11 @@ export default class Root extends Component {
     AsyncStorage.getItem('tileOrder').then((value) => {
       this.setState({ tileOrder: value });
     }).done();
-    AsyncStorage.getItem('homeOrder').then((value) => {
-      this.setState({ HOME_PORTALS: JSON.parse(value) });
-    }).done();
-    // AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
+    //AsyncStorage.getItem('homeOrder').then((value) => {
+    //   this.setState({ HOME_PORTALS: JSON.parse(value) });
+    // }).done();
+
+    AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
 
     this.render();
   }
@@ -116,7 +117,7 @@ export default class Root extends Component {
       >
 
         <View style={styles.mainHeader}>
-          <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" />
+          <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True"/>
         </View>
         {/* <ScrollView
           style={styles.scrollview}
