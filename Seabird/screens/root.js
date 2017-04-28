@@ -81,11 +81,13 @@ export default class Root extends Component {
 
   componentWillMount() {
     AsyncStorage.getItem('homeOrder').then((value) => {
-      if (value != null) {
+      if (value == null) {
+        AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
+      } else {
         this.setState({ HOME_PORTALS: JSON.parse(value) });
       }
     }).done();
-    // AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
+
 
     this.render();
   }
