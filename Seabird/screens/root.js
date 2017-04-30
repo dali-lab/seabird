@@ -15,6 +15,9 @@ import {
 import { Tile } from './../components/tile';
 import { NavBar } from './../components/navBar';
 import Carousel from 'react-native-snap-carousel';
+import Firebase from '../firebase/firebase';
+// import Analytics from '../firebase/analytics';
+// var Analytics = require('react-native-firebase-analytics');
 
 const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: original color)
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons
@@ -91,6 +94,12 @@ export default class Root extends Component {
 
     this.render();
   }
+
+  // // Firebase Analytics
+  // componentDidMount() {
+  //   Analytics.setUserId('123');
+  //
+  // }
 
   renderRow(rowData, sectionID, rowID) {
     if (rowID == 0 || rowID == 3 || rowID == 4) {

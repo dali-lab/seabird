@@ -21,6 +21,10 @@ class Firebase {
     return firebase.auth().currentUser;
   }
 
+  static getUserID() {
+    return firebase.auth().currentUser.uid;
+  }
+
   static isUserSignedIn(callbackFunc) {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {

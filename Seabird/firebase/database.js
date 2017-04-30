@@ -13,7 +13,7 @@ class Database {
    */
   static setUserFirstName(firstName) {
     let user = Firebase.getUser();
-    let userID = user.uid;
+    let userID = Firebase.getUserID();
     let path = "/users/" + userID;
 
     // set the user's display name to be their first name
@@ -32,7 +32,7 @@ class Database {
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
   static setUserLastName(lastName) {
-    let userID = Firebase.getUser().uid;
+    let userID = Firebase.getUserID();
     let path = "/users/" + userID;
 
     return Firebase.getDbRef(path).update({
@@ -47,7 +47,7 @@ class Database {
    */
   static setUserEmail(email) {
     let user = Firebase.getUser();
-    let userID = user.uid;
+    let userID = Firebase.getUserID();
     let path = "/users/" + userID;
 
     // set the user's email address in User as well
@@ -70,7 +70,7 @@ class Database {
    * @param callbackFunc
    */
   static listenUserFirstName(callbackFunc) {
-    let userID = Firebase.getUser().uid;
+    let userID = Firebase.getUserID();
     let path = "/users/" + userID;
 
     Firebase.getDbRef(path).on('value', (snapshot) => {
@@ -87,7 +87,7 @@ class Database {
    * @param callbackFunc
    */
   static listenUserLastName(callbackFunc) {
-    let userID = Firebase.getUser().uid;
+    let userID = Firebase.getUserID();
     let path = "/users/" + userID;
 
     Firebase.getDbRef(path).on('value', (snapshot) => {
@@ -104,7 +104,7 @@ class Database {
    * @param callbackFunc
    */
   static listenUserEmail(callbackFunc) {
-    let userID = Firebase.getUser().uid;
+    let userID = Firebase.getUserID();
     let path = "/users/" + userID;
 
     Firebase.getDbRef(path).on('value', (snapshot) => {
