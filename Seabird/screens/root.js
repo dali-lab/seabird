@@ -83,16 +83,16 @@ export default class Root extends Component {
   }
 
   componentWillMount() {
-<<<<<<< HEAD
-    AsyncStorage.getItem('homeOrder').then((value) => {
-      if (value == null) {
-        AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
-      } else {
-        this.setState({ HOME_PORTALS: JSON.parse(value) });
-      }
-    }).done();
-
-=======
+// <<<<<<< HEAD
+//     AsyncStorage.getItem('homeOrder').then((value) => {
+//       if (value == null) {
+//         AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
+//       } else {
+//         this.setState({ HOME_PORTALS: JSON.parse(value) });
+//       }
+//     }).done();
+//
+// =======
     AsyncStorage.getItem('tileOrder').then((value) => {
       this.setState({ tileOrder: value });
     }).done();
@@ -101,7 +101,7 @@ export default class Root extends Component {
     // }).done();
 
     AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
->>>>>>> 017e913e4207a429ff8044c113ee747d56397205
+// >>>>>>> 017e913e4207a429ff8044c113ee747d56397205
 
     this.render();
   }

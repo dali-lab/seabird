@@ -7,6 +7,24 @@ import Firebase from './firebase';
 class Database {
 
   /**
+   * Get content for a portal
+   * @param portalName
+   */
+  static getPortalContent(portalName, callbackFunc) {
+    let path = "/content/" + portalName;
+
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      console.log(snapshot.val());
+      callbackFunc(snapshot.val());
+    });
+
+    // Firebase.getDbRef(path).once('value').then((snapshot) => {
+    //   console.log(snapshot.val());
+    //   return snapshot.val();
+    // });
+  }
+
+  /**
    * Sets a users first name
    * @param firstName
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
