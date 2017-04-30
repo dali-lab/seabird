@@ -83,7 +83,6 @@ export default class Root extends Component {
   }
 
   componentWillMount() {
-<<<<<<< HEAD
     AsyncStorage.getItem('homeOrder').then((value) => {
       if (value == null) {
         AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
@@ -91,18 +90,6 @@ export default class Root extends Component {
         this.setState({ HOME_PORTALS: JSON.parse(value) });
       }
     }).done();
-
-=======
-    AsyncStorage.getItem('tileOrder').then((value) => {
-      this.setState({ tileOrder: value });
-    }).done();
-    //AsyncStorage.getItem('homeOrder').then((value) => {
-    //   this.setState({ HOME_PORTALS: JSON.parse(value) });
-    // }).done();
-
-    AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
->>>>>>> 017e913e4207a429ff8044c113ee747d56397205
-
     this.render();
   }
 
@@ -137,7 +124,7 @@ export default class Root extends Component {
       >
 
         <View style={styles.mainHeader}>
-          <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True"/>
+          <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True" />
         </View>
         {/* <ScrollView
           style={styles.scrollview}
