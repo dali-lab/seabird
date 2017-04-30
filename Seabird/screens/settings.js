@@ -10,6 +10,11 @@ import {
     AsyncStorage,
 } from 'react-native';
 import { NavBar } from './../components/navBar';
+import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
+// import * as firebase from 'firebase';
+var firebase = require("firebase/app");
+require("firebase/auth");
 
 const NAVBAR_TEXT = 'Settings';
 
@@ -20,6 +25,7 @@ export default class Settings extends Component {
     super(props);
     this.state = {
       bounceValue: new Animated.Value(0),
+      changingEmail: false,
       userFirstName: '',
       userLastName: '',
       userEmail: '',
@@ -27,24 +33,66 @@ export default class Settings extends Component {
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('userFirstName').then((value) => {
+    // AsyncStorage.getItem('userFirstName').then((value) => {
+    //   this.setState({ userFirstName: value });
+    // }).done();
+    // AsyncStorage.getItem('userLastName').then((value) => {
+    //   this.setState({ userLastName: value });
+    // }).done();
+    // AsyncStorage.getItem('userEmail').then((value) => {
+    //   this.setState({ userEmail: value });
+    // }).done();
+    Database.listenUserFirstName((value) => {
       this.setState({ userFirstName: value });
-    }).done();
-    AsyncStorage.getItem('userLastName').then((value) => {
+    });
+    Database.listenUserLastName((value) => {
       this.setState({ userLastName: value });
-    }).done();
-    AsyncStorage.getItem('userEmail').then((value) => {
+    });
+    Database.listenUserEmail((value) => {
       this.setState({ userEmail: value });
-    }).done();
+    });
   }
 
   navigatePush(routeName) {
     this.props.navigator.push({ name: routeName });
   }
 
-  saveData(key, value) {
+  saveData = (key, value) => {
     AsyncStorage.setItem(key, value);
     this.setState({ key: value });
+  }
+
+  displayChangeEmail = () => {
+    if (this.state.changingEmail) {
+      return (
+        <View>
+          <TextInput
+            style={styles.textInput} onChangeText={(value) => {
+              this.setState({ userEmail: value });
+              // this.saveData('userEmail', text);
+              // Database.setUserEmail(value);
+            }} value={this.state.userEmail} placeholder="Enter your email here"
+          />
+          <Button onPress={this.toggleChangingEmail} title="Save Email" color="#841584" />
+        </View>
+      );
+    }
+    return (
+      <Button
+        onPress={this.toggleChangingEmail}
+        title="Change Email"
+        color="#841584"
+      />
+    );
+  }
+
+  toggleChangingEmail = () => {
+    if (this.state.changingEmail) {
+      Database.setUserEmail(this.state.userEmail);
+      this.setState({changingEmail: false})
+    } else {
+      this.setState({changingEmail: true});
+    }
   }
 
   render() {
@@ -53,34 +101,27 @@ export default class Settings extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
-            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName}
-              {this.state.userLastName}!</Text>
-            <Text style={styles.settingsText}>First Name:
-                        </Text>
+            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName} {this.state.userLastName}!</Text>
+            <Text style={styles.settingsText}>First Name:</Text>
             <TextInput
-              style={styles.textInput} onChangeText={(text) => {
-                this.setState({ userFirstName: text });
-                this.saveData('userFirstName', text);
+              style={styles.textInput} onChangeText={(value) => {
+                // this.setState({ userFirstName: text });
+                // this.saveData('userFirstName', text);
+                Database.setUserFirstName(value);
               }} value={this.state.userFirstName} placeholder="Enter your first name here"
             />
 
             <Text style={styles.settingsText}>Last Name:
                         </Text>
             <TextInput
-              style={styles.textInput} onChangeText={(text) => {
-                this.setState({ userLastName: text });
-                this.saveData('userLastName', text);
+              style={styles.textInput} onChangeText={(value) => {
+                Database.setUserLastName(value);
               }} value={this.state.userLastName} placeholder="Enter your last name here"
             />
 
-            <Text style={styles.settingsText}>Email:
-                        </Text>
-            <TextInput
-              style={styles.textInput} onChangeText={(text) => {
-                this.setState({ userEmail: text });
-                this.saveData('userEmail', text);
-              }} value={this.state.userEmail} placeholder="Enter your email here"
-            />
+            <Text style={styles.settingsText}>Email: {Firebase.getUser().email}</Text>
+
+            {this.displayChangeEmail()}
 
             <Button onPress={this.navigatePush.bind(this, 'customize')} title="Customize" color="#841584" />
 

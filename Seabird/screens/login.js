@@ -9,6 +9,7 @@ import {
   TextInput,
   TouchableHighlight,
 } from 'react-native';
+import Firebase from '../firebase/firebase';
 
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
@@ -47,7 +48,7 @@ export default class Root extends Component {
       var errorMessage = error.message;
       console.log(errorCode + ": " + errorMessage)
     });
-      this.props.navigator.push({name: 'root'})
+    this.props.navigator.push({name: 'root'});
   }
 
   signup = (email, password) => {
@@ -57,6 +58,17 @@ export default class Root extends Component {
       var errorMessage = error.message;
       console.log(errorCode + ": " + errorMessage)
     });
+  }
+
+  userIsSignedIn = () => {
+    console.log('USER IS ALREADY SIGNED IN');
+    console.log(Firebase.getUser());
+    this.props.navigator.push({name: 'root'});
+  }
+
+  componentDidMount() {
+    // check if a current user is logged in already
+    Firebase.isUserSignedIn(this.userIsSignedIn)
   }
 
   // TODO: consider using ScrollView instead to load all home tiles at beginning

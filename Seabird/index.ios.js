@@ -35,23 +35,13 @@ import ComboKeeper from './screens/combokeeper';
 import Testing from './screens/testing';
 import Food from './screens/food';
 
-import * as firebase from 'firebase';
-
-// Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyD_Y6hUpKekyb8LFZsPHXfyIfcwAZMvM8M",
-  authDomain: "sbackend-25143.firebaseapp.com",
-  databaseURL: "https://sbackend-25143.firebaseio.com",
-  projectId: "sbackend-25143",
-  storageBucket: "sbackend-25143.appspot.com",
-  messagingSenderId: "227373370187"
-};
-const firebaseApp = firebase.initializeApp( firebaseConfig );
+import Firebase from './firebase/firebase';
 
 export default class Seabird extends Component {
 
   constructor( props ) {
     super( props );
+    Firebase.initialize();
   }
 
   componentWillMount( ) {
@@ -184,7 +174,7 @@ export default class Seabird extends Component {
       initialRoute={{
         name: 'login',
         title: 'My Initial Scene',
-        index: 0
+        index: 0,
       }}
       renderScene={this.renderScene}
       configureScene={this.configureScene}

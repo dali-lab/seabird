@@ -1,0 +1,121 @@
+/**
+ * @class Database
+ */
+
+import Firebase from './firebase';
+
+class Database {
+
+  /**
+   * Sets a users first name
+   * @param firstName
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static setUserFirstName(firstName) {
+    let user = Firebase.getUser();
+    let userID = user.uid;
+    let path = "/users/" + userID;
+
+    // set the user's display name to be their first name
+    user.updateProfile({
+      displayName: firstName
+    });
+
+    return Firebase.getDbRef(path).update({
+      firstName: firstName
+    })
+  }
+
+  /**
+   * Sets a users last name
+   * @param lastName
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static setUserLastName(lastName) {
+    let userID = Firebase.getUser().uid;
+    let path = "/users/" + userID;
+
+    return Firebase.getDbRef(path).update({
+      lastName: lastName
+    })
+  }
+
+  /**
+   * Sets a users last name
+   * @param email
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static setUserEmail(email) {
+    let user = Firebase.getUser();
+    let userID = user.uid;
+    let path = "/users/" + userID;
+
+    // set the user's email address in User as well
+    user.updateEmail(email).then(function() {
+      // Update successful
+      alert('Email updated!');
+    }, function(error) {
+      // An error happened
+      alert('The email address is badly formatted');
+      return null;
+    });
+
+    return Firebase.getDbRef(path).update({
+      email: user.email
+    })
+  }
+
+  /**
+   * Listen for changes to a user's first name
+   * @param callbackFunc
+   */
+  static listenUserFirstName(callbackFunc) {
+    let userID = Firebase.getUser().uid;
+    let path = "/users/" + userID;
+
+    Firebase.getDbRef(path).on('value', (snapshot) => {
+      var firstName = '';
+      if (snapshot.val()) {
+          firstName = snapshot.val().firstName
+      }
+      callbackFunc(firstName)
+    });
+  }
+
+  /**
+   * Listen for changes to a user's last name
+   * @param callbackFunc
+   */
+  static listenUserLastName(callbackFunc) {
+    let userID = Firebase.getUser().uid;
+    let path = "/users/" + userID;
+
+    Firebase.getDbRef(path).on('value', (snapshot) => {
+      var lastName = '';
+      if (snapshot.val()) {
+          lastName = snapshot.val().lastName
+      }
+      callbackFunc(lastName)
+    });
+  }
+
+  /**
+   * Listen for changes to a user's last name
+   * @param callbackFunc
+   */
+  static listenUserEmail(callbackFunc) {
+    let userID = Firebase.getUser().uid;
+    let path = "/users/" + userID;
+
+    Firebase.getDbRef(path).on('value', (snapshot) => {
+      var email = '';
+      if (snapshot.val()) {
+          email = snapshot.val().email
+      }
+      callbackFunc(email)
+    });
+  }
+
+}
+
+module.exports = Database;
