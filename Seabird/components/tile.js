@@ -9,9 +9,9 @@ import {
 
 export class Tile extends Component {
 
-  navigatePop() {
-    this.props.navigator.pop();
-  }
+  // navigatePop() {
+  //   this.props.navigator.pop();
+  // }
 
   navigate(routeName, transitionType = 'normal') {
     this.props.navigator.push({ name: routeName, transitionType });

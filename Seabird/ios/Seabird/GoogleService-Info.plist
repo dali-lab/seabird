@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>227373370187-hfiqd1uvs58oqtq1eifokss53qekf80p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.227373370187-hfiqd1uvs58oqtq1eifokss53qekf80p</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBDnRCBLpugnjAvcBRLmAWAKRSO11ZGtzQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>227373370187</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.seabirdapps.seabirduniversity</string>
+	<key>PROJECT_ID</key>
+	<string>sbackend-25143</string>
+	<key>STORAGE_BUCKET</key>
+	<string>sbackend-25143.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:227373370187:ios:1b821862fcf45323</string>
+	<key>DATABASE_URL</key>
+	<string>https://sbackend-25143.firebaseio.com</string>
+</dict>
+</plist>

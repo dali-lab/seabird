@@ -14,6 +14,7 @@
 
 @implementation AppDelegate
 @synthesize oneSignal = _oneSignal;
+@import Firebase;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -34,6 +35,7 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  [FIRApp configure];
   return YES;
 }
 
