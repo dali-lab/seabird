@@ -18,6 +18,11 @@ import SortableGrid from 'react-native-sortable-grid';
 
 let HOME_PORTALS = [];
 
+// used in the setInterval timer to track position of block being dragged
+let dragTracker = null;
+// used to scroll up/down slightly when dragging a block
+let _scrollView: ScrollView;
+
 export default class Customize extends Component {
 
   constructor(props) {
@@ -64,6 +69,25 @@ export default class Customize extends Component {
     return ( <Button onPress={this.toggleDeletePortals} title="Delete Portals" color="#841584" /> );
   }
 
+  // activated by setInterval timer
+  dragging = () => {
+    // only once the dragPosition can be read
+    if (this.refs.SortableGrid.dragPosition) {
+      let blockY = this.refs.SortableGrid.dragPosition.y;
+      console.log('y of the block:');
+      console.log(blockY);
+      if (blockY < 100) {
+        console.log('really high!');
+        this.scrollUp(blockY);
+      }
+    }
+  }
+
+  scrollUp = (yVal) => {
+    console.log('scrolling up!');
+    _scrollView.scrollTo({y: yVal});
+  }
+
   render() {
     AsyncStorage.getItem('homeOrder').then((value) => {
       HOME_PORTALS = JSON.parse(value);
@@ -73,12 +97,21 @@ export default class Customize extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
           {this.deletePortalsButton()}
-          <ScrollView scrollEnabled={this.state.scrolling}>
+          <ScrollView
+            ref={(scrollView) => { _scrollView = scrollView; }}
+            scrollEnabled={this.state.scrolling}
+          >
             <SortableGrid
               itemsPerRow={2}
               dragActivationTreshold={300}
-              onDragStart={() => this.setState({ scrolling: false })}
-              onDragRelease={itemOrder => this.rearrange(itemOrder)}
+              onDragStart={() => {
+                dragTracker = setInterval(this.dragging, 100);
+                this.setState({ scrolling: false });
+              }}
+              onDragRelease={(itemOrder) => {
+                clearInterval(dragTracker);
+                this.rearrange(itemOrder);
+              }}
               style={styles.grid}
               ref={'SortableGrid'}
             >
