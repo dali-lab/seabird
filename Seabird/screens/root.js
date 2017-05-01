@@ -15,6 +15,7 @@ import {
 
 import { Tile } from './../components/tile';
 import { NavBar } from './../components/navBar';
+import { PageList } from './../components/pageList';
 import Carousel from 'react-native-snap-carousel';
 import Firebase from '../firebase/firebase';
 // import Analytics from '../firebase/analytics';
@@ -24,6 +25,7 @@ const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: ori
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
+const views = []
 export default class Root extends Component {
 
   navigate(routeName, transitionType = 'normal') {
@@ -91,10 +93,29 @@ export default class Root extends Component {
         this.setState({ HOME_PORTALS: JSON.parse(value) });
       }
     }).done();
+    var moduleList = [];
+    console.log(this.state.HOME_PORTALS)
+    for (var i = 0; i < this.state.HOME_PORTALS.length / 6; i++) {
+      if (i + 1 > this.state.HOME_PORTALS.length / 6) {
+        for (var j = 0; j < this.state.HOME_PORTALS.length - (6 * i); j++) {
+          moduleList[j] = this.state.HOME_PORTALS[this.state.HOME_PORTALS.length - 1 - j]
+        }
+      } else {
+        for (var j = 0; j < 6; j++) {
+          moduleList[j] = this.state.HOME_PORTALS[(6 * i) + 5 - j]
+        }
+      }
+      views.push(
+        <View key={i} style={{ width, height, backgroundColor: '#00713A' }}>
+        <PageList modules={moduleList}/>
+        </View>,
+      );
+      moduleList = []
+    }
     this.render();
   }
 
-  renderRow = (rowData, sectionID, rowID, pageID) => {
+  renderRow = (rowData, sectionID, rowID) => {
     return (
       <Tile
         navigator={this.props.navigator}
@@ -111,15 +132,6 @@ export default class Root extends Component {
     AsyncStorage.getItem('homeOrder').then((value) => {
       this.setState({ HOME_PORTALS: JSON.parse(value) });
     }).done();
-
-    const views = [];
-    for (let i = 0; i < this.state.HOME_PORTALS.length / 6; i++) {
-      views.push(
-        <View key={i} style={{ width, height, backgroundColor: '#00713A' }}>
-          <ListView dataSource={this.state.homeSource} renderRow={this.renderRow.bind(this)} contentContainerStyle={styles.grid} />
-        </View>,
-      );
-    }
     return (
       <View
         style={{
@@ -140,7 +152,7 @@ export default class Root extends Component {
           inactiveSlideScale={1}
           bounces={false}
         >
-          {views}
+        {views}
         </Carousel>
 
         {/* <View>
