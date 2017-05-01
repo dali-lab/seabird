@@ -7,6 +7,7 @@ import {
   AsyncStorage,
   Dimensions,
   ScrollView,
+  Button,
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import { CustomizeList } from './../components/customizeList';
@@ -24,6 +25,7 @@ export default class Customize extends Component {
     this.state = {
       tileOrder: [],
       scrolling: true,
+      deletingPortals: false,
     };
   }
 
@@ -47,7 +49,19 @@ export default class Customize extends Component {
     for (var i = 0; i < HOME_PORTALS.length; i++) {
         newHome[i] = HOME_PORTALS[value.itemOrder[i].key]
     }
-    AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
+    AsyncStorage.setItem('homeOrder', JSON.stringify(newHome));
+  }
+
+  toggleDeletePortals = () => {
+    this.refs.SortableGrid.toggleDeleteMode();
+    this.setState({deletingPortals: !(this.state.deletingPortals)});
+  }
+
+  deletePortalsButton = () => {
+    if (this.state.deletingPortals) {
+      return ( <Button onPress={this.toggleDeletePortals} title="Done" color="#841584" /> );
+    }
+    return ( <Button onPress={this.toggleDeletePortals} title="Delete Portals" color="#841584" /> );
   }
 
   render() {
@@ -58,13 +72,15 @@ export default class Customize extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
+          {this.deletePortalsButton()}
           <ScrollView scrollEnabled={this.state.scrolling}>
             <SortableGrid
               itemsPerRow={2}
-              dragActivationTreshold={100}
+              dragActivationTreshold={300}
               onDragStart={() => this.setState({ scrolling: false })}
               onDragRelease={itemOrder => this.rearrange(itemOrder)}
               style={styles.grid}
+              ref={'SortableGrid'}
             >
               {HOME_PORTALS.map((letter, index) => (
                 <View style={styles.option} key={index}>
