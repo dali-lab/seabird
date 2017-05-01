@@ -10,6 +10,7 @@ import {
   ListView,
   Animated,
   AsyncStorage,
+  ScrollView,
 } from 'react-native';
 
 import { Tile } from './../components/tile';
@@ -78,7 +79,7 @@ export default class Root extends Component {
       ],
       homeSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => true,
-      }).cloneWithRows([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]),
+      }).cloneWithRows([1, 1, 1, 1, 1, 1]),
     };
   }
 
@@ -93,50 +94,59 @@ export default class Root extends Component {
     this.render();
   }
 
-  // // Firebase Analytics
-  // componentDidMount() {
-  //   Analytics.setUserId('123');
-  //
-  // }
-
-  renderRow(rowData, sectionID, rowID) {
-    if (rowID == 0 || rowID == 3 || rowID == 4) {
-      return (<Tile navigator={this.props.navigator} navName={this.state.HOME_PORTALS[rowID].navName} imgSource={this.state.HOME_PORTALS[rowID].imgName} text={this.state.HOME_PORTALS[rowID].txtName} tileStyle={styles.tile2} textStyle={styles.tileText1} />);
-    } else if (rowID == 1 || rowID == 2 || rowID == 5) {
-      return (<Tile navigator={this.props.navigator} navName={this.state.HOME_PORTALS[rowID].navName} imgSource={this.state.HOME_PORTALS[rowID].imgName} text={this.state.HOME_PORTALS[rowID].txtName} tileStyle={styles.tile1} textStyle={styles.tileText1} />);
-    }
-    return (<Tile navigator={this.props.navigator} navName={this.state.HOME_PORTALS[rowID].navName} imgSource={this.state.HOME_PORTALS[rowID].imgName} text={this.state.HOME_PORTALS[rowID].txtName} tileStyle={styles.tile3} textStyle={styles.tileText2} />);
+  renderRow = (rowData, sectionID, rowID, pageID) => {
+    return (
+      <Tile
+        navigator={this.props.navigator}
+        navName={this.state.HOME_PORTALS[rowID].navName}
+        imgSource={this.state.HOME_PORTALS[rowID].imgName}
+        text={this.state.HOME_PORTALS[rowID].txtName}
+        tileStyle={styles.tile}
+        textStyle={styles.tileText}
+      />
+    );
   }
 
   render() {
     AsyncStorage.getItem('homeOrder').then((value) => {
       this.setState({ HOME_PORTALS: JSON.parse(value) });
     }).done();
+
+    const views = [];
+    for (let i = 0; i < this.state.HOME_PORTALS.length / 6; i++) {
+      views.push(
+        <View key={i} style={{ width, height, backgroundColor: '#00713A' }}>
+          <ListView dataSource={this.state.homeSource} renderRow={this.renderRow.bind(this)} contentContainerStyle={styles.grid} />
+        </View>,
+      );
+    }
     return (
       <View
         style={{
-          flexDirection: 'row',     // Comment out for swiping left and right
-          flexWrap: 'wrap',         // Comment out for swiping left and right
           alignItems: 'flex-start',
-          justifyContent: 'center', // Comment out for swiping left and right
-          backgroundColor: 'white',
+          backgroundColor: '#065539',
         }}
       >
 
         <View style={styles.mainHeader}>
           <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True" />
         </View>
-        {/* <ScrollView
+        <Carousel
           style={styles.scrollview}
           indicatorStyle={'white'}
+          itemWidth={width}
+          sliderWidth={100}
           scrollEventThrottle={200}
+          inactiveSlideScale={1}
+          bounces={false}
         >
-          <View style={{ width, height, backgroundColor: 'black' }} />
-        </ScrollView>*/}
-        <View>
+          {views}
+        </Carousel>
+
+        {/* <View>
           <ListView dataSource={this.state.homeSource} renderRow={this.renderRow.bind(this)} contentContainerStyle={styles.grid} />
 
-        </View>
+        </View>*/}
 
       </View>
     );
@@ -165,59 +175,27 @@ const styles = StyleSheet.create({
     letterSpacing: -0.56,
   },
 
-  /* Style for three of the main home screen tile buttons */
-  tile1: {
+  /* Style for the tiles for the home screen */
+  tile: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    width: width / 2.1,
-    height: height / 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    width: width / 2.4,
+    height: height / 4.2,
     paddingBottom: 20,
-    margin: 2,
-    backgroundColor: COLOR1,
+    margin: width / 25,
+    borderRadius: 10,
   },
 
-  /* Style for the other three of the main home screen tile buttons */
-  tile2: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: width / 2.1,
-    height: height / 4,
-    paddingBottom: 20,
-    margin: 2,
-    backgroundColor: COLOR2,
-  },
-
-  /* Style for the smaller tiles on the home screen */
-  tile3: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: width / 3.18,
-    height: height / 6,
-    margin: 2,
-    backgroundColor: COLOR1,
-  },
-
-  /* Style for the main label texts on the main buttons */
-  tileText1: {
+  /* Style for the tiles' text for the home screen */
+  tileText: {
     top: 40,
     fontSize: 20,
     fontFamily: 'System',
     fontWeight: '400',
     textAlign: 'center',
-    color: '#fff',
-  },
-
-  /* Style for the main label texts on the main buttons */
-  tileText2: {
-    top: 15,
-    fontSize: 20,
-    fontFamily: 'System',
-    fontWeight: '400',
-    textAlign: 'center',
-    color: '#fff',
+    color: '#065539',
   },
 
   /* Styles the grid format of the list view */

@@ -11,10 +11,11 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <Firebase/Firebase.h>
 
 @implementation AppDelegate
 @synthesize oneSignal = _oneSignal;
-@import Firebase;
+//@import Firebase;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

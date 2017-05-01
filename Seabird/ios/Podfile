@@ -7,10 +7,17 @@ target 'Seabird' do
 
   # Pods for Seabird
   pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Crash'
+  pod 'Firebase/Storage'
 
   target 'SeabirdTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'GoogleAnalytics'
+    pod 'Firebase/Analytics'
   end
 
 end

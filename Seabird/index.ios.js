@@ -17,6 +17,7 @@ import {
 import { Navigator, AppRegistry, } from 'react-native';
 import EventItem from './components/eventItem';
 import OneSignal from 'react-native-onesignal';
+import Firebase from './firebase/firebase';
 
 import Login from './screens/login';
 import Root from './screens/root';
@@ -34,8 +35,6 @@ import EventDetail from './screens/eventdetail';
 import ComboKeeper from './screens/combokeeper';
 import Testing from './screens/testing';
 import Food from './screens/food';
-
-import Firebase from './firebase/firebase';
 
 export default class Seabird extends Component {
 
@@ -178,7 +177,7 @@ export default class Seabird extends Component {
       }}
       renderScene={this.renderScene}
       configureScene={this.configureScene}
-      
+
       /> );
   }
 }
