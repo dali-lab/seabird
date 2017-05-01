@@ -7,6 +7,7 @@ import {
   AsyncStorage,
   Dimensions,
   ScrollView,
+  Button,
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import { CustomizeList } from './../components/customizeList';
@@ -17,6 +18,11 @@ import SortableGrid from 'react-native-sortable-grid';
 
 let HOME_PORTALS = [];
 
+// used in the setInterval timer to track position of block being dragged
+let dragTracker = null;
+// used to scroll up/down slightly when dragging a block
+let _scrollView: ScrollView;
+
 export default class Customize extends Component {
 
   constructor(props) {
@@ -24,6 +30,7 @@ export default class Customize extends Component {
     this.state = {
       tileOrder: [],
       scrolling: true,
+      deletingPortals: false,
     };
   }
 
@@ -47,7 +54,38 @@ export default class Customize extends Component {
     for (var i = 0; i < HOME_PORTALS.length; i++) {
         newHome[i] = HOME_PORTALS[value.itemOrder[i].key]
     }
-    AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
+    AsyncStorage.setItem('homeOrder', JSON.stringify(newHome));
+  }
+
+  toggleDeletePortals = () => {
+    this.refs.SortableGrid.toggleDeleteMode();
+    this.setState({deletingPortals: !(this.state.deletingPortals)});
+  }
+
+  deletePortalsButton = () => {
+    if (this.state.deletingPortals) {
+      return ( <Button onPress={this.toggleDeletePortals} title="Done" color="#841584" /> );
+    }
+    return ( <Button onPress={this.toggleDeletePortals} title="Delete Portals" color="#841584" /> );
+  }
+
+  // activated by setInterval timer
+  dragging = () => {
+    // only once the dragPosition can be read
+    if (this.refs.SortableGrid.dragPosition) {
+      let blockY = this.refs.SortableGrid.dragPosition.y;
+      console.log('y of the block:');
+      console.log(blockY);
+      if (blockY < 100) {
+        console.log('really high!');
+        this.scrollUp(blockY);
+      }
+    }
+  }
+
+  scrollUp = (yVal) => {
+    console.log('scrolling up!');
+    _scrollView.scrollTo({y: yVal});
   }
 
   render() {
@@ -58,13 +96,24 @@ export default class Customize extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
-          <ScrollView scrollEnabled={this.state.scrolling}>
+          {this.deletePortalsButton()}
+          <ScrollView
+            ref={(scrollView) => { _scrollView = scrollView; }}
+            scrollEnabled={this.state.scrolling}
+          >
             <SortableGrid
               itemsPerRow={2}
-              dragActivationTreshold={100}
-              onDragStart={() => this.setState({ scrolling: false })}
-              onDragRelease={itemOrder => this.rearrange(itemOrder)}
+              dragActivationTreshold={300}
+              onDragStart={() => {
+                dragTracker = setInterval(this.dragging, 100);
+                this.setState({ scrolling: false });
+              }}
+              onDragRelease={(itemOrder) => {
+                clearInterval(dragTracker);
+                this.rearrange(itemOrder);
+              }}
               style={styles.grid}
+              ref={'SortableGrid'}
             >
               {HOME_PORTALS.map((letter, index) => (
                 <View style={styles.option} key={index}>
