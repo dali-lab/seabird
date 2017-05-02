@@ -85,47 +85,37 @@ export default class Root extends Component {
     };
   }
 
+  partitionModules = (items) => {
+    var moduleList = [];
+    for (var i = 0; i < items.length / 6; i++) {
+      if (i + 1 > items.length / 6) {
+        for (var j = 0; j < items.length - (6 * i); j++) {
+          moduleList[j] = items[items.length - (6 * i) + j]
+        }
+      } else {
+        for (var j = 0; j < 6; j++) {
+          moduleList[j] = items[(6 * i) + j]
+        }
+      }
+      views.push(
+        <View key={i} style={{ width, height, backgroundColor: '#00713A' }}>
+        <PageList modules={moduleList} containerStyle={styles.grid} navigator={this.props.navigator}/>
+        </View>,
+      );
+      moduleList = []
+    }
+  }
+
   componentWillMount() {
     AsyncStorage.getItem('homeOrder').then((value) => {
       if (value == null) {
         AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
       } else {
         this.setState({ HOME_PORTALS: JSON.parse(value) });
+        this.partitionModules(this.state.HOME_PORTALS)
       }
     }).done();
-    var moduleList = [];
-    console.log(this.state.HOME_PORTALS)
-    for (var i = 0; i < this.state.HOME_PORTALS.length / 6; i++) {
-      if (i + 1 > this.state.HOME_PORTALS.length / 6) {
-        for (var j = 0; j < this.state.HOME_PORTALS.length - (6 * i); j++) {
-          moduleList[j] = this.state.HOME_PORTALS[this.state.HOME_PORTALS.length - 1 - j]
-        }
-      } else {
-        for (var j = 0; j < 6; j++) {
-          moduleList[j] = this.state.HOME_PORTALS[(6 * i) + 5 - j]
-        }
-      }
-      views.push(
-        <View key={i} style={{ width, height, backgroundColor: '#00713A' }}>
-        <PageList modules={moduleList}/>
-        </View>,
-      );
-      moduleList = []
-    }
     this.render();
-  }
-
-  renderRow = (rowData, sectionID, rowID) => {
-    return (
-      <Tile
-        navigator={this.props.navigator}
-        navName={this.state.HOME_PORTALS[rowID].navName}
-        imgSource={this.state.HOME_PORTALS[rowID].imgName}
-        text={this.state.HOME_PORTALS[rowID].txtName}
-        tileStyle={styles.tile}
-        textStyle={styles.tileText}
-      />
-    );
   }
 
   render() {
@@ -154,11 +144,6 @@ export default class Root extends Component {
         >
         {views}
         </Carousel>
-
-        {/* <View>
-          <ListView dataSource={this.state.homeSource} renderRow={this.renderRow.bind(this)} contentContainerStyle={styles.grid} />
-
-        </View>*/}
 
       </View>
     );

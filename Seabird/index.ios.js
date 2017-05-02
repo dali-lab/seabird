@@ -105,9 +105,9 @@ export default class Seabird extends Component {
       return <EventsCalendar navigator={navigator}/>;
     }
 
-    if ( route.name === 'web' ) {
+    /*if ( route.name === 'web' ) {
       return <Sports navigator={navigator}/>;
-    }
+    }*/
 
     if ( route.name === 'settings' ) {
       return <Settings navigator={navigator}/>;
@@ -141,9 +141,9 @@ export default class Seabird extends Component {
       return <ComboKeeper navigator={navigator}/>;
     }
 
-    if ( route.name === 'web' ) {
+    /*if ( route.name === 'web' ) {
       return <Dominos navigator={navigator}/>;
-    }
+    }*/
 
     if ( route.name === 'testing' ) {
       return <Testing navigator={navigator}/>;

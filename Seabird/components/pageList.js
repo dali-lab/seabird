@@ -39,6 +39,8 @@ export class PageList extends Component {
   render() {
     return (
       <ListView
+        scrollEnabled={false}
+        style={styles.section}
         dataSource={this.state.dataSource}
         renderRow={this.renderRow.bind(this)}
         contentContainerStyle={this.props.containerStyle}
@@ -48,6 +50,11 @@ export class PageList extends Component {
 }
 
 const styles = StyleSheet.create({
+  /* Style for the section that holds the tiles */
+  section: {
+    height
+  },
+
   /* Style for the tiles for the home screen */
   tile: {
     flexDirection: 'column',
@@ -57,6 +64,7 @@ const styles = StyleSheet.create({
     width: width / 2.4,
     height: height / 4.2,
     paddingBottom: 20,
+    marginTop: width / 18,
     margin: width / 25,
     borderRadius: 10,
   },

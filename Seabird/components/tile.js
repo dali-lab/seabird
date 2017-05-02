@@ -10,6 +10,7 @@ import {
 export class Tile extends Component {
 
   navigate(routeName, transitionType = 'normal') {
+    console.log(routeName);
     this.props.navigator.push({ name: routeName, transitionType });
   }
 
