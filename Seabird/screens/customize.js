@@ -16,6 +16,11 @@ const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
 import SortableGrid from 'react-native-sortable-grid';
 
+// the y value a block is dragged to before screen scrolls up/down
+// NOTE: these should be percentages of screen height
+let SCROLL_UP_Y = 100;
+let SCROLL_DOWN_Y = 600;
+
 let HOME_PORTALS = [];
 
 // used in the setInterval timer to track position of block being dragged
@@ -74,17 +79,16 @@ export default class Customize extends Component {
     // only once the dragPosition can be read
     if (this.refs.SortableGrid.dragPosition) {
       let blockY = this.refs.SortableGrid.dragPosition.y;
-      console.log('y of the block:');
+      console.log('y of the active block:');
       console.log(blockY);
-      if (blockY < 100) {
-        console.log('really high!');
-        this.scrollUp(blockY);
+      if ((blockY < SCROLL_UP_Y) || (blockY > SCROLL_DOWN_Y)) {
+        console.log('scrolling screen');
+        this.scrollScreen(blockY);
       }
     }
   }
 
-  scrollUp = (yVal) => {
-    console.log('scrolling up!');
+  scrollScreen = (yVal) => {
     _scrollView.scrollTo({y: yVal});
   }
 
