@@ -36,7 +36,7 @@ export class NavBar extends Component {
       return (
         <View style={styles.mainHeader}>
           <BackButton navigator={this.props.navigator} type={this.props.type} />
-          <Text> {this.props.text} </Text>
+          <Text style={{color: 'white'}}> {this.props.text} </Text>
           <HomeButton navigator={this.props.navigator}/>
         </View>
       );
