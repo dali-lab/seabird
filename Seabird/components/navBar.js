@@ -22,11 +22,15 @@ export class NavBar extends Component {
   render() {
     if (this.props.rightButton === 'True') {
       return (
-        <View style={styles.mainHeader}>
-          <BackButton navigator={this.props.navigator} type={this.props.type} />
-          <Text style={{color: 'white'}}> {this.props.text} </Text>
-          <HomeButton navigator={this.props.navigator}/>
-        </View>
+          <View style={styles.mainHeader}>
+              <TouchableHighlight style={styles.userIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'settings', 'down')}>
+                  <Image source={require('./../Icons/User-Menu-Male-48.png')} />
+              </TouchableHighlight>
+              <Text style={styles.title}>{this.props.schoolTitle}</Text>
+              <TouchableHighlight style={styles.settingsIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'customize', 'down')}>
+                  <Image source={require('./../Icons/Settings-48.png')} />
+              </TouchableHighlight>
+          </View>
       );
     }
     return (
