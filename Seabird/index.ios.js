@@ -171,7 +171,7 @@ export default class Seabird extends Component {
   render( ) {
     return ( <Navigator
       initialRoute={{
-        name: 'root',
+        name: 'login',
         title: 'My Initial Scene',
         index: 0,
       }}
