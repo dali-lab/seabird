@@ -12,9 +12,9 @@ import {
   Route,
   Router,
   StackRoute,
-  withRouter
+  withRouter,
 } from 'react-router-native';
-import { Navigator, AppRegistry, } from 'react-native';
+import { Navigator, AppRegistry } from 'react-native';
 import EventItem from './components/eventItem';
 import OneSignal from 'react-native-onesignal';
 import Firebase from './firebase/firebase';
@@ -36,149 +36,153 @@ import ComboKeeper from './screens/combokeeper';
 import Testing from './screens/testing';
 import Food from './screens/food';
 
-export default class Seabird extends Component {
+var firebase = require("firebase/app");
+require("firebase/auth");
+require("firebase/database");
 
-  constructor( props ) {
-    super( props );
-    Firebase.initialize();
-  }
+let alreadyLogin = false
+  export default class Seabird extends Component {
 
-  componentWillMount( ) {
-    OneSignal.addEventListener( 'received', this.onReceived );
-    OneSignal.addEventListener( 'opened', this.onOpened );
-    OneSignal.addEventListener( 'registered', this.onRegistered );
-    OneSignal.addEventListener( 'ids', this.onIds );
-    // Sending multiple tags
-    OneSignal.sendTags({ "UserID": "12345", "UserName": "Sean", "UserYear": "2017", });
-    // Calling promptLocation
-    OneSignal.promptLocation( );
-  }
-
-  componentWillUnmount( ) {
-    OneSignal.removeEventListener( 'received', this.onReceived );
-    OneSignal.removeEventListener( 'opened', this.onOpened );
-    OneSignal.removeEventListener( 'registered', this.onRegistered );
-    OneSignal.removeEventListener( 'ids', this.onIds );
-  }
-
-  onReceived( notification ) {
-    // console.log("Notification received: ", notification);
-  }
-
-  onOpened( openResult ) {
-    // console.log('Message: ', openResult.notification.payload.body);
-    // console.log('Data: ', openResult.notification.payload.additionalData);
-    // console.log('isActive: ', openResult.notification.isAppInFocus);
-    // console.log('openResult: ', openResult);
-  }
-
-  onRegistered( notifData ) {
-    // console.log("Device had been registered for push notifications!", notifData);
-  }
-
-  onIds( device ) {
-    // console.log('Device info: ', device);
-  }
-
-  renderScene = ( route, navigator ) => {
-    if ( route.name === 'login' ) {
-      return <Login navigator={navigator}/>;
+    constructor( props ) {
+      super( props );
+      Firebase.initialize( );
     }
 
-    if ( route.name === 'root' ) {
-      return <Root navigator={navigator}/>;
+    componentWillMount( ) {
+      OneSignal.addEventListener( 'received', this.onReceived );
+      OneSignal.addEventListener( 'opened', this.onOpened );
+      OneSignal.addEventListener( 'registered', this.onRegistered );
+      OneSignal.addEventListener( 'ids', this.onIds );
+      // Sending multiple tags
+      OneSignal.sendTags({ "UserID": "12345", "UserName": "Sean", "UserYear": "2017" });
+      // Calling promptLocation
+      OneSignal.promptLocation( );
     }
 
-    if ( route.name === 'dining' ) {
-      return <Dining navigator={navigator}/>;
+    componentWillUnmount( ) {
+      OneSignal.removeEventListener( 'received', this.onReceived );
+      OneSignal.removeEventListener( 'opened', this.onOpened );
+      OneSignal.removeEventListener( 'registered', this.onRegistered );
+      OneSignal.removeEventListener( 'ids', this.onIds );
     }
 
-    if ( route.name === 'web' ) {
-      return <News navigator={navigator}/>;
+    onReceived( notification ) {
+      // console.log("Notification received: ", notification);
     }
 
-    if ( route.name === 'events' ) {
-      return <Events navigator={navigator}/>;
+    onOpened( openResult ) {
+      // console.log('Message: ', openResult.notification.payload.body);
+      // console.log('Data: ', openResult.notification.payload.additionalData);
+      // console.log('isActive: ', openResult.notification.isAppInFocus);
+      // console.log('openResult: ', openResult);
     }
 
-    if ( route.name === 'eventscalendar' ) {
-      return <EventsCalendar navigator={navigator}/>;
+    onRegistered( notifData ) {
+      // console.log("Device had been registered for push notifications!", notifData);
     }
 
-    /*if ( route.name === 'web' ) {
-      return <Sports navigator={navigator}/>;
-    }*/
-
-    if ( route.name === 'settings' ) {
-      return <Settings navigator={navigator}/>;
+    onIds( device ) {
+      // console.log('Device info: ', device);
     }
 
-    if ( route.name === 'more' ) {
-      return <More navigator={navigator}/>;
+    renderScene = ( route, navigator ) => {
+      if ( route.name === 'login' ) {
+        return <Login navigator={navigator}/>;
+      }
+
+      if ( route.name === 'root' ) {
+        return <Root navigator={navigator}/>;
+      }
+
+      if ( route.name === 'dining' ) {
+        return <Dining navigator={navigator}/>;
+      }
+
+      if ( route.name === 'web' ) {
+        return <News navigator={navigator}/>;
+      }
+
+      if ( route.name === 'events' ) {
+        return <Events navigator={navigator}/>;
+      }
+
+      if ( route.name === 'eventscalendar' ) {
+        return <EventsCalendar navigator={navigator}/>;
+      }
+
+      if ( route.name === 'settings' ) {
+        return <Settings navigator={navigator}/>;
+      }
+
+      if ( route.name === 'more' ) {
+        return <More navigator={navigator}/>;
+      }
+
+      if ( route.name === 'customize' ) {
+        return <Customize navigator={navigator}/>;
+      }
+
+      if ( route.name === 'schedule' ) {
+        return <Schedule navigator={navigator}/>;
+      }
+
+      if ( route.name === 'tutorial' ) {
+        return <Tutorial navigator={navigator}/>;
+      }
+
+      if ( route.name === 'map' ) {
+        return <Map navigator={navigator}/>;
+      }
+
+      if ( route.name === 'eventdetail' ) {
+        return <EventDetail navigator={navigator}/>;
+      }
+
+      if ( route.name === 'combokeeper' ) {
+        return <ComboKeeper navigator={navigator}/>;
+      }
+
+      if ( route.name === 'testing' ) {
+        return <Testing navigator={navigator}/>;
+      }
+
+      if ( route.name === 'dining' ) {
+        return <Dining navigator={navigator}/>;
+      }
+
+      if ( route.name === 'food' ) {
+        return <Food navigator={navigator}/>;
+      }
     }
 
-    if ( route.name === 'customize' ) {
-      return <Customize navigator={navigator}/>;
-    }
+    configureScene = ( route, routeStack ) => {
+      if ( route.transitionType === 'up' ) {
+        return Navigator.SceneConfigs.VerticalUpSwipeJump;
+      }
+      if ( route.transitionType === 'down' ) {
+        return Navigator.SceneConfigs.VerticalDownSwipeJump;
+      }
+      return Navigator.SceneConfigs.PushFromRight;
+    };
 
-    if ( route.name === 'schedule' ) {
-      return <Schedule navigator={navigator}/>;
-    }
-
-    if ( route.name === 'tutorial' ) {
-      return <Tutorial navigator={navigator}/>;
-    }
-
-    if ( route.name === 'map' ) {
-      return <Map navigator={navigator}/>;
-    }
-
-    if ( route.name === 'eventdetail' ) {
-      return <EventDetail navigator={navigator}/>;
-    }
-
-    if ( route.name === 'combokeeper' ) {
-      return <ComboKeeper navigator={navigator}/>;
-    }
-
-    /*if ( route.name === 'web' ) {
-      return <Dominos navigator={navigator}/>;
-    }*/
-
-    if ( route.name === 'testing' ) {
-      return <Testing navigator={navigator}/>;
-    }
-
-    if ( route.name === 'dining' ) {
-      return <Dining navigator={navigator}/>;
-    }
-
-    if ( route.name === 'food' ) {
-      return <Food navigator={navigator}/>;
-    }
-  }
-
-  configureScene = ( route, routeStack ) => {
-    if ( route.transitionType === 'up' ) {
-      return Navigator.SceneConfigs.VerticalUpSwipeJump;
-    }
-    if ( route.transitionType === 'down' ) {
-      return Navigator.SceneConfigs.VerticalDownSwipeJump;
-    }
-    return Navigator.SceneConfigs.PushFromRight;
-  };
-
-  render( ) {
-    return ( <Navigator
-      initialRoute={{
+    render( ) {
+      if (Firebase.getUser() != null) {
+        alreadyLogin = Firebase.isUserSignedIn( this.userIsSignedIn )
+      }
+      if ( alreadyLogin ) {
+        return ( <Navigator initialRoute={{
+          name: 'root',
+          title: 'My Initial Scene',
+          index: 0
+        }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
+      }
+    else {
+      return ( <Navigator initialRoute={{
         name: 'login',
         title: 'My Initial Scene',
-        index: 0,
-      }}
-      renderScene={this.renderScene}
-      configureScene={this.configureScene}
-
-      /> );
+        index: 0
+      }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
+    }
   }
 }
 
