@@ -18,6 +18,10 @@ import { NavBar } from './../components/navBar';
 import { PageList } from './../components/pageList';
 import Carousel from 'react-native-snap-carousel';
 import Firebase from '../firebase/firebase';
+
+var firebase = require("firebase/app");
+require("firebase/auth");
+require("firebase/database");
 // import Analytics from '../firebase/analytics';
 // var Analytics = require('react-native-firebase-analytics');
 
@@ -106,7 +110,20 @@ export default class Root extends Component {
     }
   }
 
+  async updateInfo() {
+    try {
+      let userId = firebase.auth().currentUser.uid
+      let userMobilePath = "/user/" + userId
+      firebase.database().ref(userMobilePath).set({
+            email: firebase.auth().currentUser.email
+        })
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   componentWillMount() {
+  this.updateInfo()
     AsyncStorage.getItem('homeOrder').then((value) => {
       if (value == null) {
         AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
@@ -214,24 +231,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLOR1,
   },
 
-  /* Style for the icons on the main buttons */
-  mainIcon: {
-    top: 10,
-  },
-
-  /* Style for the settings icon up in the top bar */
-  settingsIcon: {
-    flex: 0,
-    height: 30,
-    resizeMode: 'contain',
-  },
-
-  /* Styles the more options down button */
-  downIcon: {
-    flex: 1,
-    height: 10,
-    resizeMode: 'center',
-  },
 });
 
 AppRegistry.registerComponent('Root', () => Root);

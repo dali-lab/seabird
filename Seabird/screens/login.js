@@ -8,6 +8,7 @@ import {
   Dimensions,
   TextInput,
   TouchableHighlight,
+  Modal,
 } from 'react-native';
 import Firebase from '../firebase/firebase';
 
@@ -29,26 +30,19 @@ export default class Root extends Component {
     this.state = {
       username: 'Username',
       password: 'Password',
+      modalVisible: false,
     };
   }
 
-  updateText = (user, pass) => {
-    this.setState((state) => {
-      return {
-        username: user,
-        password: pass,
-      };
-    });
-  };
-
-  login = (email, password) => {
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorCode + ": " + errorMessage)
-    });
-    this.props.navigator.push({name: 'root'});
+  async login(email, password) {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      this.props.navigator.push({name: 'root'});
+    } catch (e) {
+      /* Toggles the error modal */
+      this.setModalVisible(!this.state.modalVisible)
+      console.log("Didn't log in")
+    }
   }
 
   signup = (email, password) => {
@@ -66,13 +60,19 @@ export default class Root extends Component {
     this.props.navigator.push({name: 'root'});
   }
 
-  componentDidMount() {
-    // check if a current user is logged in already
-    Firebase.isUserSignedIn(this.userIsSignedIn)
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
   }
 
-  // TODO: consider using ScrollView instead to load all home tiles at beginning
-  // this.navigate.bind(this, 'root')
+  updateText = (user, pass) => {
+    this.setState((state) => {
+      return {
+        username: user,
+        password: pass,
+      };
+    });
+  };
+
   render() {
     return (
       <View
@@ -85,24 +85,53 @@ export default class Root extends Component {
           height,
         }}
       >
+      <Modal
+          animationType={"fade"}
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {alert("Modal has been closed.")}}
+          >
+          <View style={styles.modalView}>
+          <View>
+            <Text style={styles.modalTitle}>Failed Login</Text>
+            <Text style={styles.modalText}>There is a login Error</Text>
+
+            <TouchableHighlight underlayColor="transparent" onPress={() => {
+              this.setModalVisible(!this.state.modalVisible)
+            }}
+            style={styles.modalButton}>
+              <Text style={styles.modalButtonText}>Hide Modal</Text>
+            </TouchableHighlight>
+
+          </View>
+         </View>
+        </Modal>
         <Text style={styles.company}>seabird apps</Text>
         <Text style={styles.schoolName}>{SCHOOL_NAME}</Text>
-        <Image
+        {/*<Image
           source={require('./../Icons/breakfast-dark.png')}
           style={styles.schoolImage}
-        />
+        />*/}
         <TextInput
           style={styles.credentials}
           onChangeText={username => this.setState({ username })}
           onFocus={() => this.updateText('', this.state.password)}
           value={this.state.username}
+          returnKeyType = {"next"}
+          onSubmitEditing={(event) => {
+            this.refs.Password.focus();
+          }}
         />
         <TextInput
+          ref='Password'
           secureTextEntry={true}
           style={styles.credentials}
           onChangeText={password => this.setState({ password })}
           onFocus={() => this.updateText(this.state.username, '')}
           value={this.state.password}
+          onSubmitEditing={(event) => {
+            this.login(this.state.username, this.state.password)
+          }}
         />
         <TouchableHighlight style={styles.login} onPress={() => this.login(this.state.username, this.state.password)}>
           <Text style={styles.loginText}>LOG IN</Text>
@@ -166,6 +195,50 @@ const styles = StyleSheet.create({
     marginTop: 8,
     letterSpacing: 1,
     fontWeight: '500',
+  },
+
+  /* Style for the modal view */
+  modalView: {
+    width: width / 1.2,
+    height: height / 6,
+    backgroundColor: '#ccc',
+    alignSelf: 'center',
+    marginTop: height / 2.5,
+    paddingTop: 10,
+    borderRadius: 10,
+  },
+
+  /* Style for the modal title */
+  modalTitle: {
+    color: 'black',
+    fontSize: 22,
+    fontWeight: '400',
+    textAlign: 'center',
+  },
+
+  /* Style for the modal text */
+  modalText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: '300',
+    textAlign: 'center',
+    marginTop: 5,
+  },
+
+  /* Style for the modal action button */
+  modalButton: {
+    height: 30,
+    width: 100,
+    alignSelf: 'center',
+    backgroundColor: '#bbb',
+    paddingTop: 5,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+
+  /* Style for the modal action button text */
+  modalButtonText: {
+    textAlign: 'center'
   }
 });
 
