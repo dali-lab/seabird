@@ -46,14 +46,14 @@ export default class Events extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
-        xmlDoc.getElementsByTagName("title")[1].childNodes[0].data,
-        xmlDoc.getElementsByTagName("content")[1].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[2].childNodes[0].data,
-        xmlDoc.getElementsByTagName("content")[2].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[3].childNodes[0].data,
-        xmlDoc.getElementsByTagName("content")[3].childNodes[0].data,
-        xmlDoc.getElementsByTagName("title")[4].childNodes[0].data,
-        xmlDoc.getElementsByTagName("content")[4].childNodes[0].data,
+        // xmlDoc.getElementsByTagName("title")[1].childNodes[0].data,
+        // xmlDoc.getElementsByTagName("content")[1].childNodes[0].data,
+        // xmlDoc.getElementsByTagName("title")[2].childNodes[0].data,
+        // xmlDoc.getElementsByTagName("content")[2].childNodes[0].data,
+        // xmlDoc.getElementsByTagName("title")[3].childNodes[0].data,
+        // xmlDoc.getElementsByTagName("content")[3].childNodes[0].data,
+        // xmlDoc.getElementsByTagName("title")[4].childNodes[0].data,
+        // xmlDoc.getElementsByTagName("content")[4].childNodes[0].data,
         // xmlDoc.getElementsByTagName("title")[5].childNodes[0].data,
         // xmlDoc.getElementsByTagName("content")[5].childNodes[0].data,
         // xmlDoc.getElementsByTagName("title")[6].childNodes[0].data,
@@ -61,6 +61,8 @@ export default class Events extends Component {
         // xmlDoc.getElementsByTagName("title")[7].childNodes[0].data,
         // xmlDoc.getElementsByTagName("content")[7].childNodes[0].data,
         '...and some more....',
+        "here is some more",
+        "other data is passed",
       ]),
     };
   }
@@ -87,17 +89,25 @@ export default class Events extends Component {
 
   renderRow = (rowData, sectionID, rowID) => {
     /* Form dates to distinguish from events */
-    if (rowData == 'today') {
-      return(
-        <Text style={styles.listHeader}>{rowData}</Text>
-      )
-    }
-    /* Every event that is not a date */
-    else {
-      return(
-        <Text style={styles.listEvents} onPress={this.navigate.bind(this, 'eventdetail', 'normal')}>{rowData}</Text>
-      )
-    }
+    return (
+      <View style={styles.listSection}>
+      <View style={styles.listSectionTime}>
+        <Text style={styles.listSectionTimeText}>10:00 AM</Text>
+      </View>
+      <View style={styles.listSectionInfo}>
+        <Text style={styles.listSectionTitle}>TITLE</Text>
+        <Text style={styles.listSectionText}>{rowData}</Text>
+      </View>
+      </View>
+    )
+  }
+
+  renderHeader = (rowData, sectionID, rowID) => {
+    return (
+      <View style={styles.listHeader}>
+        <Text style={styles.listHeaderText}>Header for this section</Text>
+      </View>
+    )
   }
 
   render() {
@@ -107,9 +117,12 @@ export default class Events extends Component {
         <View style={styles.mainContent}>
           <ListView
             dataSource={this.state.dataSource}
+            renderHeader={this.renderHeader}
             renderRow={this.renderRow}
+            style={styles.listStyle}
+            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
           />
-          <TouchableHighlight style={styles.CTA} onPress={this.navigate.bind(this, 'eventscalendar', 'normal')}>
+          <TouchableHighlight style={styles.CTA} onPress={this.navigate.bind(this, 'eventscalendar', 'up')}>
             <Text style={styles.CTAText}>Calendar View</Text>
           </TouchableHighlight>
         </View>
@@ -119,6 +132,10 @@ export default class Events extends Component {
 }
 
 const styles = StyleSheet.create({
+
+  pageContent: {
+    backgroundColor: 'white',
+  },
 
   /* Style for the main section that will hold all the of the content */
   mainContent: {
@@ -167,6 +184,20 @@ const styles = StyleSheet.create({
     borderColor: '#89E1A9',
     borderRadius: 25,
     marginTop: 20,
+    alignSelf: 'center',
+  },
+
+  /* Style for the entire list view */
+  listStyle: {
+    backgroundColor: '#ccc',
+    height: height - 150,
+  },
+
+  /* Style for the separator */
+  separator: {
+    marginLeft: 10,
+    height: 1,
+    backgroundColor: '#bbb'
   },
 
   /* Styles for the list headers above the events */
@@ -175,18 +206,54 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     height: height / 25,
     backgroundColor: '#d5d5d5',
+  },
+
+  /* Style for the list headers' text */
+  listHeaderText: {
+    fontFamily: 'Avenir',
     fontSize: 14,
   },
 
-  /* Styles for the list events */
-  listEvents: {
-    paddingTop: height / 45,
+  /* Style for the list section */
+  listSection: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    height: 60,
+    backgroundColor: '#ccc',
     paddingLeft: 10,
-    height: height / 11,
-    backgroundColor: 'white',
+  },
+
+  /* Style for the list section time */
+  listSectionTime: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginRight: 10,
+  },
+
+  /* Style for the list section time's text */
+  listSectionTimeText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    fontFamily: 'Avenir'
+  },
+
+  /* Style for the list section information */
+  listSectionInfo: {
+    paddingTop: 10,
+    flexDirection: 'column',
+  },
+
+  /* Style for the list section title */
+  listSectionTitle: {
+    fontFamily: 'Avenir',
     fontSize: 18,
-    borderBottomWidth: 2,
-    borderBottomColor: '#d5d5d5',
+  },
+
+  /* Style for the list section text */
+  listSectionText: {
+    fontFamily: 'Avenir Next',
+    fontSize: 16,
   },
 });
 

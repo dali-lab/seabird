@@ -103,8 +103,7 @@ export default class Root extends Component {
         <View style={styles.mainHeader}>
           <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True" />
         </View>
-        {views}
-        {/* <Carousel
+        <Carousel
           style={styles.scrollview}
           indicatorStyle={'white'}
           itemWidth={width}
@@ -114,7 +113,7 @@ export default class Root extends Component {
           bounces={false}
         >
           {views}
-        </Carousel>*/}
+        </Carousel>
 
       </View>
     );

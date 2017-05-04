@@ -36,6 +36,10 @@ export default class Settings extends Component {
     };
   }
 
+  navigate(routeName, transitionType = 'normal') {
+    this.props.navigator.push({ name: routeName, transitionType });
+  }
+
   componentWillMount( ) {
     Database.listenUserFirstName(( value ) => {
       this.setState({ userFirstName: value });
@@ -49,16 +53,25 @@ export default class Settings extends Component {
     this.setState({ userEmail: Firebase.getUser( ).email })
   }
 
-  navigatePush( routeName ) {
-    this.props.navigator.push({ name: routeName });
+  navigatePush( routeName, transitionType = 'normal' ) {
+    this.props.navigator.push({ name: routeName, transitionType });
   }
 
+  logoutUser = () => {
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      // Must log out here
+    }).catch(function(error) {
+      // An error happened.
+      console.log(error)
+    });
+  }
 
-    saveAllSettings = (first, last, email) => {
-      Database.setUserFirstName(first);
-      Database.setUserLastName(last);
-      Database.setUserEmail(email);
-    }
+  saveAllSettings = (first, last, email) => {
+    Database.setUserFirstName(first);
+    Database.setUserLastName(last);
+    Database.setUserEmail(email);
+  }
 
   render( ) {
     return (
@@ -108,7 +121,9 @@ export default class Settings extends Component {
             </TouchableHighlight>
 
             <Button onPress={this.navigatePush.bind( this, 'customize' )} title="Customize" color="#841584"/>
-
+            <TouchableHighlight onPress={() => this.logoutUser()}style={styles.logoutButton}>
+              <Text style={styles.logoutButtonText}>Log out</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -217,6 +232,25 @@ const styles = StyleSheet.create({
     height: 40,
     paddingLeft: 10,
     marginBottom: 20,
+  },
+
+  /* Style for the logout button */
+  logoutButton: {
+    height: 45,
+    borderRadius: 10,
+    backgroundColor: '#bd1c00',
+    width: width / 2.5,
+    alignSelf: 'center',
+    marginTop: 5,
+    padding: 10,
+  },
+
+  /* Style for the logout button text */
+  logoutButtonText: {
+    fontFamily: 'Avenir Next',
+    color: '#fff',
+    fontSize: 18,
+    textAlign: 'center'
   }
 });
 

@@ -28,8 +28,8 @@ export default class Root extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'Username',
-      password: 'Password',
+      username: '',
+      password: '',
       modalVisible: false,
     };
   }
@@ -115,24 +115,28 @@ export default class Root extends Component {
         <TextInput
           style={styles.credentials}
           onChangeText={username => this.setState({ username })}
-          onFocus={() => this.updateText('', this.state.password)}
+          //onFocus={() => this.updateText('', this.state.password)}
+          placeholder="Username"
           value={this.state.username}
           returnKeyType = {"next"}
           onSubmitEditing={(event) => {
             this.refs.Password.focus();
           }}
         />
+        <View style={styles.divider} />
         <TextInput
           ref='Password'
           secureTextEntry={true}
           style={styles.credentials}
           onChangeText={password => this.setState({ password })}
-          onFocus={() => this.updateText(this.state.username, '')}
+          //onFocus={() => this.updateText(this.state.username, '')}
+          placeholder="Password"
           value={this.state.password}
           onSubmitEditing={(event) => {
             this.login(this.state.username, this.state.password)
           }}
         />
+        <View style={styles.divider} />
         <TouchableHighlight style={styles.login} onPress={() => this.login(this.state.username, this.state.password)}>
           <Text style={styles.loginText}>LOG IN</Text>
         </TouchableHighlight>
@@ -172,15 +176,23 @@ const styles = StyleSheet.create({
   /* Style for the credentials text input */
   credentials: {
     height: 40,
-    backgroundColor: '#eee',
+    //backgroundColor: '#eee',
     color: '#111',
     width: width / 1.6,
     alignSelf: 'center',
-    textAlign: 'center',
+    textAlign: 'left',
     marginTop: 20,
     borderRadius: 5,
-    borderColor: '#111',
-    borderWidth: 1
+    paddingLeft: 10,
+    // borderColor: '#111',
+    // borderWidth: 1
+  },
+
+  /* Style for the divder that will be the underline area */
+  divider: {
+    height: 1,
+    width: width / 1.6,
+    backgroundColor: 'black'
   },
 
   /* Style for the Login button */
