@@ -37,13 +37,13 @@ export default class Settings extends Component {
   }
 
   componentWillMount( ) {
-    /*Database.listenUserFirstName(( value ) => {
+    Database.listenUserFirstName(( value ) => {
       this.setState({ userFirstName: value });
     });
     Database.listenUserLastName(( value ) => {
       this.setState({ userLastName: value });
     });
-    Database.listenUserEmail(( value ) => {
+    /*Database.listenUserEmail(( value ) => {
       this.setState({ userEmail: value });
     });*/
   }
@@ -54,7 +54,6 @@ export default class Settings extends Component {
 
 
     saveAllSettings = (first, last, email) => {
-      console.log('HERE');
       Database.setUserFirstName(first);
       Database.setUserLastName(last);
       //Database.setUserEmail(email);
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
   /* Style for the intro phrase */
   settingsText: {
     fontSize: 18,
-    fontFamily: 'System',
+    fontFamily: 'Avenir Next',
     textAlign: 'left'
   },
 
@@ -164,14 +163,15 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 0,
-    marginBottom: 20
+    marginBottom: 20,
+    fontFamily: 'Cochin'
   },
 
   /* Style for the current meal swipe */
   settingsTitle: {
     fontSize: 28,
-    fontFamily: 'System',
-    fontWeight: '600',
+    fontFamily: 'Avenir-Medium',
+    fontWeight: '800',
     textAlign: 'center',
     marginBottom: 30
   },
@@ -204,18 +204,30 @@ const styles = StyleSheet.create({
 
   /* Style for the button that saves all the changes */
   saveSettings: {
-    height: 40,
+    height: 50,
     width: width / 2,
-    backgroundColor: '#666',
+    backgroundColor: '#aaa',
     alignSelf: 'center',
+    borderRadius: 10,
   },
 
   /* Style for the button that saves all the changes text */
   saveSettingsText: {
     textAlign: 'center',
-    color: '#fff',
-    marginTop: 10
+    color: '#222',
+    marginTop: 15,
+    fontSize: 16
   },
+
+  /* Style for the text input */
+  textInput: {
+    borderRadius: 5,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    height: 40,
+    paddingLeft: 10,
+    marginBottom: 20,
+  }
 });
 
 AppRegistry.registerComponent( 'Settings', ( ) => Settings );

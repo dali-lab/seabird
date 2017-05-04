@@ -31,7 +31,6 @@ export default class Customize extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tileOrder: [],
       scrolling: true,
       deletingPortals: false,
     };
@@ -52,10 +51,6 @@ export default class Customize extends Component {
         newHome[i] = this.props.HOME_PORTALS[value.itemOrder[i].key]
     }
     this.props.orderChanged(newHome)
-    // AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
-    // .then(() => {
-    //     this.props.refetch()
-    //   });
   }
 
   toggleDeletePortals = () => {

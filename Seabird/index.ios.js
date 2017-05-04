@@ -106,6 +106,7 @@ let alreadyLogin = false
       OneSignal.sendTags({ "UserID": "12345", "UserName": "Sean", "UserYear": "2017" });
       // Calling promptLocation
       OneSignal.promptLocation( );
+
     }
 
     componentWillUnmount( ) {
@@ -135,7 +136,11 @@ let alreadyLogin = false
     }
 
     orderChanged(newOrder) {
-      this.setState({HOME_PORTALS: newOrder})
+      /*AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
+        .then(() => {
+          this.setState({ HOME_PORTALS: newOrder })
+        });*/
+        this.setState({ HOME_PORTALS: newOrder })
     }
 
     // refetch() {
@@ -238,6 +243,12 @@ let alreadyLogin = false
       }
       if ( route.transitionType === 'down' ) {
         return Navigator.SceneConfigs.VerticalDownSwipeJump;
+      }
+      if ( route.transitionType === 'floatRight' ) {
+        return Navigator.SceneConfigs.FloatFromRight;
+      }
+      if ( route.transitionType === 'floatLeft') {
+        return Navigator.SceneConfigs.FloatFromLeft;
       }
       return Navigator.SceneConfigs.PushFromRight;
     };

@@ -22,15 +22,15 @@ export class NavBar extends Component {
   render() {
     if (this.props.rightButton === 'True') {
       return (
-          <View style={styles.mainHeader}>
-              <TouchableHighlight style={styles.userIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'settings', 'down')}>
-                  <Image source={require('./../Icons/User-Menu-Male-48.png')} />
-              </TouchableHighlight>
-              <Text style={styles.title}>{this.props.schoolTitle}</Text>
-              <TouchableHighlight style={styles.settingsIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'customize', 'down')}>
-                  <Image source={require('./../Icons/Settings-48.png')} />
-              </TouchableHighlight>
-          </View>
+        <View style={styles.mainHeader}>
+          <TouchableHighlight style={styles.userIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'settings', 'down')}>
+            <Image source={require('./../Icons/User-Menu-Male-48.png')} />
+          </TouchableHighlight>
+          <Text style={styles.title}>{this.props.schoolTitle}</Text>
+          <TouchableHighlight style={styles.settingsIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'customize', 'down')}>
+            <Image source={require('./../Icons/Settings-48.png')} />
+          </TouchableHighlight>
+        </View>
       );
     }
     return (
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#fff',
     fontSize: 24,
+    fontFamily: 'Avenir Next',
     fontWeight: '400',
     marginTop: -3,
   },

@@ -38,14 +38,4 @@ const styles = StyleSheet.create({
     top: 40,
     height: 45,
   },
-
-    /* Style for the main label texts on the main buttons */
-  tileText: {
-    top: 40,
-    fontSize: 20,
-    fontFamily: 'System',
-    fontWeight: '400',
-    textAlign: 'center',
-    color: '#fff',
-  },
 });

@@ -8,8 +8,11 @@ import {
 export class HomeButton extends Component {
 
   navigate(routeName, transitionType = 'normal') {
-
-    this.props.navigator.push({ name: routeName, transitionType });
+    this.props.navigator.push({ name: routeName,
+      transitionType,
+      sceneConfig: {
+        gestures: {},
+      } });
   }
 
   render() {

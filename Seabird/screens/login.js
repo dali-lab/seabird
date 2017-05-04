@@ -21,7 +21,7 @@ require("firebase/database");
 export default class Root extends Component {
 
 
-  navigate(routeName, transitionType = 'normal') {
+  navigate(routeName, transitionType = 'floatRight') {
     this.props.navigator.push({ name: routeName, transitionType });
   }
 
@@ -37,7 +37,7 @@ export default class Root extends Component {
   async login(email, password) {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
-      this.props.navigator.push({name: 'root'});
+      this.navigate('root')
     } catch (e) {
       /* Toggles the error modal */
       this.setModalVisible(!this.state.modalVisible)
