@@ -154,7 +154,7 @@ class Database {
    * @param homeOrder
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
-  static listenUserHomeOrder() {
+  static listenUserHomeOrder(callbackFunc) {
     const userID = Firebase.getUserID();
     const path = `/users/${userID}`;
 
@@ -163,11 +163,7 @@ class Database {
       if (snapshot.val()) {
         homeOrder = snapshot.val().homeOrder;
       }
-      console.log(homeOrder);
-      if (homeOrder !== []) {
-        return homeOrder;
-      }
-      return 'noChange';
+      callbackFunc(homeOrder);
     });
   }
 

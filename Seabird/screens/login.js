@@ -37,6 +37,7 @@ export default class Root extends Component {
   async login(email, password) {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
+      console.log('logged in');
       this.navigate('root')
     } catch (e) {
       /* Toggles the error modal */

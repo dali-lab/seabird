@@ -137,11 +137,14 @@ let alreadyLogin = false
     }
 
     updateHome(newOrder) {
-      this.setState({ HOME_PORTALS: JSON.parse(newOrder) })
+      var newHomeOrder = JSON.parse(newOrder)
+      this.setState({ HOME_PORTALS: newHomeOrder })
     }
 
     orderChanged(newOrder) {
-      Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
+      Database.setUserHomeOrder(JSON.stringify(newOrder));
+      /* Changes the home page order */
+      this.setState({ HOME_PORTALS: newOrder })
       /*AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
         .then(() => {
           this.setState({ HOME_PORTALS: newOrder })

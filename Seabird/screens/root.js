@@ -47,10 +47,12 @@ export default class Root extends Component {
   }
 
   componentWillMount() {
-    Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
-    this.props.updateHome(Database.listenUserHomeOrder());
+    // this.props.updateHome(Database.listenUserHomeOrder());
+    Database.listenUserHomeOrder((value) => {
+      this.props.updateHome(value);
+      Database.setUserHomeOrder(value);
+    });
   }
-
   // componentWillReceiveProps(nextProps) {
   //   this.partitionModules(nextProps.HOME_PORTALS)
   // }
