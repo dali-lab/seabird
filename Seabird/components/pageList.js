@@ -23,6 +23,14 @@ export class PageList extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+      this.setState({
+        dataSource: new ListView.DataSource({
+          rowHasChanged: (r1, r2) => true,
+        }).cloneWithRows(nextProps.modules),
+      })
+  }
+
   renderRow = (rowData, sectionID, rowID) => {
     return (
       <Tile
@@ -37,6 +45,7 @@ export class PageList extends Component {
   }
 
   render() {
+    console.log('re renderin page list')
     return (
       <ListView
         scrollEnabled={false}

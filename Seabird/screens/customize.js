@@ -21,8 +21,6 @@ import SortableGrid from 'react-native-sortable-grid';
 let SCROLL_UP_Y = 100;
 let SCROLL_DOWN_Y = 600;
 
-let HOME_PORTALS = [];
-
 // used in the setInterval timer to track position of block being dragged
 let dragTracker = null;
 // used to scroll up/down slightly when dragging a block
@@ -39,12 +37,6 @@ export default class Customize extends Component {
     };
   }
 
-  componentDidMount() {
-    AsyncStorage.getItem('tileOrder').then((value) => {
-      this.setState({ tileOrder: value });
-    }).done();
-  }
-
   navigatePop() {
     this.props.navigator.pop();
   }
@@ -56,10 +48,14 @@ export default class Customize extends Component {
   rearrange = (value) => {
     this.setState({ scrolling: true })
     var newHome = []
-    for (var i = 0; i < HOME_PORTALS.length; i++) {
-        newHome[i] = HOME_PORTALS[value.itemOrder[i].key]
+    for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
+        newHome[i] = this.props.HOME_PORTALS[value.itemOrder[i].key]
     }
-    AsyncStorage.setItem('homeOrder', JSON.stringify(newHome));
+    this.props.orderChanged(newHome)
+    // AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
+    // .then(() => {
+    //     this.props.refetch()
+    //   });
   }
 
   toggleDeletePortals = () => {
@@ -93,9 +89,6 @@ export default class Customize extends Component {
   }
 
   render() {
-    AsyncStorage.getItem('homeOrder').then((value) => {
-      HOME_PORTALS = JSON.parse(value);
-    }).done();
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
@@ -119,7 +112,7 @@ export default class Customize extends Component {
               style={styles.grid}
               ref={'SortableGrid'}
             >
-              {HOME_PORTALS.map((letter, index) => (
+              {this.props.HOME_PORTALS.map((letter, index) => (
                 <View style={styles.option} key={index}>
                   <Text style={styles.optionText}>{letter.txtName}</Text>
                 </View>))}

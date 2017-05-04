@@ -11,7 +11,7 @@ class Database {
    * @param portalName
    */
   static getPortalContent(portalName, callbackFunc) {
-    let path = "/content/" + portalName;
+    const path = `/content/${portalName}`;
 
     Firebase.getDbRef(path).once('value').then((snapshot) => {
       console.log(snapshot.val());
@@ -30,18 +30,18 @@ class Database {
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
   static setUserFirstName(firstName) {
-    let user = Firebase.getUser();
-    let userID = Firebase.getUserID();
-    let path = "/users/" + userID;
+    const user = Firebase.getUser();
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}`;
 
     // set the user's display name to be their first name
     user.updateProfile({
-      displayName: firstName
+      displayName: firstName,
     });
 
     return Firebase.getDbRef(path).update({
-      firstName: firstName
-    })
+      firstName,
+    });
   }
 
   /**
@@ -50,12 +50,12 @@ class Database {
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
   static setUserLastName(lastName) {
-    let userID = Firebase.getUserID();
-    let path = "/users/" + userID;
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}`;
 
     return Firebase.getDbRef(path).update({
-      lastName: lastName
-    })
+      lastName,
+    });
   }
 
   /**
@@ -64,23 +64,23 @@ class Database {
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
   static setUserEmail(email) {
-    let user = Firebase.getUser();
-    let userID = Firebase.getUserID();
-    let path = "/users/" + userID;
+    const user = Firebase.getUser();
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}`;
 
     // set the user's email address in User as well
-    user.updateEmail(email).then(function() {
+    user.updateEmail(email).then(() => {
       // Update successful
       alert('Email updated!');
-    }, function(error) {
+    }, (error) => {
       // An error happened
       alert('The email address is badly formatted');
       return null;
     });
 
     return Firebase.getDbRef(path).update({
-      email: user.email
-    })
+      email: user.email,
+    });
   }
 
   /**
@@ -88,32 +88,32 @@ class Database {
    * @param callbackFunc
    */
   static listenUserFirstName(callbackFunc) {
-    let userID = Firebase.getUserID();
-    let path = "/users/" + userID;
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}`;
 
-    Firebase.getDbRef(path).on('value', (snapshot) => {
-      var firstName = '';
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      let firstName = '';
       if (snapshot.val()) {
-          firstName = snapshot.val().firstName
+        firstName = snapshot.val().firstName;
       }
-      callbackFunc(firstName)
+      callbackFunc(firstName);
     });
   }
 
   /**
    * Listen for changes to a user's last name
-   * @param callbackFunc
+   * @param unc
    */
   static listenUserLastName(callbackFunc) {
-    let userID = Firebase.getUserID();
-    let path = "/users/" + userID;
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}`;
 
-    Firebase.getDbRef(path).on('value', (snapshot) => {
-      var lastName = '';
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      let lastName = '';
       if (snapshot.val()) {
-          lastName = snapshot.val().lastName
+        lastName = snapshot.val().lastName;
       }
-      callbackFunc(lastName)
+      callbackFunc(lastName);
     });
   }
 
@@ -122,15 +122,15 @@ class Database {
    * @param callbackFunc
    */
   static listenUserEmail(callbackFunc) {
-    let userID = Firebase.getUserID();
-    let path = "/users/" + userID;
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}`;
 
-    Firebase.getDbRef(path).on('value', (snapshot) => {
-      var email = '';
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      let email = '';
       if (snapshot.val()) {
-          email = snapshot.val().email
+        email = snapshot.val().email;
       }
-      callbackFunc(email)
+      callbackFunc(email);
     });
   }
 

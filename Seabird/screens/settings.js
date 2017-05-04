@@ -1,129 +1,124 @@
 import React, { Component } from 'react';
 import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    Animated,
-    TextInput,
-    Button,
-    AsyncStorage,
+  AppRegistry,
+  StyleSheet,
+  Text,
+  View,
+  Animated,
+  TextInput,
+  Button,
+  AsyncStorage,
+  Dimensions,
+  TouchableHighlight
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
-// import * as firebase from 'firebase';
-var firebase = require("firebase/app");
-require("firebase/auth");
+var firebase = require( "firebase/app" );
+require( "firebase/auth" );
+
+const { height, width, } = Dimensions.get( 'window' );
 
 const NAVBAR_TEXT = 'Settings';
 
 export default class Settings extends Component {
-    // Initialize the hardcoded data
+  // Initialize the hardcoded data
 
-  constructor(props) {
-    super(props);
+  constructor( props ) {
+    super( props );
     this.state = {
-      bounceValue: new Animated.Value(0),
+      bounceValue: new Animated.Value( 0 ),
       changingEmail: false,
+      userWelcomeName: '',
       userFirstName: '',
       userLastName: '',
-      userEmail: '',
+      userEmail: ''
     };
   }
 
-  componentDidMount() {
-    // AsyncStorage.getItem('userFirstName').then((value) => {
-    //   this.setState({ userFirstName: value });
-    // }).done();
-    // AsyncStorage.getItem('userLastName').then((value) => {
-    //   this.setState({ userLastName: value });
-    // }).done();
-    // AsyncStorage.getItem('userEmail').then((value) => {
-    //   this.setState({ userEmail: value });
-    // }).done();
-    Database.listenUserFirstName((value) => {
+  componentWillMount( ) {
+    /*Database.listenUserFirstName(( value ) => {
       this.setState({ userFirstName: value });
     });
-    Database.listenUserLastName((value) => {
+    Database.listenUserLastName(( value ) => {
       this.setState({ userLastName: value });
     });
-    Database.listenUserEmail((value) => {
+    Database.listenUserEmail(( value ) => {
       this.setState({ userEmail: value });
-    });
+    });*/
   }
 
-  navigatePush(routeName) {
+  navigatePush( routeName ) {
     this.props.navigator.push({ name: routeName });
   }
 
-  saveData = (key, value) => {
-    AsyncStorage.setItem(key, value);
-    this.setState({ key: value });
-  }
 
-  displayChangeEmail = () => {
-    if (this.state.changingEmail) {
-      return (
-        <View>
-          <TextInput
-            style={styles.textInput} onChangeText={(value) => {
-              this.setState({ userEmail: value });
-              // this.saveData('userEmail', text);
-              // Database.setUserEmail(value);
-            }} value={this.state.userEmail} placeholder="Enter your email here"
-          />
-          <Button onPress={this.toggleChangingEmail} title="Save Email" color="#841584" />
-        </View>
-      );
+    saveAllSettings = (first, last, email) => {
+      console.log('HERE');
+      Database.setUserFirstName(first);
+      Database.setUserLastName(last);
+      //Database.setUserEmail(email);
     }
-    return (
-      <Button
-        onPress={this.toggleChangingEmail}
-        title="Change Email"
-        color="#841584"
-      />
-    );
-  }
 
-  toggleChangingEmail = () => {
-    if (this.state.changingEmail) {
-      Database.setUserEmail(this.state.userEmail);
-      this.setState({changingEmail: false})
+  /*toggleChangingEmail = ( ) => {
+    if ( this.state.changingEmail ) {
+      Database.setUserEmail( this.state.userEmail );
+      this.setState({ changingEmail: false })
     } else {
-      this.setState({changingEmail: true});
+      this.setState({ changingEmail: true });
     }
-  }
+  }*/
 
-  render() {
+  render( ) {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down"/>
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
-            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName} {this.state.userLastName}!</Text>
+            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName}
+              {this.state.userLastName}!</Text>
             <Text style={styles.settingsText}>First Name:</Text>
             <TextInput
-              style={styles.textInput} onChangeText={(value) => {
-                // this.setState({ userFirstName: text });
-                // this.saveData('userFirstName', text);
-                Database.setUserFirstName(value);
-              }} value={this.state.userFirstName} placeholder="Enter your first name here"
-            />
+              ref='FirstName'
+              style={styles.textInput}
+              onChangeText={( value ) => {
+                this.setState({ userFirstName: value })
+              }}
+              value={this.state.userFirstName}
+              placeholder="Enter your first name here" returnKeyType={"next"}
+              onSubmitEditing={( event ) => {
+                this.refs.LastName.focus( );}}
+              />
 
             <Text style={styles.settingsText}>Last Name:
-                        </Text>
+            </Text>
             <TextInput
-              style={styles.textInput} onChangeText={(value) => {
-                Database.setUserLastName(value);
-              }} value={this.state.userLastName} placeholder="Enter your last name here"
+              ref='LastName'
+              style={styles.textInput}
+              onChangeText={( value ) => {
+                this.setState({ userLastName: value })
+              }}
+              value={this.state.userLastName}
+              placeholder="Enter your last name here"
             />
 
-            <Text style={styles.settingsText}>Email: {Firebase.getUser().email}</Text>
+            <Text style={styles.settingsText}>Email: </Text>
+            <TextInput
+              ref='Email'
+              style={styles.textInput}
+              /*onChangeText={( value ) => {
+                this.setState({ userEmail: value })
+              }}*/
+              value={Firebase.getUser( ).email}
+            />
 
-            {this.displayChangeEmail()}
+            {/*{this.displayChangeEmail()}*/}
 
-            <Button onPress={this.navigatePush.bind(this, 'customize')} title="Customize" color="#841584" />
+            <TouchableHighlight style={styles.saveSettings} onPress={() => this.saveAllSettings(this.state.userFirstName, this.state.userLastName, this.state.userEmail)}>
+              <Text style={styles.saveSettingsText}>Save Changes</Text>
+            </TouchableHighlight>
+
+            <Button onPress={this.navigatePush.bind( this, 'customize' )} title="Customize" color="#841584"/>
 
           </View>
         </View>
@@ -133,64 +128,64 @@ export default class Settings extends Component {
 }
 
 const styles = StyleSheet.create({
-    /* Style for the enter page */
+  /* Style for the enter page */
   pageContent: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
-    /* Style for the main section that will hold all the of the DDS content */
+  /* Style for the main section that will hold all the of the DDS content */
   mainContent: {
     width: 350,
     height: 525,
     backgroundColor: 'white',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 
-    /* Style for the section that holds the swipe headers */
+  /* Style for the section that holds the swipe headers */
   contentHeader: {
     width: 325,
     height: 125,
-    marginTop: 20,
+    marginTop: 20
   },
 
-    /* Style for the intro phrase */
+  /* Style for the intro phrase */
   settingsText: {
     fontSize: 18,
     fontFamily: 'System',
-    textAlign: 'left',
+    textAlign: 'left'
   },
 
-    /* Style for the intro phrase */
+  /* Style for the intro phrase */
   textInput: {
     height: 40,
     borderColor: 'gray',
     borderWidth: 0,
-    marginBottom: 20,
+    marginBottom: 20
   },
 
-    /* Style for the current meal swipe */
+  /* Style for the current meal swipe */
   settingsTitle: {
     fontSize: 28,
     fontFamily: 'System',
     fontWeight: '600',
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 30
   },
 
-    /* Style for the menu option */
+  /* Style for the menu option */
   oldThing: {
     fontSize: 12,
     fontFamily: 'System',
     textAlign: 'left',
-    marginTop: 7,
+    marginTop: 7
   },
 
   contentInformation: {
-    width: 250,
+    width: 250
   },
 
   listItem: {
@@ -198,14 +193,29 @@ const styles = StyleSheet.create({
     fontFamily: 'System',
     fontWeight: '400',
     borderBottomWidth: 1,
-    borderBottomColor: 'black',
+    borderBottomColor: 'black'
   },
 
-    /* Style for the divider in the list */
+  /* Style for the divider in the list */
   divider: {
     height: 1,
-    backgroundColor: '#bbb',
+    backgroundColor: '#bbb'
+  },
+
+  /* Style for the button that saves all the changes */
+  saveSettings: {
+    height: 40,
+    width: width / 2,
+    backgroundColor: '#666',
+    alignSelf: 'center',
+  },
+
+  /* Style for the button that saves all the changes text */
+  saveSettingsText: {
+    textAlign: 'center',
+    color: '#fff',
+    marginTop: 10
   },
 });
 
-AppRegistry.registerComponent('Settings', () => Settings);
+AppRegistry.registerComponent( 'Settings', ( ) => Settings );

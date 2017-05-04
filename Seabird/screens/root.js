@@ -19,9 +19,9 @@ import { PageList } from './../components/pageList';
 import Carousel from 'react-native-snap-carousel';
 import Firebase from '../firebase/firebase';
 
-var firebase = require("firebase/app");
-require("firebase/auth");
-require("firebase/database");
+const firebase = require('firebase/app');
+require('firebase/auth');
+require('firebase/database');
 // import Analytics from '../firebase/analytics';
 // var Analytics = require('react-native-firebase-analytics');
 
@@ -29,7 +29,6 @@ const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: ori
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
-const views = []
 export default class Root extends Component {
 
   navigate(routeName, transitionType = 'normal') {
@@ -40,105 +39,51 @@ export default class Root extends Component {
     super(props);
     this.state = {
       bounceValue: new Animated.Value(0),
-      HOME_PORTALS: [
-        {
-          txtName: 'Dining',
-          navName: 'dining',
-          imgName: require('./../Icons/Restaurant-50-White.png'),
-        }, {
-          txtName: 'Events',
-          navName: 'events',
-          imgName: require('./../Icons/T-Shirt-50-White.png'),
-        }, {
-          txtName: 'WebView',
-          navName: 'web',
-          imgName: require('./../Icons/News-50-White.png'),
-        }, {
-          txtName: 'Campus Map',
-          navName: 'map',
-          imgName: require('./../Icons/Map-Marker-50-White.png'),
-        }, {
-          txtName: 'Schedule',
-          navName: 'schedule',
-          imgName: require('./../Icons/Calendar-50-White.png'),
-        }, {
-          txtName: 'WebView',
-          navName: 'web',
-          imgName: require('./../Icons/News-50-White.png'),
-        }, {
-          txtName: 'Green Print',
-          navName: 'tutorial',
-          imgName: require('./../Icons/Print-50-White.png'),
-        }, {
-          txtName: 'Food',
-          navName: 'food',
-          imgName: require('./../Icons/Restaurant-50-White.png'),
-        }, {
-          txtName: 'Combo Keeper',
-          navName: 'combokeeper',
-          imgName: require('./../Icons/Sport-50-White.png'),
-        }, {
-          txtName: 'Testing',
-          navName: 'testing',
-          imgName: require('./../Icons/News-50-White.png'),
-        },
-      ],
       homeSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => true,
       }).cloneWithRows([1, 1, 1, 1, 1, 1]),
     };
   }
 
-  partitionModules = (items) => {
-    var moduleList = [];
-    for (var i = 0; i < items.length / 6; i++) {
-      if (i + 1 > items.length / 6) {
-        for (var j = 0; j < items.length - (6 * i); j++) {
-          moduleList[j] = items[items.length - (6 * i) + j]
+  // componentWillReceiveProps(nextProps) {
+  //   this.partitionModules(nextProps.HOME_PORTALS)
+  // }
+  //
+  // componentWillMount() {
+  //   this.partitionModules(this.props.HOME_PORTALS)
+  // }
+  //
+  // partitionModules = (this.props.HOME_PORTALS) => {
+  //
+  //   }
+  //   this.forceUpdate()
+  // }
+
+
+  render() {
+    console.log('re rendering');
+    let moduleList = [];
+    const views = [];
+
+    for (let i = 0; i < this.props.HOME_PORTALS.length / 6; i++) {
+      if (i + 1 > this.props.HOME_PORTALS.length / 6) {
+        for (var j = 0; j < this.props.HOME_PORTALS.length - (6 * i); j++) {
+          moduleList[j] = this.props.HOME_PORTALS[this.props.HOME_PORTALS.length - (6 * i) + j];
         }
       } else {
         for (var j = 0; j < 6; j++) {
-          moduleList[j] = items[(6 * i) + j]
+          moduleList[j] = this.props.HOME_PORTALS[(6 * i) + j];
         }
       }
+
       views.push(
         <View key={i} style={{ width, height, backgroundColor: '#00713A' }}>
-        <PageList modules={moduleList} containerStyle={styles.grid} navigator={this.props.navigator}/>
+          <PageList modules={moduleList} containerStyle={styles.grid} navigator={this.props.navigator} />
         </View>,
       );
-      moduleList = []
+      moduleList = [];
     }
-  }
-
-  async updateInfo() {
-    try {
-      let userId = firebase.auth().currentUser.uid
-      let userMobilePath = "/user/" + userId
-      firebase.database().ref(userMobilePath).set({
-            email: firebase.auth().currentUser.email
-        })
-    } catch (e) {
-      console.error(e)
-    }
-  }
-
-  componentWillMount() {
-  this.updateInfo()
-    AsyncStorage.getItem('homeOrder').then((value) => {
-      if (value == null) {
-        AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
-      } else {
-        this.setState({ HOME_PORTALS: JSON.parse(value) });
-        this.partitionModules(this.state.HOME_PORTALS)
-      }
-    }).done();
-    this.render();
-  }
-
-  render() {
-    AsyncStorage.getItem('homeOrder').then((value) => {
-      this.setState({ HOME_PORTALS: JSON.parse(value) });
-    }).done();
+    // console.log(views[0]);
     return (
       <View
         style={{
@@ -150,7 +95,8 @@ export default class Root extends Component {
         <View style={styles.mainHeader}>
           <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True" />
         </View>
-        <Carousel
+        {views}
+        {/* <Carousel
           style={styles.scrollview}
           indicatorStyle={'white'}
           itemWidth={width}
@@ -159,8 +105,8 @@ export default class Root extends Component {
           inactiveSlideScale={1}
           bounces={false}
         >
-        {views}
-        </Carousel>
+          {views}
+        </Carousel>*/}
 
       </View>
     );

@@ -13,6 +13,7 @@ import {
   Router,
   StackRoute,
   withRouter,
+  AsyncStorage,
 } from 'react-router-native';
 import { Navigator, AppRegistry } from 'react-native';
 import EventItem from './components/eventItem';
@@ -46,6 +47,54 @@ let alreadyLogin = false
     constructor( props ) {
       super( props );
       Firebase.initialize( );
+      // this.refetch = this.refetch.bind(this)
+      this.orderChanged = this.orderChanged.bind(this)
+      console.log('constructing')
+      this.state = {
+        HOME_PORTALS: [
+          {
+            txtName: 'Dining',
+            navName: 'dining',
+            imgName:  require('./Icons/Restaurant-50-White.png'),
+          }, {
+            txtName: 'Events',
+            navName: 'events',
+            imgName: require('./Icons/T-Shirt-50-White.png'),
+          }, {
+            txtName: 'WebView',
+            navName: 'web',
+            imgName: require('./Icons/News-50-White.png'),
+          }, {
+            txtName: 'Campus Map',
+            navName: 'map',
+            imgName: require('./Icons/Map-Marker-50-White.png'),
+          }, {
+            txtName: 'Schedule',
+            navName: 'schedule',
+            imgName: require('./Icons/Calendar-50-White.png'),
+          }, {
+            txtName: 'WebView',
+            navName: 'web',
+            imgName: require('./Icons/News-50-White.png'),
+          }, {
+            txtName: 'Green Print',
+            navName: 'tutorial',
+            imgName: require('./Icons/Print-50-White.png'),
+          }, {
+            txtName: 'Food',
+            navName: 'food',
+            imgName: require('./Icons/Restaurant-50-White.png'),
+          }, {
+            txtName: 'Combo Keeper',
+            navName: 'combokeeper',
+            imgName: require('./Icons/Sport-50-White.png'),
+          }, {
+            txtName: 'Testing',
+            navName: 'testing',
+            imgName: require('./Icons/News-50-White.png'),
+          },
+        ],
+      }
     }
 
     componentWillMount( ) {
@@ -85,13 +134,41 @@ let alreadyLogin = false
       // console.log('Device info: ', device);
     }
 
+    orderChanged(newOrder) {
+      this.setState({HOME_PORTALS: newOrder})
+    }
+
+    // refetch() {
+    //   this.updateInfo()
+    //     AsyncStorage.getItem('homeOrder').then((value) => {
+    //       if (value == null) {
+    //         AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
+    //       } else {
+    //         this.setState({ HOME_PORTALS: JSON.parse(value) });
+    //         // this.partitionModules(this.state.HOME_PORTALS)
+    //       }
+    //     }).done();
+    // }
+    //
+    // async updateInfo() {
+    //   try {
+    //     let userId = firebase.auth().currentUser.uid
+    //     let userMobilePath = "/users/" + userId
+    //     firebase.database().ref(userMobilePath).set({
+    //           email: firebase.auth().currentUser.email
+    //       })
+    //   } catch (e) {
+    //     console.error(e)
+    //   }
+    // }
+
     renderScene = ( route, navigator ) => {
       if ( route.name === 'login' ) {
         return <Login navigator={navigator}/>;
       }
 
       if ( route.name === 'root' ) {
-        return <Root navigator={navigator}/>;
+        return <Root navigator={navigator} HOME_PORTALS={this.state.HOME_PORTALS}/>;
       }
 
       if ( route.name === 'dining' ) {
@@ -119,7 +196,7 @@ let alreadyLogin = false
       }
 
       if ( route.name === 'customize' ) {
-        return <Customize navigator={navigator}/>;
+        return <Customize navigator={navigator} orderChanged={this.orderChanged} HOME_PORTALS={this.state.HOME_PORTALS}/>;
       }
 
       if ( route.name === 'schedule' ) {
@@ -178,7 +255,7 @@ let alreadyLogin = false
       }
     else {
       return ( <Navigator initialRoute={{
-        name: 'login',
+        name: 'root',
         title: 'My Initial Scene',
         index: 0
       }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
