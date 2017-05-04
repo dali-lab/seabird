@@ -26,36 +26,40 @@ class Database {
 
   /**
    * Sets a users first name
-   * @param firstName
+   * @param first
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
-  static setUserFirstName(firstName) {
+  static setUserFirstName(first) {
     const user = Firebase.getUser();
     const userID = Firebase.getUserID();
     const path = `/users/${userID}`;
 
-    // set the user's display name to be their first name
-    user.updateProfile({
-      displayName: firstName,
-    });
+    if (first !== null && first !== undefined) {
+      // set the user's display name to be their first name
+      user.updateProfile({
+        displayName: first,
+      });
 
-    return Firebase.getDbRef(path).update({
-      firstName,
-    });
+      return Firebase.getDbRef(path).update({
+        firstName: first,
+      });
+    }
   }
 
   /**
    * Sets a users last name
-   * @param lastName
+   * @param last
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
-  static setUserLastName(lastName) {
+  static setUserLastName(last) {
     const userID = Firebase.getUserID();
     const path = `/users/${userID}`;
 
-    return Firebase.getDbRef(path).update({
-      lastName,
-    });
+    if (last !== null || last !== undefined) {
+      return Firebase.getDbRef(path).update({
+        lastName: last,
+      });
+    }
   }
 
   /**
@@ -68,33 +72,36 @@ class Database {
     const userID = Firebase.getUserID();
     const path = `/users/${userID}`;
 
-    // set the user's email address in User as well
-    user.updateEmail(email).then(() => {
-      // Update successful
-      alert('Email updated!');
-    }, (error) => {
-      // An error happened
-      alert('The email address is badly formatted');
-      return null;
-    });
+    console.log(`EMAIL: ${email}`);
+    if (email !== null || email !== undefined) {
+      // set the user's email address in User as well
+      user.updateEmail(email).then(() => {
+        // Update successful
+        alert('Email updated!');
+      }, (error) => {
+        // An error happened
+        alert('The email address is badly formatted');
+        return null;
+      });
 
-    return Firebase.getDbRef(path).update({
-      email: user.email,
-    });
+      return Firebase.getDbRef(path).update({
+        email: user.email,
+      });
+    }
   }
 
   /**
    * Sets a users homepage order
-   * @param homeOrder
+   * @param order
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
-  static setUserHomeOrder(homeOrder) {
+  static setUserHomeOrder(order) {
     const user = Firebase.getUser();
     const userID = Firebase.getUserID();
-    const path = `/users/${userID}`;
+    const path = `/users/${userID}/homeOrder`;
 
     Firebase.getDbRef(path).set({
-      homeOrder,
+      homeOrder: order,
     });
   }
 
@@ -112,6 +119,8 @@ class Database {
         firstName = snapshot.val().firstName;
       }
       callbackFunc(firstName);
+    }, (error) => {
+      console.log(error);
     });
   }
 
@@ -156,7 +165,7 @@ class Database {
    */
   static listenUserHomeOrder(callbackFunc) {
     const userID = Firebase.getUserID();
-    const path = `/users/${userID}`;
+    const path = `/users/${userID}/homeOrder`;
 
     Firebase.getDbRef(path).once('value').then((snapshot) => {
       let homeOrder = [];
@@ -164,6 +173,8 @@ class Database {
         homeOrder = snapshot.val().homeOrder;
       }
       callbackFunc(homeOrder);
+    }, (error) => {
+      console.log(error);
     });
   }
 

@@ -43,9 +43,10 @@ export default class Settings extends Component {
     Database.listenUserLastName(( value ) => {
       this.setState({ userLastName: value });
     });
-    Database.listenUserEmail(( value ) => {
+    /*Database.listenUserEmail(( value ) => {
       this.setState({ userEmail: value });
-    });
+    });*/
+    this.setState({ userEmail: Firebase.getUser( ).email })
   }
 
   navigatePush( routeName ) {
@@ -101,8 +102,6 @@ export default class Settings extends Component {
               }}*/
               value={Firebase.getUser( ).email}
             />
-
-            {/*{this.displayChangeEmail()}*/}
 
             <TouchableHighlight style={styles.saveSettings} onPress={() => this.saveAllSettings(this.state.userFirstName, this.state.userLastName, this.state.userEmail)}>
               <Text style={styles.saveSettingsText}>Save Changes</Text>
