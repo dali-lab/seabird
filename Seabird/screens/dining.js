@@ -19,6 +19,9 @@ const NAVBAR_TEXT = 'Dining';
 
 let diningLocations = [];
 
+
+let currentHour = new Date().getHours();
+
 export default class Dining extends Component {
 
   constructor(props) {
@@ -42,35 +45,130 @@ export default class Dining extends Component {
   };
 
   render() {
-    return (
-      <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
-          <View style={styles.contentHeader}>
-            <Image
-              source={require('./../Icons/breakfast-dark.png')}
-              style={styles.imageContainer}>
-              <Text style={styles.mealIntro}>Current swipe:</Text>
-              <Text style={styles.currentSwipe}>BREAKFAST</Text>
-              <Text style={styles.currentSwipeSub}>$5.25</Text>
-            </Image>
-          </View>
-          <View style={styles.infoLabels}>
-            <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
-            <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
-          </View>
-          <View style={styles.contentInformation}>
-            <ListView
-              dataSource={this.state.locationSource}
-              renderRow={this.renderRow}
-              contentContainerStyle={styles.grid}
-              enableEmptySections={true}>
-            </ListView>
-            <TouchableHighlight style={styles.CTA}>
-              <Text style={styles.menuOptions}>full menus</Text>
-            </TouchableHighlight>
-          </View>
-      </View>
-    )
+    if (7 <= currentHour && currentHour < 11) {
+        return (
+            <View style={styles.pageContent}>
+              <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
+              <View style={styles.contentHeader}>
+                <Image
+                    source={require('./../Icons/breakfast-dark.png')}
+                    style={styles.imageContainer}>
+                  <Text style={styles.mealIntro}>Current swipe:</Text>
+                  <Text style={styles.currentSwipe}>Breakfast</Text>
+                  <Text style={styles.currentSwipeSub}>$5.25</Text>
+                </Image>
+              </View>
+              <View style={styles.infoLabels}>
+                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
+                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
+              </View>
+              <View style={styles.contentInformation}>
+                <ListView
+                    dataSource={this.state.locationSource}
+                    renderRow={this.renderRow}
+                    contentContainerStyle={styles.grid}
+                    enableEmptySections={true}>
+                </ListView>
+                <TouchableHighlight style={styles.CTA}>
+                  <Text style={styles.menuOptions}>full menus</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+        )
+    }
+    else if (11 <= currentHour && currentHour < 16) {
+        return (
+            <View style={styles.pageContent}>
+              <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
+              <View style={styles.contentHeader}>
+                <Image
+                    source={require('./../Icons/breakfast-dark.png')}
+                    style={styles.imageContainer}>
+                  <Text style={styles.mealIntro}>Current swipe:</Text>
+                  <Text style={styles.currentSwipe}>Lunch</Text>
+                  <Text style={styles.currentSwipeSub}>$7.75</Text>
+                </Image>
+              </View>
+              <View style={styles.infoLabels}>
+                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
+                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
+              </View>
+              <View style={styles.contentInformation}>
+                <ListView
+                    dataSource={this.state.locationSource}
+                    renderRow={this.renderRow}
+                    contentContainerStyle={styles.grid}
+                    enableEmptySections={true}>
+                </ListView>
+                <TouchableHighlight style={styles.CTA}>
+                  <Text style={styles.menuOptions}>full menus</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+        )
+    }
+    else if (16 <= currentHour && currentHour < 21) {
+        return (
+            <View style={styles.pageContent}>
+              <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
+              <View style={styles.contentHeader}>
+                <Image
+                    source={require('./../Icons/breakfast-dark.png')}
+                    style={styles.imageContainer}>
+                  <Text style={styles.mealIntro}>Current swipe:</Text>
+                  <Text style={styles.currentSwipe}>Dinner</Text>
+                  <Text style={styles.currentSwipeSub}>$10.00</Text>
+                </Image>
+              </View>
+              <View style={styles.infoLabels}>
+                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
+                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
+              </View>
+              <View style={styles.contentInformation}>
+                <ListView
+                    dataSource={this.state.locationSource}
+                    renderRow={this.renderRow}
+                    contentContainerStyle={styles.grid}
+                    enableEmptySections={true}>
+                </ListView>
+                <TouchableHighlight style={styles.CTA}>
+                  <Text style={styles.menuOptions}>full menus</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+        )
+    }
+    else {
+        return (
+            <View style={styles.pageContent}>
+              <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
+              <View style={styles.contentHeader}>
+                <Image
+                    source={require('./../Icons/breakfast-dark.png')}
+                    style={styles.imageContainer}>
+                  <Text style={styles.mealIntro}>Current swipe:</Text>
+                  <Text style={styles.currentSwipe}>Late Night</Text>
+                  <Text style={styles.currentSwipeSub}>$5.25</Text>
+                </Image>
+              </View>
+              <View style={styles.infoLabels}>
+                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
+                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
+              </View>
+              <View style={styles.contentInformation}>
+                <ListView
+                    dataSource={this.state.locationSource}
+                    renderRow={this.renderRow}
+                    contentContainerStyle={styles.grid}
+                    enableEmptySections={true}>
+                </ListView>
+                <TouchableHighlight style={styles.CTA}>
+                  <Text style={styles.menuOptions}>full menus</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+        )
+    }
   }
 }
 
