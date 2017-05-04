@@ -18,6 +18,7 @@ import { NavBar } from './../components/navBar';
 import { PageList } from './../components/pageList';
 import Carousel from 'react-native-snap-carousel';
 import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
 
 const firebase = require('firebase/app');
 require('firebase/auth');
@@ -45,6 +46,11 @@ export default class Root extends Component {
     };
   }
 
+  componentWillMount() {
+    Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
+    this.props.updateHome(Database.listenUserHomeOrder());
+  }
+
   // componentWillReceiveProps(nextProps) {
   //   this.partitionModules(nextProps.HOME_PORTALS)
   // }
@@ -61,7 +67,7 @@ export default class Root extends Component {
 
 
   render() {
-    console.log('re rendering');
+    // console.log('re rendering');
     let moduleList = [];
     const views = [];
 

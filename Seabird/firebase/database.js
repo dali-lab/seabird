@@ -84,6 +84,21 @@ class Database {
   }
 
   /**
+   * Sets a users homepage order
+   * @param homeOrder
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static setUserHomeOrder(homeOrder) {
+    const user = Firebase.getUser();
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}`;
+
+    Firebase.getDbRef(path).set({
+      homeOrder,
+    });
+  }
+
+  /**
    * Listen for changes to a user's first name
    * @param callbackFunc
    */
@@ -131,6 +146,28 @@ class Database {
         email = snapshot.val().email;
       }
       callbackFunc(email);
+    });
+  }
+
+  /**
+   * Listen for changes to a user's home order
+   * @param homeOrder
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static listenUserHomeOrder() {
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}`;
+
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      let homeOrder = [];
+      if (snapshot.val()) {
+        homeOrder = snapshot.val().homeOrder;
+      }
+      console.log(homeOrder);
+      if (homeOrder !== []) {
+        return homeOrder;
+      }
+      return 'noChange';
     });
   }
 

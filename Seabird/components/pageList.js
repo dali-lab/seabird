@@ -45,7 +45,6 @@ export class PageList extends Component {
   }
 
   render() {
-    console.log('re renderin page list')
     return (
       <ListView
         scrollEnabled={false}

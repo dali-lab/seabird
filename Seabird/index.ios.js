@@ -19,6 +19,7 @@ import { Navigator, AppRegistry } from 'react-native';
 import EventItem from './components/eventItem';
 import OneSignal from 'react-native-onesignal';
 import Firebase from './firebase/firebase';
+import Database from './firebase/database';
 
 import Login from './screens/login';
 import Root from './screens/root';
@@ -48,8 +49,9 @@ let alreadyLogin = false
       super( props );
       Firebase.initialize( );
       // this.refetch = this.refetch.bind(this)
+      this.updateHome = this.updateHome.bind(this)
       this.orderChanged = this.orderChanged.bind(this)
-      console.log('constructing')
+      //console.log('constructing')
       this.state = {
         HOME_PORTALS: [
           {
@@ -106,7 +108,6 @@ let alreadyLogin = false
       OneSignal.sendTags({ "UserID": "12345", "UserName": "Sean", "UserYear": "2017" });
       // Calling promptLocation
       OneSignal.promptLocation( );
-
     }
 
     componentWillUnmount( ) {
@@ -135,12 +136,16 @@ let alreadyLogin = false
       // console.log('Device info: ', device);
     }
 
+    updateHome(newOrder) {
+      this.setState({ HOME_PORTALS: JSON.parse(newOrder) })
+    }
+
     orderChanged(newOrder) {
+      Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
       /*AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
         .then(() => {
           this.setState({ HOME_PORTALS: newOrder })
         });*/
-        this.setState({ HOME_PORTALS: newOrder })
     }
 
     // refetch() {
@@ -173,7 +178,8 @@ let alreadyLogin = false
       }
 
       if ( route.name === 'root' ) {
-        return <Root navigator={navigator} HOME_PORTALS={this.state.HOME_PORTALS}/>;
+        return <Root navigator={navigator} HOME_PORTALS={this.state.HOME_PORTALS}
+        updateHome={this.updateHome}/>;
       }
 
       if ( route.name === 'dining' ) {
@@ -266,7 +272,7 @@ let alreadyLogin = false
       }
     else {
       return ( <Navigator initialRoute={{
-        name: 'root',
+        name: 'login',
         title: 'My Initial Scene',
         index: 0
       }} renderScene={this.renderScene} configureScene={this.configureScene}/> );

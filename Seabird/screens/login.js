@@ -42,6 +42,7 @@ export default class Root extends Component {
       /* Toggles the error modal */
       this.setModalVisible(!this.state.modalVisible)
       console.log("Didn't log in")
+      console.log(e)
     }
   }
 
@@ -171,13 +172,16 @@ const styles = StyleSheet.create({
 
   /* Style for the credentials text input */
   credentials: {
-    height: 35,
-    backgroundColor: 'black',
-    color: 'white',
+    height: 40,
+    backgroundColor: '#eee',
+    color: '#111',
     width: width / 1.6,
     alignSelf: 'center',
     textAlign: 'center',
     marginTop: 20,
+    borderRadius: 5,
+    borderColor: '#111',
+    borderWidth: 1
   },
 
   /* Style for the Login button */

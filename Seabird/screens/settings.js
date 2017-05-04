@@ -43,9 +43,9 @@ export default class Settings extends Component {
     Database.listenUserLastName(( value ) => {
       this.setState({ userLastName: value });
     });
-    /*Database.listenUserEmail(( value ) => {
+    Database.listenUserEmail(( value ) => {
       this.setState({ userEmail: value });
-    });*/
+    });
   }
 
   navigatePush( routeName ) {
@@ -56,17 +56,8 @@ export default class Settings extends Component {
     saveAllSettings = (first, last, email) => {
       Database.setUserFirstName(first);
       Database.setUserLastName(last);
-      //Database.setUserEmail(email);
+      Database.setUserEmail(email);
     }
-
-  /*toggleChangingEmail = ( ) => {
-    if ( this.state.changingEmail ) {
-      Database.setUserEmail( this.state.userEmail );
-      this.setState({ changingEmail: false })
-    } else {
-      this.setState({ changingEmail: true });
-    }
-  }*/
 
   render( ) {
     return (
