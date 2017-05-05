@@ -35,7 +35,7 @@ import Tutorial from './screens/tutorial';
 import Map from './screens/map';
 import EventDetail from './screens/eventdetail';
 import ComboKeeper from './screens/combokeeper';
-import Testing from './screens/testing';
+import BuildingHours from './screens/buildingHours';
 import Food from './screens/food';
 
 var firebase = require("firebase/app");
@@ -91,8 +91,8 @@ let alreadyLogin = false
             navName: 'combokeeper',
             imgName: require('./Icons/Sport-50-White.png'),
           }, {
-            txtName: 'Testing',
-            navName: 'testing',
+            txtName: 'Building Hours',
+            navName: 'buildingHours',
             imgName: require('./Icons/News-50-White.png'),
           },
         ],
@@ -142,9 +142,10 @@ let alreadyLogin = false
     }
 
     orderChanged(newOrder) {
-      Database.setUserHomeOrder(JSON.stringify(newOrder));
       /* Changes the home page order */
+      console.log(newOrder)
       this.setState({ HOME_PORTALS: newOrder })
+      Database.setUserHomeOrder(JSON.stringify(newOrder));
       /*AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
         .then(() => {
           this.setState({ HOME_PORTALS: newOrder })
@@ -177,7 +178,8 @@ let alreadyLogin = false
 
     renderScene = ( route, navigator ) => {
       if ( route.name === 'login' ) {
-        return <Login navigator={navigator}/>;
+        return <Login navigator={navigator}
+        updateHome={this.updateHome}/>;
       }
 
       if ( route.name === 'root' ) {
@@ -233,8 +235,8 @@ let alreadyLogin = false
         return <ComboKeeper navigator={navigator}/>;
       }
 
-      if ( route.name === 'testing' ) {
-        return <Testing navigator={navigator}/>;
+      if ( route.name === 'buildingHours' ) {
+        return <BuildingHours navigator={navigator}/>;
       }
 
       if ( route.name === 'dining' ) {
@@ -275,7 +277,7 @@ let alreadyLogin = false
       }
     else {
       return ( <Navigator initialRoute={{
-        name: 'events',
+        name: 'login',
         title: 'My Initial Scene',
         index: 0
       }} renderScene={this.renderScene} configureScene={this.configureScene}/> );

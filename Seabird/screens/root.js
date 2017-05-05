@@ -48,10 +48,12 @@ export default class Root extends Component {
 
   componentWillMount() {
     // this.props.updateHome(Database.listenUserHomeOrder());
-    Database.listenUserHomeOrder((value) => {
-      this.props.updateHome(value);
-      Database.setUserHomeOrder(value);
-    });
+    // Database.listenUserHomeOrder((value) => {
+    //   if (value != '') {
+    //     this.props.updateHome(value);
+    //     Database.setUserHomeOrder(value);
+    //   }
+    // });
   }
   // componentWillReceiveProps(nextProps) {
   //   this.partitionModules(nextProps.HOME_PORTALS)
@@ -72,11 +74,10 @@ export default class Root extends Component {
     // console.log('re rendering');
     let moduleList = [];
     const views = [];
-
-    for (let i = 0; i < this.props.HOME_PORTALS.length / 6; i++) {
+    for (let i = 0; i < (this.props.HOME_PORTALS.length / 6); i++) {
       if (i + 1 > this.props.HOME_PORTALS.length / 6) {
         for (var j = 0; j < this.props.HOME_PORTALS.length - (6 * i); j++) {
-          moduleList[j] = this.props.HOME_PORTALS[this.props.HOME_PORTALS.length - (6 * i) + j];
+          moduleList[j] = this.props.HOME_PORTALS[this.props.HOME_PORTALS.length - (6 * i - (i + 1)) + j];
         }
       } else {
         for (var j = 0; j < 6; j++) {
@@ -91,7 +92,7 @@ export default class Root extends Component {
       );
       moduleList = [];
     }
-    // console.log(views[0]);
+
     return (
       <View
         style={{

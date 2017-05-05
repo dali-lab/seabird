@@ -11,6 +11,7 @@ import {
   Modal,
 } from 'react-native';
 import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
 
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
@@ -37,7 +38,15 @@ export default class Root extends Component {
   async login(email, password) {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
-      this.navigate('root')
+      Database.listenUserHomeOrder((value) => {
+        if (value != '' && value != '[]') {
+          this.props.updateHome(value);
+          Database.setUserHomeOrder(value);
+          this.navigate('root')
+        } else {
+          this.navigate('root')
+        }
+      })
     } catch (e) {
       /* Toggles the error modal */
       this.setModalVisible(!this.state.modalVisible)

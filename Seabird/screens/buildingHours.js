@@ -17,12 +17,11 @@ import { ActionList } from './../components/actionList';
 import { NavBar } from './../components/navBar';
 
 const COLOR1 = '#000'; // used for 3/6 buttons and the Next button (NOTE: original color)
-const COLOR2 = '#01964d'; // used for the other 3/6 buttons
-const SCHOOL_NAME = 'Dartmouth College'; // used for the title bar (although this will eventually be an image)
+const COLOR2 = '#01964d'; // used for the other 3/6 buttons (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
 import SortableGrid from 'react-native-sortable-grid';
 
-export default class Testing extends Component {
+export default class BuildingHours extends Component {
 
   navigate(routeName, transitionType = 'normal') {
     this.props.navigator.push({ name: routeName, transitionType });
@@ -46,9 +45,7 @@ export default class Testing extends Component {
       <View
         style={{
           flexDirection: 'column',
-          flexWrap: 'wrap',
-          alignItems: 'flex-start',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           backgroundColor: '#fff',
         }}
       >
@@ -163,4 +160,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('Testing', () => Testing);
+AppRegistry.registerComponent('BuildingHours', () => BuildingHours);
