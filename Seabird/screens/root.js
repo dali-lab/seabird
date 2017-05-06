@@ -47,7 +47,7 @@ export default class Root extends Component {
   }
 
   componentWillMount() {
-
+    Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
     // this.props.updateHome(Database.listenUserHomeOrder());
     // Database.listenUserHomeOrder((value) => {
     //   if (value != '') {

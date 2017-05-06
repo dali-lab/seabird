@@ -11,10 +11,16 @@ import {
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import { CustomizeList } from './../components/customizeList';
+import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
 import SortableGrid from 'react-native-sortable-grid';
+
+var firebase = require("firebase/app");
+require("firebase/auth");
+require("firebase/database");
 
 // the y value a block is dragged to before screen scrolls up/down
 // NOTE: these should be percentages of screen height
@@ -25,7 +31,7 @@ let SCROLL_DOWN_Y = 600;
 let dragTracker = null;
 // used to scroll up/down slightly when dragging a block
 let _scrollView: ScrollView;
-
+var newHome = []
 export default class Customize extends Component {
 
   constructor(props) {
@@ -38,15 +44,23 @@ export default class Customize extends Component {
   }
 
   componentWillMount() {
-    this.setState({ portal: this.props.HOME_PORTALS })
+    Database.listenUserHomeOrder((value) => {
+      this.setState({ portal: JSON.parse(value)})
+    })
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ portal: nextProps.HOME_PORTALS })
+    Database.listenUserHomeOrder((value) => {
+      this.setState({ portal: JSON.parse(value)})
+    })
   }
 
   navigatePop() {
     this.props.navigator.pop();
+  }
+
+  componentWillUnmount() {
+    this.props.orderChanged(newHome)
   }
 
   navigatePush(routeName) {
@@ -55,11 +69,10 @@ export default class Customize extends Component {
 
   rearrange = (value) => {
     this.setState({ scrolling: true })
-    var newHome = []
     for (var i = 0; i < this.state.portal.length; i++) {
         newHome[i] = this.state.portal[value.itemOrder[i].key]
     }
-    this.props.orderChanged(newHome)
+
   }
 
   toggleDeletePortals = () => {
