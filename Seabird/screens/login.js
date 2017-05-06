@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
   Modal,
   AsyncStorage,
+  PixelRatio
 } from 'react-native';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
@@ -19,6 +20,12 @@ const { height, width } = Dimensions.get('window');
 var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
+
+var SCHOOL_FONT_SIZE = 32;
+
+if (PixelRatio.get() <= 2) {
+  SCHOOL_FONT_SIZE = 26;
+}
 
 export default class Root extends Component {
 
@@ -170,7 +177,7 @@ const styles = StyleSheet.create({
 
   /* Style for the school name */
   schoolName: {
-    fontSize: 32,
+    fontSize: SCHOOL_FONT_SIZE,
     textAlign: 'center',
     width: width / 2.5,
     letterSpacing: 0.5,

@@ -6,11 +6,20 @@ import {
   View,
   ListView,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  PixelRatio
 } from 'react-native';
 
 import { Tile } from './tile';
 const { height, width } = Dimensions.get('window');
+
+let MODULE_FONT_SIZE = 20;
+let MODULE_TEXT_PADDING = 0;
+
+if (PixelRatio.get() <= 2) {
+  MODULE_FONT_SIZE = 18;
+  MODULE_TEXT_PADDING = -5;
+}
 
 export class PageList extends Component {
 
@@ -80,7 +89,8 @@ const styles = StyleSheet.create({
   /* Style for the tiles' text for the home screen */
   tileText: {
     top: 40,
-    fontSize: 20,
+    paddingTop: MODULE_TEXT_PADDING,
+    fontSize: MODULE_FONT_SIZE,
     fontFamily: 'System',
     fontWeight: '400',
     textAlign: 'center',

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  PixelRatio,
 } from 'react-native';
 
 export class Tile extends Component {

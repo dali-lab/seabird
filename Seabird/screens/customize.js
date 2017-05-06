@@ -60,7 +60,9 @@ export default class Customize extends Component {
   }
 
   componentWillUnmount() {
-    this.props.orderChanged(newHome)
+    if (newHome.length > 0) {
+      this.props.orderChanged(newHome)
+    }
   }
 
   navigatePush(routeName) {

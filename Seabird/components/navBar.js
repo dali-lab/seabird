@@ -6,12 +6,19 @@ import {
     Dimensions,
     TouchableHighlight,
     Image,
+    PixelRatio,
 } from 'react-native';
 import { BackButton } from './backButton';
 import { HomeButton } from './homeButton';
 
 // This is a navigation bar containing two buttons on either side, and text in the center.
 const { width } = Dimensions.get('window');
+
+let SCHOOL_FONT_SIZE = 24;
+
+if (PixelRatio.get() <= 2) {
+  SCHOOL_FONT_SIZE = 22;
+}
 
 export class NavBar extends Component {
 
@@ -68,7 +75,7 @@ const styles = StyleSheet.create({
   /* Style for the title of the navigation bar */
   title: {
     color: '#fff',
-    fontSize: 24,
+    fontSize: SCHOOL_FONT_SIZE,
     fontFamily: 'Avenir Next',
     fontWeight: '400',
     marginTop: -3,

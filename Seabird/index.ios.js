@@ -45,7 +45,42 @@ require("firebase/database");
 var email = ""
 var password = ""
 let alreadyLogin = false
-  export default class Seabird extends Component {
+
+const NoBackSwipeFloatRight ={
+  ...Navigator.SceneConfigs.FloatFromRight,
+    gestures: {
+      pop: {},
+    },
+};
+
+const NoBackSwipePushRight ={
+  ...Navigator.SceneConfigs.PushFromRight,
+    gestures: {
+      pop: {},
+    },
+};
+
+const NoBackSwipeFloatLeft ={
+  ...Navigator.SceneConfigs.FloatFromLeft,
+    gestures: {
+      pop: {},
+    },
+};
+
+const NoBackSwipeUp ={
+  ...Navigator.SceneConfigs.VerticalUpSwipeJump,
+    gestures: {
+      pop: {},
+    },
+};
+
+const NoBackSwipeDown ={
+  ...Navigator.SceneConfigs.VerticalDownSwipeJump,
+    gestures: {
+      pop: {},
+    },
+};
+export default class Seabird extends Component {
 
     constructor( props ) {
       super( props );
@@ -252,18 +287,18 @@ let alreadyLogin = false
 
     configureScene = ( route, routeStack ) => {
       if ( route.transitionType === 'up' ) {
-        return Navigator.SceneConfigs.VerticalUpSwipeJump;
+        return NoBackSwipeUp;
       }
       if ( route.transitionType === 'down' ) {
-        return Navigator.SceneConfigs.VerticalDownSwipeJump;
+        return NoBackSwipeDown;
       }
       if ( route.transitionType === 'floatRight' ) {
-        return Navigator.SceneConfigs.FloatFromRight;
+        return NoBackSwipeFloatRight;
       }
       if ( route.transitionType === 'floatLeft') {
-        return Navigator.SceneConfigs.FloatFromLeft;
+        return NoBackSwipeFloatLeft;
       }
-      return Navigator.SceneConfigs.PushFromRight;
+      return NoBackSwipePushRight;
     };
 
     render( ) {

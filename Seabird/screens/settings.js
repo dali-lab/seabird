@@ -9,7 +9,8 @@ import {
   Button,
   AsyncStorage,
   Dimensions,
-  TouchableHighlight
+  TouchableHighlight,
+  PixelRatio
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import Firebase from '../firebase/firebase';
@@ -53,14 +54,11 @@ export default class Settings extends Component {
     this.setState({ userEmail: Firebase.getUser( ).email })
   }
 
-  navigatePush( routeName, transitionType = 'normal' ) {
-    this.props.navigator.push({ name: routeName, transitionType });
-  }
-
   logoutUser = () => {
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
       // Must log out here
+      // this.navigate('root')
     }).catch(function(error) {
       // An error happened.
       console.log(error)
@@ -120,7 +118,7 @@ export default class Settings extends Component {
               <Text style={styles.saveSettingsText}>Save Changes</Text>
             </TouchableHighlight>
 
-            <Button onPress={this.navigatePush.bind( this, 'customize' )} title="Customize" color="#841584"/>
+            <Button onPress={this.navigate.bind( this, 'customize' )} title="Customize" color="#841584"/>
             <TouchableHighlight onPress={() => this.logoutUser()}style={styles.logoutButton}>
               <Text style={styles.logoutButtonText}>Log out</Text>
             </TouchableHighlight>
@@ -158,18 +156,10 @@ const styles = StyleSheet.create({
 
   /* Style for the intro phrase */
   settingsText: {
+    paddingLeft: width / 27,
     fontSize: 18,
     fontFamily: 'Avenir Next',
     textAlign: 'left'
-  },
-
-  /* Style for the intro phrase */
-  textInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 0,
-    marginBottom: 20,
-    fontFamily: 'Cochin'
   },
 
   /* Style for the current meal swipe */
@@ -226,6 +216,8 @@ const styles = StyleSheet.create({
 
   /* Style for the text input */
   textInput: {
+    width: width / 1.05,
+    alignSelf: 'center',
     borderRadius: 5,
     borderColor: '#ccc',
     borderWidth: 1,
