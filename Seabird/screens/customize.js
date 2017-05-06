@@ -33,7 +33,16 @@ export default class Customize extends Component {
     this.state = {
       scrolling: true,
       deletingPortals: false,
+      portal: [],
     };
+  }
+
+  componentWillMount() {
+    this.setState({ portal: this.props.HOME_PORTALS })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ portal: nextProps.HOME_PORTALS })
   }
 
   navigatePop() {
@@ -47,8 +56,8 @@ export default class Customize extends Component {
   rearrange = (value) => {
     this.setState({ scrolling: true })
     var newHome = []
-    for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
-        newHome[i] = this.props.HOME_PORTALS[value.itemOrder[i].key]
+    for (var i = 0; i < this.state.portal.length; i++) {
+        newHome[i] = this.state.portal[value.itemOrder[i].key]
     }
     this.props.orderChanged(newHome)
   }
@@ -107,7 +116,7 @@ export default class Customize extends Component {
               style={styles.grid}
               ref={'SortableGrid'}
             >
-              {this.props.HOME_PORTALS.map((letter, index) => (
+              {this.state.portal.map((letter, index) => (
                 <View style={styles.option} key={index}>
                   <Text style={styles.optionText}>{letter.txtName}</Text>
                 </View>))}

@@ -15,11 +15,17 @@ import {
 import { Tile } from './../components/tile';
 import { ActionList } from './../components/actionList';
 import { NavBar } from './../components/navBar';
+import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
 
 const COLOR1 = '#000'; // used for 3/6 buttons and the Next button (NOTE: original color)
 const COLOR2 = '#01964d'; // used for the other 3/6 buttons (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
 import SortableGrid from 'react-native-sortable-grid';
+const firebase = require('firebase/app');
+require('firebase/auth');
+require('firebase/database');
+
 
 export default class BuildingHours extends Component {
 
@@ -39,6 +45,14 @@ export default class BuildingHours extends Component {
     };
   }
 
+  componentWillMount() {
+    Database.listenUserBuildingSettings((value) => {
+      if (value !== null && value !== undefined) {
+        this.setState({ items: value });
+      }
+    });
+  }
+
   // TODO: consider using ScrollView instead to load all home tiles at beginning
   render() {
     return (
@@ -50,7 +64,7 @@ export default class BuildingHours extends Component {
         }}
       >
         <NavBar navigator={this.props.navigator} text="Testing" />
-        <ActionList />
+        <ActionList information={this.state.items} />
       </View>
     );
   }

@@ -106,6 +106,21 @@ class Database {
   }
 
   /**
+  * Sets a users combos
+  * @param userCombos
+  * @returns {firebase.Promis<any>|!firebase.Promise.<void>}
+  */
+  static setUserCombos(userCombos) {
+    const user = Firebase.getUser();
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}/combos`;
+
+    Firebase.getDbRef(path).set({
+      combos: userCombos,
+    });
+  }
+
+  /**
    * Listen for changes to a user's first name
    * @param callbackFunc
    */
@@ -173,6 +188,44 @@ class Database {
         homeOrder = snapshot.val().homeOrder;
       }
       callbackFunc(homeOrder);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+    /**
+     * Listens for changes to user's combos
+     * @returns {firstbase.Promise<any>|!firebase.Promise.<void>}
+     */
+  static listenUserCombos(callbackFunc) {
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}/combos`;
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      let combos = [];
+      if (snapshot.val()) {
+        combos = snapshot.val().combos;
+      }
+      callbackFunc(combos);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  /**
+   * Listens for changes to user's buildign hours
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static listenUserBuildingSettings(callbackFunc) {
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}/buildingSettings`;
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      let buildings = [];
+      if (snapshot.val()) {
+        console.log(`snapshot: ${snapshot.val()}`);
+        buildings = snapshot.val();
+      }
+      console.log(`buildings: ${buildings}`);
+      callbackFunc(buildings);
     }, (error) => {
       console.log(error);
     });

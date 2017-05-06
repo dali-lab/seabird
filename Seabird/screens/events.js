@@ -30,8 +30,6 @@ request.onreadystatechange = (e) => {
   if (request.status === 200) {
     responseXML = request.responseText;
     xmlDoc = parser.parseFromString(responseXML);
-    // console.log('success', responseXML);
-    // console.log('success2', xmlDoc);
   } else {
     console.warn('error');
   }

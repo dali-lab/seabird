@@ -31,9 +31,7 @@ export default class EventDetail extends Component {
     }).done();
   }
 
-  renderScene(route, navigator) {
-    // console.log(route.name)
-  }
+  renderScene(route, navigator) {  }
 
   navigate(routeName, transitionType = 'normal') {
     this.props.navigator.push({name: routeName, transitionType: transitionType,})

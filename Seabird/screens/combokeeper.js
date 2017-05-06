@@ -12,13 +12,22 @@ import {
   AsyncStorage,
   Modal,
   ReactPropTypes,
-  TextInput
+  TextInput,
+  ScrollView,
 } from 'react-native';
 import { NavBar } from './../components/navBar';
+import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
+
+var firebase = require("firebase/app");
+require("firebase/auth");
+require("firebase/database");
 
 const NAVBAR_TEXT = 'Combo Keeper';
 const { height, width, } = Dimensions.get( 'window' );
 const receivedJSON = [ ];
+
+let _scrollView: ScrollView;
 
 export default class ComboKeeper extends Component {
 
@@ -29,30 +38,88 @@ export default class ComboKeeper extends Component {
     });
     this.state = {
       bounceValue: new Animated.Value( 0 ),
-      numberText: '',
-      comboText: '',
-      passwordText: '',
-      otherText: ''
+      firstSlot: '',
+      secondSlot: '',
+      thirdSlot: '',
+      otherServices: ''
     };
   }
 
-  saveCombos = ( number, combination, password, other ) => {
-    // Save the combos to the database
+  componentWillMount() {
+    Database.listenUserCombos((value) => {
+      if (value != null && value != undefined) {
+        var combos = JSON.parse(value)
+        this.setState({firstSlot: combos[0].firstSlot})
+        this.setState({secondSlot: combos[1].secondSlot})
+        this.setState({thirdSlot: combos[2].thirdSlot})
+        this.setState({otherServices: combos[3].otherServices})
+      }
+    })
+  }
+
+  saveCombos = (combos) => {
+    var userCombos = [
+      {firstSlot: combos[0]},
+      {secondSlot: combos[1]},
+      {thirdSlot: combos[2]},
+      {otherServices: combos[3]},
+    ]
+    Database.setUserCombos(JSON.stringify(userCombos))
+  }
+
+  scrollScreen = (yVal) => {
+    _scrollView.scrollTo({y: yVal});
   }
 
   render( ) {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} rightButton={'Save'} rightButtonFunction={() => this.saveCombos( this.state.numberText, this.state.comboText, this.state.passwordText, this.state.otherText )}/>
+        <NavBar
+          navigator={this.props.navigator}
+          text={NAVBAR_TEXT} rightButton={'Save'}
+        />
         <View style={styles.mainContent}>
+        <ScrollView ref={(scrollView) => { _scrollView = scrollView; }}>
           <Text style={styles.inputLabel}>Hinman Box Number</Text>
-          <TextInput style={styles.smallInput} placeholder="i.e. HB 0000" selectionColor="#058e4b" onChangeText={numberText => this.setState({ numberText })}/>
+          <TextInput
+            style={styles.smallInput}
+            placeholder="i.e. HB 0000"
+            selectionColor="#058e4b"
+            onChangeText={firstSlot => this.setState({ firstSlot })}
+            onFocus={() => _scrollView.scrollTo({y: 100})}
+            onEndEditing={() => _scrollView.scrollTo({y: 0})}
+          />
           <Text style={styles.inputLabel}>Hinman Box Combination</Text>
-          <TextInput style={styles.smallInput} placeholder="i.e. Z-Z" selectionColor="#058e4b" onChangeText={comboText => this.setState({ comboText })}/>
+          <TextInput
+            style={styles.smallInput}
+            placeholder="i.e. Z-Z"
+            selectionColor="#058e4b"
+            onChangeText={secondSlot => this.setState({ secondSlot })}
+            onFocus={() => _scrollView.scrollTo({y: 100})}
+            onEndEditing={() => _scrollView.scrollTo({y: 0})}
+          />
           <Text style={styles.inputLabel}>Canvas Password</Text>
-          <TextInput style={styles.smallInput} placeholder="i.e. password123" selectionColor="#058e4b" onChangeText={passwordText => this.setState({ passwordText })}/>
+          <TextInput
+            style={styles.smallInput}
+            placeholder="i.e. password123"
+            selectionColor="#058e4b"
+            onChangeText={thirdSlot => this.setState({ thirdSlot })}
+            onFocus={() => _scrollView.scrollTo({y: 150})}
+            onEndEditing={() => _scrollView.scrollTo({y: 0})}
+          />
           <Text style={styles.inputLabel}>Other Services</Text>
-          <TextInput style={styles.largeInput} placeholder="" selectionColor="#058e4b" multiline onChangeText={otherText => this.setState({ otherText })}/>
+          <TextInput
+            style={styles.largeInput}
+            placeholder=""
+            selectionColor="#058e4b"
+            multiline onChangeText={otherServices => this.setState({ otherServices })}
+            onFocus={() => _scrollView.scrollTo({y: height / 3})}
+            onEndEditing={() => _scrollView.scrollTo({y: 0})}
+          />
+          <TouchableHighlight style={styles.saveButton} onPress={() => this.saveCombos([this.state.firstSlot, this.state.secondSlot, this.state.thirdSlot, this.state.otherServices])}>
+            <Text style={styles.saveButtonText}>SAVE</Text>
+          </TouchableHighlight>
+          </ScrollView>
         </View>
       </View>
     );
@@ -112,6 +179,24 @@ const styles = StyleSheet.create({
     marginRight: width / 15,
     marginLeft: width / 15,
     marginTop: 10
+  },
+
+  /* Style for the save button */
+  saveButton: {
+    height: 40,
+    width: width / 3,
+    alignSelf: 'flex-end',
+    borderRadius: 3,
+    backgroundColor: '#00713A',
+  },
+
+  /* Style for the save button text */
+  saveButtonText: {
+    color: 'white',
+    fontSize: 18,
+    fontFamily: 'Arial',
+    paddingTop: 10,
+    textAlign: 'center'
   }
 });
 

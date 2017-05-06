@@ -9,6 +9,7 @@ import {
   TextInput,
   TouchableHighlight,
   Modal,
+  AsyncStorage,
 } from 'react-native';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
@@ -125,6 +126,7 @@ export default class Root extends Component {
           style={styles.credentials}
           onChangeText={username => this.setState({ username })}
           //onFocus={() => this.updateText('', this.state.password)}
+          autoFocus={true}
           placeholder="Username"
           value={this.state.username}
           returnKeyType = {"next"}

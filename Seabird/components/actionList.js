@@ -35,6 +35,7 @@ export class ActionList extends Component {
   fetchData = () => {
     // Fetch the data from Firebase and update the itemsSource object
     this.setState({ itemsSource: ds.cloneWithRows([1, 1, 1, 1, 1, 1, 1, 1]) });
+    //this.setState({ itemsSource: ds.cloneWithRows(this.props.information)})
   }
 
   completeAction = () => {

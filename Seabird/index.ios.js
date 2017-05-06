@@ -42,6 +42,8 @@ var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
 
+var email = ""
+var password = ""
 let alreadyLogin = false
   export default class Seabird extends Component {
 
@@ -143,7 +145,7 @@ let alreadyLogin = false
 
     orderChanged(newOrder) {
       /* Changes the home page order */
-      console.log(newOrder)
+      //console.log(newOrder)
       this.setState({ HOME_PORTALS: newOrder })
       Database.setUserHomeOrder(JSON.stringify(newOrder));
       /*AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
@@ -265,9 +267,10 @@ let alreadyLogin = false
     };
 
     render( ) {
-      if (Firebase.getUser() != null) {
+      /*if (Firebase.getUser() != null) {
         alreadyLogin = Firebase.isUserSignedIn( this.userIsSignedIn )
-      }
+      }*/
+
       if ( alreadyLogin ) {
         return ( <Navigator initialRoute={{
           name: 'root',
