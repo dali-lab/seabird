@@ -41,6 +41,12 @@ export default class Settings extends Component {
     this.props.navigator.push({ name: routeName, transitionType });
   }
 
+  navigatePush(routeName) {
+    this.props.navigator.push({
+      name: routeName,
+    });
+  }
+
   componentWillMount( ) {
     Database.listenUserFirstName(( value ) => {
       this.setState({ userFirstName: value });
@@ -56,13 +62,10 @@ export default class Settings extends Component {
 
   logoutUser = () => {
     firebase.auth().signOut().then(function() {
-      // Sign-out successful.
-      // Must log out here
-      // this.navigate('root')
     }).catch(function(error) {
-      // An error happened.
       console.log(error)
     });
+    this.navigatePush('login')
   }
 
   saveAllSettings = (first, last, email) => {

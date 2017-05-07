@@ -212,7 +212,24 @@ class Database {
   }
 
   /**
-   * Listens for changes to user's buildign hours
+   * Listens for changes to events
+   * @returns {firebase.Promis<any>|!firebase.Promise.<void>}
+   */
+  static listenEvents(callbackFunc) {
+    const path = '/events';
+    Firebase.getDbRef(path).orderByChild('key').on('value', (snapshot) => {
+      const events = [];
+      snapshot.forEach((childSnapshot) => {
+        events.push(childSnapshot.val());
+      });
+      callbackFunc(events);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  /**
+   * Listens for changes to user's building hours
    * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
   static listenUserBuildingSettings(callbackFunc) {
@@ -221,10 +238,8 @@ class Database {
     Firebase.getDbRef(path).once('value').then((snapshot) => {
       let buildings = [];
       if (snapshot.val()) {
-        console.log(`snapshot: ${snapshot.val()}`);
         buildings = snapshot.val();
       }
-      console.log(`buildings: ${buildings}`);
       callbackFunc(buildings);
     }, (error) => {
       console.log(error);

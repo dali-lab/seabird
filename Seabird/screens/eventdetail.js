@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -9,8 +9,9 @@ import {
   TouchableHighlight,
   ListView,
 } from 'react-native';
-import {NavBar} from './../components/navBar';
-import {CustomizeList} from './../components/customizeList';
+import { NavBar } from './../components/navBar';
+import { CustomizeList } from './../components/customizeList';
+import Moment from 'moment';
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = '';
@@ -19,22 +20,15 @@ export default class EventDetail extends Component {
 
   constructor(props) {
     super();
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows(['row 1', 'row 2', 'row 3', 'row 4']),
-    };
   }
 
-  componentDidMount() {
-    AsyncStorage.getItem('tileOrder').then((value) => {
-      this.setState({tileOrder: value});
-    }).done();
+  componentWillMount() {
   }
 
-  renderScene(route, navigator) {  }
+  renderScene(route, navigator) { }
 
   navigate(routeName, transitionType = 'normal') {
-    this.props.navigator.push({name: routeName, transitionType: transitionType,})
+    this.props.navigator.push({ name: routeName, transitionType });
   }
 
   navigatePop() {
@@ -42,21 +36,7 @@ export default class EventDetail extends Component {
   }
 
   navigatePush(routeName) {
-    this.props.navigator.push({name: routeName});
-  }
-
-  renderRow = (rowData, sectionID, rowID) => {
-    /* Expects items to have specific format to distinguish between date and event information */
-    if (rowData == 'row 1') {
-      return(
-        <Text style={styles.listHeader}>{rowData}</Text>
-      )
-    }
-    else {
-      return(
-        <Text style={styles.listEvents}>{rowData}</Text>
-      )
-    }
+    this.props.navigator.push({ name: routeName });
   }
 
   render() {
@@ -64,16 +44,16 @@ export default class EventDetail extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={this.props.data} />
         <View style={styles.mainContent}>
-          <View style={{flex: 7}}>
-            <Text style={styles.eventDate}>Tuesday, February 21</Text>
+          <View style={{ flex: 7 }}>
+            <Text style={styles.eventDate}>{Moment(this.props.currentEvent.day).format('dddd, MMMM do')}</Text>
           </View>
-          <View style={{flex: 2, flexDirection: 'row', alignSelf: 'center'}}>
-          <Text style={styles.eventHour}>5PM:</Text>
-          <Text style={styles.eventHour}> </Text>
-          <Text style={styles.eventTitle}>Free Ramunto's & Music</Text>
+          <View style={{ flex: 2, flexDirection: 'row', alignSelf: 'center' }}>
+            <Text style={styles.eventHour}>{Moment(this.props.currentEvent.startTime).format('h:mm A')} </Text>
+            <Text style={styles.eventHour} />
+            <Text style={styles.eventTitle}>{this.props.currentEvent.event}</Text>
           </View>
-          <View style={{flex: 30}}>
-            <Text style={styles.eventLocation}>@ Trikap</Text>
+          <View style={{ flex: 30 }}>
+            <Text style={styles.eventLocation}>{this.props.currentEvent.location}</Text>
             {/* This is where we would add the event tags */}
           </View>
         </View>
@@ -98,7 +78,7 @@ const styles = StyleSheet.create({
 
   /* Style for the header section that holds the school name and crest */
   mainHeader: {
-    width: width,
+    width,
     height: 60,
     marginBottom: 2,
     backgroundColor: 'white',

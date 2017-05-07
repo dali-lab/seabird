@@ -86,10 +86,12 @@ export default class Seabird extends Component {
       super( props );
       Firebase.initialize( );
       // this.refetch = this.refetch.bind(this)
+      this.passEvent = this.passEvent.bind(this)
       this.updateHome = this.updateHome.bind(this)
       this.orderChanged = this.orderChanged.bind(this)
       //console.log('constructing')
       this.state = {
+        currentEvent: '',
         HOME_PORTALS: [
           {
             txtName: 'Dining',
@@ -173,6 +175,10 @@ export default class Seabird extends Component {
       // console.log('Device info: ', device);
     }
 
+    passEvent(userEvent) {
+      this.setState({ currentEvent: userEvent})
+    }
+
     updateHome(newOrder) {
       var newHomeOrder = JSON.parse(newOrder)
       this.setState({ HOME_PORTALS: newHomeOrder })
@@ -180,38 +186,9 @@ export default class Seabird extends Component {
 
     orderChanged(newOrder) {
       /* Changes the home page order */
-      //console.log(newOrder)
       this.setState({ HOME_PORTALS: newOrder })
       Database.setUserHomeOrder(JSON.stringify(newOrder));
-      /*AsyncStorage.setItem('homeOrder', JSON.stringify(newHome))
-        .then(() => {
-          this.setState({ HOME_PORTALS: newOrder })
-        });*/
     }
-
-    // refetch() {
-    //   this.updateInfo()
-    //     AsyncStorage.getItem('homeOrder').then((value) => {
-    //       if (value == null) {
-    //         AsyncStorage.setItem('homeOrder', JSON.stringify(this.state.HOME_PORTALS));
-    //       } else {
-    //         this.setState({ HOME_PORTALS: JSON.parse(value) });
-    //         // this.partitionModules(this.state.HOME_PORTALS)
-    //       }
-    //     }).done();
-    // }
-    //
-    // async updateInfo() {
-    //   try {
-    //     let userId = firebase.auth().currentUser.uid
-    //     let userMobilePath = "/users/" + userId
-    //     firebase.database().ref(userMobilePath).set({
-    //           email: firebase.auth().currentUser.email
-    //       })
-    //   } catch (e) {
-    //     console.error(e)
-    //   }
-    // }
 
     renderScene = ( route, navigator ) => {
       if ( route.name === 'login' ) {
@@ -233,7 +210,13 @@ export default class Seabird extends Component {
       }
 
       if ( route.name === 'events' ) {
-        return <Events navigator={navigator}/>;
+        return <Events navigator={navigator}
+        passEvent={this.passEvent}/>;
+      }
+
+      if ( route.name === 'eventsdetails') {
+        return <EventDetail navigator={navigator}
+        currentEvent={this.state.currentEvent}/>;
       }
 
       if ( route.name === 'eventscalendar' ) {

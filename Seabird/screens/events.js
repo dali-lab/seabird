@@ -12,9 +12,16 @@ import {
 import {NavBar} from './../components/navBar';
 import {CustomizeList} from './../components/customizeList';
 import EventItem from './../components/eventItem';
+import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
+import Moment from 'moment'
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Events';
+
+var firebase = require("firebase/app");
+require("firebase/auth");
+require("firebase/database");
 
 // reading xml
 const xmlURL = "https://spreadsheets.google.com/feeds/list/1W1CvcU9EllQs-DBo4KFz5HM_a67svd1Xj_3CxiZCVIA/1/public/values";
@@ -44,20 +51,6 @@ export default class Events extends Component {
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: ds.cloneWithRows([
-        // xmlDoc.getElementsByTagName("title")[1].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[1].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("title")[2].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[2].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("title")[3].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[3].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("title")[4].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[4].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("title")[5].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[5].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("title")[6].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[6].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("title")[7].childNodes[0].data,
-        // xmlDoc.getElementsByTagName("content")[7].childNodes[0].data,
         '...and some more....',
         "here is some more",
         "other data is passed",
@@ -65,10 +58,10 @@ export default class Events extends Component {
     };
   }
 
-  componentDidMount() {
-    // to get all items, use the following, with i ranging from 1 to length of list (?):
-    //  console.log(xmlDoc.getElementsByTagName("title")[i].childNodes[0]);
-    //  console.log(xmlDoc.getElementsByTagName("content")[i].childNodes[0]);
+  componentWillMount() {
+    Database.listenEvents((value) => {
+      this.setState({ dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(value) })
+    })
   }
 
   navigate(routeName, transitionType = 'normal') {
@@ -79,7 +72,8 @@ export default class Events extends Component {
     this.props.navigator.pop();
   }
 
-  navigatePush(routeName) {
+  navigatePush(routeName, userEvent) {
+    this.props.passEvent(userEvent)
     this.props.navigator.push({
       name: routeName,
     });
@@ -88,15 +82,17 @@ export default class Events extends Component {
   renderRow = (rowData, sectionID, rowID) => {
     /* Form dates to distinguish from events */
     return (
+      <TouchableHighlight underlayColor="transparent" onPress={() => this.navigatePush('eventsdetails', rowData)}>
       <View style={styles.listSection}>
       <View style={styles.listSectionTime}>
-        <Text style={styles.listSectionTimeText}>10:00 AM</Text>
+        <Text style={styles.listSectionTimeText}>{Moment(rowData.startTime).format('h:mm A')}</Text>
       </View>
       <View style={styles.listSectionInfo}>
-        <Text style={styles.listSectionTitle}>TITLE</Text>
-        <Text style={styles.listSectionText}>{rowData}</Text>
+        <Text style={styles.listSectionTitle}>{rowData.event}</Text>
+        <Text style={styles.listSectionText}>{rowData.details}</Text>
       </View>
       </View>
+      </TouchableHighlight>
     )
   }
 
@@ -231,6 +227,7 @@ const styles = StyleSheet.create({
 
   /* Style for the list section time's text */
   listSectionTimeText: {
+    width: width / 5,
     fontSize: 16,
     fontWeight: 'bold',
     fontFamily: 'Avenir'
