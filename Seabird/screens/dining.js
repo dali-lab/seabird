@@ -82,7 +82,7 @@ export default class Dining extends Component {
               <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
               <View style={styles.contentHeader}>
                 <Image
-                    source={require('./../Icons/breakfast-dark.png')}
+                    source={require('./../Icons/lunch.jpg')}
                     style={styles.imageContainer}>
                   <Text style={styles.mealIntro}>Current swipe:</Text>
                   <Text style={styles.currentSwipe}>Lunch</Text>
@@ -113,7 +113,7 @@ export default class Dining extends Component {
               <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
               <View style={styles.contentHeader}>
                 <Image
-                    source={require('./../Icons/breakfast-dark.png')}
+                    source={require('./../Icons/dinner.jpg')}
                     style={styles.imageContainer}>
                   <Text style={styles.mealIntro}>Current swipe:</Text>
                   <Text style={styles.currentSwipe}>Dinner</Text>
@@ -144,7 +144,7 @@ export default class Dining extends Component {
               <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
               <View style={styles.contentHeader}>
                 <Image
-                    source={require('./../Icons/breakfast-dark.png')}
+                    source={require('./../Icons/late_night.jpg')}
                     style={styles.imageContainer}>
                   <Text style={styles.mealIntro}>Current swipe:</Text>
                   <Text style={styles.currentSwipe}>Late Night</Text>

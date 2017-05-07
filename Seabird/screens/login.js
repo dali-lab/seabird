@@ -69,13 +69,13 @@ export default class Root extends Component {
       var errorMessage = error.message;
       console.log(errorCode + ": " + errorMessage)
     });
-  }
+  };
 
   userIsSignedIn = () => {
     console.log('USER IS ALREADY SIGNED IN');
     console.log(Firebase.getUser());
     this.props.navigator.push({name: 'root'});
-  }
+  };
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});

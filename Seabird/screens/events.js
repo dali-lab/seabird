@@ -94,7 +94,7 @@ export default class Events extends Component {
       </View>
       </TouchableHighlight>
     )
-  }
+  };
 
   renderHeader = (rowData, sectionID, rowID) => {
     return (
@@ -102,7 +102,7 @@ export default class Events extends Component {
         <Text style={styles.listHeaderText}>Header for this section</Text>
       </View>
     )
-  }
+  };
 
   render() {
     return (
