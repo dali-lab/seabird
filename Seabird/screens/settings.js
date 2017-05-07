@@ -63,13 +63,13 @@ export default class Settings extends Component {
       // An error happened.
       console.log(error)
     });
-  }
+  };
 
   saveAllSettings = (first, last, email) => {
     Database.setUserFirstName(first);
     Database.setUserLastName(last);
     Database.setUserEmail(email);
-  }
+  };
 
   render( ) {
     return (
@@ -108,12 +108,8 @@ export default class Settings extends Component {
             <TextInput
               ref='Email'
               style={styles.textInput}
-              /*onChangeText={( value ) => {
-                this.setState({ userEmail: value })
-              }}*/
               value={Firebase.getUser( ).email}
             />
-
             <TouchableHighlight style={styles.saveSettings} onPress={() => this.saveAllSettings(this.state.userFirstName, this.state.userLastName, this.state.userEmail)}>
               <Text style={styles.saveSettingsText}>Save Changes</Text>
             </TouchableHighlight>

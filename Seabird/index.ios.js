@@ -315,7 +315,7 @@ export default class Seabird extends Component {
       }
     else {
       return ( <Navigator initialRoute={{
-        name: 'login',
+        name: 'dining',
         title: 'My Initial Scene',
         index: 0
       }} renderScene={this.renderScene} configureScene={this.configureScene}/> );

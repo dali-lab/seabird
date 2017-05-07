@@ -74,7 +74,7 @@ export default class Food extends Component {
 
   renderRow = (rowData, sectionID, rowID) => {
     /* Form dates to distinguish from events */
-    if ((rowData == 'OPEN NOW:') || (rowData == 'CLOSED NOW:')) {
+    if ((rowData == 'OPEN:') || (rowData == 'CLOSED')) {
       return(
         <Text style={styles.listHeader}>{rowData}</Text>
       )
