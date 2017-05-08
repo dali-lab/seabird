@@ -21,6 +21,12 @@ let diningLocations = [];
 
 
 let currentHour = new Date().getHours();
+// let currentHour = 8;
+// let currentHour = 13;
+// let currentHour = 2;
+// let currentHour = 20;
+
+
 
 export default class Dining extends Component {
 

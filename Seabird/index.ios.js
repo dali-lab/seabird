@@ -37,6 +37,7 @@ import EventDetail from './screens/eventdetail';
 import ComboKeeper from './screens/combokeeper';
 import BuildingHours from './screens/buildingHours';
 import Food from './screens/food';
+import Signup from './screens/signup';
 
 var firebase = require("firebase/app");
 require("firebase/auth");
@@ -180,7 +181,7 @@ export default class Seabird extends Component {
     }
 
     updateHome(newOrder) {
-      var newHomeOrder = JSON.parse(newOrder)
+      let newHomeOrder = JSON.parse(newOrder)
       this.setState({ HOME_PORTALS: newHomeOrder })
     }
 
@@ -266,7 +267,11 @@ export default class Seabird extends Component {
       if ( route.name === 'food' ) {
         return <Food navigator={navigator}/>;
       }
-    }
+
+      if ( route.name === 'signup' ) {
+        return <Signup navigator={navigator}/>
+      }
+    };
 
     configureScene = ( route, routeStack ) => {
       if ( route.transitionType === 'up' ) {
@@ -296,7 +301,8 @@ export default class Seabird extends Component {
           index: 0
         }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
       }
-    else {
+
+      else {
       return ( <Navigator initialRoute={{
         name: 'login',
         title: 'My Initial Scene',

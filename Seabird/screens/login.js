@@ -17,11 +17,11 @@ import Database from '../firebase/database';
 
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
-var firebase = require("firebase/app");
+let firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
 
-var SCHOOL_FONT_SIZE = 32;
+let SCHOOL_FONT_SIZE = 32;
 
 if (PixelRatio.get() <= 2) {
   SCHOOL_FONT_SIZE = 26;
@@ -65,8 +65,8 @@ export default class Root extends Component {
   signup = (email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
       // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      let errorCode = error.code;
+      let errorMessage = error.message;
       console.log(errorCode + ": " + errorMessage)
     });
   };
@@ -159,9 +159,12 @@ export default class Root extends Component {
           <Text style={styles.loginText}>LOG IN</Text>
         </TouchableHighlight>
 
-        <TouchableHighlight style={styles.login} onPress={() => this.signup(this.state.username, this.state.password)}>
+        <TouchableHighlight style={styles.login} onPress={() => this.navigate('signup')}>
           <Text style={styles.loginText}>SIGN UP</Text>
         </TouchableHighlight>
+        {/*<TouchableHighlight style={styles.login} onPress={() => this.signup(this.state.username, this.state.password)}>*/}
+          {/*<Text style={styles.loginText}>SIGN UP</Text>*/}
+        {/*</TouchableHighlight>*/}
       </View>
     );
   }
