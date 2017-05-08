@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'; 
 
 // Gets data from DB.
 export function queryDB(child) {
