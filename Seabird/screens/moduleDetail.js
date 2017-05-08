@@ -40,7 +40,7 @@ export default class ModuleDetails extends Component {
 
   renderRow = (rowData, sectionID, rowID) => {
     return (
-      <TouchableHighlight underlayColor="transparent" onPress={() => console.log('what')}>
+      <TouchableHighlight underlayColor="transparent" onPress={() => this.navigate(rowData)}>
       <View style={styles.rowSection}>
         <Text style={styles.sectionText}>{rowData}</Text>
       </View>
