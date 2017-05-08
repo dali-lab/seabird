@@ -19,6 +19,7 @@ import { PageList } from './../components/pageList';
 import Carousel from 'react-native-snap-carousel';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
+import LinearGradient from 'react-native-linear-gradient';
 
 const firebase = require('firebase/app');
 require('firebase/auth');
@@ -48,37 +49,15 @@ export default class Root extends Component {
 
   componentWillMount() {
     Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
-    // this.props.updateHome(Database.listenUserHomeOrder());
-    // Database.listenUserHomeOrder((value) => {
-    //   if (value != '') {
-    //     this.props.updateHome(value);
-    //     Database.setUserHomeOrder(value);
-    //   }
-    // });
   }
-  // componentWillReceiveProps(nextProps) {
-  //   this.partitionModules(nextProps.HOME_PORTALS)
-  // }
-  //
-  // componentWillMount() {
-  //   this.partitionModules(this.props.HOME_PORTALS)
-  // }
-  //
-  // partitionModules = (this.props.HOME_PORTALS) => {
-  //
-  //   }
-  //   this.forceUpdate()
-  // }
-
 
   render() {
-    // console.log('re rendering');
     let moduleList = [];
     const views = [];
     for (let i = 0; i < (this.props.HOME_PORTALS.length / 6); i++) {
       if (i + 1 > this.props.HOME_PORTALS.length / 6) {
         for (var j = 0; j < this.props.HOME_PORTALS.length - (6 * i); j++) {
-          moduleList[j] = this.props.HOME_PORTALS[this.props.HOME_PORTALS.length - (6 * i - (i + 1)) + j];
+          moduleList[j] = this.props.HOME_PORTALS[this.props.HOME_PORTALS.length - (6 * i - (i)) + j];
         }
       } else {
         for (var j = 0; j < 6; j++) {
@@ -87,7 +66,7 @@ export default class Root extends Component {
       }
 
       views.push(
-        <View key={i} style={{ width, height, backgroundColor: '#00713A' }}>
+        <View key={i} style={{ width, height }}>
           <PageList modules={moduleList} containerStyle={styles.grid} navigator={this.props.navigator} />
         </View>,
       );
@@ -95,28 +74,31 @@ export default class Root extends Component {
     }
 
     return (
-      <View
-        style={{
-          alignItems: 'flex-start',
-          backgroundColor: '#065539',
-        }}
-      >
-
+      <View style={{ flex: 1 }}>
         <View style={styles.mainHeader}>
           <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True" />
         </View>
-        <Carousel
-          style={styles.scrollview}
-          indicatorStyle={'white'}
-          itemWidth={width}
-          sliderWidth={100}
-          scrollEventThrottle={200}
-          inactiveSlideScale={1}
-          bounces={false}
+        <LinearGradient
+          start={{ x: 0.0, y: 0.15 }} end={{ x: 0.3, y: 1.0 }}
+          locations={[0, 0.0, 0.8]}
+          colors={['rgba(122, 196, 28, 0.9)', 'rgba(126, 201, 29, 0.9)', 'rgba(7, 128, 75, 0.9)']}
+          style={{
+            flex: 1,
+            alignItems: 'flex-start',
+          }}
         >
-          {views}
-        </Carousel>
-
+          <Carousel
+            style={styles.scrollview}
+            indicatorStyle={'white'}
+            itemWidth={width}
+            sliderWidth={100}
+            scrollEventThrottle={200}
+            inactiveSlideScale={1}
+            bounces={false}
+          >
+            {views}
+          </Carousel>
+        </LinearGradient>
       </View>
     );
   }
@@ -128,7 +110,6 @@ const styles = StyleSheet.create({
     width,
     height: 60,
     marginBottom: 2,
-    backgroundColor: '#00713A',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',

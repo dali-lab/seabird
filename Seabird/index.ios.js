@@ -38,6 +38,7 @@ import ComboKeeper from './screens/combokeeper';
 import BuildingHours from './screens/buildingHours';
 import Food from './screens/food';
 import Signup from './screens/signup';
+import ModuleDetails from './screens/moduleDetail';
 
 var firebase = require("firebase/app");
 require("firebase/auth");
@@ -271,6 +272,10 @@ export default class Seabird extends Component {
       if ( route.name === 'signup' ) {
         return <Signup navigator={navigator}/>
       }
+
+      if ( route.name === 'academics' ) {
+        return <ModuleDetails navigator={navigator}/>
+      }
     };
 
     configureScene = ( route, routeStack ) => {
@@ -290,9 +295,6 @@ export default class Seabird extends Component {
     };
 
     render( ) {
-      /*if (Firebase.getUser() != null) {
-        alreadyLogin = Firebase.isUserSignedIn( this.userIsSignedIn )
-      }*/
 
       if ( alreadyLogin ) {
         return ( <Navigator initialRoute={{

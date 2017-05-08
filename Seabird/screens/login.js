@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
+import LinearGradient from 'react-native-linear-gradient';
 
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
@@ -162,9 +163,6 @@ export default class Root extends Component {
         <TouchableHighlight style={styles.login} onPress={() => this.navigate('signup')}>
           <Text style={styles.loginText}>SIGN UP</Text>
         </TouchableHighlight>
-        {/*<TouchableHighlight style={styles.login} onPress={() => this.signup(this.state.username, this.state.password)}>*/}
-          {/*<Text style={styles.loginText}>SIGN UP</Text>*/}
-        {/*</TouchableHighlight>*/}
       </View>
     );
   }
@@ -275,7 +273,7 @@ const styles = StyleSheet.create({
   /* Style for the modal action button text */
   modalButtonText: {
     textAlign: 'center'
-  }
+  },
 });
 
 AppRegistry.registerComponent('Login', () => Login);

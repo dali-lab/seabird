@@ -17,9 +17,13 @@ export class Tile extends Component {
   render() {
     return (
       <TouchableHighlight onPress={this.navigate.bind(this, this.props.navName)} underlayColor="rgba(0, 0, 0, 0)">
-        <View style={this.props.tileStyle}>
-          <Image source={this.props.imgSource} style={styles.icon} />
-          <Text style={this.props.textStyle}>{this.props.text}</Text>
+        <View>
+          <View style={this.props.tileStyle}>
+            <Image source={this.props.imgSource} style={styles.icon} />
+          </View>
+          <View style={this.props.tileTextSection}>
+            <Text style={this.props.textStyle}>{this.props.text.toUpperCase()}</Text>
+          </View>
         </View>
       </TouchableHighlight>
     );

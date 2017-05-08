@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { BackButton } from './backButton';
 import { HomeButton } from './homeButton';
+import LinearGradient from 'react-native-linear-gradient';
 
 // This is a navigation bar containing two buttons on either side, and text in the center.
 const { width } = Dimensions.get('window');
@@ -29,21 +30,28 @@ export class NavBar extends Component {
   render() {
     if (this.props.rightButton === 'True') {
       return (
+        // <LinearGradient
+        //   start={{ x: 0.1, y: 1 }} end={{ x: 1, y: 1.0 }}
+        //   locations={[1]}
+        //   colors={['rgba(7, 128, 75, 0.4)']}
+        //   style={styles.mainHeader}
+        // >
         <View style={styles.mainHeader}>
           <TouchableHighlight style={styles.userIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'settings', 'down')}>
             <Image source={require('./../Icons/User-Menu-Male-48.png')} />
           </TouchableHighlight>
-          <Text style={styles.title}>{this.props.schoolTitle}</Text>
+          <Text style={styles.title}>{this.props.schoolTitle.toUpperCase()}</Text>
           <TouchableHighlight style={styles.settingsIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'customize', 'down')}>
             <Image source={require('./../Icons/Settings-48.png')} />
           </TouchableHighlight>
         </View>
+        // </LinearGradient>
       );
     }
     return (
       <View style={styles.mainHeader}>
         <BackButton navigator={this.props.navigator} type={this.props.type} />
-        <Text style={styles.title}> {this.props.text} </Text>
+        <Text style={styles.title}> {this.props.text.toUpperCase()} </Text>
         <HomeButton navigator={this.props.navigator} />
       </View>
     );
@@ -65,11 +73,10 @@ const styles = StyleSheet.create({
   mainHeader: {
     width,
     height: 62,
-    backgroundColor: '#00713A',
     paddingTop: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
-
+    backgroundColor: 'rgba(122, 196, 28, 0.4)',
   },
 
   /* Style for the title of the navigation bar */
@@ -77,8 +84,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: SCHOOL_FONT_SIZE,
     fontFamily: 'Avenir Next',
-    fontWeight: '400',
+    fontWeight: '600',
     marginTop: -3,
+    backgroundColor: 'transparent',
   },
 
   /* Style for the icons on the main buttons */

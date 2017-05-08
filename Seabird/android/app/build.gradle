@@ -127,6 +127,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-linear-gradient')
     compile project(':react-native-firebase-analytics')
     compile project(':react-native-onesignal')
     compile fileTree(dir: "libs", include: ["*.jar"])

@@ -246,6 +246,23 @@ class Database {
     });
   }
 
+  /**
+   * Listens for changes to the school's module directories
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static listenSchoolModuleDirectories(modulePath, callbackFunc) {
+    const path = `/content/moduleDirectories/${modulePath}`;
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      const moduleContents = [];
+      snapshot.forEach((childSnapshot) => {
+        moduleContents.push(childSnapshot.val());
+      });
+      callbackFunc(moduleContents);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
 }
 
 module.exports = Database;

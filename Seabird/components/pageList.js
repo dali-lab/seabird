@@ -48,6 +48,7 @@ export class PageList extends Component {
         imgSource={this.props.modules[rowID].imgName}
         text={this.props.modules[rowID].txtName}
         tileStyle={styles.tile}
+        tileTextSection={styles.tileTextSection}
         textStyle={styles.tileText}
       />
     )
@@ -77,23 +78,29 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.5)',
-    width: width / 2.4,
-    height: height / 4.2,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    width: width / 2.6,
+    height: height / 4.7,
     paddingBottom: 20,
     marginTop: width / 18,
     margin: width / 25,
-    borderRadius: 10,
+    borderRadius: (width / 2.4) / 2,
+    borderWidth: 2,
+    borderColor: '#fff'
+  },
+
+  /* Style for the section of the tiles that hold the tet */
+  tileTextSection: {
+    marginTop: 0,
   },
 
   /* Style for the tiles' text for the home screen */
   tileText: {
-    top: 40,
     paddingTop: MODULE_TEXT_PADDING,
     fontSize: MODULE_FONT_SIZE,
-    fontFamily: 'System',
-    fontWeight: '400',
+    fontFamily: 'Avenir-Book',
+    fontWeight: '500',
     textAlign: 'center',
-    color: '#065539',
+    color: '#fff',
   },
 })
