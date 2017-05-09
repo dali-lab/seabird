@@ -95,6 +95,7 @@ export default class Root extends Component {
     return (
       <View
         style={{
+          flex: 1,
           flexDirection: 'column',
           flexWrap: 'wrap',
           alignItems: 'center',

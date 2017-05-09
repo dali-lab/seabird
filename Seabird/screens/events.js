@@ -128,6 +128,7 @@ export default class Events extends Component {
 const styles = StyleSheet.create({
 
   pageContent: {
+    flex: 1,
     backgroundColor: 'white',
   },
 

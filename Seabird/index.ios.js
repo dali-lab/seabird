@@ -207,7 +207,7 @@ export default class Seabird extends Component {
       }
 
       if ( route.name === 'web' ) {
-        return <News navigator={navigator}/>;
+        return <Map navigator={navigator}/>;
       }
 
       if ( route.name === 'events' ) {

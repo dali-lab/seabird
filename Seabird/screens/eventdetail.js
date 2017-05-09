@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
 
   pageContent: {
     flex: 1,
+    backgroundColor: 'white',
   },
 
   /* Style for the main section that will hold all the of the content */

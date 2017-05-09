@@ -46,9 +46,15 @@ export default class Schedule extends Component {
 }
 
 const styles = StyleSheet.create({
+  /* Style for the enter page */
+  pageContent: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
 
   pageContent: {
     flex: 1,
+    backgroundColor: 'white',
   },
 
   /* Style for the main section that will hold all the of the Schedule content */

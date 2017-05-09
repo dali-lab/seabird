@@ -60,7 +60,7 @@ export default class ModuleDetails extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={styles.mainHeader}>
           <NavBar navigator={this.props.navigator} text="Seabird University" />
         </View>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-around'
   },
 
   /* Style for the section of the list view */

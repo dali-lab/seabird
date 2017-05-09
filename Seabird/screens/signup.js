@@ -145,6 +145,12 @@ export default class Root extends Component {
 }
 
 const styles = StyleSheet.create({
+    /* Style for the main component */
+    main: {
+      flex: 1,
+      backgroundColor: 'white',
+    },
+    
     /* Style for the credentials text input */
     credentials: {
         height: 40,

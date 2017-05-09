@@ -129,7 +129,8 @@ export default class ComboKeeper extends Component {
 const styles = StyleSheet.create({
   /* Style for the enter page */
   pageContent: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'white',
   },
 
   /* Styles the back button */

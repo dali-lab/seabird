@@ -33,7 +33,7 @@ export default class AppWebView extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: 'white' }}>
         <NavBar navigator={this.props.navigator} text="TITLE" />
         <NavWebView URL="https://canvas.dartmouth.edu" />
       </View>

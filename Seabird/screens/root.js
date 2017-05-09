@@ -16,7 +16,7 @@ import {
 import { Tile } from './../components/tile';
 import { NavBar } from './../components/navBar';
 import { PageList } from './../components/pageList';
-import Carousel from 'react-native-snap-carousel';
+import Swiper from 'react-native-swiper';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 import LinearGradient from 'react-native-linear-gradient';
@@ -51,6 +51,12 @@ export default class Root extends Component {
     Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
   }
 
+  renderNavigationDots = (index) =>  {
+    return (
+    <View style={{ height: 200, width: 200, backgroundColor: 'black' }} />
+  )
+  };
+
   render() {
     let moduleList = [];
     const views = [];
@@ -66,6 +72,7 @@ export default class Root extends Component {
       }
 
       views.push(
+        /* Populating each page of the home view */
         <View key={i} style={{ width, height }}>
           <PageList modules={moduleList} containerStyle={styles.grid} navigator={this.props.navigator} />
         </View>,
@@ -87,17 +94,16 @@ export default class Root extends Component {
             alignItems: 'flex-start',
           }}
         >
-          <Carousel
-            style={styles.scrollview}
-            indicatorStyle={'white'}
-            itemWidth={width}
-            sliderWidth={100}
-            scrollEventThrottle={200}
-            inactiveSlideScale={1}
-            bounces={false}
-          >
+          <Swiper
+            style={styles.wrapper}
+            showsButtons={false}
+            dot={<View style={{backgroundColor: 'rgba(10,10,10,.2)', width: 5, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+            activeDot={<View style={{backgroundColor: '#fff', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
+          paginationStyle={{
+            bottom: 70, left: 0, right: 0
+          }} loop={false}>
             {views}
-          </Carousel>
+          </Swiper>
         </LinearGradient>
       </View>
     );
@@ -150,7 +156,9 @@ const styles = StyleSheet.create({
 
   /* Styles the grid format of the list view */
   grid: {
-    justifyContent: 'center',
+    paddingLeft: width / 20,
+    paddingRight: width / 20,
+    justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',

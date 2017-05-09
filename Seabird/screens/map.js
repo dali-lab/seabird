@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   /* Styles the entire container to hold multiple views */
   container: {
       flex: 1,
+      backgroundColor: 'white',
     },
 
   /* Styles the back button */
