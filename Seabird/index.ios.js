@@ -39,6 +39,7 @@ import BuildingHours from './screens/buildingHours';
 import Food from './screens/food';
 import Signup from './screens/signup';
 import ModuleDetails from './screens/moduleDetail';
+import AppWebView from './screens/appWebView';
 
 var firebase = require("firebase/app");
 require("firebase/auth");
@@ -87,11 +88,9 @@ export default class Seabird extends Component {
     constructor( props ) {
       super( props );
       Firebase.initialize( );
-      // this.refetch = this.refetch.bind(this)
       this.passEvent = this.passEvent.bind(this)
       this.updateHome = this.updateHome.bind(this)
       this.orderChanged = this.orderChanged.bind(this)
-      //console.log('constructing')
       this.state = {
         currentEvent: '',
         HOME_PORTALS: [
@@ -275,6 +274,18 @@ export default class Seabird extends Component {
 
       if ( route.name === 'academics' ) {
         return <ModuleDetails navigator={navigator}/>
+      }
+
+      if ( route.name === 'banner' ) {
+        return <AppWebView navigator={navigator}/>
+      }
+
+      if ( route.name === 'canvas' ) {
+        return <AppWebView navigator={navigator}/>
+      }
+
+      if ( route.name === 'timetable' ) {
+        return <AppWebView navigator={navigator}/>
       }
     };
 

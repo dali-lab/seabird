@@ -34,7 +34,7 @@ export default class ModuleDetails extends Component {
       bounceValue: new Animated.Value(0),
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => true,
-      }).cloneWithRows([1, 1, 1, 1, 1, 1]),
+      }).cloneWithRows([0]),
     };
   }
 

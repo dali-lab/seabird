@@ -34,7 +34,7 @@ export class NavWebView extends Component  {
       <WebView ref={WEBVIEW_REF} style={{
           flex: 1,
       }} onNavigationStateChange={this.onNavigationStateChange} source={{
-          uri: this.props.source.uri
+          uri: this.props.URL
       }}/>
       <View style={styles.bottomBar}>
           <TouchableOpacity disabled={!this.canGoBack} onPress={this.goBack}>
