@@ -17,7 +17,7 @@ let MODULE_FONT_SIZE = 20;
 let MODULE_TEXT_PADDING = 0;
 
 if (PixelRatio.get() <= 2) {
-  MODULE_FONT_SIZE = 18;
+  MODULE_FONT_SIZE = 17;
   MODULE_TEXT_PADDING = -5;
 }
 

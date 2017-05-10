@@ -11,6 +11,7 @@ import {
   Animated,
   AsyncStorage,
   ScrollView,
+  PixelRatio
 } from 'react-native';
 
 import { Tile } from './../components/tile';

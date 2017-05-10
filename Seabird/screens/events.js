@@ -23,44 +23,47 @@ var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
 
-// reading xml
-const xmlURL = "https://spreadsheets.google.com/feeds/list/1W1CvcU9EllQs-DBo4KFz5HM_a67svd1Xj_3CxiZCVIA/1/public/values";
-var DOMParser = require('xmldom').DOMParser;
-const parser = new DOMParser();
-const xmlDoc = null;
-var request = new XMLHttpRequest();
-var responseXML = '';
-request.onreadystatechange = (e) => {
-  if (request.readyState !== 4) {
-    return;
-  }
-  if (request.status === 200) {
-    responseXML = request.responseText;
-    xmlDoc = parser.parseFromString(responseXML);
-  } else {
-    console.warn('error');
-  }
-};
-request.open('GET', xmlURL);
-request.send();
-
 export default class Events extends Component {
 
   constructor(props) {
     super();
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
-      dataSource: ds.cloneWithRows([
-        '...and some more....',
-        "here is some more",
-        "other data is passed",
-      ]),
+      dataBlob: {},
+      currentDate: '',
+      loaded: false,
+      //dataSource: ds.cloneWithRows([' ',]),
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2,
+        sectionHeaderHasChanged: (s1, s2) => s1 !== r2
+      })
     };
   }
 
   componentWillMount() {
     Database.listenEvents((value) => {
-      this.setState({ dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(value) })
+      var tempDataBlob = {};
+      var start = 0
+      var end = 0
+      for (var i = 0; i < value.length; i++) {
+        var date = new Date(value[i].day).toDateString();
+        if (!tempDataBlob[date]) {
+          console.log(i + ":  " + date);
+          tempDataBlob[date] = []
+        }
+        tempDataBlob[date].push(value[i])
+      }
+      this.setState({
+        currentDate: this.state.currentDate + 1,
+        dataBlob: tempDataBlob,
+      })
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.dataBlob),
+        loaded: true
+      })
+        /*this.setState({ dataSource: new ListView.DataSource({
+          rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(value)
+        })*/
     })
   }
 
@@ -89,17 +92,17 @@ export default class Events extends Component {
       </View>
       <View style={styles.listSectionInfo}>
         <Text style={styles.listSectionTitle}>{rowData.event}</Text>
-        <Text style={styles.listSectionText}>{rowData.details}</Text>
+        {/*<Text style={styles.listSectionText}>{rowData.details}</Text>*/}
       </View>
       </View>
       </TouchableHighlight>
     )
   };
 
-  renderHeader = (rowData, sectionID, rowID) => {
+  renderSectionHeader = (sectionData, sectionID) => {
     return (
       <View style={styles.listHeader}>
-        <Text style={styles.listHeaderText}>Header for this section</Text>
+        <Text style={styles.listHeaderText}>{sectionID}</Text>
       </View>
     )
   };
@@ -111,7 +114,7 @@ export default class Events extends Component {
         <View style={styles.mainContent}>
           <ListView
             dataSource={this.state.dataSource}
-            renderHeader={this.renderHeader}
+            renderSectionHeader={this.renderSectionHeader}
             renderRow={this.renderRow}
             style={styles.listStyle}
             renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
@@ -214,7 +217,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    height: 60,
+    height: 65,
     backgroundColor: '#ccc',
     paddingLeft: 10,
   },
@@ -223,7 +226,7 @@ const styles = StyleSheet.create({
   listSectionTime: {
     flexDirection: 'column',
     justifyContent: 'center',
-    marginRight: 10,
+    marginRight: 5,
   },
 
   /* Style for the list section time's text */
@@ -242,8 +245,10 @@ const styles = StyleSheet.create({
 
   /* Style for the list section title */
   listSectionTitle: {
+    width: width / 1.35,
     fontFamily: 'Avenir',
     fontSize: 18,
+    marginTop: 5,
   },
 
   /* Style for the list section text */

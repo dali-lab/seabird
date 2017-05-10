@@ -1,0 +1,16 @@
+<svg width="12" height="22" viewBox="0 0 12 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>next 2</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-4823 513)" figma:type="canvas">
+<g id="next 2" figma:type="frame">
+<g id="Group" figma:type="frame">
+<g id="Vector" figma:type="vector">
+<use xlink:href="#path0_fill" transform="translate(4823.56 -512.433)" fill="#A8D35B" fill-opacity="0.75"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 11.0187 10.031L 1.0245 0.174062C 0.789191 -0.0580206 0.4118 -0.0580206 0.176486 0.174062C -0.0588286 0.406144 -0.0588286 0.778352 0.176486 1.01043L 9.74445 10.447L 0.176486 19.8835C -0.0588286 20.1156 -0.0588286 20.4878 0.176486 20.7199C 0.291923 20.8338 0.447319 20.8951 0.598275 20.8951C 0.749232 20.8951 0.904628 20.8381 1.02007 20.7199L 11.0143 10.863C 11.2496 10.6353 11.2496 10.2587 11.0187 10.031Z"/>
+</defs>
+</svg>

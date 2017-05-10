@@ -49,7 +49,7 @@ export class NavBar extends Component {
       );
     }
     return (
-      <View style={styles.mainHeader}>
+      <View style={styles.mainHeaderSecond}>
         <BackButton navigator={this.props.navigator} type={this.props.type} />
         <Text style={styles.title}> {this.props.text.toUpperCase()} </Text>
         <HomeButton navigator={this.props.navigator} />
@@ -77,6 +77,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     backgroundColor: 'rgba(122, 196, 28, 0.4)',
+  },
+
+  mainHeaderSecond: {
+    width,
+    height: 62,
+    paddingTop: 25,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'rgba(122, 196, 28, 1)',
   },
 
   /* Style for the title of the navigation bar */

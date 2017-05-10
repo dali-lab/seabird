@@ -42,7 +42,7 @@ export default class EventDetail extends Component {
   render() {
     return (
       <View style={styles.pageContent}>
-        <NavBar navigator={this.props.navigator} text={this.props.data} />
+        <NavBar navigator={this.props.navigator} text="Event" />
         <View style={styles.mainContent}>
           <View style={{ flex: 7 }}>
             <Text style={styles.eventDate}>{Moment(this.props.currentEvent.day).format('dddd, MMMM do')}</Text>
