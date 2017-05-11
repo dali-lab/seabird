@@ -1,38 +1,24 @@
-
 import React, { Component } from 'react';
 import {
     AppRegistry,
     StyleSheet,
     Text,
     View,
+    Image,
     Dimensions,
-    TextInput,
     TouchableHighlight,
+    TextInput,
     Modal,
-    PixelRatio,
-    Image
 } from 'react-native';
-import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 
-const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
-let firebase = require("firebase/app");
-require("firebase/auth");
-require("firebase/database");
+const firebase = require('firebase/app');
 
-let SCHOOL_FONT_SIZE = 32;
-
-if (PixelRatio.get() <= 2) {
-    SCHOOL_FONT_SIZE = 26;
-}
+require('firebase/auth');
+require('firebase/database');
 
 export default class Root extends Component {
-
-
-    navigate(routeName, transitionType = 'floatRight') {
-        this.props.navigator.push({ name: routeName, transitionType });
-    }
 
     constructor(props) {
         super(props);
@@ -43,170 +29,271 @@ export default class Root extends Component {
         };
     }
 
+    setModalVisible(visible) {
+        this.setState({ modalVisible: visible });
+    }
+
     async login(email, password) {
         try {
             await firebase.auth().signInWithEmailAndPassword(email, password);
             Database.listenUserHomeOrder((value) => {
-                if (value != '' && value != '[]') {
+                if (value !== '' && value !== '[]') {
                     this.props.updateHome(value);
                     Database.setUserHomeOrder(value);
-                    this.navigate('root')
+                    this.navigate('root');
                 } else {
-                    this.navigate('root')
+                    this.navigate('root');
                 }
-            })
+            });
         } catch (e) {
             /* Toggles the error modal */
             this.setModalVisible(!this.state.modalVisible);
-            console.log(e)
         }
     }
 
-    signup = (email, password) => {
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            console.log(errorCode + ": " + errorMessage)
-        });
-        this.navigate('root')
-    };
-
-    userIsSignedIn = () => {
-        console.log('USER IS ALREADY SIGNED IN');
-        console.log(Firebase.getUser());
-        this.props.navigator.push({name: 'root'});
-    };
-
-    setModalVisible(visible) {
-        this.setState({modalVisible: visible});
+    navigate(routeName, transitionType = 'floatRight') {
+        this.props.navigator.push({name: routeName, transitionType});
     }
-
-    updateText = (user, pass) => {
-        this.setState((state) => {
-            return {
-                username: user,
-                password: pass,
-            };
-        });
-    };
 
     render() {
         return (
-            <View style={styles.main}>
-                <View>
-                    <Image style={styles.headerIcon}  source={require('./../Icons/dartmouth_banner.png')} />
-                </View>
+            <View>
 
-                <View>
-                    <Text style={styles.textStyle}>Sign Up</Text>
-                </View>
+                {/* Error popup */}
+                <Modal
+                    animationType={'fade'}
+                    transparent={true}
+                    visible={this.state.modalVisible}
+                    onRequestClose={() => {alert('Modal has been closed.')}}
+                >
+                    <View style={styles.modalView}>
+                        <View>
+                            <Text style={styles.modalTitle}>Failed Login</Text>
+                            <Text style={styles.modalText}>There is a login Error</Text>
 
-                <View>
-                    <TextInput
-                        style={styles.credentials}
-                        onChangeText={username => this.setState({ username })}
-                        //onFocus={() => this.updateText('', this.state.password)}
-                        autoFocus={true}
-                        placeholder="Email"
-                        value={this.state.username}
-                        returnKeyType = {"next"}
-                        onSubmitEditing={(event) => {
-                            this.refs.Password.focus();
-                        }}
-                    />
+                            <TouchableHighlight underlayColor="transparent" onPress={() => {
+                                this.setModalVisible(!this.state.modalVisible);
+                                this.state.username = '';
+                                this.state.password = '';
+                            }}
+                                                style={styles.modalButton}>
+                                <Text style={styles.modalButtonText}>Retry</Text>
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                </Modal>
 
-                    <View style={styles.divider} />
+                {/* Main background image */}
+                <Image
+                    source={require('../Icons/Login/gradient_background.png')}
+                    style={styles.gradientBackground}
+                >
 
-                    <TextInput
-                        ref='Password'
-                        secureTextEntry={true}
-                        style={styles.credentials}
-                        onChangeText={password => this.setState({ password })}
-                        placeholder="Password"
-                        value={this.state.password}
-                        onSubmitEditing={(event) => {
-                            this.login(this.state.username, this.state.password)
-                        }}
-                    />
+                    {/* View that holds everything on the screen */}
+                    <View style={styles.mainView}>
 
-                    <View style={styles.divider} />
-                </View>
+                        {/* Let's get you started! text */}
+                        <Text
+                            style={{color: 'white', fontStyle: 'italic', fontSize: 25, marginTop: -60}}
+                        >Let's get you started!</Text>
 
-                <View>
-                    <TouchableHighlight style={styles.signupButton} onPress={() => this.signup(this.state.username, this.state.password)}>
-                        <Text style={styles.buttonText}>SIGN UP</Text>
-                    </TouchableHighlight>
-                </View>
+                        {/* Dartmouth logo */}
+                        <Image
+                            source={require('../Icons/Login/dartmouth_logo.png')}
+                            style={styles.logo}
+                        >
+                        </Image>
 
+                        {/* Name text field */}
+                        <View style={{flexDirection: 'row', marginTop: 2}}>
+                            <Image source={require('../Icons/Signup/name_icon.png')}
+                                   style={styles.nameField}>
+                            </Image>
+                        <TextInput
+                            ref='Name'
+                            style={styles.credentials}
+                            onChangeText={username => this.setState({username})}
+                            placeholder="Name"
+                            placeholderTextColor="white"
+                            keyboardType="default"
+                            value={this.state.username}
+                            returnKeyType={"next"}
+                            onSubmitEditing={(event) => {
+                                this.refs.Password.focus();
+                            }}
+                        />
+                        </View>
+
+                        {/* Divider between year text field and email text field */}
+                        <View style={styles.divider}/>
+
+                        {/*Year text field */}
+                        <View style={{flexDirection: 'row', marginTop: 2}}>
+                            <Image source={require('../Icons/Signup/year_icon.png')}
+                                   style={styles.yearField}>
+                            </Image>
+                        <TextInput
+                            ref='Year'
+                            style={styles.credentials}
+                            onChangeText={username => this.setState({username})}
+                            placeholder="Year"
+                            placeholderTextColor="white"
+                            keyboardType="default"
+                            value={this.state.username}
+                            returnKeyType={"next"}
+                            onSubmitEditing={(event) => {
+                                this.refs.Password.focus();
+                            }}
+                        />
+                    </View>
+
+                        {/* Divider between year text field and email text field */}
+                        <View style={styles.divider}/>
+
+                        {/*Email text field*/}
+                        <View style={{flexDirection: 'row', marginTop: 2}}>
+                            <Image source={require('../Icons/Login/email.png')}
+                                   style={styles.emailField}>
+                            </Image>
+                            <TextInput
+                                ref='Email'
+                                style={styles.credentials}
+                                onChangeText={username => this.setState({username})}
+                                placeholder="Email"
+                                placeholderTextColor="white"
+                                keyboardType="email-address"
+                                value={this.state.username}
+                                returnKeyType={"next"}
+                                onSubmitEditing={(event) => {
+                                    this.refs.Password.focus();
+                                }}
+                            />
+                        </View>
+
+                        {/*Divider between email text field and password text field*/}
+                        <View style={styles.divider}/>
+
+                        {/*Password text field*/}
+                        <View style={{flexDirection: 'row', marginTop: 2}}>
+                            <Image source={require('../Icons/Login/lock.png')}
+                                   style={styles.passwordField}>
+                            </Image>
+                            <TextInput
+                                ref='Password'
+                                secureTextEntry={true}
+                                style={styles.credentials}
+                                onChangeText={password => this.setState({password})}
+                                placeholder="Password"
+                                placeholderTextColor="white"
+                                value={this.state.password}
+                                onSubmitEditing={(event) => {
+                                    this.login(this.state.username, this.state.password)
+                                }}
+                            />
+                        </View>
+
+                        {/*Divider between password text field and login button*/}
+                        <View style={styles.divider}/>
+
+
+                        {/*Login button*/}
+                        <View style={{marginTop: 15}}>
+                            <TouchableHighlight underlayColor="transparent"
+                                                onPress={() => this.login(this.state.username, this.state.password)}>
+                                <Image source={require('../Icons/Signup/signup_button.png')}
+                                       style={styles.loginButton}
+                                />
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                </Image>
             </View>
-        );
+        )
     }
 }
 
 const styles = StyleSheet.create({
-    /* Style for the main component */
-    main: {
-      flex: 1,
-      backgroundColor: 'white',
+
+    // Style for main background image.
+    gradientBackground: {
+        height: height,
+        width: width,
+        resizeMode: 'stretch',
+        flexDirection: 'column',
+        alignItems: 'center'
     },
-    
+    // Style for the main view
+    mainView: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        marginTop: height / 5
+    },
+    // Style for the logo
+    logo: {
+        height: width / 2,
+        width: width / 2,
+        resizeMode: 'contain',
+        marginTop: 25,
+    },
+    // Style for the name text input field
+    nameField: {
+        height: height / 25,
+        width: width / 13,
+        resizeMode: 'contain',
+        marginLeft: width / 10,
+        marginTop: 5
+    },
+    // Style for the year text input
+    yearField: {
+        height: height / 25,
+        width: width / 13,
+        resizeMode: 'contain',
+        marginLeft: width / 10,
+        marginTop: 6
+    },
+    // Style for the email text input field
+    emailField: {
+        height: height / 22,
+        width: width / 13,
+        resizeMode: 'contain',
+        marginLeft: width / 10,
+        marginTop: 4,
+    },
+    // Style for the password field
+    passwordField: {
+        height: height / 22,
+        width: width / 13,
+        resizeMode: 'contain',
+        marginLeft: width / 10,
+        marginTop: 3.5
+    },
     /* Style for the credentials text input */
     credentials: {
-        height: 40,
-        //backgroundColor: '#eee',
-        color: '#111',
-        width: width / 1.6,
-        alignSelf: 'center',
+        color: 'white',
+        width: width / 1.39,
         textAlign: 'left',
-        marginTop: 20,
-        borderRadius: 5,
-        paddingLeft: 10,
-        // borderColor: '#111',
-        // borderWidth: 1
-    },
+        height: height / 17,
 
+        paddingLeft: 10,
+    },
     /* Style for the divider that will be the underline area */
     divider: {
         height: 1,
-        width: width / 1.6,
-        backgroundColor: 'black'
+        width: width / 1.39,
+        backgroundColor: 'white'
     },
-
-    /* Style for the Login button */
-    signupButton: {
-        height: 35,
-        width: width / 1.6,
-        backgroundColor: 'green',
-        marginTop: height / 15,
-        borderRadius: 5,
+    loginButton: {
+        height: height / 16,
+        width: width / 1.39,
+        resizeMode: 'contain'
     },
-
-    /* Style for the login button text */
-    buttonText: {
-        textAlign: 'center',
-        marginTop: 8,
-        letterSpacing: 1,
-        fontWeight: '500',
-    },
-
-    main: {
-        backgroundColor: '#ddd',
-        flex: 1,
-        alignItems: 'center',
-    },
-
-    headerIcon: {
-        resizeMode: 'contain',
-        width: width,
-        height: 100,
-    },
-
-    textStyle: {
+    // Style for the sign up button
+    signUpButton: {
+        color: 'white',
         fontSize: 18,
+        fontWeight: 'bold'
     },
-
-    /* Style for the modal view */
+//   /* Style for the modal view */
     modalView: {
         width: width / 1.2,
         height: height / 6,

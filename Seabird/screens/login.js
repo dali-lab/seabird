@@ -6,111 +6,98 @@ import {
   View,
   Image,
   Dimensions,
-  PixelRatio,
   TouchableHighlight,
   TextInput,
-  Modal
+  Modal,
 } from 'react-native';
 import Database from '../firebase/database';
 
 const { height, width } = Dimensions.get('window');
-let firebase = require("firebase/app");
-require("firebase/auth");
-require("firebase/database");
+const firebase = require('firebase/app');
 
-let SCHOOL_FONT_SIZE = 32;
-
-if (PixelRatio.get() <= 2) {
-  SCHOOL_FONT_SIZE = 26;
-}
+require('firebase/auth');
+require('firebase/database');
 
 export default class Root extends Component {
 
-
-    navigate(routeName, transitionType = 'floatRight') {
-        this.props.navigator.push({name: routeName, transitionType});
-    }
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: '',
-            modalVisible: false,
-        };
-    }
-
-    async login(email, password) {
-        try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-            Database.listenUserHomeOrder((value) => {
-                if (value != '' && value != '[]') {
-                    this.props.updateHome(value);
-                    Database.setUserHomeOrder(value);
-                    this.navigate('root')
-                } else {
-                    this.navigate('root')
-                }
-            })
-        } catch (e) {
-          /* Toggles the error modal */
-            this.setModalVisible(!this.state.modalVisible)
-            console.log(e)
-        }
-    }
-
-    signup = (email, password) => {
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-            // Handle Errors here.
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            console.log(errorCode + ": " + errorMessage)
-        });
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+      modalVisible: false,
     };
+  }
 
-    setModalVisible(visible) {
-        this.setState({modalVisible: visible});
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+  async login(email, password) {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      Database.listenUserHomeOrder((value) => {
+        if (value !== '' && value !== '[]') {
+          this.props.updateHome(value);
+          Database.setUserHomeOrder(value);
+          this.navigate('root');
+        } else {
+          this.navigate('root');
+        }
+      });
+    } catch (e) {
+            /* Toggles the error modal */
+      this.setModalVisible(!this.state.modalVisible);
     }
+  }
 
-    render() {
-        return (
+  navigate(routeName, transitionType = 'floatRight') {
+    this.props.navigator.push({name: routeName, transitionType});
+  }
+
+  render() {
+    return (
+      <View>
+
+        {/* Error popup */}
+        <Modal
+          animationType={'fade'}
+          transparent={true}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {alert('Modal has been closed.')}}
+        >
+          <View style={styles.modalView}>
             <View>
+              <Text style={styles.modalTitle}>Failed Login</Text>
+              <Text style={styles.modalText}>There is a login Error</Text>
 
-              {/*Error popup*/}
-                <Modal
-                animationType={"fade"}
-                transparent={true}
-                visible={this.state.modalVisible}
-                onRequestClose={() => {alert("Modal has been closed.")}}
-                >
-                <View style={styles.modalView}>
-                <View>
-                <Text style={styles.modalTitle}>Failed Login</Text>
-                <Text style={styles.modalText}>There is a login Error</Text>
-
-                <TouchableHighlight underlayColor="transparent" onPress={() => {
+              <TouchableHighlight underlayColor="transparent" onPress={() => {
                 this.setModalVisible(!this.state.modalVisible);
-                    this.state.username = '';
-                    this.state.password = '';
-                }}
+                this.state.username = '';
+                this.state.password = '';
+              }}
                 style={styles.modalButton}>
                 <Text style={styles.modalButtonText}>Retry</Text>
-                </TouchableHighlight>
-                </View>
-                </View>
-                </Modal>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </Modal>
 
-                {/*Main background image*/}
-              <Image source={require('../Icons/Login/gradient_background.png')}
-                     style={styles.gradientBackground}>
+        {/* Main background image */}
+        <Image
+          source={require('../Icons/Login/gradient_background.png')}
+          style={styles.gradientBackground}
+        >
 
-                  {/*View that holds everything on the screen*/}
-                <View style={styles.mainView}>
+          {/* View that holds everything on the screen */}
+          <View style={styles.mainView}>
 
-                    {/*Dartmouth logo*/}
-                  <Image source={require('../Icons/Login/dartmouth_logo.png')}
-                         style={styles.logo}>
-                  </Image>
+            {/* Dartmouth logo */}
+            <Image
+              source={require('../Icons/Login/dartmouth_logo.png')}
+              style={styles.logo}
+            >
+            </Image>
 
                     {/*Email text field*/}
                   <View style={{flexDirection: 'row', marginTop: 20}}>
@@ -206,7 +193,7 @@ const styles = StyleSheet.create({
     },
     // Style for the email text input field
     emailField: {
-        height: height / 17,
+        height: height / 22,
         width: width / 13,
         resizeMode: 'contain',
         marginLeft: width / 10
@@ -221,11 +208,11 @@ const styles = StyleSheet.create({
     },
   /* Style for the credentials text input */
   credentials: {
-    color: 'black',
+    color: 'white',
     width: width / 1.39,
     textAlign: 'left',
     height: height / 17,
-    borderRadius: 5,
+
     paddingLeft: 10,
   },
   /* Style for the divider that will be the underline area */
