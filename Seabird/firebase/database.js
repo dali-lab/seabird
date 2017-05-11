@@ -216,7 +216,7 @@ class Database {
    * @returns {firebase.Promis<any>|!firebase.Promise.<void>}
    */
   static listenEvents(callbackFunc) {
-    const path = '/events';
+    const path = '/content/events';
     Firebase.getDbRef(path).orderByChild('key').on('value', (snapshot) => {
       const events = [];
       snapshot.forEach((childSnapshot) => {

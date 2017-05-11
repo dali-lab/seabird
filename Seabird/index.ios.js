@@ -17,7 +17,7 @@ import {
 } from 'react-router-native';
 import { Navigator, AppRegistry } from 'react-native';
 import EventItem from './components/eventItem';
-import OneSignal from 'react-native-onesignal';
+//import OneSignal from 'react-native-onesignal';
 import Firebase from './firebase/firebase';
 import Database from './firebase/database';
 
@@ -58,6 +58,13 @@ const NoBackSwipeFloatRight ={
 
 const NoBackSwipePushRight ={
   ...Navigator.SceneConfigs.PushFromRight,
+    gestures: {
+      pop: {},
+    },
+};
+
+const NoBackSwipePushLeft ={
+  ...Navigator.SceneConfigs.PushFromLeft,
     gestures: {
       pop: {},
     },
@@ -139,7 +146,7 @@ export default class Seabird extends Component {
       }
     }
 
-    componentWillMount( ) {
+    /*componentWillMount( ) {
       OneSignal.addEventListener( 'received', this.onReceived );
       OneSignal.addEventListener( 'opened', this.onOpened );
       OneSignal.addEventListener( 'registered', this.onRegistered );
@@ -174,7 +181,7 @@ export default class Seabird extends Component {
 
     onIds( device ) {
       // console.log('Device info: ', device);
-    }
+    }*/
 
     passEvent(userEvent) {
       this.setState({ currentEvent: userEvent})
@@ -301,6 +308,9 @@ export default class Seabird extends Component {
       }
       if ( route.transitionType === 'floatLeft') {
         return NoBackSwipeFloatLeft;
+      }
+      if ( route.transitionType === 'left') {
+        return NoBackSwipePushLeft;
       }
       return NoBackSwipePushRight;
     };

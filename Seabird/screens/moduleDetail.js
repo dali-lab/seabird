@@ -34,20 +34,10 @@ export default class ModuleDetails extends Component {
       bounceValue: new Animated.Value(0),
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => true,
-      }).cloneWithRows([0]),
+      }),
     };
   }
 
-  renderRow = (rowData, sectionID, rowID) => {
-    return (
-      <TouchableHighlight underlayColor="transparent" onPress={() => this.navigate(rowData)}>
-      <View style={styles.rowSection}>
-        <Text style={styles.sectionText}>{rowData}</Text>
-        <Image source={require('./../Icons/list_view_right_arrow.png')} style={styles.sectionButton}/>
-      </View>
-      </TouchableHighlight>
-    )
-  }
   componentWillMount() {
     /* Going to the path /content/moduleDirectories/academics/ to get all the modules */
     Database.listenSchoolModuleDirectories("academics", (value) => {
@@ -56,6 +46,21 @@ export default class ModuleDetails extends Component {
         }).cloneWithRows(value),
       })
     })
+  }
+
+  renderRow = (rowData, sectionID, rowID) => {
+    return (
+      <View>
+      <TouchableHighlight underlayColor="transparent" onPress={() => this.navigate(rowData)}>
+      <View style={styles.rowSection}>
+        <Text style={styles.sectionText}>{rowData}</Text>
+        <Image source={require('./../Icons/list_view_right_arrow.png')} style={styles.sectionButton}/>
+        {/*<View key={rowID} style={styles.separator} />*/}
+      </View>
+      </TouchableHighlight>
+      <View key={rowID} style={styles.separator} />
+      </View>
+    )
   }
 
   render() {
@@ -69,7 +74,6 @@ export default class ModuleDetails extends Component {
           style={styles.section}
           dataSource={this.state.dataSource}
           renderRow={this.renderRow.bind(this)}
-          renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
         />
       </View>
     );

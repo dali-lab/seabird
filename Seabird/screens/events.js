@@ -30,7 +30,6 @@ export default class Events extends Component {
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
       dataBlob: {},
-      currentDate: '',
       loaded: false,
       //dataSource: ds.cloneWithRows([' ',]),
       dataSource: new ListView.DataSource({
@@ -45,30 +44,22 @@ export default class Events extends Component {
       var tempDataBlob = {};
       var start = 0
       var end = 0
+      console.log('value length: ' + value.length);
       for (var i = 0; i < value.length; i++) {
         var date = new Date(value[i].day).toDateString();
         if (!tempDataBlob[date]) {
-          console.log(i + ":  " + date);
           tempDataBlob[date] = []
         }
         tempDataBlob[date].push(value[i])
       }
       this.setState({
-        currentDate: this.state.currentDate + 1,
-        dataBlob: tempDataBlob,
+        dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob),
       })
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRowsAndSections(this.state.dataBlob),
-        loaded: true
-      })
-        /*this.setState({ dataSource: new ListView.DataSource({
-          rowHasChanged: (r1, r2) => r1 !== r2}).cloneWithRows(value)
-        })*/
     })
   }
 
   navigate(routeName, transitionType = 'normal') {
-    this.props.navigator.push({name: routeName, transitionType: transitionType,})
+    this.props.navigator.push({ name: routeName, transitionType: transitionType, })
   }
 
   navigatePop() {
@@ -85,7 +76,7 @@ export default class Events extends Component {
   renderRow = (rowData, sectionID, rowID) => {
     /* Form dates to distinguish from events */
     return (
-      <TouchableHighlight underlayColor="transparent" onPress={() => this.navigatePush('eventsdetails', rowData)}>
+      <TouchableHighlight key={rowData.key} underlayColor="transparent" onPress={() => this.navigatePush('eventsdetails', rowData)}>
       <View style={styles.listSection}>
       <View style={styles.listSectionTime}>
         <Text style={styles.listSectionTimeText}>{Moment(rowData.startTime).format('h:mm A')}</Text>
@@ -117,7 +108,7 @@ export default class Events extends Component {
             renderSectionHeader={this.renderSectionHeader}
             renderRow={this.renderRow}
             style={styles.listStyle}
-            renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+
           />
           <TouchableHighlight style={styles.CTA} onPress={this.navigate.bind(this, 'eventscalendar', 'up')}>
             <Text style={styles.CTAText}>Calendar View</Text>

@@ -232,7 +232,6 @@
 
 /* Begin PBXFileReference section */
 		008D737A8C4DF432EE7A4CF2 /* Pods-Seabird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seabird.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seabird/Pods-Seabird.release.xcconfig"; sourceTree = "<group>"; };
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
@@ -382,7 +381,6 @@
 			isa = PBXGroup;
 			children = (
 				1F4B6F511EA3027E009EB67E /* Seabird.entitlements */,
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				1F4B6F841EA3368A009EB67E /* Images.xcassets */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				EC78CB1B1EB6CBA7008D7CFF /* GoogleService-Info.plist */,
@@ -1091,7 +1089,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seabirdapps.seabirduniversity;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seabirdapps;
 				PRODUCT_NAME = Seabird;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1115,7 +1113,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seabirdapps.seabirduniversity;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seabirdapps;
 				PRODUCT_NAME = Seabird;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
