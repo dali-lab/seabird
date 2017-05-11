@@ -60,11 +60,11 @@ export default class Root extends Component {
     const views = [];
     for (let i = 0; i < (this.props.HOME_PORTALS.length / 6); i++) {
       if (i + 1 > this.props.HOME_PORTALS.length / 6) {
-        for (var j = 0; j < this.props.HOME_PORTALS.length - (6 * i); j++) {
+        for (let j = 0; j < this.props.HOME_PORTALS.length - (6 * i); j++) {
           moduleList[j] = this.props.HOME_PORTALS[this.props.HOME_PORTALS.length - (6 * i - (i)) + j];
         }
       } else {
-        for (var j = 0; j < 6; j++) {
+        for (let j = 0; j < 6; j++) {
           moduleList[j] = this.props.HOME_PORTALS[(6 * i) + j];
         }
       }

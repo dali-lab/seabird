@@ -41,13 +41,13 @@ import Signup from './screens/signup';
 import ModuleDetails from './screens/moduleDetail';
 import AppWebView from './screens/appWebView';
 
-var firebase = require("firebase/app");
+const firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
 
-var email = ""
-var password = ""
-let alreadyLogin = false
+let email = '';
+let password = '';
+let alreadyLogin = false;
 
 const NoBackSwipeFloatRight ={
   ...Navigator.SceneConfigs.FloatFromRight,
