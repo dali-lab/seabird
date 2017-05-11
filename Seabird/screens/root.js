@@ -20,7 +20,6 @@ import { PageList } from './../components/pageList';
 import Swiper from 'react-native-swiper';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
-import LinearGradient from 'react-native-linear-gradient';
 
 const firebase = require('firebase/app');
 require('firebase/auth');
@@ -28,8 +27,6 @@ require('firebase/database');
 // import Analytics from '../firebase/analytics';
 // var Analytics = require('react-native-firebase-analytics');
 
-const COLOR1 = '#00713A'; // used for 3/6 buttons and the Next button (NOTE: original color)
-const COLOR2 = '#01964d'; // used for the other 3/6 buttons
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
 export default class Root extends Component {
@@ -82,36 +79,60 @@ export default class Root extends Component {
     }
 
     return (
-      <View style={{ flex: 1, backgroundColor: 'transparent' }}>
+      <Image source={require( '../Icons/Login/gradient_background.png' )} style={styles.gradientBackground}>
         <View style={styles.mainHeader}>
           <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True" />
         </View>
-        <LinearGradient
-          start={{ x: 0.0, y: 0.15 }} end={{ x: 0.3, y: 1.0 }}
-          locations={[0, 0.0, 0.8]}
-          colors={['rgba(122, 196, 28, 0.9)', 'rgba(126, 201, 29, 0.9)', 'rgba(7, 128, 75, 0.9)']}
-          style={{
-            flex: 1,
-            alignItems: 'flex-start',
-          }}
-        >
           <Swiper
             style={styles.wrapper}
             showsButtons={false}
-            dot={<View style={{backgroundColor: 'rgba(10,10,10,.2)', width: 5, height: 5, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-            activeDot={<View style={{backgroundColor: '#fff', width: 8, height: 8, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
-          paginationStyle={{
-            bottom: 70, left: 0, right: 0
-          }} loop={false}>
+            dot={<View style={styles.dot} />}
+            activeDot={<View style={styles.activeDot} />}
+            paginationStyle={styles.pagination}
+            loop={false}>
             {views}
           </Swiper>
-        </LinearGradient>
-      </View>
+      </Image>
     );
   }
 }
 
 const styles = StyleSheet.create({
+
+  /* Style for the navigation dots */
+  dot: {
+    backgroundColor: 'rgba(10,10,10,.2)',
+    width: 5,
+    height: 5,
+    borderRadius: 4,
+    margin: 3,
+  },
+
+  /* Style for the navigation dots while activated */
+  activeDot: {
+    backgroundColor: '#fff',
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    margin: 3,
+  },
+
+  /* Style for the page pagination */
+  pagination: {
+    bottom: 70,
+    left: 0,
+    right: 0
+  },
+
+  /* Style for main background image. */
+  gradientBackground: {
+    height: height,
+    width: width,
+    resizeMode: 'stretch',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+
   /* Style for the header section that holds the school name and crest */
   mainHeader: {
     width,
@@ -164,16 +185,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     alignItems: 'flex-start',
     height: height * 1.2,
-  },
-
-  /* Style for the bottom button that moves to the next page */
-  nextButton: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    margin: 10,
-    marginTop: 15,
-    backgroundColor: COLOR1,
   },
 
 });

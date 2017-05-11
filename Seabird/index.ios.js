@@ -95,10 +95,12 @@ export default class Seabird extends Component {
     constructor( props ) {
       super( props );
       Firebase.initialize( );
+      this.updateViewName = this.updateViewName.bind(this)
       this.passEvent = this.passEvent.bind(this)
       this.updateHome = this.updateHome.bind(this)
       this.orderChanged = this.orderChanged.bind(this)
       this.state = {
+        viewName: '',
         currentEvent: '',
         HOME_PORTALS: [
           {
@@ -182,6 +184,10 @@ export default class Seabird extends Component {
     onIds( device ) {
       // console.log('Device info: ', device);
     }*/
+
+    updateViewName(name) {
+      this.setState({ viewName: name })
+    }
 
     passEvent(userEvent) {
       this.setState({ currentEvent: userEvent})
@@ -280,19 +286,27 @@ export default class Seabird extends Component {
       }
 
       if ( route.name === 'academics' ) {
-        return <ModuleDetails navigator={navigator}/>
+        return <ModuleDetails navigator={navigator}
+        viewName={this.state.viewName}
+        updateViewName={this.updateViewName}/>
       }
 
       if ( route.name === 'banner' ) {
-        return <AppWebView navigator={navigator}/>
+        return <AppWebView navigator={navigator}
+        viewName={this.state.viewName}
+        updateViewName={this.updateViewName}/>
       }
 
       if ( route.name === 'canvas' ) {
-        return <AppWebView navigator={navigator}/>
+        return <AppWebView navigator={navigator}
+        viewName={this.state.viewName}
+        updateViewName={this.updateViewName}/>
       }
 
       if ( route.name === 'timetable' ) {
-        return <AppWebView navigator={navigator}/>
+        return <AppWebView navigator={navigator}
+        viewName={this.state.viewName}
+        updateViewName={this.updateViewName}/>
       }
     };
 

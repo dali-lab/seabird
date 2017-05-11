@@ -25,6 +25,7 @@ require('firebase/database');
 export default class ModuleDetails extends Component {
 
   navigate(routeName, transitionType = 'normal') {
+    this.props.updateViewName(routeName)
     this.props.navigator.push({ name: routeName, transitionType, });
   }
 

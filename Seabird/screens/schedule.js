@@ -17,8 +17,6 @@ const { height, width } = Dimensions.get('window');
 export default class Schedule extends Component {
 
   render() {
-    // NOTE: put this in TouchableHighlight:
-    //   onPress={() => apiSaveSchedule()}
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
@@ -27,8 +25,8 @@ export default class Schedule extends Component {
             <Image
               source={require('./../Icons/General-Schedule.png')}
               style={{
-                height: (height / 100) * 70,
-                width: (width / 100) * 70,
+                height: (height / 90) * 70,
+                width: (width / 90) * 70,
               }}
             />
           </View>
