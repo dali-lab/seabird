@@ -41,13 +41,13 @@ import Signup from './screens/signup';
 import ModuleDetails from './screens/moduleDetail';
 import AppWebView from './screens/appWebView';
 
-var firebase = require("firebase/app");
+const firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
 
-var email = ""
-var password = ""
-let alreadyLogin = false
+let email = '';
+let password = '';
+let alreadyLogin = false;
 
 const NoBackSwipeFloatRight ={
   ...Navigator.SceneConfigs.FloatFromRight,
@@ -88,9 +88,9 @@ export default class Seabird extends Component {
     constructor( props ) {
       super( props );
       Firebase.initialize( );
-      this.passEvent = this.passEvent.bind(this)
-      this.updateHome = this.updateHome.bind(this)
-      this.orderChanged = this.orderChanged.bind(this)
+      this.passEvent = this.passEvent.bind(this);
+      this.updateHome = this.updateHome.bind(this);
+      this.orderChanged = this.orderChanged.bind(this);
       this.state = {
         currentEvent: '',
         HOME_PORTALS: [

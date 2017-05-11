@@ -25,6 +25,8 @@ export default class Root extends Component {
         this.state = {
             username: '',
             password: '',
+            name: '',
+            year: '',
             modalVisible: false,
         };
     }
@@ -50,6 +52,16 @@ export default class Root extends Component {
             this.setModalVisible(!this.state.modalVisible);
         }
     }
+
+    signup = (email, password) => {
+        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            console.log(errorCode + ": " + errorMessage)
+        });
+        this.navigate('root')
+    };
 
     navigate(routeName, transitionType = 'floatRight') {
         this.props.navigator.push({name: routeName, transitionType});
@@ -112,11 +124,11 @@ export default class Root extends Component {
                         <TextInput
                             ref='Name'
                             style={styles.credentials}
-                            onChangeText={username => this.setState({username})}
+                            onChangeText={name => this.setState({name})}
                             placeholder="Name"
                             placeholderTextColor="white"
                             keyboardType="default"
-                            value={this.state.username}
+                            value={this.state.name}
                             returnKeyType={"next"}
                             onSubmitEditing={(event) => {
                                 this.refs.Password.focus();
@@ -135,11 +147,11 @@ export default class Root extends Component {
                         <TextInput
                             ref='Year'
                             style={styles.credentials}
-                            onChangeText={username => this.setState({username})}
+                            onChangeText={year => this.setState({year})}
                             placeholder="Year"
                             placeholderTextColor="white"
                             keyboardType="default"
-                            value={this.state.username}
+                            value={this.state.year}
                             returnKeyType={"next"}
                             onSubmitEditing={(event) => {
                                 this.refs.Password.focus();
@@ -187,7 +199,7 @@ export default class Root extends Component {
                                 placeholderTextColor="white"
                                 value={this.state.password}
                                 onSubmitEditing={(event) => {
-                                    this.login(this.state.username, this.state.password)
+                                    this.signup(this.state.username, this.state.password)
                                 }}
                             />
                         </View>
@@ -199,7 +211,7 @@ export default class Root extends Component {
                         {/*Login button*/}
                         <View style={{marginTop: 15}}>
                             <TouchableHighlight underlayColor="transparent"
-                                                onPress={() => this.login(this.state.username, this.state.password)}>
+                                                onPress={() => this.signup(this.state.username, this.state.password)}>
                                 <Image source={require('../Icons/Signup/signup_button.png')}
                                        style={styles.loginButton}
                                 />
