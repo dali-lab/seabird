@@ -1,0 +1,86 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "react-native-sortable-grid@^2.0.0",
+        "scope": null,
+        "escapedName": "react-native-sortable-grid",
+        "name": "react-native-sortable-grid",
+        "rawSpec": "^2.0.0",
+        "spec": ">=2.0.0 <3.0.0",
+        "type": "range"
+      },
+      "/Users/seancann/Documents/coding/0 seabird apps/dali/seabird/Seabird"
+    ]
+  ],
+  "_from": "react-native-sortable-grid@>=2.0.0 <3.0.0",
+  "_id": "react-native-sortable-grid@2.0.0",
+  "_inCache": true,
+  "_location": "/react-native-sortable-grid",
+  "_nodeVersion": "6.5.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/react-native-sortable-grid-2.0.0.tgz_1482933447815_0.4166327428538352"
+  },
+  "_npmUser": {
+    "name": "olmoze",
+    "email": "olli@leonidasoy.fi"
+  },
+  "_npmVersion": "3.10.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-native-sortable-grid@^2.0.0",
+    "scope": null,
+    "escapedName": "react-native-sortable-grid",
+    "name": "react-native-sortable-grid",
+    "rawSpec": "^2.0.0",
+    "spec": ">=2.0.0 <3.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-sortable-grid/-/react-native-sortable-grid-2.0.0.tgz",
+  "_shasum": "61129a4614a93b6d3ed1693a7485a036f986ce53",
+  "_shrinkwrap": null,
+  "_spec": "react-native-sortable-grid@^2.0.0",
+  "_where": "/Users/seancann/Documents/coding/0 seabird apps/dali/seabird/Seabird",
+  "bugs": {
+    "url": "https://github.com/ollija/react-native-sortable-grid/issues"
+  },
+  "dependencies": {},
+  "description": "Drag-and-drop sortable grid view for React Native.",
+  "devDependencies": {
+    "lodash": "^4.16.4"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "61129a4614a93b6d3ed1693a7485a036f986ce53",
+    "tarball": "https://registry.npmjs.org/react-native-sortable-grid/-/react-native-sortable-grid-2.0.0.tgz"
+  },
+  "gitHead": "4f8026daca7f31c121f24e925d80accc6b8572da",
+  "homepage": "https://github.com/ollija/react-native-sortable-grid#readme",
+  "keywords": [
+    "drag-drop",
+    "sortable",
+    "grid"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "olmoze",
+      "email": "olli@leonidasoy.fi"
+    }
+  ],
+  "name": "react-native-sortable-grid",
+  "optionalDependencies": {},
+  "readme": "\n<h3 align=\"center\" style=\"margin-bottom: 21px;\">\n  Drag-and-drop -style rearrangable grid view\n</h3>\n\n<p align=\"center\">\n  <img alt=\"Issue Stats\" src=\"http://i.giphy.com/gcB8YYVtL2BsA.gif\">\n</p>\n\n# react-native-sortable-grid\n\n[![Join the chat at https://gitter.im/react-native-sortable-grid/Lobby](https://badges.gitter.im/react-native-sortable-grid/Lobby.svg)](https://gitter.im/react-native-sortable-grid/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)\n[![npm](https://img.shields.io/npm/dm/react-native-sortable-grid.svg)]()\n[![Sponsored by Leonidas](https://img.shields.io/badge/sponsored%20by-leonidas-389fc1.svg)](https://leonidasoy.fi/opensource)\n[![npm](https://img.shields.io/npm/l/react-native-sortable-grid.svg)]()\n[![David](https://img.shields.io/david/ollija/react-native-sortable-grid.svg)]()\n[![David](https://img.shields.io/david/dev/ollija/react-native-sortable-grid.svg)]()\n\n## Installation\n\n``` npm i react-native-sortable-grid --save ```\n\n## Usage\n\n```\nimport SortableGrid from 'react-native-sortable-grid'\n\n...\n\n<SortableGrid>\n  {\n    ['a', 'b', 'c'].map( (letter, index) =>\n\n      <View key={index}>\n        <Text>{letter}</Text>\n      </View>\n\n    )\n  }\n</SortableGrid>\n\n```\n\n## SortableGrid properties\n\n -  ``` style ``` **Object**\n\n  Custom styles to override or complement the sortableGrid native style.\n\n  *  When a row becomes empty of items due to item deletion, the height of the grid is smoothly adjusted to fit the new rows. However, passing ```flex:1``` inside the style prop will cause the grid to fill up the available space and not adjust height when rows become empty.\n  * User cannot drag items outside of the grid. Assigning ```flex:1``` will expand the grid, therefore giving more space for the items to be dragged in.\n  * When deleting items from the last row on Android, the items can get clipped. You can workaround this by giving the grid ```bottomPadding```. (This is <a href=\"https://facebook.github.io/react-native/releases/0.26/docs/known-issues.html#the-overflow-style-property-defaults-to-hidden-and-cannot-be-changed-on-android\">a known issue</a> with ```overflow```-property on Android)\n\n\n -  ``` blockTransitionDuration ``` **Number**\n\n  How long should the transition of a passive block take when the active block takes its place (milliseconds)\n\n -  ``` activeBlockCenteringDuration ``` **Number**\n\n  How long should it take for the block that is being dragged to seek its place after it's released  (milliseconds)\n\n -  ``` itemsPerRow ``` **Number**\n\n  How many items should be placed on one row\n\n -  ``` dragActivationTreshold ``` **Number**\n\n  How long must the user hold the press on the block until it becomes active and can be dragged (milliseconds)\n\n -  ``` doubleTapTreshold ``` **Number**\n\n  How long will the execution wait for the second tap before deciding it was a single tap (milliseconds).\n  Will be omitted if no onDoubleTap-property is given to the item being tapped - In which case single-tap callback will be executed instantly\n\n -  ``` onDragStart ``` **Callback** *(activeItem)*\n\n  Function that is called when the dragging starts. This can be used to lock other touch responders from listening to the touch such as ScrollViews and Swipers.\n\n -  ``` onDragRelease ``` **Callback** *(itemOrder)*\n\n  Function that is executed after the drag is released. Will return the new item order.\n\n -  ``` onDeleteItem ``` **Callback** *(item)*\n\n  Function that is executed item is deleted. Will return the properties of the deleted item.\n\n -  ``` dragStartAnimation ``` **Object**\n\n  Custom animation to override the default wiggle. Must be an object containing a key ```transform```, which is an array of transformations. Read about [transforms](https://facebook.github.io/react-native/docs/transforms.html) and [animations](https://facebook.github.io/react-native/docs/animated.html) and [see the example](example/customAnimationExample.js#L47) to learn how to use this.\n\n## SortableGrid methods\n\n -  ``` toggleDeleteMode ``` accepts no arguments\n\n  Calling this will toggle item deletion mode on/off. Will return object ```{ deleteModeOn: true/false }```.\n\n\n## SortableGrid's children's properties\n\n -  ``` onTap ``` **Callback**\n\n  Function that is executed when the block is tapped once, but not pressed for long enough to activate the drag.\n\n -  ``` onDoubleTap ``` **Callback**\n\n  Function that is executed when the block is double tapped within a timeframe of ```doubleTapTreshold``` (default 150ms). Assigning this will delay the execution of ```onTap```. Omitting this will cause all taps to be handled as single taps, regardless of their frequency.\n\n\n## onDragRelease return value looks like this:\n\n```\nObject {\n\n  itemOrder: Array [\n    0: Object {\n      key: \"1\"\n      order: 0\n      ref: null\n    }\n    1: Object {\n      key: \"5\"\n      order: 1\n      ref: null\n    }\n    n: Object ...\n  ]\n\n}\n```\n\n## Full SortableGrid example:\n\n```\n <SortableGrid\n   blockTransitionDuration      = { 400 }\n   activeBlockCenteringDuration = { 200 }\n   itemsPerRow                  = { 4 }\n   dragActivationTreshold       = { 200 }\n   onDragRelease                = { (itemOrder) => console.log(\"Drag was released, the blocks are in the following order: \", itemOrder) }\n   onDragStart                  = { ()          => console.log(\"Some block is being dragged now!\") } >\n\n   {\n     ['a', 'b', 'c'].map( (letter, index) =>\n\n       <View key={index} onTap={() => console.log(\"Item number:\", index, \"was tapped!\") }>\n         <Text>{letter}</Text>\n       </View>\n\n     )\n   }\n\n </SortableGrid>\n\n```\n\n## Demos\n\n<p align=\"center\">\n\n  <b>Basic item deletion</b><br>toggleDeleteMode() is called during onTap in this example<br><br>\n  <img alt=\"Issue Stats\" src=\"http://i.giphy.com/S4OC2Rt4JXEK4.gif\">\n  <br><br>\n  \n  <b>Custom block animation can be passed to the grid<br><br>\n  <img alt=\"Custom animation\" src=\"http://i.giphy.com/FPyiKkqWf1fLW.gif\">\n  <br><br>\n\n  <b>Smooth resizing of the grid when the last row becomes empty:</b><br><br>\n  <img alt=\"Issue Stats\" src=\"http://i.giphy.com/PEU01yJh997qM.gif\">\n  <br><br>\n\n  <b>No grid resizing if the grid has flex:1 assigned:</b><br><br>\n  <img alt=\"Issue Stats\" src=\"http://i.giphy.com/fxBIhIkzydDW0.gif\">\n  <br><br>\n\n  <b>The item drag is constrained within the grid:</b><br><br>\n  <img alt=\"Issue Stats\" src=\"http://i.giphy.com/4YsV4fvEmb9Dy.gif\">\n  <br><br>\n\n  <b>With flex:1 there is more space to drag:</b><br><br>\n  <img alt=\"Issue Stats\" src=\"http://i.giphy.com/lX4NyomLbnRvi.gif\">\n\n</p>\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ollija/react-native-sortable-grid.git"
+  },
+  "scripts": {},
+  "version": "2.0.0"
+}
