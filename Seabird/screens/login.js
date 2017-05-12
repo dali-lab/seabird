@@ -11,6 +11,7 @@ import {
   Modal,
 } from 'react-native';
 import Database from '../firebase/database';
+import Firebase from '../firebase/firebase';
 
 const { height, width } = Dimensions.get('window');
 const firebase = require('firebase/app');
@@ -27,6 +28,17 @@ export default class Root extends Component {
       password: '',
       modalVisible: false,
     };
+  }
+
+  userIsSignedIn = () => {
+    console.log('USER IS ALREADY SIGNED IN');
+    console.log(Firebase.getUser());
+    this.props.navigator.push({name: 'root'});
+  }
+
+  componentDidMount() {
+    // check if a current user is logged in already
+    Firebase.isUserSignedIn(this.userIsSignedIn)
   }
 
   setModalVisible(visible) {

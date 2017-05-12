@@ -16,7 +16,7 @@ import Database from '../firebase/database';
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
-import SortableGrid from 'react-native-sortable-grid';
+import SortableGrid from '../components/react-native-sortable-grid/index';
 
 var firebase = require("firebase/app");
 require("firebase/auth");
@@ -25,7 +25,7 @@ require("firebase/database");
 // the y value a block is dragged to before screen scrolls up/down
 // NOTE: these should be percentages of screen height
 let SCROLL_UP_Y = 100;
-let SCROLL_DOWN_Y = 600;
+let SCROLL_DOWN_Y = 550;
 
 // used in the setInterval timer to track position of block being dragged
 let dragTracker = null;
@@ -41,6 +41,7 @@ export default class Customize extends Component {
       deletingPortals: false,
       portal: [],
     };
+    this.scrollY = 0;
   }
 
   componentWillMount() {
@@ -70,7 +71,7 @@ export default class Customize extends Component {
   }
 
   rearrange = (value) => {
-    this.setState({ scrolling: true })
+    this.setState({ scrolling: true });
     for (var i = 0; i < this.state.portal.length; i++) {
         newHome[i] = this.state.portal[value.itemOrder[i].key]
     }
@@ -91,19 +92,34 @@ export default class Customize extends Component {
 
   // activated by setInterval timer
   dragging = () => {
+    if (this.state.scrolling) {
+      this.refs.SortableGrid.setViewIsScrolling(true);
+    }
+    else {
+      this.refs.SortableGrid.setViewIsScrolling(false);
+    }
     // only once the dragPosition can be read
     if (this.refs.SortableGrid.dragPosition) {
       let blockY = this.refs.SortableGrid.dragPosition.y;
-      console.log('y of the active block:');
-      console.log(blockY);
-      if ((blockY < SCROLL_UP_Y) || (blockY > SCROLL_DOWN_Y)) {
-        console.log('scrolling screen');
-        this.scrollScreen(blockY);
+      if (blockY < SCROLL_UP_Y) {
+        console.log('scrolling screen up');
+        this.scrollScreen(-20);
+      }
+      else if (blockY > SCROLL_DOWN_Y) {
+        console.log('scrolling screen down');
+        this.scrollScreen(20);
       }
     }
   }
 
-  scrollScreen = (yVal) => {
+  handleScroll = (event) => {
+    this.scrollY = event.nativeEvent.contentOffset.y;
+  }
+
+  scrollScreen = (yDelta) => {
+    let yVal = this.scrollY + yDelta;
+    let blockY = this.refs.SortableGrid.dragPosition.y + 20 + this.refs.SortableGrid.activeBlockOffset.y;
+    this.refs.SortableGrid._getActiveBlock().currentPosition.y.setValue(blockY);
     _scrollView.scrollTo({y: yVal});
   }
 
@@ -116,6 +132,8 @@ export default class Customize extends Component {
           <ScrollView
             ref={(scrollView) => { _scrollView = scrollView; }}
             scrollEnabled={this.state.scrolling}
+            scrollEventThrottle={100}
+            onScroll={this.handleScroll}
           >
             <SortableGrid
               itemsPerRow={2}
