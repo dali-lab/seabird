@@ -50,8 +50,8 @@ export default class Root extends Component {
     this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
   }
 
-  searchModules = () => {
-    var searchKey = this.state.searchText
+  searchModules = (text) => {
+    var searchKey = text
     if (searchKey.length > 0) {
       var updateHomeOrder = []
       for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
@@ -60,7 +60,7 @@ export default class Root extends Component {
         }
       }
         this.setState({ HOME_PORTALS: updateHomeOrder })
-    } else {
+    } else if (searchKey === '') {
       this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
     }
   }
@@ -105,7 +105,10 @@ export default class Root extends Component {
             style={styles.searchSectionInput}
             placeholder="Search Modules"
             placeHolderTextColor="white"
-            onChangeText={(text) => this.setState({ searchText: text })}
+            onChangeText={(text) => {
+              this.setState({ searchText: text });
+              this.searchModules(text);
+            }}
           />
           <TouchableHighlight
             ref="SearchBar"
@@ -113,7 +116,7 @@ export default class Root extends Component {
             style={styles.searchSectionButton}
             onPress={() => this.searchModules()}
           >
-            <Text>GO</Text>
+            <Image source={require('./../Icons/search_icon.png')}/>
           </TouchableHighlight>
         </View>
         <Swiper

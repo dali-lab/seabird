@@ -152,6 +152,13 @@ export default class Seabird extends Component {
       }
     }
 
+    userIsSignedIn = () => {
+      console.log('USER IS ALREADY SIGNED IN');
+      alreadyLogin = true
+      console.log(Firebase.getUser());
+      //this.props.navigator.push({nasme: 'root'});
+    }
+
     /*componentWillMount( ) {
       OneSignal.addEventListener( 'received', this.onReceived );
       OneSignal.addEventListener( 'opened', this.onOpened );
@@ -336,7 +343,7 @@ export default class Seabird extends Component {
     };
 
     render( ) {
-
+      Firebase.isUserSignedIn(this.userIsSignedIn)
       if ( alreadyLogin ) {
         return ( <Navigator initialRoute={{
           name: 'root',
