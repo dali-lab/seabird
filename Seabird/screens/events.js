@@ -77,6 +77,7 @@ export default class Events extends Component {
     /* Form dates to distinguish from events */
     return (
       <TouchableHighlight key={rowData.key} underlayColor="transparent" onPress={() => this.navigatePush('eventsdetails', rowData)}>
+      {/*Align items center */}
       <View style={styles.listSection}>
       <View style={styles.listSectionTime}>
         <Text style={styles.listSectionTimeText}>{Moment(rowData.startTime).format('h:mm A')}</Text>
@@ -217,6 +218,7 @@ const styles = StyleSheet.create({
   listSectionTime: {
     flexDirection: 'column',
     justifyContent: 'center',
+    height: 65,
     marginRight: 5,
   },
 
@@ -239,7 +241,8 @@ const styles = StyleSheet.create({
     width: width / 1.35,
     fontFamily: 'Avenir',
     fontSize: 18,
-    marginTop: 5,
+    height: 65,
+    marginTop: 9,
   },
 
   /* Style for the list section text */

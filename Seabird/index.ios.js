@@ -143,6 +143,10 @@ export default class Seabird extends Component {
             txtName: 'Building Hours',
             navName: 'buildingHours',
             imgName: require('./Icons/News-50-White.png'),
+          }, {
+            txtName: 'Academics',
+            navName: 'academics',
+            imgName: require('./Icons/News-50-White.png'),
           },
         ],
       }
@@ -203,6 +207,8 @@ export default class Seabird extends Component {
       this.setState({ HOME_PORTALS: newOrder })
       Database.setUserHomeOrder(JSON.stringify(newOrder));
     }
+
+    /* Switch cases */
 
     renderScene = ( route, navigator ) => {
       if ( route.name === 'login' ) {

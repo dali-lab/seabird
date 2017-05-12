@@ -11,7 +11,8 @@ import {
   Animated,
   AsyncStorage,
   ScrollView,
-  PixelRatio
+  PixelRatio,
+  TextInput,
 } from 'react-native';
 
 import { Tile } from './../components/tile';
@@ -38,15 +39,30 @@ export default class Root extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchText: '',
       bounceValue: new Animated.Value(0),
-      homeSource: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => true,
-      }).cloneWithRows([1, 1, 1, 1, 1, 1]),
+      HOME_PORTALS: []
     };
   }
 
   componentWillMount() {
     Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
+    this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
+  }
+
+  searchModules = () => {
+    var searchKey = this.state.searchText
+    if (searchKey.length > 0) {
+      var updateHomeOrder = []
+      for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
+        if (this.props.HOME_PORTALS[i].txtName === searchKey || this.props.HOME_PORTALS[i].navName === searchKey) {
+          updateHomeOrder.push(this.props.HOME_PORTALS[i])
+        }
+      }
+        this.setState({ HOME_PORTALS: updateHomeOrder })
+    } else {
+      this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
+    }
   }
 
   renderNavigationDots = (index) =>  {
@@ -58,14 +74,15 @@ export default class Root extends Component {
   render() {
     let moduleList = [];
     const views = [];
-    for (let i = 0; i < (this.props.HOME_PORTALS.length / 6); i++) {
-      if (i + 1 > this.props.HOME_PORTALS.length / 6) {
-        for (let j = 0; j < this.props.HOME_PORTALS.length - (6 * i); j++) {
-          moduleList[j] = this.props.HOME_PORTALS[this.props.HOME_PORTALS.length - (6 * i - (i)) + j];
+    for (let i = 0; i < (this.state.HOME_PORTALS.length / 6); i++) {
+      if (i + 1 > this.state.HOME_PORTALS.length / 6) {
+        for (let j = 0; j < this.state.HOME_PORTALS.length - (6 * i); j++) {
+          moduleList[j] = this.state.HOME_PORTALS[this.state.HOME_PORTALS.length - (6 * i - (i)) + j - 1];
+          console.log(this.state.HOME_PORTALS.length + ": " + JSON.stringify(moduleList));
         }
       } else {
         for (let j = 0; j < 6; j++) {
-          moduleList[j] = this.props.HOME_PORTALS[(6 * i) + j];
+          moduleList[j] = this.state.HOME_PORTALS[(6 * i) + j];
         }
       }
 
@@ -83,21 +100,68 @@ export default class Root extends Component {
         <View style={styles.mainHeader}>
           <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True" />
         </View>
-          <Swiper
-            style={styles.wrapper}
-            showsButtons={false}
-            dot={<View style={styles.dot} />}
-            activeDot={<View style={styles.activeDot} />}
-            paginationStyle={styles.pagination}
-            loop={false}>
-            {views}
-          </Swiper>
+        <View style={styles.searchSection}>
+          <TextInput
+            style={styles.searchSectionInput}
+            placeholder="Search Modules"
+            placeHolderTextColor="white"
+            onChangeText={(text) => this.setState({ searchText: text })}
+          />
+          <TouchableHighlight
+            ref="SearchBar"
+            underlayColor="transparent"
+            style={styles.searchSectionButton}
+            onPress={() => this.searchModules()}
+          >
+            <Text>GO</Text>
+          </TouchableHighlight>
+        </View>
+        <Swiper
+          containerCustomStyle={styles.wrapper}
+          contentContainerCustomStyle={styles.wrapper}
+          showsButtons={false}
+          dot={<View style={styles.dot} />}
+          activeDot={<View style={styles.activeDot} />}
+          paginationStyle={styles.pagination}
+          loop={false}>
+          {views}
+        </Swiper>
       </Image>
     );
   }
 }
 
 const styles = StyleSheet.create({
+
+  /* Style for the section that holds the search bar */
+  searchSection: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    width: width / 1.2,
+    height: 40,
+    marginTop: 15,
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 20,
+  },
+
+  /* Style for the search bar */
+  searchSectionInput: {
+    width: width / 1.6,
+    height: 40,
+    color: 'white',
+    paddingLeft: 15,
+    paddingRight: 10,
+  },
+
+  /* Style for the search bar button */
+  searchSectionButton: {
+    width: 40,
+    height: 40,
+  },
 
   /* Style for the navigation dots */
   dot: {
@@ -119,7 +183,7 @@ const styles = StyleSheet.create({
 
   /* Style for the page pagination */
   pagination: {
-    bottom: 70,
+    bottom: height / 5.2,
     left: 0,
     right: 0
   },
@@ -178,13 +242,13 @@ const styles = StyleSheet.create({
 
   /* Styles the grid format of the list view */
   grid: {
-    paddingLeft: width / 20,
-    paddingRight: width / 20,
+    paddingLeft: width / 15,
+    paddingRight: width / 15,
     justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    height: height * 1.2,
+    height: height,
   },
 
 });

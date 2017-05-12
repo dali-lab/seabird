@@ -70,7 +70,6 @@ export class PageList extends Component {
 const styles = StyleSheet.create({
   /* Style for the section that holds the tiles */
   section: {
-    height
   },
 
   /* Style for the tiles for the home screen */
@@ -79,10 +78,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    width: width / 2.9,
-    height: height / 5.1,
+    width: width / 3.3,
+    height: height / 6,
     paddingBottom: 20,
-    marginTop: width / 18,
+    marginTop: width / 15,
     margin: width / 25,
     borderRadius: (width / 2.8) / 2,
     borderWidth: 2,
