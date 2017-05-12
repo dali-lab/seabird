@@ -30,6 +30,15 @@ require('firebase/database');
 
 const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
 const { height, width } = Dimensions.get('window');
+
+let GRID_PADDING = width / 15
+let PAGE_DOTS = height / 5.2
+
+if (PixelRatio.get() <= 2) {
+  GRID_PADDING = width / 12;
+  PAGE_DOTS = height / 4.6
+}
+
 export default class Root extends Component {
 
   navigate(routeName, transitionType = 'normal') {
@@ -55,11 +64,12 @@ export default class Root extends Component {
     if (searchKey.length > 0) {
       var updateHomeOrder = []
       for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
-        if (this.props.HOME_PORTALS[i].txtName === searchKey || this.props.HOME_PORTALS[i].navName === searchKey) {
+        if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length) === searchKey || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length) === searchKey) {
           updateHomeOrder.push(this.props.HOME_PORTALS[i])
         }
       }
         this.setState({ HOME_PORTALS: updateHomeOrder })
+
     } else if (searchKey === '') {
       this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
     }
@@ -77,12 +87,13 @@ export default class Root extends Component {
     for (let i = 0; i < (this.state.HOME_PORTALS.length / 6); i++) {
       if (i + 1 > this.state.HOME_PORTALS.length / 6) {
         for (let j = 0; j < this.state.HOME_PORTALS.length - (6 * i); j++) {
-          moduleList[j] = this.state.HOME_PORTALS[this.state.HOME_PORTALS.length - (6 * i - (i)) + j - 1];
-          console.log(this.state.HOME_PORTALS.length + ": " + JSON.stringify(moduleList));
-        }
+            moduleList[j] = this.state.HOME_PORTALS[(6 * i) + j];
+          }
       } else {
         for (let j = 0; j < 6; j++) {
-          moduleList[j] = this.state.HOME_PORTALS[(6 * i) + j];
+          if (this.state.HOME_PORTALS[(6 * i) + j]) {
+            moduleList[j] = this.state.HOME_PORTALS[(6 * i) + j];
+          }
         }
       }
 
@@ -104,7 +115,8 @@ export default class Root extends Component {
           <TextInput
             style={styles.searchSectionInput}
             placeholder="Search Modules"
-            placeHolderTextColor="white"
+            placeholderTextColor='rgba(255, 255, 255, 0.5)'
+            selectionColor="white"
             onChangeText={(text) => {
               this.setState({ searchText: text });
               this.searchModules(text);
@@ -114,9 +126,11 @@ export default class Root extends Component {
             ref="SearchBar"
             underlayColor="transparent"
             style={styles.searchSectionButton}
-            onPress={() => this.searchModules()}
+            onPress={() => console.log('Pressed search')}
           >
-            <Image source={require('./../Icons/search_icon.png')}/>
+            <Image
+              style={styles.searchIcon} source={require('./../Icons/search_icon.png')}
+              />
           </TouchableHighlight>
         </View>
         <Swiper
@@ -140,6 +154,7 @@ const styles = StyleSheet.create({
   searchSection: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'space-around',
     alignItems: 'center',
     width: width / 1.2,
     height: 40,
@@ -162,8 +177,18 @@ const styles = StyleSheet.create({
 
   /* Style for the search bar button */
   searchSectionButton: {
-    width: 40,
-    height: 40,
+    width: 10,
+    height: 10,
+    alignSelf: 'center',
+    marginTop: -10,
+    paddingRight: 20,
+  },
+
+  /* Style for the search button's icon */
+  searchIcon: {
+    height: 18,
+    width: 18,
+    resizeMode: 'contain',
   },
 
   /* Style for the navigation dots */
@@ -186,7 +211,7 @@ const styles = StyleSheet.create({
 
   /* Style for the page pagination */
   pagination: {
-    bottom: height / 5.2,
+    bottom: PAGE_DOTS,
     left: 0,
     right: 0
   },
@@ -245,13 +270,13 @@ const styles = StyleSheet.create({
 
   /* Styles the grid format of the list view */
   grid: {
-    paddingLeft: width / 15,
-    paddingRight: width / 15,
+    paddingLeft: GRID_PADDING,
+    paddingRight: GRID_PADDING,
     justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    height: height,
+    height
   },
 
 });

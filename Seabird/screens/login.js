@@ -126,6 +126,7 @@ export default class Root extends Component {
                 onChangeText={username => this.setState({ username })}
                 placeholder="Email"
                 placeholderTextColor="white"
+                selectionColor="white"
                 keyboardType="email-address"
                 value={this.state.username}
                 returnKeyType={'next'}
@@ -151,6 +152,7 @@ export default class Root extends Component {
                 onChangeText={password => this.setState({ password })}
                 placeholder="Password"
                 placeholderTextColor="white"
+                selectionColor="white"
                 value={this.state.password}
                 onSubmitEditing={(event) => {
                   this.login(this.state.username, this.state.password);

@@ -15,10 +15,14 @@ const { height, width } = Dimensions.get('window');
 
 let MODULE_FONT_SIZE = 20;
 let MODULE_TEXT_PADDING = 0;
+let TILE_WIDTH = width / 3.3
+let TILE_HEIGHT = height / 6
 
 if (PixelRatio.get() <= 2) {
-  MODULE_FONT_SIZE = 17;
-  MODULE_TEXT_PADDING = -5;
+  MODULE_FONT_SIZE = 15;
+  MODULE_TEXT_PADDING = -2;
+  TILE_WIDTH = width / 3.6
+  TILE_HEIGHT = height / 6.5
 }
 
 export class PageList extends Component {
@@ -78,8 +82,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    width: width / 3.3,
-    height: height / 6,
+    width: TILE_WIDTH,
+    height: TILE_HEIGHT,
     paddingBottom: 20,
     marginTop: width / 15,
     margin: width / 25,
