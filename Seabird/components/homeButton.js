@@ -9,7 +9,7 @@ export class HomeButton extends Component {
 
   navigate(routeName, transitionType = 'normal') {
     this.props.navigator.push({ name: routeName,
-      transitionType,
+      transitionType: 'floatLeft',
       sceneConfig: {
         gestures: {},
       } });
