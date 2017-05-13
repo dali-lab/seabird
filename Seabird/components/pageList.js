@@ -13,10 +13,11 @@ import {
 import { Tile } from './tile';
 const { height, width } = Dimensions.get('window');
 
-let MODULE_FONT_SIZE = 20;
+let MODULE_FONT_SIZE = 18;
 let MODULE_TEXT_PADDING = 0;
 let TILE_WIDTH = width / 3.3
 let TILE_HEIGHT = height / 6
+
 
 if (PixelRatio.get() <= 2) {
   MODULE_FONT_SIZE = 15;

@@ -100,6 +100,7 @@ export default class Seabird extends Component {
       this.updateHome = this.updateHome.bind(this)
       this.orderChanged = this.orderChanged.bind(this)
       this.state = {
+        alreadyLogin: false,
         viewName: '',
         currentEvent: '',
         HOME_PORTALS: [
@@ -157,6 +158,12 @@ export default class Seabird extends Component {
       alreadyLogin = true
       console.log(Firebase.getUser());
       //this.props.navigator.push({nasme: 'root'});
+    }
+
+    componentWillMount() {
+      Firebase.isUserSignedIn((value) => {
+        this.setState({ alreadyLogin: value })
+      })
     }
 
     /*componentWillMount( ) {
@@ -218,133 +225,114 @@ export default class Seabird extends Component {
     /* Switch cases */
 
     renderScene = ( route, navigator ) => {
-      if ( route.name === 'login' ) {
-        return <Login navigator={navigator}
-        updateHome={this.updateHome}/>;
-      }
+      switch (route.name) {
+        case 'login':
+          return <Login navigator={navigator}
+          updateHome={this.updateHome}/>;
 
-      if ( route.name === 'root' ) {
-        return <Root navigator={navigator} HOME_PORTALS={this.state.HOME_PORTALS}
-        updateHome={this.updateHome}/>;
-      }
+        case 'root':
+          return <Root navigator={navigator} HOME_PORTALS={this.state.HOME_PORTALS}
+          updateHome={this.updateHome}/>;
 
-      if ( route.name === 'dining' ) {
-        return <Dining navigator={navigator}/>;
-      }
+        case 'dining':
+          return <Dining navigator={navigator}/>;
 
-      if ( route.name === 'web' ) {
-        return <Map navigator={navigator}/>;
-      }
+        case 'web':
+          return <Map navigator={navigator}/>;
 
-      if ( route.name === 'events' ) {
-        return <Events navigator={navigator}
-        passEvent={this.passEvent}/>;
-      }
+        case 'events':
+          return <Events navigator={navigator}
+          passEvent={this.passEvent}/>;
 
-      if ( route.name === 'eventsdetails') {
-        return <EventDetail navigator={navigator}
-        currentEvent={this.state.currentEvent}/>;
-      }
+        case 'eventsdetails':
+          return <EventDetail navigator={navigator}
+          currentEvent={this.state.currentEvent}/>;
 
-      if ( route.name === 'eventscalendar' ) {
-        return <EventsCalendar navigator={navigator}/>;
-      }
+        case 'eventscalendar':
+          return <EventsCalendar navigator={navigator}/>;
 
-      if ( route.name === 'settings' ) {
-        return <Settings navigator={navigator}/>;
-      }
+        case 'settings':
+          return <Settings navigator={navigator}/>;
 
-      if ( route.name === 'more' ) {
-        return <More navigator={navigator}/>;
-      }
+        case 'more':
+          return <More navigator={navigator}/>;
 
-      if ( route.name === 'customize' ) {
-        return <Customize navigator={navigator} orderChanged={this.orderChanged} HOME_PORTALS={this.state.HOME_PORTALS}/>;
-      }
+        case 'customize':
+          return <Customize navigator={navigator} orderChanged={this.orderChanged} HOME_PORTALS={this.state.HOME_PORTALS}/>;
 
-      if ( route.name === 'schedule' ) {
-        return <Schedule navigator={navigator}/>;
-      }
+        case 'schedule':
+          return <Schedule navigator={navigator}/>;
 
-      if ( route.name === 'tutorial' ) {
-        return <Tutorial navigator={navigator}/>;
-      }
+        case 'tutorial':
+          return <Tutorial navigator={navigator}/>;
 
-      if ( route.name === 'map' ) {
-        return <Map navigator={navigator}/>;
-      }
+        case 'map':
+          return <Map navigator={navigator}/>;
 
-      if ( route.name === 'eventdetail' ) {
-        return <EventDetail navigator={navigator}/>;
-      }
+        case 'eventdetail':
+          return <EventDetail navigator={navigator}/>;
 
-      if ( route.name === 'combokeeper' ) {
-        return <ComboKeeper navigator={navigator}/>;
-      }
+        case 'combokeeper':
+          return <ComboKeeper navigator={navigator}/>;
 
-      if ( route.name === 'buildingHours' ) {
-        return <BuildingHours navigator={navigator}/>;
-      }
+        case 'buildingHours':
+          return <BuildingHours navigator={navigator}/>;
 
-      if ( route.name === 'dining' ) {
-        return <Dining navigator={navigator}/>;
-      }
+        case 'dining':
+          return <Dining navigator={navigator}/>;
 
-      if ( route.name === 'food' ) {
-        return <Food navigator={navigator}/>;
-      }
+        case 'food':
+          return <Food navigator={navigator}/>;
 
-      if ( route.name === 'signup' ) {
-        return <Signup navigator={navigator}/>
-      }
+        case 'signup':
+          return <Signup navigator={navigator}/>;
 
-      if ( route.name === 'academics' ) {
-        return <ModuleDetails navigator={navigator}
-        viewName={this.state.viewName}
-        updateViewName={this.updateViewName}/>
-      }
+        case 'academics':
+          return <ModuleDetails navigator={navigator}
+          viewName={this.state.viewName}
+          updateViewName={this.updateViewName}/>
 
-      if ( route.name === 'banner' ) {
-        return <AppWebView navigator={navigator}
-        viewName={this.state.viewName}
-        updateViewName={this.updateViewName}/>
-      }
+        case 'banner':
+          return <AppWebView navigator={navigator}
+          viewName={this.state.viewName}
+          updateViewName={this.updateViewName}/>
 
-      if ( route.name === 'canvas' ) {
-        return <AppWebView navigator={navigator}
-        viewName={this.state.viewName}
-        updateViewName={this.updateViewName}/>
-      }
+        case 'canvas':
+          return <AppWebView navigator={navigator}
+          viewName={this.state.viewName}
+          updateViewName={this.updateViewName}/>
 
-      if ( route.name === 'timetable' ) {
-        return <AppWebView navigator={navigator}
-        viewName={this.state.viewName}
-        updateViewName={this.updateViewName}/>
+        case 'timetable':
+          return <AppWebView navigator={navigator}
+          viewName={this.state.viewName}
+          updateViewName={this.updateViewName}/>
       }
     };
 
     configureScene = ( route, routeStack ) => {
-      if ( route.transitionType === 'up' ) {
-        return NoBackSwipeUp;
+      switch (route.transitionType) {
+        case 'up':
+          return NoBackSwipeUp;
+
+        case 'down':
+          return NoBackSwipeDown;
+
+        case 'floatRight':
+          return NoBackSwipeFloatRight;
+
+        case 'floatLeft':
+          return NoBackSwipeFloatLeft;
+
+        case 'left':
+          return NoBackSwipePushLeft;
+
+        default:
+          return NoBackSwipePushRight;
       }
-      if ( route.transitionType === 'down' ) {
-        return NoBackSwipeDown;
-      }
-      if ( route.transitionType === 'floatRight' ) {
-        return NoBackSwipeFloatRight;
-      }
-      if ( route.transitionType === 'floatLeft') {
-        return NoBackSwipeFloatLeft;
-      }
-      if ( route.transitionType === 'left') {
-        return NoBackSwipePushLeft;
-      }
-      return NoBackSwipePushRight;
     };
 
     render( ) {
-      Firebase.isUserSignedIn(this.userIsSignedIn)
-      if ( alreadyLogin ) {
+      if ( Firebase.getUser() ) {
         return ( <Navigator initialRoute={{
           name: 'root',
           title: 'My Initial Scene',
@@ -353,11 +341,11 @@ export default class Seabird extends Component {
       }
 
       else {
-      return ( <Navigator initialRoute={{
-        name: 'login',
-        title: 'My Initial Scene',
-        index: 0
-      }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
+        return ( <Navigator initialRoute={{
+          name: 'login',
+          title: 'My Initial Scene',
+          index: 0
+        }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
     }
   }
 }

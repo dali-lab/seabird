@@ -13,6 +13,7 @@ import {
   ScrollView,
   PixelRatio,
   TextInput,
+  LayoutAnimation,
 } from 'react-native';
 
 import { Tile } from './../components/tile';
@@ -33,11 +34,24 @@ const { height, width } = Dimensions.get('window');
 
 let GRID_PADDING = width / 15
 let PAGE_DOTS = height / 5.2
-
 if (PixelRatio.get() <= 2) {
   GRID_PADDING = width / 12;
-  PAGE_DOTS = height / 4.6
+  PAGE_DOTS = height / 4.3
 }
+
+// Spring
+var CustomLayoutSpring = {
+  duration: 400,
+  create: {
+    type: LayoutAnimation.Types.spring,
+    property: LayoutAnimation.Properties.scaleXY,
+    springDamping: 0.7,
+  },
+  update: {
+    type: LayoutAnimation.Types.spring,
+    springDamping: 0.7,
+  },
+};
 
 export default class Root extends Component {
 
@@ -55,8 +69,10 @@ export default class Root extends Component {
   }
 
   componentWillMount() {
-    Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
-    this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
+    Database.listenUserHomeOrder((value) => {
+      this.setState({ HOME_PORTALS: JSON.parse(value)})
+    })
+    // this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
   }
 
   searchModules = (text) => {
@@ -69,9 +85,11 @@ export default class Root extends Component {
         }
       }
         this.setState({ HOME_PORTALS: updateHomeOrder })
+        LayoutAnimation.configureNext(CustomLayoutSpring);
 
     } else if (searchKey === '') {
       this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
+      LayoutAnimation.configureNext(CustomLayoutSpring);
     }
   }
 

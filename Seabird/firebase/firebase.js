@@ -1,4 +1,4 @@
-import * as firebase from "firebase";
+import * as firebase from 'firebase';
 
 class Firebase {
 
@@ -7,12 +7,12 @@ class Firebase {
    */
   static initialize() {
     const firebaseConfig = {
-      apiKey: "AIzaSyD_Y6hUpKekyb8LFZsPHXfyIfcwAZMvM8M",
-      authDomain: "sbackend-25143.firebaseapp.com",
-      databaseURL: "https://sbackend-25143.firebaseio.com",
-      projectId: "sbackend-25143",
-      storageBucket: "sbackend-25143.appspot.com",
-      messagingSenderId: "227373370187"
+      apiKey: 'AIzaSyD_Y6hUpKekyb8LFZsPHXfyIfcwAZMvM8M',
+      authDomain: 'sbackend-25143.firebaseapp.com',
+      databaseURL: 'https://sbackend-25143.firebaseio.com',
+      projectId: 'sbackend-25143',
+      storageBucket: 'sbackend-25143.appspot.com',
+      messagingSenderId: '227373370187',
     };
     firebase.initializeApp(firebaseConfig);
   }
@@ -29,12 +29,12 @@ class Firebase {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         // User is signed in
-        callbackFunc();
+        callbackFunc(true);
         return true;
-      } else {
-        // No user is signed in
-        return false;
       }
+        // No user is signed in
+      callbackFunc(false);
+      return false;
     });
   }
 

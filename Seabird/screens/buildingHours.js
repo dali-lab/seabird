@@ -53,11 +53,11 @@ export default class BuildingHours extends Component {
     });
   }
 
-  // TODO: consider using ScrollView instead to load all home tiles at beginning
   render() {
     return (
       <View
         style={{
+          flex: 1,
           flexDirection: 'column',
           justifyContent: 'flex-start',
           backgroundColor: '#fff',

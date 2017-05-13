@@ -53,6 +53,7 @@ export default class Customize extends Component {
   componentWillReceiveProps(nextProps) {
     Database.listenUserHomeOrder((value) => {
       this.setState({ portal: JSON.parse(value)})
+      Database.setUserHomeOrder(JSON.stringify(value));
     })
   }
 
