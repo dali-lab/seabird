@@ -11,6 +11,7 @@ import {
     Modal,
 } from 'react-native';
 import Database from '../firebase/database';
+import { BackButton } from '../components/backButton';
 
 const { height, width } = Dimensions.get('window');
 const firebase = require('firebase/app');
@@ -103,6 +104,16 @@ export default class Root extends Component {
 
                     {/* View that holds everything on the screen */}
                     <View style={styles.mainView}>
+
+                        {/*Back button*/}
+                        <TouchableHighlight
+                            underlayColor='transparent'
+                            onPress={this.navigate.bind(this, 'login', 'left')}
+                        >
+                            <Image source={require('../Icons/Signup/back_button_icon.png')}
+                                   style={styles.backButton}
+                                />
+                    </TouchableHighlight>
 
                         {/* Let's get you started! text */}
                         <Text
@@ -285,8 +296,15 @@ const styles = StyleSheet.create({
         width: width / 1.39,
         textAlign: 'left',
         height: height / 17,
-
         paddingLeft: 10,
+    },
+    // Style for the back button
+    backButton: {
+        height: width / 12,
+        width: width / 12,
+        resizeMode: 'contain',
+        marginTop: -100,
+        marginLeft: -(width / 2) + 10,
     },
     /* Style for the divider that will be the underline area */
     divider: {
