@@ -72,7 +72,6 @@ export default class Root extends Component {
     Database.listenUserHomeOrder((value) => {
       this.setState({ HOME_PORTALS: JSON.parse(value)})
     })
-    // this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
   }
 
   searchModules = (text) => {
@@ -80,7 +79,7 @@ export default class Root extends Component {
     if (searchKey.length > 0) {
       var updateHomeOrder = []
       for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
-        if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length) === searchKey || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length) === searchKey) {
+        if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase() || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase()) {
           updateHomeOrder.push(this.props.HOME_PORTALS[i])
         }
       }
@@ -88,7 +87,9 @@ export default class Root extends Component {
         LayoutAnimation.configureNext(CustomLayoutSpring);
 
     } else if (searchKey === '') {
-      this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
+      Database.listenUserHomeOrder((value) => {
+        this.setState({ HOME_PORTALS: JSON.parse(value)})
+      })
       LayoutAnimation.configureNext(CustomLayoutSpring);
     }
   }

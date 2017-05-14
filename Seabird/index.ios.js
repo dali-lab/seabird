@@ -258,7 +258,8 @@ export default class Seabird extends Component {
           return <More navigator={navigator}/>;
 
         case 'customize':
-          return <Customize navigator={navigator} orderChanged={this.orderChanged} HOME_PORTALS={this.state.HOME_PORTALS}/>;
+          return <Customize navigator={navigator} orderChanged={this.orderChanged} HOME_PORTALS={this.state.HOME_PORTALS}
+          updateHome={this.updateHome}/>;
 
         case 'schedule':
           return <Schedule navigator={navigator}/>;
