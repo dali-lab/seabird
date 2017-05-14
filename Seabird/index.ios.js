@@ -88,6 +88,19 @@ const NoBackSwipeDown ={
 };
 export default class Seabird extends Component {
 
+    userIsSignedIn = () => {
+        console.log('USER IS ALREADY SIGNED IN');
+        console.log(Firebase.getUser());
+        // this.props.navigator.push({name: 'root'});
+        alreadyLogin = 'yes';
+        console.log(alreadyLogin)
+    };
+
+    componentWillMount() {
+        // check if a current user is logged in already
+        Firebase.isUserSignedIn(this.userIsSignedIn);
+    }
+
     constructor( props ) {
       super( props );
       Firebase.initialize( );
@@ -148,12 +161,13 @@ export default class Seabird extends Component {
       }
     }
 
-    userIsSignedIn = () => {
-      console.log('USER IS ALREADY SIGNED IN');
-      alreadyLogin = true;
-      console.log(Firebase.getUser());
-      //this.props.navigator.push({nasme: 'root'});
-    };
+    // userIsSignedIn = () => {
+    //   console.log('USER IS ALREADY SIGNED IN');
+    //   alreadyLogin = true;
+    //   console.log(Firebase.getUser());
+    //   //this.props.navigator.push({nasme: 'root'});
+    // };
+
 
     /*componentWillMount( ) {
       OneSignal.addEventListener( 'received', this.onReceived );
@@ -298,19 +312,19 @@ export default class Seabird extends Component {
                   break;
 
           case 'banner':
-              return <AppWebView navigator={navigator}
+              return <AppWebView  url={"https://websso.dartmouth.edu/oaam_server/login.do;jsessionid=JJUIxX2b0HA8xfCtzKyePL__IgXWKs1EG3wmAVhpNnTg95qOprtj!-1118168605!23967818"} navigator={navigator}
                   viewName={this.state.viewName}
                   updateViewName={this.updateViewName}/>;
-                  break;
+
 
           case 'canvas':
-              return <AppWebView navigator={navigator}
+              return <AppWebView url={"https://websso.dartmouth.edu/oaam_server/login.do"} navigator={navigator}
                   viewName={this.state.viewName}
                   updateViewName={this.updateViewName}/>;
                   break;
 
           case 'timetable':
-              return <AppWebView navigator={navigator}
+              return <AppWebView url={"http://www.thedartmouth.com/"} navigator={navigator}
                   viewName={this.state.viewName}
                   updateViewName={this.updateViewName}/>;
                   break;
@@ -341,8 +355,7 @@ export default class Seabird extends Component {
     };
 
     render( ) {
-      Firebase.isUserSignedIn(this.userIsSignedIn);
-      if ( alreadyLogin ) {
+      if (alreadyLogin) {
         return ( <Navigator initialRoute={{
           name: 'root',
           title: 'My Initial Scene',

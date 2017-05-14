@@ -56,13 +56,12 @@ export default class ModuleDetails extends Component {
       <View style={styles.rowSection}>
         <Text style={styles.sectionText}>{rowData}</Text>
         <Image source={require('./../Icons/list_view_right_arrow.png')} style={styles.sectionButton}/>
-        {/*<View key={rowID} style={styles.separator} />*/}
       </View>
       </TouchableHighlight>
       <View key={rowID} style={styles.separator} />
       </View>
     )
-  }
+  };
 
   render() {
     return (

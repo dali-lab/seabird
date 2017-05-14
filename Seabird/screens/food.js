@@ -62,15 +62,6 @@ export default class Food extends Component {
     this.props.navigator.push({name: routeName, transitionType: transitionType,})
   }
 
-  navigatePop() {
-    this.props.navigator.pop();
-  }
-
-  navigatePush(routeName) {
-    this.props.navigator.push({
-      name: routeName,
-    });
-  }
 
   renderRow = (rowData, sectionID, rowID) => {
     /* Form dates to distinguish from events */
@@ -90,7 +81,7 @@ export default class Food extends Component {
         <Text style={styles.listItem} onPress={this.navigate.bind(this, 'eventdetail', 'normal')}>{rowData}</Text>
       )
     }
-  }
+  };
 
   render() {
     return (

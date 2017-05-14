@@ -2,37 +2,29 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View,
   TouchableHighlight,
   Image,
   Dimensions,
-  ListView,
   Animated,
-  AsyncStorage,
-  ScrollView,
   PixelRatio,
   TextInput,
 } from 'react-native';
-
-import { Tile } from './../components/tile';
 import { NavBar } from './../components/navBar';
 import { PageList } from './../components/pageList';
 import Swiper from 'react-native-swiper';
-import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
+import Firebase from '../firebase/firebase';
 
 const firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/database');
-// import Analytics from '../firebase/analytics';
-// var Analytics = require('react-native-firebase-analytics');
 
-const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
+
 const { height, width } = Dimensions.get('window');
 
-let GRID_PADDING = width / 15
-let PAGE_DOTS = height / 5.2
+let GRID_PADDING = width / 15;
+let PAGE_DOTS = height / 5.2;
 
 if (PixelRatio.get() <= 2) {
   GRID_PADDING = width / 12;
@@ -60,10 +52,10 @@ export default class Root extends Component {
   }
 
   searchModules = (text) => {
-    var searchKey = text
+    let searchKey = text;
     if (searchKey.length > 0) {
-      var updateHomeOrder = []
-      for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
+      let updateHomeOrder = [];
+      for (let i = 0; i < this.props.HOME_PORTALS.length; i++) {
         if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length) === searchKey || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length) === searchKey) {
           updateHomeOrder.push(this.props.HOME_PORTALS[i])
         }
@@ -73,13 +65,8 @@ export default class Root extends Component {
     } else if (searchKey === '') {
       this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
     }
-  }
-
-  renderNavigationDots = (index) =>  {
-    return (
-    <View style={{ height: 200, width: 200, backgroundColor: 'black' }} />
-  )
   };
+
 
   render() {
     let moduleList = [];
