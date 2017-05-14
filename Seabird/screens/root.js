@@ -24,14 +24,9 @@ require('firebase/database');
 
 const { height, width } = Dimensions.get('window');
 
-<<<<<<< HEAD
 let GRID_PADDING = width / 15
 let PAGE_DOTS = height / 5.2
-=======
-let GRID_PADDING = width / 15;
-let PAGE_DOTS = height / 5.2;
 
->>>>>>> 33766a3d052902050b904e3b0dd5dd37771e095e
 if (PixelRatio.get() <= 2) {
   GRID_PADDING = width / 12;
   PAGE_DOTS = height / 4.3
@@ -75,15 +70,9 @@ export default class Root extends Component {
   searchModules = (text) => {
     let searchKey = text;
     if (searchKey.length > 0) {
-<<<<<<< HEAD
       var updateHomeOrder = []
       for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
         if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase() || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase()) {
-=======
-      let updateHomeOrder = [];
-      for (let i = 0; i < this.props.HOME_PORTALS.length; i++) {
-        if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length) === searchKey || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length) === searchKey) {
->>>>>>> 33766a3d052902050b904e3b0dd5dd37771e095e
           updateHomeOrder.push(this.props.HOME_PORTALS[i])
         }
       }
