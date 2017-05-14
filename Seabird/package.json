@@ -15,6 +15,7 @@
     "react-native-animatable": "^1.2.0",
     "react-native-calendar": "^0.10.0",
     "react-native-collapsible": "^0.8.0",
+    "react-native-communications": "^2.2.1",
     "react-native-firebase-analytics": "^3.0.0",
     "react-native-linear-gradient": "^2.0.0",
     "react-native-local-mongodb": "^1.8.2",

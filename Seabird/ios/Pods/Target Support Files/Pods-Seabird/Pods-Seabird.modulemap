@@ -1,6 +1,0 @@
-framework module Pods_Seabird {
-  umbrella header "Pods-Seabird-umbrella.h"
-
-  export *
-  module * { export * }
-}

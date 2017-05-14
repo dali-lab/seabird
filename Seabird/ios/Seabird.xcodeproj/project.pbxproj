@@ -13,6 +13,7 @@
 		00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302DC1ABCB9D200DB3ED1 /* libRCTNetwork.a */; };
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* SeabirdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SeabirdTests.m */; };
+		09C1C4256F624C739AB77BF9 /* libRNFIRAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B072D8B0B4B94E1BB36847D2 /* libRNFIRAnalytics.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -20,10 +21,9 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		16E27D519B353D3F14E341FE /* Pods_SeabirdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FF38CB0AF34D575D0554CE /* Pods_SeabirdTests.framework */; };
 		1E954021C86443C398060A0C /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 047BA9CFB35D455997669976 /* libBVLinearGradient.a */; };
 		1F4B6F851EA3368A009EB67E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4B6F841EA3368A009EB67E /* Images.xcassets */; };
-		1FC20FE372F8FFB4C85B93AD /* Pods_Seabird.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AC0D02BD2C7AF21783230A /* Pods_Seabird.framework */; };
+		394A396AA0BE123E4D6B20F8 /* libPods-Seabird.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1E4B387F0A0A32391374FA /* libPods-Seabird.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		688118A3A0FC4C2BA5AEB425 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C86C3B033B438397D3CBBD /* libRCTOneSignal.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -221,6 +221,13 @@
 			remoteGlobalIDString = 58B5119B1A9E6C1200147676;
 			remoteInfo = RCTText;
 		};
+		EC82A9C71EC8FDB80035E399 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 55FB8F59D5364102A6DA6471 /* RNFIRAnalytics.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFIRAnalytics;
+		};
 		ECD31B4A1EC10BD300203351 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6FC9682F4B254B21AFD6963A /* BVLinearGradient.xcodeproj */;
@@ -231,7 +238,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008D737A8C4DF432EE7A4CF2 /* Pods-Seabird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seabird.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seabird/Pods-Seabird.release.xcconfig"; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
 		00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTGeolocation.xcodeproj; path = "../node_modules/react-native/Libraries/Geolocation/RCTGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		00C302BB1ABCB91800DB3ED1 /* RCTImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTImage.xcodeproj; path = "../node_modules/react-native/Libraries/Image/RCTImage.xcodeproj"; sourceTree = "<group>"; };
@@ -250,19 +256,24 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Seabird/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Seabird/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		14FF38CB0AF34D575D0554CE /* Pods_SeabirdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SeabirdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		18AC0D02BD2C7AF21783230A /* Pods_Seabird.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Seabird.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F4B6F511EA3027E009EB67E /* Seabird.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Seabird.entitlements; path = Seabird/Seabird.entitlements; sourceTree = "<group>"; };
 		1F4B6F841EA3368A009EB67E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Seabird/Images.xcassets; sourceTree = "<group>"; };
-		25080F899F091BB7352BD8EB /* Pods-SeabirdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeabirdTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SeabirdTests/Pods-SeabirdTests.release.xcconfig"; sourceTree = "<group>"; };
+		3938E9BD9E3E88ED8538711B /* Pods-Seabird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seabird.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seabird/Pods-Seabird.debug.xcconfig"; sourceTree = "<group>"; };
 		44C86C3B033B438397D3CBBD /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
+		55FB8F59D5364102A6DA6471 /* RNFIRAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFIRAnalytics.xcodeproj; path = "../node_modules/react-native-firebase-analytics/ios/RNFIRAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		58575D995E18486BA88D5C90 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
-		6EBB316B6DBFEECF9490BD63 /* Pods-SeabirdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SeabirdTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SeabirdTests/Pods-SeabirdTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6145DECE1AD014ACB69D732B /* libPods-SeabirdTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SeabirdTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		644FB56FC97CECBFE94AF2B9 /* Pods-Seabird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seabird.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seabird/Pods-Seabird.release.xcconfig"; sourceTree = "<group>"; };
 		6FC9682F4B254B21AFD6963A /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		BAFF6FA6AC5EB91DFC130E63 /* Pods-Seabird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seabird.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seabird/Pods-Seabird.debug.xcconfig"; sourceTree = "<group>"; };
+		B072D8B0B4B94E1BB36847D2 /* libRNFIRAnalytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFIRAnalytics.a; sourceTree = "<group>"; };
+		DD1E4B387F0A0A32391374FA /* libPods-Seabird.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Seabird.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC277B991EC9035F0093CAF5 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
+		EC277BB71EC903F50093CAF5 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Pods/FirebaseCore/Frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
+		EC277BB91EC904630093CAF5 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
+		EC277BBB1EC904B90093CAF5 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Seabird-bxvgyrakcasyecdgiacxmrtsvmzg/Build/Products/Debug-iphonesimulator/GoogleToolboxForMac/GoogleToolboxForMac.framework"; sourceTree = "<group>"; };
 		EC78CB1B1EB6CBA7008D7CFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Seabird/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -272,7 +283,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				16E27D519B353D3F14E341FE /* Pods_SeabirdTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,8 +302,9 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				688118A3A0FC4C2BA5AEB425 /* libRCTOneSignal.a in Frameworks */,
-				1FC20FE372F8FFB4C85B93AD /* Pods_Seabird.framework in Frameworks */,
 				1E954021C86443C398060A0C /* libBVLinearGradient.a in Frameworks */,
+				09C1C4256F624C739AB77BF9 /* libRNFIRAnalytics.a in Frameworks */,
+				394A396AA0BE123E4D6B20F8 /* libPods-Seabird.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,17 +426,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		48DB6EC80CBD373B007C745A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BAFF6FA6AC5EB91DFC130E63 /* Pods-Seabird.debug.xcconfig */,
-				008D737A8C4DF432EE7A4CF2 /* Pods-Seabird.release.xcconfig */,
-				6EBB316B6DBFEECF9490BD63 /* Pods-SeabirdTests.debug.xcconfig */,
-				25080F899F091BB7352BD8EB /* Pods-SeabirdTests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +433,19 @@
 				5E9157351DD0AC6500FF2AA8 /* libRCTAnimation-tvOS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6D8C428B4CC965F573977F9F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC277BBB1EC904B90093CAF5 /* GoogleToolboxForMac.framework */,
+				EC277BB91EC904630093CAF5 /* FirebaseInstanceID.framework */,
+				EC277BB71EC903F50093CAF5 /* FirebaseCore.framework */,
+				EC277B991EC9035F0093CAF5 /* FirebaseAnalytics.framework */,
+				DD1E4B387F0A0A32391374FA /* libPods-Seabird.a */,
+				6145DECE1AD014ACB69D732B /* libPods-SeabirdTests.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		78C398B11ACF4ADC00677621 /* Products */ = {
@@ -460,6 +473,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				58575D995E18486BA88D5C90 /* RCTOneSignal.xcodeproj */,
 				6FC9682F4B254B21AFD6963A /* BVLinearGradient.xcodeproj */,
+				55FB8F59D5364102A6DA6471 /* RNFIRAnalytics.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -480,8 +494,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* SeabirdTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
-				48DB6EC80CBD373B007C745A /* Pods */,
-				D603D832B7BAEDA8A76016A2 /* Frameworks */,
+				6D8C428B4CC965F573977F9F /* Frameworks */,
+				CAFACFB672DD95D288626A6E /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -496,13 +510,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D603D832B7BAEDA8A76016A2 /* Frameworks */ = {
+		CAFACFB672DD95D288626A6E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				18AC0D02BD2C7AF21783230A /* Pods_Seabird.framework */,
-				14FF38CB0AF34D575D0554CE /* Pods_SeabirdTests.framework */,
+				3938E9BD9E3E88ED8538711B /* Pods-Seabird.debug.xcconfig */,
+				644FB56FC97CECBFE94AF2B9 /* Pods-Seabird.release.xcconfig */,
 			);
-			name = Frameworks;
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EC82A9A91EC8FDB80035E399 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EC82A9C81EC8FDB80035E399 /* libRNFIRAnalytics.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		ECD31B471EC10BD300203351 /* Products */ = {
@@ -520,12 +542,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SeabirdTests" */;
 			buildPhases = (
-				D0AE897EE7838F8008C2B9D0 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				6CD7601A5CEDB1509950FBD7 /* [CP] Embed Pods Frameworks */,
-				0BD3EC6002C9CFE69EC2DDF4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -541,13 +560,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Seabird" */;
 			buildPhases = (
-				D6D5AB47432BC3E2C2826EA0 /* [CP] Check Pods Manifest.lock */,
+				0B421B56345882B26BE25678 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				974885AAB7D681AFCE9234A6 /* [CP] Embed Pods Frameworks */,
-				6CECCDDBE798CD00BCB9D542 /* [CP] Copy Pods Resources */,
+				AC35F45BE531F4BB200EFEC6 /* [CP] Embed Pods Frameworks */,
+				1B3830FFA89C40D014F2A5C8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -564,7 +583,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 830;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -574,7 +593,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = PPFP29RG7K;
+						DevelopmentTeam = FS2L42NVCT;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -650,6 +669,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = EC82A9A91EC8FDB80035E399 /* Products */;
+					ProjectRef = 55FB8F59D5364102A6DA6471 /* RNFIRAnalytics.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -843,6 +866,13 @@
 			remoteRef = 832341B41AAA6A8300B99B32 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		EC82A9C81EC8FDB80035E399 /* libRNFIRAnalytics.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFIRAnalytics.a;
+			remoteRef = EC82A9C71EC8FDB80035E399 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ECD31B4B1EC10BD300203351 /* libBVLinearGradient.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -887,37 +917,22 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
-		0BD3EC6002C9CFE69EC2DDF4 /* [CP] Copy Pods Resources */ = {
+		0B421B56345882B26BE25678 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SeabirdTests/Pods-SeabirdTests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6CD7601A5CEDB1509950FBD7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SeabirdTests/Pods-SeabirdTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6CECCDDBE798CD00BCB9D542 /* [CP] Copy Pods Resources */ = {
+		1B3830FFA89C40D014F2A5C8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -932,7 +947,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seabird/Pods-Seabird-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		974885AAB7D681AFCE9234A6 /* [CP] Embed Pods Frameworks */ = {
+		AC35F45BE531F4BB200EFEC6 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -945,36 +960,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Seabird/Pods-Seabird-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D0AE897EE7838F8008C2B9D0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D6D5AB47432BC3E2C2826EA0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1022,7 +1007,6 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EBB316B6DBFEECF9490BD63 /* Pods-SeabirdTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1041,6 +1025,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1051,7 +1036,6 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25080F899F091BB7352BD8EB /* Pods-SeabirdTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1067,6 +1051,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1078,20 +1063,32 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BAFF6FA6AC5EB91DFC130E63 /* Pods-Seabird.debug.xcconfig */;
+			baseConfigurationReference = 3938E9BD9E3E88ED8538711B /* Pods-Seabird.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Seabird/Seabird.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = PPFP29RG7K;
+				DEVELOPMENT_TEAM = FS2L42NVCT;
 				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
 				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1",
+				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
 				INFOPLIST_FILE = Seabird/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1107,18 +1104,30 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 008D737A8C4DF432EE7A4CF2 /* Pods-Seabird.release.xcconfig */;
+			baseConfigurationReference = 644FB56FC97CECBFE94AF2B9 /* Pods-Seabird.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Seabird/Seabird.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PPFP29RG7K;
+				DEVELOPMENT_TEAM = FS2L42NVCT;
 				ENABLE_BITCODE = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseCore/Frameworks",
+					"$(PROJECT_DIR)/Pods/FirebaseInstanceID/Frameworks",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1",
+				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
 				INFOPLIST_FILE = Seabird/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (

@@ -11,7 +11,7 @@
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import <Firebase/Firebase.h>
+@import FirebaseCore;
 
 @implementation AppDelegate
 @synthesize oneSignal = _oneSignal;
