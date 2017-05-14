@@ -31,6 +31,7 @@ import Map from './screens/map';
 import EventDetail from './screens/eventdetail';
 import ComboKeeper from './screens/combokeeper';
 import BuildingHours from './screens/buildingHours';
+import Emergency from './screens/emergency';
 import Food from './screens/food';
 import Signup from './screens/signup';
 import ModuleDetails from './screens/moduleDetail';
@@ -143,6 +144,10 @@ export default class Seabird extends Component {
             txtName: 'Academics',
             navName: 'academics',
             imgName: require('./Icons/News-50-White.png'),
+          }, {
+            txtName: 'Emergency',
+            navName: 'emergency',
+            imgName: require('./Icons/T-Shirt-50-White.png'),
           },
         ],
       }
@@ -302,6 +307,10 @@ export default class Seabird extends Component {
                   viewName={this.state.viewName}
                   updateViewName={this.updateViewName}/>;
                   break;
+
+          case 'emergency':
+              return <Emergency navigator={navigator}/>;
+              break;
 
           case 'banner':
               return <AppWebView navigator={navigator}
