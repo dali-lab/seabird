@@ -31,12 +31,10 @@ export default class Root extends Component {
   }
 
 
-
   userIsSignedIn = () => {
-    console.log('USER IS ALREADY SIGNED IN');
     console.log(Firebase.getUser());
     this.props.navigator.push({name: 'root'});
-  }
+  };
 
   componentWillMount() {
     // check if a current user is logged in already
@@ -181,7 +179,7 @@ export default class Root extends Component {
             <Text style={{ color: 'white', fontSize: 16 }}>Not a member?</Text>
 
             {/* Sign Up button*/}
-            <TouchableHighlight underlayColor="transparent" onPress={this.navigate.bind(this, 'signup', 'down')}>
+            <TouchableHighlight underlayColor="transparent" onPress={this.navigate.bind(this, 'userType', 'right')}>
               <Text style={styles.signUpButton}>Sign Up!</Text>
             </TouchableHighlight>
           </View>

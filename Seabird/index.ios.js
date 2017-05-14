@@ -35,6 +35,7 @@ import Food from './screens/food';
 import Signup from './screens/signup';
 import ModuleDetails from './screens/moduleDetail';
 import AppWebView from './screens/appWebView';
+import UserType from './screens/userType';
 
 const firebase = require("firebase/app");
 require("firebase/auth");
@@ -313,6 +314,10 @@ export default class Seabird extends Component {
                   viewName={this.state.viewName}
                   updateViewName={this.updateViewName}/>;
                   break;
+
+          case 'userType':
+              return <UserType navigator={navigator}/>;
+              break;
       }
     };
 
@@ -347,7 +352,7 @@ export default class Seabird extends Component {
 
       else {
       return ( <Navigator initialRoute={{
-        name: 'signup',
+        name: 'login',
         title: 'My Initial Scene',
         index: 0
       }} renderScene={this.renderScene} configureScene={this.configureScene}/> );

@@ -7,11 +7,7 @@ import {
     Image,
     Dimensions,
     TouchableHighlight,
-    TextInput,
-    Modal,
 } from 'react-native';
-import Database from '../firebase/database';
-import { BackButton } from '../components/backButton';
 
 const { height, width } = Dimensions.get('window');
 const firebase = require('firebase/app');
@@ -24,45 +20,9 @@ export default class Root extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
-            name: '',
-            year: '',
-            modalVisible: false,
+            userType: '',
         };
     }
-
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
-
-    async login(email, password) {
-        try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-            Database.listenUserHomeOrder((value) => {
-                if (value !== '' && value !== '[]') {
-                    this.props.updateHome(value);
-                    Database.setUserHomeOrder(value);
-                    this.navigate('root');
-                } else {
-                    this.navigate('root');
-                }
-            });
-        } catch (e) {
-            /* Toggles the error modal */
-            this.setModalVisible(!this.state.modalVisible);
-        }
-    }
-
-    signup = (email, password) => {
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            console.log(errorCode + ": " + errorMessage)
-        });
-        this.navigate('root')
-    };
 
     navigate(routeName, transitionType = 'floatRight') {
         this.props.navigator.push({name: routeName, transitionType});
@@ -71,30 +31,6 @@ export default class Root extends Component {
     render() {
         return (
             <View>
-
-                {/* Error popup */}
-                <Modal
-                    animationType={'fade'}
-                    transparent={true}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {alert('Modal has been closed.')}}
-                >
-                    <View style={styles.modalView}>
-                        <View>
-                            <Text style={styles.modalTitle}>Failed Login</Text>
-                            <Text style={styles.modalText}>There is a login Error</Text>
-
-                            <TouchableHighlight underlayColor="transparent" onPress={() => {
-                                this.setModalVisible(!this.state.modalVisible);
-                                this.state.username = '';
-                                this.state.password = '';
-                            }}
-                                                style={styles.modalButton}>
-                                <Text style={styles.modalButtonText}>Retry</Text>
-                            </TouchableHighlight>
-                        </View>
-                    </View>
-                </Modal>
 
                 {/* Main background image */}
                 <Image
@@ -115,10 +51,15 @@ export default class Root extends Component {
                             />
                         </TouchableHighlight>
 
-                        {/* Let's get you started! text */}
+                        {/* Welcome to text */}
                         <Text
-                            style={{color: 'white', fontStyle: 'italic', fontSize: 25, marginTop: -60}}
-                        >Let's get you started!</Text>
+                            style={styles.lightText}
+                        >Welcome to</Text>
+
+                        {/*Dartmouth text*/}
+                        <Text
+                            style={{color: 'white', fontWeight: '500', fontSize: 28}}
+                        >DARTMOUTH</Text>
 
                         {/* Dartmouth logo */}
                         <Image
@@ -127,103 +68,71 @@ export default class Root extends Component {
                         >
                         </Image>
 
-                        {/* Name text field */}
-                        <View style={{flexDirection: 'row', marginTop: 2}}>
-                            <Image source={require('../Icons/Signup/name_icon.png')}
-                                   style={styles.nameField}>
-                            </Image>
-                            <TextInput
-                                ref='Name'
-                                style={styles.credentials}
-                                onChangeText={name => this.setState({name})}
-                                placeholder="Name"
-                                placeholderTextColor="white"
-                                keyboardType="default"
-                                value={this.state.name}
-                                returnKeyType={"next"}
-                                onSubmitEditing={(event) => {
-                                    this.refs.Password.focus();
-                                }}
-                            />
+                        {/*I am a text field*/}
+                        <Text
+                            style={{color: 'white', fontStyle: 'italic', fontSize: 21, fontWeight: '100', marginTop: 10}}
+                        >I am a...</Text>
+
+                        <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 12}}>
+
+                            <View>
+                                <TouchableHighlight
+                                                underlayColor="transparent"
+                                                onPress={userType => this.setState({ userType: 'student' })}>
+                                    <View style={{flexDirection: 'column', alignItems: 'center', marginRight: 20, marginLeft: -2}}>
+                                        <Image
+                                            source={require('../Icons/userType/student.png')}
+                                            style={{height: width / 7, width: width / 7, resizeMode: 'contain'}}>
+                                        </Image>
+                                        <Text
+                                            style={{textAlign: 'center', color: 'white', fontWeight: '400'}}
+                                        >STUDENT</Text>
+                                    </View>
+                                </TouchableHighlight>
+                            </View>
+
+                            <View>
+                                <TouchableHighlight
+                                                underlayColor="transparent"
+                                                onPress={userType => this.setState({ userType: 'alum' })}>
+                                    <View style={{flexDirection: 'column', alignItems: 'center', marginRight: -10}}>
+                                        <Image
+                                            source={require('../Icons/userType/alum.png')}
+                                            style={{height: width / 7, width: width / 7, resizeMode: 'contain'}}>
+                                        </Image>
+                                        <Text
+                                            style={{textAlign: 'center', color: 'white', fontWeight: '400'}}
+                                        >ALUMNI</Text>
+                                    </View>
+                                </TouchableHighlight>
+                            </View>
+
+                            <View>
+
+                                <TouchableHighlight
+                                                    underlayColor="transparent"
+                                                    onPress={userType => this.setState({ userType: 'professor' })}>
+                                    <View style={{flexDirection: 'column', alignItems: 'center', marginLeft: 20, marginRight: -13}}>
+                                        <Image
+                                            source={require('../Icons/userType/prof.png')}
+                                            style={{height: width / 7, width: width / 7, resizeMode: 'contain'}}>
+                                        </Image>
+                                        <Text
+                                            style={{textAlign: 'center', color: 'white', fontWeight: '400'}}
+                                        >PROFESSOR</Text>
+                                    </View>
+                                </TouchableHighlight>
+                            </View>
+
                         </View>
 
-                        {/* Divider between year text field and email text field */}
-                        <View style={styles.divider}/>
 
-                        {/*Year text field */}
-                        <View style={{flexDirection: 'row', marginTop: 2}}>
-                            <Image source={require('../Icons/Signup/year_icon.png')}
-                                   style={styles.yearField}>
-                            </Image>
-                            <TextInput
-                                ref='Year'
-                                style={styles.credentials}
-                                onChangeText={year => this.setState({year})}
-                                placeholder="Year"
-                                placeholderTextColor="white"
-                                keyboardType="default"
-                                value={this.state.year}
-                                returnKeyType={"next"}
-                                onSubmitEditing={(event) => {
-                                    this.refs.Password.focus();
-                                }}
-                            />
-                        </View>
-
-                        {/* Divider between year text field and email text field */}
-                        <View style={styles.divider}/>
-
-                        {/*Email text field*/}
-                        <View style={{flexDirection: 'row', marginTop: 2}}>
-                            <Image source={require('../Icons/Login/email.png')}
-                                   style={styles.emailField}>
-                            </Image>
-                            <TextInput
-                                ref='Email'
-                                style={styles.credentials}
-                                onChangeText={username => this.setState({username})}
-                                placeholder="Email"
-                                placeholderTextColor="white"
-                                keyboardType="email-address"
-                                value={this.state.username}
-                                returnKeyType={"next"}
-                                onSubmitEditing={(event) => {
-                                    this.refs.Password.focus();
-                                }}
-                            />
-                        </View>
-
-                        {/*Divider between email text field and password text field*/}
-                        <View style={styles.divider}/>
-
-                        {/*Password text field*/}
-                        <View style={{flexDirection: 'row', marginTop: 2}}>
-                            <Image source={require('../Icons/Login/lock.png')}
-                                   style={styles.passwordField}>
-                            </Image>
-                            <TextInput
-                                ref='Password'
-                                secureTextEntry={true}
-                                style={styles.credentials}
-                                onChangeText={password => this.setState({password})}
-                                placeholder="Password"
-                                placeholderTextColor="white"
-                                value={this.state.password}
-                                onSubmitEditing={(event) => {
-                                    this.signup(this.state.username, this.state.password)
-                                }}
-                            />
-                        </View>
-
-                        {/*Divider between password text field and login button*/}
-                        <View style={styles.divider}/>
-
-
-                        {/*Login button*/}
+                        {/*Next button*/}
                         <View style={{marginTop: 15}}>
-                            <TouchableHighlight underlayColor="transparent"
-                                                onPress={() => this.signup(this.state.username, this.state.password)}>
-                                <Image source={require('../Icons/Signup/signup_button.png')}
+                            <TouchableHighlight
+                                                underlayColor="transparent"
+                                                onPress={() => this.navigate('signup')}>
+                                <Image source={require('../Icons/userType/next.png')}
                                        style={styles.loginButton}
                                 />
                             </TouchableHighlight>
@@ -244,6 +153,14 @@ const styles = StyleSheet.create({
         resizeMode: 'stretch',
         flexDirection: 'column',
         alignItems: 'center'
+    },
+    // Style for the light text on the screen
+    lightText: {
+        color: 'white',
+        fontWeight: '100',
+        fontStyle: 'italic',
+        fontSize: 21,
+        marginTop: -70,
     },
     // Style for the main view
     mainView: {
@@ -368,4 +285,4 @@ const styles = StyleSheet.create({
     },
 });
 
-AppRegistry.registerComponent('Signup', () => Signup);
+AppRegistry.registerComponent('userType', () => UserType);
