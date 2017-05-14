@@ -11,7 +11,6 @@ import {
     Modal,
 } from 'react-native';
 import Database from '../firebase/database';
-import { BackButton } from '../components/backButton';
 
 const { height, width } = Dimensions.get('window');
 const firebase = require('firebase/app');
@@ -108,7 +107,7 @@ export default class Root extends Component {
                         {/*Back button*/}
                         <TouchableHighlight
                             underlayColor='transparent'
-                            onPress={this.navigate.bind(this, 'login', 'left')}
+                            onPress={this.navigate.bind(this, 'userType', 'left')}
                         >
                             <Image source={require('../Icons/Signup/back_button_icon.png')}
                                    style={styles.backButton}
@@ -219,7 +218,7 @@ export default class Root extends Component {
                         <View style={styles.divider}/>
 
 
-                        {/*Login button*/}
+                        {/*Signup button*/}
                         <View style={{marginTop: 15}}>
                             <TouchableHighlight underlayColor="transparent"
                                                 onPress={() => this.signup(this.state.username, this.state.password)}>

@@ -2,38 +2,36 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View,
   TouchableHighlight,
   Image,
   Dimensions,
-  ListView,
   Animated,
-  AsyncStorage,
-  ScrollView,
   PixelRatio,
   TextInput,
   LayoutAnimation,
 } from 'react-native';
-
-import { Tile } from './../components/tile';
 import { NavBar } from './../components/navBar';
 import { PageList } from './../components/pageList';
 import Swiper from 'react-native-swiper';
-import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
+import Firebase from '../firebase/firebase';
 
 const firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/database');
-// import Analytics from '../firebase/analytics';
-// var Analytics = require('react-native-firebase-analytics');
 
-const SCHOOL_NAME = 'Seabird University'; // used for the title bar (although this will eventually be an image)
+
 const { height, width } = Dimensions.get('window');
 
+<<<<<<< HEAD
 let GRID_PADDING = width / 15
 let PAGE_DOTS = height / 5.2
+=======
+let GRID_PADDING = width / 15;
+let PAGE_DOTS = height / 5.2;
+
+>>>>>>> 33766a3d052902050b904e3b0dd5dd37771e095e
 if (PixelRatio.get() <= 2) {
   GRID_PADDING = width / 12;
   PAGE_DOTS = height / 4.3
@@ -75,11 +73,17 @@ export default class Root extends Component {
   }
 
   searchModules = (text) => {
-    var searchKey = text
+    let searchKey = text;
     if (searchKey.length > 0) {
+<<<<<<< HEAD
       var updateHomeOrder = []
       for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
         if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase() || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase()) {
+=======
+      let updateHomeOrder = [];
+      for (let i = 0; i < this.props.HOME_PORTALS.length; i++) {
+        if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length) === searchKey || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length) === searchKey) {
+>>>>>>> 33766a3d052902050b904e3b0dd5dd37771e095e
           updateHomeOrder.push(this.props.HOME_PORTALS[i])
         }
       }
@@ -92,13 +96,8 @@ export default class Root extends Component {
       })
       LayoutAnimation.configureNext(CustomLayoutSpring);
     }
-  }
-
-  renderNavigationDots = (index) =>  {
-    return (
-    <View style={{ height: 200, width: 200, backgroundColor: 'black' }} />
-  )
   };
+
 
   render() {
     let moduleList = [];

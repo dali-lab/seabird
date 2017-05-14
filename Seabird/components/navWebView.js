@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
-  Dimensions,
-  TouchableHighlight,
   TouchableOpacity,
   WebView,
   Image,
 } from 'react-native';
-import { BackButton } from './backButton';
 
-const { width, height } = Dimensions.get('window');
 const WEBVIEW_REF = 'webview';
 
 export class NavWebView extends Component  {

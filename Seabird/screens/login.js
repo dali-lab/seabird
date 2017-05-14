@@ -36,7 +36,7 @@ export default class Root extends Component {
     console.log('USER IS ALREADY SIGNED IN');
     console.log(Firebase.getUser());
     this.props.navigator.push({name: 'root'});
-  }
+  };
 
   componentWillMount() {
     // check if a current user is logged in already
