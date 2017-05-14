@@ -7,7 +7,6 @@
 import React, { Component } from 'react';
 import {
   Header,
-  Link,
   nativeHistory,
   Route,
   Router,
@@ -16,17 +15,13 @@ import {
   AsyncStorage,
 } from 'react-router-native';
 import { Navigator, AppRegistry } from 'react-native';
-import EventItem from './components/eventItem';
-//import OneSignal from 'react-native-onesignal';
 import Firebase from './firebase/firebase';
 import Database from './firebase/database';
 
 import Login from './screens/login';
 import Root from './screens/root';
 import Dining from './screens/dining';
-import News from './screens/web';
 import Events from './screens/events';
-import EventsCalendar from './screens/eventscalendar';
 import Settings from './screens/settings';
 import More from './screens/more';
 import Customize from './screens/customize';
@@ -95,10 +90,10 @@ export default class Seabird extends Component {
     constructor( props ) {
       super( props );
       Firebase.initialize( );
-      this.updateViewName = this.updateViewName.bind(this)
-      this.passEvent = this.passEvent.bind(this)
-      this.updateHome = this.updateHome.bind(this)
-      this.orderChanged = this.orderChanged.bind(this)
+      this.updateViewName = this.updateViewName.bind(this);
+      this.passEvent = this.passEvent.bind(this);
+      this.updateHome = this.updateHome.bind(this);
+      this.orderChanged = this.orderChanged.bind(this);
       this.state = {
         alreadyLogin: false,
         viewName: '',
@@ -155,10 +150,10 @@ export default class Seabird extends Component {
 
     userIsSignedIn = () => {
       console.log('USER IS ALREADY SIGNED IN');
-      alreadyLogin = true
+      alreadyLogin = true;
       console.log(Firebase.getUser());
       //this.props.navigator.push({nasme: 'root'});
-    }
+    };
 
     componentWillMount() {
       Firebase.isUserSignedIn((value) => {
@@ -212,101 +207,119 @@ export default class Seabird extends Component {
     }
 
     updateHome(newOrder) {
-      let newHomeOrder = JSON.parse(newOrder)
+      let newHomeOrder = JSON.parse(newOrder);
       this.setState({ HOME_PORTALS: newHomeOrder })
     }
 
     orderChanged(newOrder) {
       /* Changes the home page order */
-      this.setState({ HOME_PORTALS: newOrder })
+      this.setState({ HOME_PORTALS: newOrder });
       Database.setUserHomeOrder(JSON.stringify(newOrder));
     }
-
     /* Switch cases */
 
     renderScene = ( route, navigator ) => {
-      switch (route.name) {
-        case 'login':
-          return <Login navigator={navigator}
-          updateHome={this.updateHome}/>;
+      switch(route.name) {
 
-        case 'root':
-          return <Root navigator={navigator} HOME_PORTALS={this.state.HOME_PORTALS}
-          updateHome={this.updateHome}/>;
+          case 'login':
+            return (<Login navigator={navigator}
+              updateHome={this.updateHome}/>);
+              break;
 
-        case 'dining':
-          return <Dining navigator={navigator}/>;
+          case 'root':
+              return <Root navigator={navigator} HOME_PORTALS={this.state.HOME_PORTALS}
+                  updateHome={this.updateHome}/>;
+                  break;
 
-        case 'web':
-          return <Map navigator={navigator}/>;
+          case 'dining':
+              return <Dining navigator={navigator}/>;
+              break;
 
-        case 'events':
-          return <Events navigator={navigator}
-          passEvent={this.passEvent}/>;
+          case 'web':
+              return <Map navigator={navigator}/>;
+              break;
 
-        case 'eventsdetails':
-          return <EventDetail navigator={navigator}
-          currentEvent={this.state.currentEvent}/>;
+          case 'events':
+            return <Events navigator={navigator}/>;
+            break;
 
-        case 'eventscalendar':
-          return <EventsCalendar navigator={navigator}/>;
+          case 'eventsdetails':
+              return (<EventDetail navigator={navigator}
+                  currentEvent={this.state.currentEvent}/>);
+                  break;
 
-        case 'settings':
-          return <Settings navigator={navigator}/>;
+          case 'eventscalendar':
+              return <EventDetail navigator={navigator}
+                  currentEvent={this.state.currentEvent}/>;
+                  break;
 
-        case 'more':
-          return <More navigator={navigator}/>;
+          case 'settings':
+              return <Settings navigator={navigator}/>;
+              break;
 
-        case 'customize':
-          return <Customize navigator={navigator} orderChanged={this.orderChanged} HOME_PORTALS={this.state.HOME_PORTALS}
-          updateHome={this.updateHome}/>;
+          case 'more':
+              return <More navigator={navigator}/>;
+              break;
 
-        case 'schedule':
-          return <Schedule navigator={navigator}/>;
+          case 'customize':
+              return <Customize navigator={navigator} orderChanged={this.orderChanged} HOME_PORTALS={this.state.HOME_PORTALS}/>;
+              break;
 
-        case 'tutorial':
-          return <Tutorial navigator={navigator}/>;
+          case 'schedule':
+              return <Schedule navigator={navigator}/>;
+              break;
 
-        case 'map':
-          return <Map navigator={navigator}/>;
+          case 'tutorial':
+              return <Tutorial navigator={navigator}/>;
+              break;
 
-        case 'eventdetail':
-          return <EventDetail navigator={navigator}/>;
+          case 'map':
+              return <Map navigator={navigator}/>;
+              break;
 
-        case 'combokeeper':
-          return <ComboKeeper navigator={navigator}/>;
+          case 'eventdetail':
+              return <EventDetail navigator={navigator}/>;
+              break;
 
-        case 'buildingHours':
-          return <BuildingHours navigator={navigator}/>;
+          case 'combokeeper':
+              return <ComboKeeper navigator={navigator}/>;
+              break;
 
-        case 'dining':
-          return <Dining navigator={navigator}/>;
+          case 'buildingHours':
+              return <BuildingHours navigator={navigator}/>;
+              break;
 
-        case 'food':
-          return <Food navigator={navigator}/>;
+          case 'food':
+              return <Food navigator={navigator}/>;
+              break;
 
-        case 'signup':
-          return <Signup navigator={navigator}/>;
+          case 'signup':
+              return <Signup navigator={navigator}/>;
+              break;
 
-        case 'academics':
-          return <ModuleDetails navigator={navigator}
-          viewName={this.state.viewName}
-          updateViewName={this.updateViewName}/>
+          case 'academics':
+              return <ModuleDetails navigator={navigator}
+                  viewName={this.state.viewName}
+                  updateViewName={this.updateViewName}/>;
+                  break;
 
-        case 'banner':
-          return <AppWebView navigator={navigator}
-          viewName={this.state.viewName}
-          updateViewName={this.updateViewName}/>
+          case 'banner':
+              return <AppWebView navigator={navigator}
+                  viewName={this.state.viewName}
+                  updateViewName={this.updateViewName}/>;
+                  break;
 
-        case 'canvas':
-          return <AppWebView navigator={navigator}
-          viewName={this.state.viewName}
-          updateViewName={this.updateViewName}/>
+          case 'canvas':
+              return <AppWebView navigator={navigator}
+                  viewName={this.state.viewName}
+                  updateViewName={this.updateViewName}/>;
+                  break;
 
-        case 'timetable':
-          return <AppWebView navigator={navigator}
-          viewName={this.state.viewName}
-          updateViewName={this.updateViewName}/>
+          case 'timetable':
+              return <AppWebView navigator={navigator}
+                  viewName={this.state.viewName}
+                  updateViewName={this.updateViewName}/>;
+                  break;
       }
     };
 
@@ -333,7 +346,8 @@ export default class Seabird extends Component {
     };
 
     render( ) {
-      if ( Firebase.getUser() ) {
+      Firebase.isUserSignedIn(this.userIsSignedIn);
+      if ( alreadyLogin ) {
         return ( <Navigator initialRoute={{
           name: 'root',
           title: 'My Initial Scene',
@@ -342,11 +356,11 @@ export default class Seabird extends Component {
       }
 
       else {
-        return ( <Navigator initialRoute={{
-          name: 'login',
-          title: 'My Initial Scene',
-          index: 0
-        }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
+      return ( <Navigator initialRoute={{
+        name: 'login',
+        title: 'My Initial Scene',
+        index: 0
+      }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
     }
   }
 }

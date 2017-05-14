@@ -112,8 +112,8 @@ export default class Root extends Component {
                         >
                             <Image source={require('../Icons/Signup/back_button_icon.png')}
                                    style={styles.backButton}
-                                />
-                    </TouchableHighlight>
+                            />
+                        </TouchableHighlight>
 
                         {/* Let's get you started! text */}
                         <Text
@@ -132,19 +132,19 @@ export default class Root extends Component {
                             <Image source={require('../Icons/Signup/name_icon.png')}
                                    style={styles.nameField}>
                             </Image>
-                        <TextInput
-                            ref='Name'
-                            style={styles.credentials}
-                            onChangeText={name => this.setState({name})}
-                            placeholder="Name"
-                            placeholderTextColor="white"
-                            keyboardType="default"
-                            value={this.state.name}
-                            returnKeyType={"next"}
-                            onSubmitEditing={(event) => {
-                                this.refs.Password.focus();
-                            }}
-                        />
+                            <TextInput
+                                ref='Name'
+                                style={styles.credentials}
+                                onChangeText={name => this.setState({name})}
+                                placeholder="Name"
+                                placeholderTextColor="white"
+                                keyboardType="default"
+                                value={this.state.name}
+                                returnKeyType={"next"}
+                                onSubmitEditing={(event) => {
+                                    this.refs.Password.focus();
+                                }}
+                            />
                         </View>
 
                         {/* Divider between year text field and email text field */}
@@ -155,20 +155,20 @@ export default class Root extends Component {
                             <Image source={require('../Icons/Signup/year_icon.png')}
                                    style={styles.yearField}>
                             </Image>
-                        <TextInput
-                            ref='Year'
-                            style={styles.credentials}
-                            onChangeText={year => this.setState({year})}
-                            placeholder="Year"
-                            placeholderTextColor="white"
-                            keyboardType="default"
-                            value={this.state.year}
-                            returnKeyType={"next"}
-                            onSubmitEditing={(event) => {
-                                this.refs.Password.focus();
-                            }}
-                        />
-                    </View>
+                            <TextInput
+                                ref='Year'
+                                style={styles.credentials}
+                                onChangeText={year => this.setState({year})}
+                                placeholder="Year"
+                                placeholderTextColor="white"
+                                keyboardType="default"
+                                value={this.state.year}
+                                returnKeyType={"next"}
+                                onSubmitEditing={(event) => {
+                                    this.refs.Password.focus();
+                                }}
+                            />
+                        </View>
 
                         {/* Divider between year text field and email text field */}
                         <View style={styles.divider}/>
