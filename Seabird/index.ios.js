@@ -37,6 +37,7 @@ import Signup from './screens/signup';
 import ModuleDetails from './screens/moduleDetail';
 import AppWebView from './screens/appWebView';
 import UserType from './screens/userType';
+import SplitListView from './screens/splitListView';
 
 const firebase = require("firebase/app");
 require("firebase/auth");
@@ -162,17 +163,14 @@ export default class Seabird extends Component {
             txtName: 'Emergency',
             navName: 'emergency',
             imgName: require('./Icons/T-Shirt-50-White.png'),
-          },
+          }, {
+            txtName: 'Sports',
+            navName: 'sports',
+            imgName: require('./Icons/T-Shirt-50-White.png'),
+          }
         ],
       }
     }
-
-    // userIsSignedIn = () => {
-    //   console.log('USER IS ALREADY SIGNED IN');
-    //   alreadyLogin = true;
-    //   console.log(Firebase.getUser());
-    //   //this.props.navigator.push({nasme: 'root'});
-    // };
 
 
     componentWillMount() {
@@ -344,6 +342,12 @@ export default class Seabird extends Component {
                   viewName={this.state.viewName}
                   updateViewName={this.updateViewName}/>;
                   break;
+
+          case 'sports':
+              return <SplitListView navigator={naviator}
+                viewName={this.state.viewName}
+                updateViewName={this.updateViewName}/>;
+                break;
 
           case 'userType':
               return <UserType navigator={navigator}/>;

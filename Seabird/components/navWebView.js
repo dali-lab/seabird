@@ -5,14 +5,21 @@ import {
   TouchableOpacity,
   WebView,
   Image,
+  Text,
+  Dimensions,
 } from 'react-native';
 
 const WEBVIEW_REF = 'webview';
+const { width, height } = Dimensions.get('window');
 
 export class NavWebView extends Component  {
 
   onNavigationStateChange = (navState) => {
-      this.setState({canGoBack: navState.canGoBack, canGoForward: navState.canGoForward, url: navState.url});
+      this.setState({
+        canGoBack: navState.canGoBack,
+        canGoForward: navState.canGoForward,
+        url: navState.url
+      });
   };
 
   goBack = () => {
@@ -25,18 +32,23 @@ export class NavWebView extends Component  {
 
   render() {
     return (
-      <View style={{flex: 1, flexDirection: 'column'}}>
+      <View style={{flex: 1}}>
       <View style={styles.topNavBar}>
-          <TouchableOpacity disabled={!this.canGoBack} onPress={this.goBack}>
+        <TouchableOpacity onPress={() => this.props.navigator.pop()}>
+            <Image source={require('./../Icons/Back-50-Gray.png')} style={styles.backIcon}/>
+        </TouchableOpacity>
+          <TouchableOpacity disabled={!this.canGoBack} onPress={() => this.goBack}>
               <Image source={require('./../Icons/Back-50-Gray.png')} style={styles.backIcon}/>
           </TouchableOpacity>
-          <TouchableOpacity disabled={!this.canGoForward} onPress={this.goForward}>
+          {/*<Text style={styles.urlStyle}>{this.props.URL}</Text>*/}
+          <Text style={styles.urlStyle}>canvas.dartmouth.edu</Text>
+          <TouchableOpacity disabled={!this.canGoForward} onPress={() => this.goForward}>
               <Image source={require('./../Icons/Forward-50-Gray.png')} style={styles.backIcon}/>
           </TouchableOpacity>
       </View>
       <WebView ref={WEBVIEW_REF} style={{
           flex: 1,
-      }} onNavigationStateChange={this.onNavigationStateChange} source={{
+      }} onNavigationStateChange={this.onNavigationStateChange.bind(this)} source={{
           uri: this.props.URL
       }}/>
       </View>
@@ -64,8 +76,16 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       flexWrap: 'wrap',
       alignItems: 'center',
-      justifyContent: 'space-between',
-      height: 50,
-      backgroundColor: '#EAEAEA'
+      justifyContent: 'flex-start',
+      height: 60,
+      backgroundColor: '#EAEAEA',
+  },
+
+  /* Styles for the url in the top navigation bar */
+  urlStyle: {
+    color: '#555',
+    fontSize: 15,
+    textAlign: 'center',
+    width: width / 1.8
   }
 });

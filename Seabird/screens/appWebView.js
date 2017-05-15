@@ -25,7 +25,7 @@ export default class AppWebView extends Component {
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
-        <NavWebView URL={this.props.url} />
+        <NavWebView URL={this.props.url} navigator={this.props.navigator}/>
       </View>
     );
   }
