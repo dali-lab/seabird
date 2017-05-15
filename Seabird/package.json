@@ -7,6 +7,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.0",
     "eslint-plugin-react": "^7.0.1",
     "firebase": "^3.9.0",
     "lodash": "^4.17.4",
@@ -32,6 +34,7 @@
     "babel-jest": "18.0.0",
     "babel-preset-react-native": "1.9.1",
     "eslint": "^3.19.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
     "eslint-plugin-react": "^7.0.1",
     "jest": "18.1.0",
     "react-test-renderer": "15.4.2"
