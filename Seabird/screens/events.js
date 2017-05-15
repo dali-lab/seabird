@@ -107,7 +107,7 @@ export default class Events extends Component {
       var updateListOrder = []
       for (var i = 0; i < this.state.dataSource.sectionIdentities.length; i++) {
         for (var j = 0; j < this.state.dataSource._dataBlob[this.state.dataSource.sectionIdentities[i]].length; j++) {
-            if (this.state.dataSource._dataBlob[this.state.dataSource.sectionIdentities[i]][j].event.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase() || this.state.dataSource._dataBlob[this.state.dataSource.sectionIdentities[i]][j].event.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase()) {
+            if (this.state.dataSource._dataBlob[this.state.dataSource.sectionIdentities[i]][j].event.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase()) {
               updateListOrder.push(this.state.dataSource._dataBlob[this.state.dataSource.sectionIdentities[i]][j])
             }
         }
@@ -171,7 +171,7 @@ export default class Events extends Component {
           <View style={styles.searchSection}>
             <TextInput
               style={styles.searchSectionInput}
-              placeholder="Search Modules"
+              placeholder="Search Events"
               placeholderTextColor='rgba(255, 255, 255, 0.5)'
               selectionColor="white"
               onChangeText={(text) => {
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
   /* Style for the section that will hold the sorting function */
   sectionHeader: {
     height: 125,
-    backgroundColor: '#a7e2c2',
+    backgroundColor: '#C6E4C0',
 
   },
 
@@ -330,14 +330,17 @@ const styles = StyleSheet.create({
   listHeader: {
     paddingTop: 5,
     paddingLeft: 5,
-    height: height / 25,
-    backgroundColor: '#d5d5d5',
+    height: height / 18,
+    backgroundColor: '#eeeeee',
+    justifyContent: 'center',
   },
 
   /* Style for the list headers' text */
   listHeaderText: {
     fontFamily: 'Avenir',
     fontSize: 14,
+    fontWeight: 'bold',
+    paddingLeft: 10,
   },
 
   /* Style for the list section */
@@ -360,7 +363,7 @@ const styles = StyleSheet.create({
   listSectionTimeText: {
     width: width / 5,
     fontSize: 14,
-    color: '#aaa',
+    color: '#5D5D5C',
     fontWeight: '400',
     fontFamily: 'Avenir'
   },
@@ -378,6 +381,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 25,
     marginTop: 9,
+    color: '#5D5D5C',
   },
 
   /* Style for the list section text */
@@ -386,7 +390,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir Next',
     fontSize: 12,
     height: 20,
-    color: '#000',
+    color: 'rgba(93, 93, 92, 0.7)',
     fontStyle: 'italic',
   },
 });
