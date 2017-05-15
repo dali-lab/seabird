@@ -10,7 +10,6 @@ import {
   Button,
 } from 'react-native';
 import { NavBar } from './../components/navBar';
-import { CustomizeList } from './../components/customizeList';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 

@@ -14,6 +14,12 @@ const { width, height } = Dimensions.get('window');
 
 export class NavWebView extends Component  {
 
+  componentWillMount() {
+    if (this.props.URL.length >= 30) {
+      /* Format the url text here */
+    }
+  }
+
   onNavigationStateChange = (navState) => {
       this.setState({
         canGoBack: navState.canGoBack,
@@ -40,8 +46,7 @@ export class NavWebView extends Component  {
           <TouchableOpacity disabled={!this.canGoBack} onPress={() => this.goBack}>
               <Image source={require('./../Icons/Back-50-Gray.png')} style={styles.backIcon}/>
           </TouchableOpacity>
-          {/*<Text style={styles.urlStyle}>{this.props.URL}</Text>*/}
-          <Text style={styles.urlStyle}>canvas.dartmouth.edu</Text>
+          <Text style={styles.urlStyle}>{this.props.URL}</Text>
           <TouchableOpacity disabled={!this.canGoForward} onPress={() => this.goForward}>
               <Image source={require('./../Icons/Forward-50-Gray.png')} style={styles.backIcon}/>
           </TouchableOpacity>
@@ -86,6 +91,7 @@ const styles = StyleSheet.create({
     color: '#555',
     fontSize: 15,
     textAlign: 'center',
-    width: width / 1.8
+    width: width / 1.8,
+    height: 20,
   }
 });

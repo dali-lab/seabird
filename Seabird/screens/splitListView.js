@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import { NavBar } from './../components/navBar';
+import { CustomList } from './../components/customList';
 const { height, width } = Dimensions.get('window');
 
 let MODULE_FONT_SIZE = 18;
@@ -27,7 +28,7 @@ if (PixelRatio.get() <= 2) {
   TILE_HEIGHT = height / 6.5
 }
 
-export class SplitListView extends Component {
+export default class SplitListView extends Component {
 
   constructor(props) {
     super(props);
@@ -56,52 +57,41 @@ export class SplitListView extends Component {
 
   render() {
     return (
-      <ListView
-        scrollEnabled={false}
-        style={styles.section}
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow.bind(this)}
-        contentContainerStyle={this.props.containerStyle}
-      />
+      <View style={{flex: 1, backgroundColor: 'white'}}>
+      <NavBar navigator={this.props.navigator} text="Filler"/>
+      <View style={styles.selectorSection}>
+      <View style={styles.selectorOptionsSection}>
+        <TouchableHighlight onPress={() => console.log("Pressed Button 1")}>
+          <Text>Men</Text>
+        </TouchableHighlight>
+        <TouchableHighlight onPress={() => console.log("Pressed Button 2")}>
+          <Text>Women</Text>
+        </TouchableHighlight>
+      </View>
+      </View>
+      <CustomList dataSourceIdentifier="sports/mens" navigator={this.props.navigator} updateViewName={this.props.updateViewName}
+      updateViewURL={this.props.updateViewURL}/>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  /* Style for the section that holds the tiles */
-  section: {
-  },
-
-  /* Style for the tiles for the home screen */
-  tile: {
-    flexDirection: 'column',
-    justifyContent: 'center',
+  /* Style for the section with the selection options */
+  selectorSection: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    height: 100,
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    width: TILE_WIDTH,
-    height: TILE_HEIGHT,
-    paddingBottom: 20,
-    marginTop: width / 15,
-    margin: width / 25,
-    borderRadius: (width / 2.8) / 2,
-    borderWidth: 2,
-    borderColor: '#fff'
+    backgroundColor: 'green',
   },
 
-  /* Style for the section of the tiles that hold the tet */
-  tileTextSection: {
-    marginTop: 0,
+  /* Style for the selection options view */
+  selectionOptionsSection: {
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 
-  /* Style for the tiles' text for the home screen */
-  tileText: {
-    paddingTop: MODULE_TEXT_PADDING,
-    fontSize: MODULE_FONT_SIZE,
-    fontFamily: 'Avenir-Book',
-    fontWeight: '500',
-    textAlign: 'center',
-    color: '#fff',
-  },
 });
 
 AppRegistry.registerComponent('SplitListView', () => SplitListView);

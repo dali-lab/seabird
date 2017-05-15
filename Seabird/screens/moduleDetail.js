@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import { NavBar } from './../components/navBar';
+import { CustomList } from './../components/customList';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 import LinearGradient from 'react-native-linear-gradient';
@@ -24,106 +25,26 @@ require('firebase/database');
 
 export default class ModuleDetails extends Component {
 
-  navigate(routeName, transitionType = 'normal') {
-    this.props.updateViewName(routeName);
-    this.props.navigator.push({ name: routeName, transitionType, });
-  }
-
   constructor(props) {
     super(props);
     this.state = {
       bounceValue: new Animated.Value(0),
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (r1, r2) => true,
-      }),
     };
   }
-
-  componentWillMount() {
-    /* Going to the path /content/moduleDirectories/academics/ to get all the modules */
-    Database.listenSchoolModuleDirectories("academics", (value) => {
-        this.setState({ dataSource: new ListView.DataSource({
-          rowHasChanged: (r1, r2) => true,
-        }).cloneWithRows(value),
-      })
-    })
-  }
-
-  renderRow = (rowData, sectionID, rowID) => {
-    return (
-      <View>
-      <TouchableHighlight underlayColor="transparent" onPress={() => this.navigate(rowData)}>
-      <View style={styles.rowSection}>
-        <Text style={styles.sectionText}>{rowData}</Text>
-        <Image source={require('./../Icons/list_view_right_arrow.png')} style={styles.sectionButton}/>
-      </View>
-      </TouchableHighlight>
-      <View key={rowID} style={styles.separator} />
-      </View>
-    )
-  };
-
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={styles.mainHeader}>
           <NavBar navigator={this.props.navigator} text="Seabird University" />
         </View>
-        <ListView
-          scrollEnabled={false}
-          style={styles.section}
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow.bind(this)}
-        />
+        <CustomList dataSourceIdentifier="moduleDirectories/academics" navigator={this.props.navigator} updateViewName={this.props.updateViewName}
+        updateViewURL={this.props.updateViewURL}/>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  /* Style for the header section that holds the school name and crest */
-  mainHeader: {
-    width,
-    height: 60,
-    marginBottom: 2,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-
-  /* Style for the section of the list view */
-  rowSection: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    height: 60,
-  },
-
-  /* Style for the text of the section of the list view */
-  sectionText: {
-    paddingLeft: width / 12,
-    fontSize: 25,
-    fontFamily: 'Avenir',
-    color: '#136B3D',
-    marginTop: 15,
-  },
-
-  /* Style for the section separators */
-  separator: {
-    width: width / 1.1,
-    height: 1,
-    alignSelf: 'flex-end',
-    backgroundColor: '#CFE0D8',
-  },
-
-  /* Style for the section's button */
-  sectionButton: {
-    flex: 0,
-    height: 20,
-    marginRight: 15,
-    marginTop: 20,
-  },
 
 });
 

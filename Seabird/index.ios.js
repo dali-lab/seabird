@@ -107,12 +107,14 @@ export default class Seabird extends Component {
       super( props );
       Firebase.initialize( );
       this.updateViewName = this.updateViewName.bind(this);
+      this.updateViewURL = this.updateViewURL.bind(this);
       this.passEvent = this.passEvent.bind(this);
       this.updateHome = this.updateHome.bind(this);
       this.orderChanged = this.orderChanged.bind(this);
       this.state = {
         alreadyLogin: false,
         viewName: '',
+        URLName: '',
         currentEvent: '',
         HOME_PORTALS: [
           {
@@ -220,6 +222,10 @@ export default class Seabird extends Component {
       this.setState({ viewName: name })
     }
 
+    updateViewURL(name) {
+      this.setState({ URLName: name })
+    }
+
     passEvent(userEvent) {
       this.setState({ currentEvent: userEvent})
     }
@@ -318,35 +324,26 @@ export default class Seabird extends Component {
           case 'academics':
               return <ModuleDetails navigator={navigator}
                   viewName={this.state.viewName}
-                  updateViewName={this.updateViewName}/>;
+                  updateViewName={this.updateViewName}
+                  updateViewURL={this.updateViewURL}/>;
                   break;
 
           case 'emergency':
               return <Emergency navigator={navigator}/>;
               break;
 
-          case 'banner':
-              return <AppWebView  url={"https://websso.dartmouth.edu/oaam_server/login.do;jsessionid=JJUIxX2b0HA8xfCtzKyePL__IgXWKs1EG3wmAVhpNnTg95qOprtj!-1118168605!23967818"} navigator={navigator}
+          case 'appwebview':
+              return <AppWebView navigator={navigator}
+                  url={this.state.URLName}
                   viewName={this.state.viewName}
-                  updateViewName={this.updateViewName}/>;
-
-
-          case 'canvas':
-              return <AppWebView url={"https://websso.dartmouth.edu/oaam_server/login.do"} navigator={navigator}
-                  viewName={this.state.viewName}
-                  updateViewName={this.updateViewName}/>;
-                  break;
-
-          case 'timetable':
-              return <AppWebView url={"http://www.thedartmouth.com/"} navigator={navigator}
-                  viewName={this.state.viewName}
-                  updateViewName={this.updateViewName}/>;
-                  break;
+                  updateViewName={this.updateViewName}
+                  updateViewURL={this.updateViewURL}/>;
 
           case 'sports':
-              return <SplitListView navigator={naviator}
+              return <SplitListView navigator={navigator}
                 viewName={this.state.viewName}
-                updateViewName={this.updateViewName}/>;
+                updateViewName={this.updateViewName}
+                updateViewURL={this.updateViewURL}/>;
                 break;
 
           case 'userType':

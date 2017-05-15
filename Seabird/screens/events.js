@@ -10,7 +10,6 @@ import {
   ListView,
 } from 'react-native';
 import {NavBar} from './../components/navBar';
-import {CustomizeList} from './../components/customizeList';
 import EventItem from './../components/eventItem';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';

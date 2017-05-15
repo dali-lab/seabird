@@ -14,7 +14,6 @@ import {
   ListView,
 } from 'react-native';
 import {NavBar} from './../components/navBar';
-import {CustomizeList} from './../components/customizeList';
 import EventItem from './../components/eventItem';
 
 const { height, width } = Dimensions.get('window');

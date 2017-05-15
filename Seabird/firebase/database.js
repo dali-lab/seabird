@@ -18,10 +18,6 @@ class Database {
       callbackFunc(snapshot.val());
     });
 
-    // Firebase.getDbRef(path).once('value').then((snapshot) => {
-    //   console.log(snapshot.val());
-    //   return snapshot.val();
-    // });
   }
 
   /**
@@ -257,6 +253,28 @@ class Database {
       snapshot.forEach((childSnapshot) => {
         moduleContents.push(childSnapshot.val());
       });
+      callbackFunc(moduleContents);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  /**
+   * Listens for changes to the school's content
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static listenContent(modulePath, callbackFunc) {
+    const path = `/content/${modulePath}`;
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      const moduleContents = [];
+      snapshot.forEach((childSnapshot) => {
+        /*if (!moduleContents[childSnapshot.key]) {
+          moduleContents[childSnapshot.key] = []
+        }
+        moduleContents[childSnapshot.key].push(childSnapshot.val());*/
+        moduleContents.push({ navName: childSnapshot.key, url: childSnapshot.val() })
+      });
+      console.log(moduleContents);
       callbackFunc(moduleContents);
     }, (error) => {
       console.log(error);
