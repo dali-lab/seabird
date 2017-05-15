@@ -264,7 +264,8 @@ export default class Seabird extends Component {
               break;
 
           case 'events':
-            return <Events navigator={navigator}/>;
+            return <Events navigator={navigator}
+            passEvent={this.passEvent}/>;
             break;
 
           case 'eventsdetails':

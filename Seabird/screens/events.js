@@ -8,6 +8,9 @@ import {
   Dimensions,
   TouchableHighlight,
   ListView,
+  TextInput,
+  Image,
+  LayoutAnimation,
 } from 'react-native';
 import {NavBar} from './../components/navBar';
 import EventItem from './../components/eventItem';
@@ -22,6 +25,32 @@ var firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
 
+// Linear with easing
+var CustomLayoutLinear = {
+  duration: 200,
+  create: {
+    type: LayoutAnimation.Types.linear,
+    property: LayoutAnimation.Properties.opacity,
+  },
+  update: {
+    type: LayoutAnimation.Types.curveEaseInEaseOut,
+  },
+};
+
+// Spring
+var CustomLayoutSpring = {
+  duration: 400,
+  create: {
+    type: LayoutAnimation.Types.spring,
+    property: LayoutAnimation.Properties.scaleXY,
+    springDamping: 0.7,
+  },
+  update: {
+    type: LayoutAnimation.Types.spring,
+    springDamping: 0.7,
+  },
+};
+
 export default class Events extends Component {
 
   constructor(props) {
@@ -33,7 +62,7 @@ export default class Events extends Component {
       //dataSource: ds.cloneWithRows([' ',]),
       dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2,
-        sectionHeaderHasChanged: (s1, s2) => s1 !== r2
+        sectionHeaderHasChanged: (s1, s2) => s1 !== s2
       })
     };
   }
@@ -72,18 +101,54 @@ export default class Events extends Component {
     });
   }
 
+  searchModules = (text) => {
+    let searchKey = text;
+    if (searchKey.length > 0) {
+      var updateListOrder = []
+      for (var i = 0; i < this.state.dataSource.sectionIdentities.length; i++) {
+        for (var j = 0; j < this.state.dataSource._dataBlob[this.state.dataSource.sectionIdentities[i]].length; j++) {
+            if (this.state.dataSource._dataBlob[this.state.dataSource.sectionIdentities[i]][j].event.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase() || this.state.dataSource._dataBlob[this.state.dataSource.sectionIdentities[i]][j].event.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase()) {
+              updateListOrder.push(this.state.dataSource._dataBlob[this.state.dataSource.sectionIdentities[i]][j])
+            }
+        }
+      }
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRows(updateListOrder)
+        })
+
+    } else if (searchKey === '') {
+      Database.listenEvents((value) => {
+        var tempDataBlob = {};
+        var start = 0
+        var end = 0
+        console.log('value length: ' + value.length);
+        for (var i = 0; i < value.length; i++) {
+          var date = new Date(value[i].day).toDateString();
+          if (!tempDataBlob[date]) {
+            tempDataBlob[date] = []
+          }
+          tempDataBlob[date].push(value[i])
+        }
+        this.setState({
+          dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob),
+        })
+      })
+    }
+  };
+
   renderRow = (rowData, sectionID, rowID) => {
     /* Form dates to distinguish from events */
     return (
       <TouchableHighlight key={rowData.key} underlayColor="transparent" onPress={() => this.navigatePush('eventsdetails', rowData)}>
-      {/*Align items center */}
+      {/* Align items center */}
       <View style={styles.listSection}>
       <View style={styles.listSectionTime}>
-        <Text style={styles.listSectionTimeText}>{Moment(rowData.startTime).format('h:mm A')}</Text>
+        <Text style={styles.listSectionTimeText}>{Moment(rowData.startTime).format('h:mm a')}</Text>
       </View>
       <View style={styles.listSectionInfo}>
         <Text style={styles.listSectionTitle}>{rowData.event}</Text>
-        {/*<Text style={styles.listSectionText}>{rowData.details}</Text>*/}
+        <Text style={styles.listSectionText}>{rowData.location}</Text>
+        <View key={rowData.key} style={styles.separator} />
       </View>
       </View>
       </TouchableHighlight>
@@ -102,17 +167,42 @@ export default class Events extends Component {
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
+        <View style={styles.sectionHeader}>
+          <View style={styles.searchSection}>
+            <TextInput
+              style={styles.searchSectionInput}
+              placeholder="Search Modules"
+              placeholderTextColor='rgba(255, 255, 255, 0.5)'
+              selectionColor="white"
+              onChangeText={(text) => {
+                this.setState({ searchText: text });
+                this.searchModules(text);
+              }}
+            />
+            <TouchableHighlight
+              ref="SearchBar"
+              underlayColor="transparent"
+              style={styles.searchSectionButton}
+              onPress={() => console.log('Pressed search')}
+            >
+              <Image
+                style={styles.searchIcon} source={require('./../Icons/search_icon.png')}
+                />
+            </TouchableHighlight>
+          </View>
+        </View>
         <View style={styles.mainContent}>
           <ListView
             dataSource={this.state.dataSource}
             renderSectionHeader={this.renderSectionHeader}
             renderRow={this.renderRow}
             style={styles.listStyle}
-
+            enableEmptySections={true}
           />
+          {/*
           <TouchableHighlight style={styles.CTA} onPress={this.navigate.bind(this, 'eventscalendar', 'up')}>
             <Text style={styles.CTAText}>Calendar View</Text>
-          </TouchableHighlight>
+          </TouchableHighlight>*/}
         </View>
       </View>
     );
@@ -120,6 +210,53 @@ export default class Events extends Component {
 }
 
 const styles = StyleSheet.create({
+  /* Style for the section that will hold the sorting function */
+  sectionHeader: {
+    height: 125,
+    backgroundColor: '#a7e2c2',
+
+  },
+
+  /* Style for the section that holds the search bar */
+  searchSection: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: width / 1.2,
+    height: 40,
+    marginTop: 15,
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 20,
+  },
+
+  /* Style for the search bar */
+  searchSectionInput: {
+    width: width / 1.6,
+    height: 40,
+    color: 'white',
+    paddingLeft: 15,
+    paddingRight: 10,
+  },
+
+  /* Style for the search bar button */
+  searchSectionButton: {
+    width: 10,
+    height: 10,
+    alignSelf: 'center',
+    marginTop: -10,
+    paddingRight: 20,
+  },
+
+  /* Style for the search button's icon */
+  searchIcon: {
+    height: 18,
+    width: 18,
+    resizeMode: 'contain',
+  },
 
   pageContent: {
     flex: 1,
@@ -179,12 +316,12 @@ const styles = StyleSheet.create({
   /* Style for the entire list view */
   listStyle: {
     backgroundColor: '#ccc',
-    height: height - 150,
+    height,
   },
 
   /* Style for the separator */
   separator: {
-    marginLeft: 10,
+    width,
     height: 1,
     backgroundColor: '#bbb'
   },
@@ -208,8 +345,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    height: 65,
-    backgroundColor: '#ccc',
+    backgroundColor: '#fff',
     paddingLeft: 10,
   },
 
@@ -217,21 +353,21 @@ const styles = StyleSheet.create({
   listSectionTime: {
     flexDirection: 'column',
     justifyContent: 'center',
-    height: 65,
     marginRight: 5,
   },
 
   /* Style for the list section time's text */
   listSectionTimeText: {
     width: width / 5,
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 14,
+    color: '#aaa',
+    fontWeight: '400',
     fontFamily: 'Avenir'
   },
 
   /* Style for the list section information */
   listSectionInfo: {
-    paddingTop: 10,
+    //paddingTop: 10,
     flexDirection: 'column',
   },
 
@@ -240,14 +376,18 @@ const styles = StyleSheet.create({
     width: width / 1.35,
     fontFamily: 'Avenir',
     fontSize: 18,
-    height: 65,
+    height: 25,
     marginTop: 9,
   },
 
   /* Style for the list section text */
   listSectionText: {
+    width: width / 1.35,
     fontFamily: 'Avenir Next',
-    fontSize: 16,
+    fontSize: 12,
+    height: 20,
+    color: '#000',
+    fontStyle: 'italic',
   },
 });
 
