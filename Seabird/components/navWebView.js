@@ -26,12 +26,7 @@ export class NavWebView extends Component  {
   render() {
     return (
       <View style={{flex: 1, flexDirection: 'column'}}>
-      <WebView ref={WEBVIEW_REF} style={{
-          flex: 1,
-      }} onNavigationStateChange={this.onNavigationStateChange} source={{
-          uri: this.props.URL
-      }}/>
-      <View style={styles.bottomBar}>
+      <View style={styles.topNavBar}>
           <TouchableOpacity disabled={!this.canGoBack} onPress={this.goBack}>
               <Image source={require('./../Icons/Back-50-Gray.png')} style={styles.backIcon}/>
           </TouchableOpacity>
@@ -39,6 +34,11 @@ export class NavWebView extends Component  {
               <Image source={require('./../Icons/Forward-50-Gray.png')} style={styles.backIcon}/>
           </TouchableOpacity>
       </View>
+      <WebView ref={WEBVIEW_REF} style={{
+          flex: 1,
+      }} onNavigationStateChange={this.onNavigationStateChange} source={{
+          uri: this.props.URL
+      }}/>
       </View>
     );
   }
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
 
   /* Styles the bottom web view navigation banner */
-  bottomBar: {
+  topNavBar: {
       flexDirection: 'row',
       flexWrap: 'wrap',
       alignItems: 'center',

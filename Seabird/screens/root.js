@@ -35,7 +35,7 @@ if (PixelRatio.get() <= 2) {
 var CustomLayoutSpring = {
   duration: 400,
   create: {
-    type: LayoutAnimation.Types.spring,``
+    type: LayoutAnimation.Types.spring,
     property: LayoutAnimation.Properties.scaleXY,
     springDamping: 0.7,
   },
