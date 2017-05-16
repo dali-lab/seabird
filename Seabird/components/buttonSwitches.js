@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 
 import { Tile } from './tile';
+import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
 const { height, width } = Dimensions.get('window');
 
 let MODULE_FONT_SIZE = 18;
@@ -40,6 +42,9 @@ export class ButtonSwitches extends Component {
     if (!this.state.firstPressStatus) {
       this.setState({ firstPressStatus: !this.state.firstPressStatus });
       this.setState({ secondPressStatus: !this.state.secondPressStatus });
+      Database.listenContent("sports/mens", (value) => {
+        this.props.updateActionList(JSON.stringify(value))
+      })
     }
   }
 
@@ -47,6 +52,9 @@ export class ButtonSwitches extends Component {
     if (!this.state.secondPressStatus) {
       this.setState({ firstPressStatus: !this.state.firstPressStatus });
       this.setState({ secondPressStatus: !this.state.secondPressStatus });
+      Database.listenContent("sports/womens", (value) => {
+        this.props.updateActionList(JSON.stringify(value))
+      })
     }
   }
 

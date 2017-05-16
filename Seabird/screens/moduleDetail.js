@@ -29,15 +29,33 @@ export default class ModuleDetails extends Component {
     super(props);
     this.state = {
       bounceValue: new Animated.Value(0),
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => true,
+      }),
     };
   }
+
+  componentWillMount() {
+    /* Going to the path /content/moduleDirectories/academics/ to get all the modules */
+    Database.listenContent("moduleDirectories/academics", (value) => {
+      console.log(value);
+        this.setState({ dataSource: new ListView.DataSource({
+          rowHasChanged: (r1, r2) => true,
+        }).cloneWithRows(value),
+      })
+    })
+  }
+
   render() {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={styles.mainHeader}>
-          <NavBar navigator={this.props.navigator} text="Seabird University" />
+          <NavBar navigator={this.props.navigator} text="academics" />
         </View>
-        <CustomList dataSourceIdentifier="moduleDirectories/academics" navigator={this.props.navigator} updateViewName={this.props.updateViewName}
+        <CustomList
+        scrollingEnabled={false}
+        dataSource={this.state.dataSource}
+        navigator={this.props.navigator} updateViewName={this.props.updateViewName}
         updateViewURL={this.props.updateViewURL}/>
       </View>
     );

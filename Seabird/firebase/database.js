@@ -268,13 +268,8 @@ class Database {
     Firebase.getDbRef(path).once('value').then((snapshot) => {
       const moduleContents = [];
       snapshot.forEach((childSnapshot) => {
-        /*if (!moduleContents[childSnapshot.key]) {
-          moduleContents[childSnapshot.key] = []
-        }
-        moduleContents[childSnapshot.key].push(childSnapshot.val());*/
         moduleContents.push({ navName: childSnapshot.key, url: childSnapshot.val() })
       });
-      console.log(moduleContents);
       callbackFunc(moduleContents);
     }, (error) => {
       console.log(error);

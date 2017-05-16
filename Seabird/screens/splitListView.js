@@ -14,6 +14,8 @@ import {
 import { NavBar } from './../components/navBar';
 import { CustomList } from './../components/customList';
 import { ButtonSwitches } from './../components/buttonSwitches.js';
+import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
 const { height, width } = Dimensions.get('window');
 
 let MODULE_FONT_SIZE = 18;
@@ -40,14 +42,6 @@ export default class SplitListView extends Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-      /*this.setState({
-        dataSource: new ListView.DataSource({
-          rowHasChanged: (r1, r2) => true,
-        }).cloneWithRows(nextProps.modules),
-      })*/
-  }
-
   renderRow = (rowData, sectionID, rowID) => {
     return (
       <View>
@@ -56,12 +50,35 @@ export default class SplitListView extends Component {
     )
   }
 
+  componentWillReceiveProps(nextProps) {
+      //this.props.updateActionList(JSON.stringify(nextProps.actionListItems))
+      this.setState({ dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => true,
+      }).cloneWithRows(nextProps.actionListItems),
+    })
+  }
+
+  componentWillMount() {
+    /* Going to the path /content/moduleDirectories/academics/ to get all the modules */
+    Database.listenContent("sports/mens", (value) => {
+      //console.log(value);
+        this.setState({ dataSource: new ListView.DataSource({
+          rowHasChanged: (r1, r2) => true,
+        }).cloneWithRows(value),
+      })
+      this.props.updateActionList(JSON.stringify(value))
+    })
+  }
+
   render() {
     return (
       <View style={{flex: 1, backgroundColor: 'white'}}>
-      <NavBar navigator={this.props.navigator} text="Filler"/>
-      <ButtonSwitches first="Mens" second="Womens"/>
-      <CustomList dataSourceIdentifier="sports/mens" navigator={this.props.navigator} updateViewName={this.props.updateViewName}
+      <NavBar navigator={this.props.navigator} text="Sports"/>
+      <ButtonSwitches first="Mens" second="Womens" updateActionList={this.props.updateActionList}/>
+      <CustomList
+      dataSource={this.state.dataSource}
+      navigator={this.props.navigator}
+      updateViewName={this.props.updateViewName}
       updateViewURL={this.props.updateViewURL}/>
       </View>
     );

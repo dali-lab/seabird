@@ -27,6 +27,8 @@
     "react-native-sortable-grid": "^2.0.0",
     "react-native-sortable-list": "0.0.5",
     "react-native-sortable-listview": "^0.1.1",
+    "react-native-svg": "^5.1.8",
+    "react-native-svg-uri": "^1.2.0",
     "react-native-swiper": "^1.5.4",
     "react-router-native": "^4.1.1"
   },

@@ -44,17 +44,6 @@ export class CustomList extends Component {
     this.props.navigator.push({ name: routeName, transitionType, });
   }
 
-  componentWillMount() {
-    /* Going to the path /content/moduleDirectories/academics/ to get all the modules */
-    Database.listenContent(this.props.dataSourceIdentifier, (value) => {
-      console.log(value);
-        this.setState({ dataSource: new ListView.DataSource({
-          rowHasChanged: (r1, r2) => true,
-        }).cloneWithRows(value),
-      })
-    })
-  }
-
   renderRow = (rowData, sectionID, rowID) => {
     return (
       <View>
@@ -73,9 +62,9 @@ export class CustomList extends Component {
     return (
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <ListView
-          scrollEnabled={false}
+          scrollEnabled={this.props.scrollingEnabled}
           style={styles.section}
-          dataSource={this.state.dataSource}
+          dataSource={this.props.dataSource}
           renderRow={this.renderRow.bind(this)}
         />
       </View>
