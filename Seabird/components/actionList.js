@@ -10,6 +10,7 @@ import {
   Image,
   ListView,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import { BackButton } from './backButton';
 import * as Animatable from 'react-native-animatable';
@@ -70,6 +71,10 @@ export class ActionList extends Component {
       itemsSource: ds.cloneWithRows([]),
       buttonText: 'Star',
       sectionVisible: false,
+      firstPressStatus: true,
+      secondPressStatus: false,
+      thirdPressStatus: true,
+      fourthPressStatus: false,
     };
   }
 
@@ -112,10 +117,38 @@ export class ActionList extends Component {
 
   _renderContent(section, i, isActive) {
     return (
-      <Animatable.View duration={400}  style={styles.itemSectionGreen} transition="backgroundColor">
-        <Text style={styles.itemTitleGreen}>{section.content}</Text>
+      <Animatable.View duration={400}  style={styles.itemContent} transition="backgroundColor">
+        <Text style={styles.itemContentText}>{section.content}</Text>
       </Animatable.View>
     );
+  }
+
+  firstToggleButton(){
+    if (!this.state.firstPressStatus) {
+      this.setState({ firstPressStatus: !this.state.firstPressStatus });
+      this.setState({ secondPressStatus: !this.state.secondPressStatus });
+    }
+  }
+
+  secondToggleButton(){
+    if (!this.state.secondPressStatus) {
+      this.setState({ firstPressStatus: !this.state.firstPressStatus });
+      this.setState({ secondPressStatus: !this.state.secondPressStatus });
+    }
+  }
+
+  thirdToggleButton(){
+    if (!this.state.thirdPressStatus) {
+      this.setState({ thirdPressStatus: !this.state.thirdPressStatus });
+      this.setState({ fourthPressStatus: !this.state.fourthPressStatus });
+    }
+  }
+
+  fourthToggleButton(){
+    if (!this.state.fourthPressStatus) {
+      this.setState({ thirdPressStatus: !this.state.thirdPressStatus });
+      this.setState({ fourthPressStatus: !this.state.fourthPressStatus });
+    }
   }
 
   renderHeader(rowData, sectionID, rowID) {
@@ -168,8 +201,39 @@ export class ActionList extends Component {
                 />
             </TouchableHighlight>
           </View>
+          <View style={styles.basicFlexAround}>
+            <View style={styles.basicFlexBetween}>
+              <Text style={styles.optionText}>SORT</Text>
+              <View style={styles.basicFlexBetweenOptions}>
+                <TouchableHighlight underlayColor="transparent" style={this.state.firstPressStatus ? styles.selectedOption : styles.deselectedOption}
+                onPress={this.firstToggleButton.bind(this)}>
+                  <Text style={styles.selectedOptionText}>Category</Text>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor="transparent" style={this.state.secondPressStatus ? styles.selectedOption : styles.deselectedOption}
+                onPress={this.secondToggleButton.bind(this)}>
+                  <Text style={styles.deselectedOptionText}>Alphabet</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+            <View style={styles.basicFlexBetween}>
+              <Text style={styles.optionText}>FILTER</Text>
+              <View style={styles.basicFlexBetweenOptions}>
+                <TouchableHighlight underlayColor="transparent" style={this.state.thirdPressStatus ? styles.selectedOption : styles.deselectedOption}
+                onPress={this.thirdToggleButton.bind(this)}>
+                  <Text style={styles.selectedOptionText}>All</Text>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor="transparent" style={this.state.fourthPressStatus ? styles.selectedOption : styles.deselectedOption}
+                onPress={this.fourthToggleButton.bind(this)}>
+                  <Text style={styles.deselectedOptionText}>Starred</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </View>
         </View>
+        <ScrollView>
+        <Text style={styles.listContentHeader}>Food</Text>
         <Accordion
+          underlayColor="transparent"
           activeSection={this.state.activeSection}
           sections={CONTENT}
           renderHeader={this._renderHeader}
@@ -177,6 +241,7 @@ export class ActionList extends Component {
           duration={400}
           onChange={this._setSection.bind(this)}
         />
+        </ScrollView>
       </View>
     );
   }
@@ -191,7 +256,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: width / 1.2,
     height: 40,
-    marginTop: 15,
+    marginTop: 10,
     alignSelf: 'center',
     backgroundColor: 'transparent',
     borderWidth: 2,
@@ -231,8 +296,8 @@ const styles = StyleSheet.create({
 
   /* Style for the section that will hold the sorting function */
   sectionHeader: {
-    height: 80,
-    backgroundColor: 'rgb(184, 240, 255)',
+    height: 120,
+    backgroundColor: 'rgba(61, 134, 68, 0.3)',
 
   },
 
@@ -246,9 +311,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 3,
-    borderWidth: 1,
-    borderColor: 'rgb(15, 164, 61)',
-    backgroundColor: 'rgba(152, 255, 159, 0.1)',
+    backgroundColor: 'rgba(0, 89, 9, 0.8)',
     alignSelf: 'center',
   },
 
@@ -274,7 +337,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '400',
     fontFamily: 'Verdana',
-    color: 'rgb(15, 164, 61)',
+    color: 'white',
   },
 
   /* Style for the section's title for each item - red */
@@ -284,6 +347,18 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     fontFamily: 'Verdana',
     color: 'rgb(227, 56, 56)',
+  },
+
+  /* Style for the section under the item */
+  itemContent: {
+    width: width / 1.05,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    margin: 4,
+    padding: 10,
+    borderRadius: 3,
+    backgroundColor: 'rgba(61, 134, 68, 0.3)',
+    alignSelf: 'center',
   },
 
   /* Style for the section's time */
@@ -298,6 +373,75 @@ const styles = StyleSheet.create({
   /* Style for the section's action for each item */
   itemAction: {
     marginTop: height / 30,
+  },
+
+  /* Style for the title above the list */
+  listContentHeader: {
+    fontFamily: 'Arial',
+    fontSize: 26,
+    fontWeight: 'bold',
+    color: 'rgb(113, 207, 119)',
+    margin: 15,
+  },
+
+  /* Style for the selected option */
+  selectedOption: {
+    height: 25,
+    width: width / 6.5,
+    backgroundColor: 'rgb(92, 201, 140)',
+  },
+
+  /* Style for the deselected option */
+  deselectedOption: {
+    height: 20,
+    width: width / 6.5,
+    backgroundColor: 'transparent',
+  },
+
+  /* Style for the selected option text */
+  selectedOptionText: {
+    paddingTop: 5,
+    fontSize: 11,
+    textAlign: 'center',
+    color: '#444',
+  },
+
+  /* Style for the deselected option text */
+  deselectedOptionText: {
+    paddingTop: 5,
+    fontSize: 11,
+    textAlign: 'center',
+    color: '#444'
+  },
+
+  /* Style for the text next to the switches */
+  optionText: {
+    paddingTop: 5,
+    fontSize: 14,
+    marginRight: 10,
+    textAlign: 'center',
+  },
+
+  /* Basic flex for options - between */
+  basicFlexBetween: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  /* Basic flex for options - between */
+  basicFlexBetweenOptions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: '#333',
+  },
+
+  /* Basic flex for options - around */
+  basicFlexAround: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 20,
   },
 
 });

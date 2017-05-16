@@ -57,6 +57,10 @@ export default class Events extends Component {
     super();
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.state = {
+      firstPressStatus: true,
+      secondPressStatus: false,
+      thirdPressStatus: true,
+      fourthPressStatus: false,
       dataBlob: {},
       loaded: false,
       //dataSource: ds.cloneWithRows([' ',]),
@@ -99,6 +103,34 @@ export default class Events extends Component {
     this.props.navigator.push({
       name: routeName,
     });
+  }
+
+  firstToggleButton(){
+    if (!this.state.firstPressStatus) {
+      this.setState({ firstPressStatus: !this.state.firstPressStatus });
+      this.setState({ secondPressStatus: !this.state.secondPressStatus });
+    }
+  }
+
+  secondToggleButton(){
+    if (!this.state.secondPressStatus) {
+      this.setState({ firstPressStatus: !this.state.firstPressStatus });
+      this.setState({ secondPressStatus: !this.state.secondPressStatus });
+    }
+  }
+
+  thirdToggleButton(){
+    if (!this.state.thirdPressStatus) {
+      this.setState({ thirdPressStatus: !this.state.thirdPressStatus });
+      this.setState({ fourthPressStatus: !this.state.fourthPressStatus });
+    }
+  }
+
+  fourthToggleButton(){
+    if (!this.state.fourthPressStatus) {
+      this.setState({ thirdPressStatus: !this.state.thirdPressStatus });
+      this.setState({ fourthPressStatus: !this.state.fourthPressStatus });
+    }
   }
 
   searchModules = (text) => {
@@ -189,6 +221,35 @@ export default class Events extends Component {
                 style={styles.searchIcon} source={require('./../Icons/search_icon.png')}
                 />
             </TouchableHighlight>
+          </View>
+
+          <View style={styles.basicFlexAround}>
+            <View style={styles.basicFlexBetween}>
+              <Text style={styles.optionText}>SORT</Text>
+              <View style={styles.basicFlexBetweenOptions}>
+                <TouchableHighlight underlayColor="transparent" style={this.state.firstPressStatus ? styles.selectedOption : styles.deselectedOption}
+                onPress={this.firstToggleButton.bind(this)}>
+                  <Text style={styles.selectedOptionText}>Category</Text>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor="transparent" style={this.state.secondPressStatus ? styles.selectedOption : styles.deselectedOption}
+                onPress={this.secondToggleButton.bind(this)}>
+                  <Text style={styles.deselectedOptionText}>Alphabet</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+            <View style={styles.basicFlexBetween}>
+              <Text style={styles.optionText}>FILTER</Text>
+              <View style={styles.basicFlexBetweenOptions}>
+                <TouchableHighlight underlayColor="transparent" style={this.state.thirdPressStatus ? styles.selectedOption : styles.deselectedOption}
+                onPress={this.thirdToggleButton.bind(this)}>
+                  <Text style={styles.selectedOptionText}>All</Text>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor="transparent" style={this.state.fourthPressStatus ? styles.selectedOption : styles.deselectedOption}
+                onPress={this.fourthToggleButton.bind(this)}>
+                  <Text style={styles.deselectedOptionText}>Starred</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
           </View>
         </View>
         <View style={styles.mainContent}>
@@ -393,6 +454,73 @@ const styles = StyleSheet.create({
     color: 'rgba(93, 93, 92, 0.7)',
     fontStyle: 'italic',
   },
+
+
+    /* Style for the divider */
+    divider: {
+      width: 1,
+      height: 25,
+    },
+
+    /* Style for the selected option */
+    selectedOption: {
+      height: 25,
+      width: width / 6.5,
+      backgroundColor: 'rgb(92, 201, 140)',
+    },
+
+    /* Style for the deselected option */
+    deselectedOption: {
+      height: 20,
+      width: width / 6.5,
+      backgroundColor: 'transparent',
+    },
+
+    /* Style for the selected option text */
+    selectedOptionText: {
+      paddingTop: 5,
+      fontSize: 11,
+      textAlign: 'center',
+      color: '#444',
+    },
+
+    /* Style for the deselected option text */
+    deselectedOptionText: {
+      paddingTop: 5,
+      fontSize: 11,
+      textAlign: 'center',
+      color: '#444'
+    },
+
+    /* Style for the text next to the switches */
+    optionText: {
+      paddingTop: 5,
+      fontSize: 14,
+      marginRight: 10,
+      textAlign: 'center',
+    },
+
+    /* Basic flex for options - between */
+    basicFlexBetween: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+    },
+
+    /* Basic flex for options - between */
+    basicFlexBetweenOptions: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      borderRadius: 3,
+      borderWidth: 1,
+      borderColor: '#333',
+    },
+
+    /* Basic flex for options - around */
+    basicFlexAround: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      marginTop: 20,
+    },
 });
 
 AppRegistry.registerComponent('Events', () => Events);

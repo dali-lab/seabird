@@ -13,6 +13,7 @@ import {
 
 import { NavBar } from './../components/navBar';
 import { CustomList } from './../components/customList';
+import { ButtonSwitches } from './../components/buttonSwitches.js';
 const { height, width } = Dimensions.get('window');
 
 let MODULE_FONT_SIZE = 18;
@@ -59,16 +60,7 @@ export default class SplitListView extends Component {
     return (
       <View style={{flex: 1, backgroundColor: 'white'}}>
       <NavBar navigator={this.props.navigator} text="Filler"/>
-      <View style={styles.selectorSection}>
-      <View style={styles.selectorOptionsSection}>
-        <TouchableHighlight onPress={() => console.log("Pressed Button 1")}>
-          <Text>Men</Text>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => console.log("Pressed Button 2")}>
-          <Text>Women</Text>
-        </TouchableHighlight>
-      </View>
-      </View>
+      <ButtonSwitches first="Mens" second="Womens"/>
       <CustomList dataSourceIdentifier="sports/mens" navigator={this.props.navigator} updateViewName={this.props.updateViewName}
       updateViewURL={this.props.updateViewURL}/>
       </View>
