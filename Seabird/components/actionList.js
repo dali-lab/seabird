@@ -13,6 +13,8 @@ import {
   ScrollView,
 } from 'react-native';
 import { BackButton } from './backButton';
+import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
 import Accordion from 'react-native-collapsible/Accordion';
@@ -21,54 +23,17 @@ const { width, height } = Dimensions.get('window');
 const WEBVIEW_REF = 'webview';
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-
-const BACON_IPSUM = 'Bacon ipsum dolor amet chuck turducken landjaeger tongue spare ribs. Picanha beef prosciutto meatball turkey shoulder shank salami cupim doner jowl pork belly cow. Chicken shankle rump swine tail frankfurter meatloaf ground round flank ham hock tongue shank andouille boudin brisket. ';
-
-const CONTENT = [
-  {
-    title: 'First',
-    content: BACON_IPSUM,
-  },
-  {
-    title: 'Second',
-    content: BACON_IPSUM,
-  },
-  {
-    title: 'Third',
-    content: BACON_IPSUM,
-  },
-  {
-    title: 'Fourth',
-    content: BACON_IPSUM,
-  },
-  {
-    title: 'Fifth',
-    content: BACON_IPSUM,
-  },
-];
-
-const SELECTORS = [
-  {
-    title: 'First',
-    value: 0,
-  },
-  {
-    title: 'Third',
-    value: 2,
-  },
-  {
-    title: 'None',
-    value: false,
-  },
-];
-
 export class ActionList extends Component {
 
   constructor(props) {
     super(props);
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1.guid != r2.guid,
+    });
     this.state = {
       items: [],
-      itemsSource: ds.cloneWithRows([]),
+      constDataSource: [],
+      dataSource: [],
       buttonText: 'Star',
       sectionVisible: false,
       firstPressStatus: true,
@@ -79,19 +44,9 @@ export class ActionList extends Component {
   }
 
   componentWillMount() {
-    this.fetchData();
-  }
-
-  fetchData = () => {
-    // Fetch the data from Firebase and update the itemsSource object
-    this.setState({ itemsSource: ds.cloneWithRows([1, 1, 1, 1, 1, 1, 1, 1]) });
-  }
-
-  completeAction = () => {
-    // Send the new information to the database
-    // Update the state of the button
-    console.log('Button Pressed')
-    this.setState({ buttonText: 'Pressed' });
+    Database.listenContentAccordion("buildings", (value) => {
+        this.setState({ constDataSource: value, dataSource: value })
+    })
   }
 
   state = {
@@ -158,21 +113,19 @@ export class ActionList extends Component {
   }
 
   searchModules = (text) => {
-    /*var searchKey = text
+    var searchKey = text
     if (searchKey.length > 0) {
-      var updateHomeOrder = []
-      for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
-        if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length) === searchKey || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length) === searchKey) {
-          updateHomeOrder.push(this.props.HOME_PORTALS[i])
+      var updateActionList = []
+      for (var i = 0; i < this.state.constDataSource.length; i++) {
+        if (this.state.constDataSource[i].title.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase()) {
+          updateActionList.push(this.state.constDataSource[i])
         }
       }
-        this.setState({ HOME_PORTALS: updateHomeOrder })
-        LayoutAnimation.configureNext(CustomLayoutSpring);
+        this.setState({ dataSource: updateActionList })
 
     } else if (searchKey === '') {
-      this.setState({ HOME_PORTALS: this.props.HOME_PORTALS })
-      LayoutAnimation.configureNext(CustomLayoutSpring);
-    }*/
+      this.setState({ dataSource: this.state.constDataSource })
+    }
   }
 
   render() {
@@ -235,7 +188,7 @@ export class ActionList extends Component {
         <Accordion
           underlayColor="transparent"
           activeSection={this.state.activeSection}
-          sections={CONTENT}
+          sections={this.state.dataSource}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
           duration={400}

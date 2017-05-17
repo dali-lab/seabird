@@ -276,6 +276,23 @@ class Database {
     });
   }
 
+  /**
+   * Listens for changes to the accordion style content
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static listenContentAccordion(modulePath, callbackFunc) {
+    const path = `/content/${modulePath}`;
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      const moduleContents = [];
+      snapshot.forEach((childSnapshot) => {
+        moduleContents.push({ title: childSnapshot.key, content: childSnapshot.val() })
+      });
+      callbackFunc(moduleContents);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
 }
 
 module.exports = Database;
