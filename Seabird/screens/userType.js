@@ -71,7 +71,7 @@ export default class Root extends Component {
                         {/*I am a text field*/}
                         <Text
                             style={{color: 'white', fontStyle: 'italic', fontSize: 21, fontWeight: '100', marginTop: 10}}
-                        >I am a...</Text>
+                        >I am a... {this.state.userType}</Text>
 
                         <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 12}}>
 

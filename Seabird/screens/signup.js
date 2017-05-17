@@ -208,9 +208,6 @@ export default class Root extends Component {
                                 placeholder="Password"
                                 placeholderTextColor="white"
                                 value={this.state.password}
-                                onSubmitEditing={(event) => {
-                                    this.signup(this.state.username, this.state.password)
-                                }}
                             />
                         </View>
 

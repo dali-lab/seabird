@@ -32,7 +32,7 @@ if (PixelRatio.get() <= 2) {
 }
 
 // Spring
-var CustomLayoutSpring = {
+let CustomLayoutSpring = {
   duration: 400,
   create: {
     type: LayoutAnimation.Types.spring,

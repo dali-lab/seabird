@@ -90,18 +90,18 @@ const NoBackSwipeDown ={
 };
 export default class Seabird extends Component {
 
-    userIsSignedIn = () => {
-        console.log('USER IS ALREADY SIGNED IN');
-        console.log(Firebase.getUser());
-        // this.props.navigator.push({name: 'root'});
-        alreadyLogin = 'yes';
-        console.log(alreadyLogin)
-    };
-
-    componentWillMount() {
-        // check if a current user is logged in already
-        Firebase.isUserSignedIn(this.userIsSignedIn);
-    }
+    // userIsSignedIn = () => {
+    //     console.log('USER IS ALREADY SIGNED IN');
+    //     console.log(Firebase.getUser());
+    //     // this.props.navigator.push({name: 'root'});
+    //     alreadyLogin = 'yes';
+    //     console.log(alreadyLogin)
+    // };
+    //
+    // componentWillMount() {
+    //     // check if a current user is logged in already
+    //     Firebase.isUserSignedIn(this.userIsSignedIn);
+    // }
 
     constructor( props ) {
       super( props );
