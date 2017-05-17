@@ -376,8 +376,7 @@ const styles = StyleSheet.create({
 
   /* Style for the entire list view */
   listStyle: {
-    backgroundColor: '#ccc',
-    height,
+    backgroundColor: '#fff',
   },
 
   /* Style for the separator */

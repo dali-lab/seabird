@@ -60,6 +60,22 @@ export default class Root extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    Database.listenUserHomeOrder((value) => {
+      try {
+        if (value !== '' && value !== '[]' && value !== null && value !== undefined && !(value.length <= 0)) {
+            this.setState({ HOME_PORTALS: JSON.parse(value)})
+        } else {
+          this.props.updateHome(JSON.stringify(this.props.HOME_PORTALS));
+          Database.setUserHomeOrder(JSON.stringify(this.props.HOME_PORTALS));
+          this.setState({ HOME_PORTALS: this.props.HOME_PORTALS });
+        }
+      } catch(e) {
+        console.log(e)
+      }
+    })
+  }
+
 
   componentWillMount() {
     Database.listenUserHomeOrder((value) => {

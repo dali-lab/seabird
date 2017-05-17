@@ -6,6 +6,7 @@ import {
   WebView,
   Image,
   Text,
+  TextInput,
   Dimensions,
 } from 'react-native';
 
@@ -41,14 +42,14 @@ export class NavWebView extends Component  {
       <View style={{flex: 1}}>
       <View style={styles.topNavBar}>
         <TouchableOpacity onPress={() => this.props.navigator.pop()}>
-            <Image source={require('./../Icons/Back-50-Gray.png')} style={styles.backIcon}/>
+            <Image source={require('./../Icons/cancel_icon.png')} style={styles.backIcon}/>
         </TouchableOpacity>
           <TouchableOpacity disabled={!this.canGoBack} onPress={() => this.goBack}>
-              <Image source={require('./../Icons/Back-50-Gray.png')} style={styles.backIcon}/>
+              <Image source={require('./../Icons/backward_arrow.png')} style={styles.icon}/>
           </TouchableOpacity>
-          <Text style={styles.urlStyle}>{this.props.URL}</Text>
+          <TextInput style={styles.urlStyle} value={this.props.URL}></TextInput>
           <TouchableOpacity disabled={!this.canGoForward} onPress={() => this.goForward}>
-              <Image source={require('./../Icons/Forward-50-Gray.png')} style={styles.backIcon}/>
+              <Image source={require('./../Icons/forward_arrow.png')} style={styles.icon}/>
           </TouchableOpacity>
       </View>
       <WebView ref={WEBVIEW_REF} style={{
@@ -62,10 +63,19 @@ export class NavWebView extends Component  {
 }
 
 const styles = StyleSheet.create({
-  /* Styles the back button */
+  /* Styles the web view button */
   backIcon: {
       flex: 1,
+      height: 17,
+      width: 17,
+      resizeMode: 'center'
+  },
+
+  /* Styles the web view button */
+  icon: {
+      flex: 1,
       height: 20,
+      width: 20,
       resizeMode: 'center'
   },
 
@@ -81,7 +91,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       flexWrap: 'wrap',
       alignItems: 'center',
-      justifyContent: 'flex-start',
+      justifyContent: 'space-around',
       height: 60,
       backgroundColor: '#EAEAEA',
   },
@@ -93,5 +103,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     width: width / 1.8,
     height: 20,
+    paddingTop: 30,
   }
 });
