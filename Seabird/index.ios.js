@@ -106,6 +106,7 @@ export default class Seabird extends Component {
     constructor( props ) {
       super( props );
       Firebase.initialize( );
+      this.updateUserType = this.updateUserType.bind(this);
       this.updateActionList = this.updateActionList.bind(this);
       this.updateViewName = this.updateViewName.bind(this);
       this.updateViewURL = this.updateViewURL.bind(this);
@@ -113,6 +114,7 @@ export default class Seabird extends Component {
       this.updateHome = this.updateHome.bind(this);
       this.orderChanged = this.orderChanged.bind(this);
       this.state = {
+        userType: '',
         alreadyLogin: false,
         viewName: '',
         URLName: '',
@@ -220,8 +222,12 @@ export default class Seabird extends Component {
       // console.log('Device info: ', device);
     }*/
 
+    updateUserType(user) {
+        this.setState({userType: user});
+    }
+
     updateActionList(info) {
-      let newInfo = JSON.parse(info)
+      let newInfo = JSON.parse(info);
       this.setState({ actionListItems: newInfo })
     }
 
@@ -326,7 +332,10 @@ export default class Seabird extends Component {
               break;
 
           case 'signup':
-              return <Signup navigator={navigator}/>;
+              return <Signup
+                  navigator={navigator}
+                  userType={this.state.userType}
+                  updateHome={this.updateHome}/>;
               break;
 
           case 'academics':
@@ -359,7 +368,9 @@ export default class Seabird extends Component {
                 break;
 
           case 'userType':
-              return <UserType navigator={navigator}/>;
+              return <UserType
+                  navigator={navigator}
+                  updateUserType={this.updateUserType}/>;
               break;
       }
     };

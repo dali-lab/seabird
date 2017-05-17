@@ -107,7 +107,6 @@ class Database {
   * @returns {firebase.Promis<any>|!firebase.Promise.<void>}
   */
   static setUserCombos(userCombos) {
-    const user = Firebase.getUser();
     const userID = Firebase.getUserID();
     const path = `/users/${userID}/combos`;
 
@@ -115,6 +114,28 @@ class Database {
       combos: userCombos,
     });
   }
+
+    /**
+     * Sets a user's year
+     * @param userYear: The user's year.
+     */
+  static setUserYear(userYear) {
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}/year`;
+
+    Firebase.getDbRef(path).set({year: userYear});
+  }
+
+    /**
+     * Sets a user's type
+     * @param userType: The user's type (alum, student, professor)
+     */
+  static setUserType(userType) {
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}/type`;
+
+    Firebase.getDbRef(path).set({type: userType});
+    }
 
   /**
    * Listen for changes to a user's first name

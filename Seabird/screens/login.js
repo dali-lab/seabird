@@ -11,7 +11,6 @@ import {
   Modal,
 } from 'react-native';
 import Database from '../firebase/database';
-import Firebase from '../firebase/firebase';
 
 const { height, width } = Dimensions.get('window');
 const firebase = require('firebase/app');
@@ -30,15 +29,15 @@ export default class Root extends Component {
     };
   }
 
-  userIsSignedIn = (flag) => {
-    if (flag) {
-      this.props.navigator.push({name: 'root'});
-    }
-  };
+  // userIsSignedIn = (flag) => {
+  //   if (flag) {
+  //     this.props.navigator.push({name: 'root'});
+  //   }
+  // };
 
-  componentWillMount() {
-    Firebase.isUserSignedIn(this.userIsSignedIn)
-    }
+  // componentWillMount() {
+  //   Firebase.isUserSignedIn(this.userIsSignedIn)
+  //   }
 
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });

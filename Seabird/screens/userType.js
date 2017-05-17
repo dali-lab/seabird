@@ -15,7 +15,7 @@ const firebase = require('firebase/app');
 require('firebase/auth');
 require('firebase/database');
 
-export default class Root extends Component {
+export default class UserType extends Component {
 
     constructor(props) {
         super(props);
@@ -26,6 +26,13 @@ export default class Root extends Component {
 
     navigate(routeName, transitionType = 'floatRight') {
         this.props.navigator.push({name: routeName, transitionType});
+    }
+
+    setUser() {
+        if (this.state.userType !== '') {
+            this.props.updateUserType(this.state.userType);
+            this.navigate('signup');
+        }
     }
 
     render() {
@@ -131,7 +138,7 @@ export default class Root extends Component {
                         <View style={{marginTop: 15}}>
                             <TouchableHighlight
                                                 underlayColor="transparent"
-                                                onPress={() => this.navigate('signup')}>
+                                                onPress={() => this.setUser()}>
                                 <Image source={require('../Icons/userType/next.png')}
                                        style={styles.loginButton}
                                 />

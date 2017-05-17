@@ -15,7 +15,6 @@ import { NavBar } from './../components/navBar';
 import { PageList } from './../components/pageList';
 import Swiper from 'react-native-swiper';
 import Database from '../firebase/database';
-import Firebase from '../firebase/firebase';
 
 const firebase = require('firebase/app');
 require('firebase/auth');
@@ -24,8 +23,8 @@ require('firebase/database');
 
 const { height, width } = Dimensions.get('window');
 
-let GRID_PADDING = width / 15
-let PAGE_DOTS = height / 5.2
+let GRID_PADDING = width / 15;
+let PAGE_DOTS = height / 5.2;
 if (PixelRatio.get() <= 2) {
   GRID_PADDING = width / 12;
   PAGE_DOTS = height / 4.3
@@ -96,19 +95,19 @@ export default class Root extends Component {
   searchModules = (text) => {
     let searchKey = text;
     if (searchKey.length > 0) {
-      var updateHomeOrder = []
-      for (var i = 0; i < this.props.HOME_PORTALS.length; i++) {
+      let updateHomeOrder = [];
+      for (let i = 0; i < this.props.HOME_PORTALS.length; i++) {
         if (this.props.HOME_PORTALS[i].txtName.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase() || this.props.HOME_PORTALS[i].navName.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase()) {
           updateHomeOrder.push(this.props.HOME_PORTALS[i])
         }
       }
-        this.setState({ HOME_PORTALS: updateHomeOrder })
+        this.setState({ HOME_PORTALS: updateHomeOrder });
         LayoutAnimation.configureNext(CustomLayoutSpring);
 
     } else if (searchKey === '') {
       Database.listenUserHomeOrder((value) => {
         this.setState({ HOME_PORTALS: JSON.parse(value)})
-      })
+      });
       LayoutAnimation.configureNext(CustomLayoutSpring);
     }
   };
