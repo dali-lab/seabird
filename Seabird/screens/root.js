@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'transparent',
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: 'rgba(255,255,255,.5)',
     borderRadius: 20,
   },
 
@@ -222,6 +222,7 @@ const styles = StyleSheet.create({
     height: 18,
     width: 18,
     resizeMode: 'contain',
+    opacity: 0.5,
   },
 
   /* Style for the navigation dots */
