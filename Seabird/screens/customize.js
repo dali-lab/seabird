@@ -9,6 +9,7 @@ import {
   ScrollView,
   Button,
 } from 'react-native';
+import Hr from 'react-native-hr';
 import { NavBar } from './../components/navBar';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
@@ -25,6 +26,9 @@ require("firebase/database");
 // NOTE: these should be percentages of screen height
 let SCROLL_UP_Y = 100;
 let SCROLL_DOWN_Y = 550;
+
+// height of 6 tiles
+let HEIGHT_OF_6TILES = 560;
 
 // used in the setInterval timer to track position of block being dragged
 let dragTracker = null;
@@ -123,6 +127,25 @@ export default class Customize extends Component {
     _scrollView.scrollTo({y: yVal});
   }
 
+  pageBars = () => {
+
+    let numBars = Math.floor((this.state.portal.length-1)/6);
+    // numBars = 3;
+    let bars = [];
+
+    for (let i = 1; i <= numBars; i++) {
+      bars.push(
+        <View key={i} style={styles.barHolderView} top={HEIGHT_OF_6TILES*i}>
+          <Hr lineColor='steelblue' text={ `page ${i+1}` } textColor='steelblue' />
+        </View>
+      );
+    }
+
+    return (
+      bars
+    );
+  }
+
   render() {
     return (
       <View style={styles.pageContent}>
@@ -135,6 +158,13 @@ export default class Customize extends Component {
             scrollEventThrottle={100}
             onScroll={this.handleScroll}
           >
+            <View style={styles.barHolderView}>
+              <Hr lineColor='steelblue' text='page 1' textColor='steelblue' />
+            </View>
+            <View style={styles.floatingView}>
+              {this.pageBars()}
+            </View>
+
             <SortableGrid
               itemsPerRow={2}
               dragActivationTreshold={300}
@@ -152,7 +182,8 @@ export default class Customize extends Component {
               {this.state.portal.map((letter, index) => (
                 <View style={styles.option} key={index}>
                   <Text style={styles.optionText}>{letter.txtName}</Text>
-                </View>))}
+                </View>))
+              }
             </SortableGrid>
           </ScrollView>
         </View>
@@ -258,6 +289,25 @@ const styles = StyleSheet.create({
   optionText: {
     fontSize: 12,
     textAlign: 'center',
+  },
+
+  /* Style for the floating view to hold the dividers text */
+  floatingView: {
+    zIndex: 10,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  /* Style for the floating dividers bar */
+  barHolderView: {
+    zIndex: 20,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 25,
   },
 
   /* Style for the Sortable Grid */
