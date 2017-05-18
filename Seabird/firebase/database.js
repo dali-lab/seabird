@@ -213,12 +213,12 @@ class Database {
    */
   static listenEvents(callbackFunc) {
     const path = '/content/events';
-    Firebase.getDbRef(path).orderByChild('key').on('value', (snapshot) => {
+    Firebase.getDbRef(path).orderByChild('day').on('value', (snapshot) => {
       const events = [];
       snapshot.forEach((childSnapshot) => {
         events.push(childSnapshot.val());
       });
-      callbackFunc(events);
+      callbackFunc(events.reverse());
     }, (error) => {
       console.log(error);
     });

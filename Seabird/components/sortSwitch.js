@@ -28,7 +28,7 @@ if (PixelRatio.get() <= 2) {
   TILE_HEIGHT = height / 6.5
 }
 
-export class ButtonSwitches extends Component {
+export class SortSwitch extends Component {
 
   constructor(props) {
     super(props);
@@ -38,12 +38,8 @@ export class ButtonSwitches extends Component {
     };
   }
 
-  componentWillMount() {
-    if (this.props.firstAction) {
-      this.props.firstAction()
-    }
-  }
-
+  // Handles onPress for the first button
+  // Call action functions here
   firstToggleButton(){
     if (!this.state.firstPressStatus) {
       this.setState({ firstPressStatus: !this.state.firstPressStatus });
@@ -54,6 +50,8 @@ export class ButtonSwitches extends Component {
     }
   }
 
+  // Handles onPress for the second button
+  // Call action functions here
   secondToggleButton(){
     if (!this.state.secondPressStatus) {
       this.setState({ firstPressStatus: !this.state.firstPressStatus });
@@ -68,10 +66,11 @@ export class ButtonSwitches extends Component {
     return (
       <View style={styles.basicFlexAround}>
         <View style={styles.basicFlexBetween}>
+          <Text style={styles.optionText}>{this.props.title}</Text>
           <View style={styles.basicFlexBetweenOptions}>
             <TouchableHighlight underlayColor="transparent" style={this.state.firstPressStatus ? styles.selectedOption : styles.deselectedOption}
             onPress={this.firstToggleButton.bind(this)}>
-              <Text style={this.state.firstPressStatus ? styles.selectedOptionText : styles.deselectedOptionText}>{this.props.firstOption}</Text>
+              <Text style={this.state.firstPressStatus  ? styles.selectedOptionText : styles.deselectedOptionText}>{this.props.firstOption}</Text>
             </TouchableHighlight>
             <TouchableHighlight underlayColor="transparent" style={this.state.secondPressStatus ? styles.selectedOption : styles.deselectedOption}
             onPress={this.secondToggleButton.bind(this)}>
@@ -94,34 +93,48 @@ const styles = StyleSheet.create({
     margin: 15,
   },
 
+  /* Style for the divider */
+  divider: {
+    width: 1,
+    height: 25,
+  },
+
   /* Style for the selected option */
   selectedOption: {
-    height: 30,
-    width: width / 3.5,
-    backgroundColor: '#147863',
+    height: 25,
+    width: width / 6.5,
+    backgroundColor: 'rgb(92, 201, 140)',
   },
 
   /* Style for the deselected option */
   deselectedOption: {
-    height: 30,
-    width: width / 3.5,
-    backgroundColor: '#fff',
+    height: 20,
+    width: width / 6.5,
+    backgroundColor: 'transparent',
   },
 
   /* Style for the selected option text */
   selectedOptionText: {
     paddingTop: 5,
-    fontSize: 14,
+    fontSize: 11,
     textAlign: 'center',
-    color: '#fff',
+    color: '#444',
   },
 
   /* Style for the deselected option text */
   deselectedOptionText: {
     paddingTop: 5,
-    fontSize: 14,
+    fontSize: 11,
     textAlign: 'center',
-    color: '#147863'
+    color: '#444'
+  },
+
+  /* Style for the text next to the switches */
+  optionText: {
+    paddingTop: 5,
+    fontSize: 14,
+    marginRight: 10,
+    textAlign: 'center',
   },
 
   /* Basic flex for options - between */
@@ -136,7 +149,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderRadius: 3,
     borderWidth: 1,
-    borderColor: '#147863',
+    borderColor: '#333',
   },
 
   /* Basic flex for options - around */

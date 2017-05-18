@@ -93,8 +93,6 @@ export default class Seabird extends Component {
     userIsSignedIn = () => {
         console.log('USER IS ALREADY SIGNED IN');
         console.log(Firebase.getUser());
-        // this.props.navigator.push({name: 'root'});
-        // alreadyLogin = 'yes';
         console.log(alreadyLogin)
     };
 
@@ -106,7 +104,6 @@ export default class Seabird extends Component {
     constructor( props ) {
       super( props );
       Firebase.initialize( );
-      this.updateActionList = this.updateActionList.bind(this);
       this.updateViewName = this.updateViewName.bind(this);
       this.updateViewURL = this.updateViewURL.bind(this);
       this.passEvent = this.passEvent.bind(this);
@@ -117,7 +114,6 @@ export default class Seabird extends Component {
         viewName: '',
         URLName: '',
         currentEvent: '',
-        actionListItems: [],
         HOME_PORTALS: [
           {
             txtName: 'Dining',
@@ -212,11 +208,6 @@ export default class Seabird extends Component {
     onIds( device ) {
       // console.log('Device info: ', device);
     }*/
-
-    updateActionList(info) {
-      let newInfo = JSON.parse(info)
-      this.setState({ actionListItems: newInfo })
-    }
 
     updateViewName(name) {
       this.setState({ viewName: name })
@@ -324,8 +315,6 @@ export default class Seabird extends Component {
 
           case 'academics':
               return <ModuleDetails navigator={navigator}
-                  updateActionList={this.updateActionList}
-                  actionListItems={this.state.actionListItems}
                   viewName={this.state.viewName}
                   updateViewName={this.updateViewName}
                   updateViewURL={this.updateViewURL}/>;
@@ -344,8 +333,6 @@ export default class Seabird extends Component {
 
           case 'sports':
               return <SplitListView navigator={navigator}
-                updateActionList={this.updateActionList}
-                actionListItems={this.state.actionListItems}
                 viewName={this.state.viewName}
                 updateViewName={this.updateViewName}
                 updateViewURL={this.updateViewURL}/>;

@@ -14,7 +14,6 @@ import {
   ListView,
 } from 'react-native';
 import {NavBar} from './../components/navBar';
-import EventItem from './../components/eventItem';
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Food';
