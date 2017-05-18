@@ -94,13 +94,13 @@ export default class Seabird extends Component {
         console.log('USER IS ALREADY SIGNED IN');
         console.log(Firebase.getUser());
         // this.props.navigator.push({name: 'root'});
-        alreadyLogin = 'yes';
+        // alreadyLogin = 'yes';
         console.log(alreadyLogin)
     };
 
     componentWillMount() {
         // check if a current user is logged in already
-        Firebase.isUserSignedIn(this.userIsSignedIn);
+        // Firebase.isUserSignedIn(this.userIsSignedIn);
     }
 
     constructor( props ) {
@@ -122,65 +122,58 @@ export default class Seabird extends Component {
           {
             txtName: 'Dining',
             navName: 'dining',
-            imgName:  require('./Icons/Restaurant-50-White.png'),
+            imgName:  require('./Icons/dining.png'),
           }, {
             txtName: 'Events',
             navName: 'events',
-            imgName: require('./Icons/T-Shirt-50-White.png'),
+            imgName: require('./Icons/calendar.png'),
           }, {
             txtName: 'WebView',
             navName: 'web',
-            imgName: require('./Icons/News-50-White.png'),
+            imgName: require('./Icons/web.png'),
           }, {
             txtName: 'Campus Map',
             navName: 'map',
-            imgName: require('./Icons/Map-Marker-50-White.png'),
+            imgName: require('./Icons/map.png'),
           }, {
             txtName: 'Schedule',
             navName: 'schedule',
-            imgName: require('./Icons/Calendar-50-White.png'),
+            imgName: require('./Icons/schedule-01.png'),
           }, {
             txtName: 'WebView',
             navName: 'web',
-            imgName: require('./Icons/News-50-White.png'),
+            imgName: require('./Icons/web.png'),
           }, {
             txtName: 'Green Print',
             navName: 'tutorial',
-            imgName: require('./Icons/Print-50-White.png'),
+            imgName: require('./Icons/printer.png'),
           }, {
             txtName: 'Food',
             navName: 'food',
-            imgName: require('./Icons/Restaurant-50-White.png'),
+            imgName: require('./Icons/dining.png'),
           }, {
             txtName: 'Combo Keeper',
             navName: 'combokeeper',
-            imgName: require('./Icons/Sport-50-White.png'),
+            imgName: require('./Icons/combokeeper.png'),
           }, {
             txtName: 'Building Hours',
             navName: 'buildingHours',
-            imgName: require('./Icons/News-50-White.png'),
+            imgName: require('./Icons/buildinghours.png'),
           }, {
             txtName: 'Academics',
             navName: 'academics',
-            imgName: require('./Icons/News-50-White.png'),
+            imgName: require('./Icons/academics.png'),
           }, {
             txtName: 'Emergency',
             navName: 'emergency',
-            imgName: require('./Icons/T-Shirt-50-White.png'),
+            imgName: require('./Icons/emergency.png'),
           }, {
             txtName: 'Sports',
             navName: 'sports',
-            imgName: require('./Icons/T-Shirt-50-White.png'),
+            imgName: require('./Icons/emergency.png'),
           }
         ],
       }
-    }
-
-
-    componentWillMount() {
-      Firebase.isUserSignedIn((value) => {
-        this.setState({ alreadyLogin: value })
-      })
     }
 
     /*componentWillMount( ) {

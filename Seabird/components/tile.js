@@ -6,8 +6,10 @@ import {
   Text,
   View,
   PixelRatio,
+  Dimensions,
 } from 'react-native';
 
+const { height, width } = Dimensions.get('window');
 export class Tile extends Component {
 
   navigate(routeName, transitionType = 'normal') {
@@ -34,6 +36,8 @@ const styles = StyleSheet.create({
     /* Style for the icons on the main buttons */
   icon: {
     top: 10,
+    width: width / 5,
+    height: width / 5,
     opacity: 1,
   },
 

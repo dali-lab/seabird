@@ -40,7 +40,7 @@ export default class Root extends Component {
 
   componentWillMount() {
     // check if a current user is logged in already
-    Firebase.isUserSignedIn(this.userIsSignedIn)
+    // Firebase.isUserSignedIn(this.userIsSignedIn)
   }
 
   setModalVisible(visible) {
