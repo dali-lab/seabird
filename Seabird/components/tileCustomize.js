@@ -10,15 +10,11 @@ import {
 } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
-export class Tile extends Component {
-
-  navigate(routeName, transitionType = 'normal') {
-    this.props.navigator.push({ name: routeName, transitionType });
-  }
+export class TileCustomize extends Component {
 
   render() {
     return (
-      <TouchableHighlight onPress={this.navigate.bind(this, this.props.navName)} underlayColor="rgba(0, 0, 0, 0)">
+      <TouchableHighlight underlayColor="rgba(0, 0, 0, 0)">
         <View>
           <View style={this.props.tileStyle}>
             <Image source={this.props.imgSource} style={styles.icon} />

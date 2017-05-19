@@ -13,6 +13,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { BackButton } from './backButton';
+import { SortSwitch } from './sortSwitch';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 import * as Animatable from 'react-native-animatable';
@@ -78,40 +79,6 @@ export class ActionList extends Component {
     );
   }
 
-  firstToggleButton(){
-    if (!this.state.firstPressStatus) {
-      this.setState({ firstPressStatus: !this.state.firstPressStatus });
-      this.setState({ secondPressStatus: !this.state.secondPressStatus });
-    }
-  }
-
-  secondToggleButton(){
-    if (!this.state.secondPressStatus) {
-      this.setState({ firstPressStatus: !this.state.firstPressStatus });
-      this.setState({ secondPressStatus: !this.state.secondPressStatus });
-    }
-  }
-
-  thirdToggleButton(){
-    if (!this.state.thirdPressStatus) {
-      this.setState({ thirdPressStatus: !this.state.thirdPressStatus });
-      this.setState({ fourthPressStatus: !this.state.fourthPressStatus });
-    }
-  }
-
-  fourthToggleButton(){
-    if (!this.state.fourthPressStatus) {
-      this.setState({ thirdPressStatus: !this.state.thirdPressStatus });
-      this.setState({ fourthPressStatus: !this.state.fourthPressStatus });
-    }
-  }
-
-  renderHeader(rowData, sectionID, rowID) {
-    return (
-      <View />
-    )
-  }
-
   searchModules = (text) => {
     var searchKey = text
     if (searchKey.length > 0) {
@@ -155,32 +122,8 @@ export class ActionList extends Component {
             </TouchableHighlight>
           </View>
           <View style={styles.basicFlexAround}>
-            <View style={styles.basicFlexBetween}>
-              <Text style={styles.optionText}>SORT</Text>
-              <View style={styles.basicFlexBetweenOptions}>
-                <TouchableHighlight underlayColor="transparent" style={this.state.firstPressStatus ? styles.selectedOption : styles.deselectedOption}
-                onPress={this.firstToggleButton.bind(this)}>
-                  <Text style={styles.selectedOptionText}>Category</Text>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor="transparent" style={this.state.secondPressStatus ? styles.selectedOption : styles.deselectedOption}
-                onPress={this.secondToggleButton.bind(this)}>
-                  <Text style={styles.deselectedOptionText}>Alphabet</Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-            <View style={styles.basicFlexBetween}>
-              <Text style={styles.optionText}>FILTER</Text>
-              <View style={styles.basicFlexBetweenOptions}>
-                <TouchableHighlight underlayColor="transparent" style={this.state.thirdPressStatus ? styles.selectedOption : styles.deselectedOption}
-                onPress={this.thirdToggleButton.bind(this)}>
-                  <Text style={styles.selectedOptionText}>All</Text>
-                </TouchableHighlight>
-                <TouchableHighlight underlayColor="transparent" style={this.state.fourthPressStatus ? styles.selectedOption : styles.deselectedOption}
-                onPress={this.fourthToggleButton.bind(this)}>
-                  <Text style={styles.deselectedOptionText}>Starred</Text>
-                </TouchableHighlight>
-              </View>
-            </View>
+            <SortSwitch title="SORT" firstOption="Category" secondOption="Alphabet"/>
+            <SortSwitch title="FILTER" firstOption="All" secondOption="Starred"/>
           </View>
         </View>
         <ScrollView>
@@ -337,64 +280,9 @@ const styles = StyleSheet.create({
     margin: 15,
   },
 
-  /* Style for the selected option */
-  selectedOption: {
-    height: 25,
-    width: width / 6.5,
-    backgroundColor: 'rgb(92, 201, 140)',
-  },
-
-  /* Style for the deselected option */
-  deselectedOption: {
-    height: 20,
-    width: width / 6.5,
-    backgroundColor: 'transparent',
-  },
-
-  /* Style for the selected option text */
-  selectedOptionText: {
-    paddingTop: 5,
-    fontSize: 11,
-    textAlign: 'center',
-    color: '#444',
-  },
-
-  /* Style for the deselected option text */
-  deselectedOptionText: {
-    paddingTop: 5,
-    fontSize: 11,
-    textAlign: 'center',
-    color: '#444'
-  },
-
-  /* Style for the text next to the switches */
-  optionText: {
-    paddingTop: 5,
-    fontSize: 14,
-    marginRight: 10,
-    textAlign: 'center',
-  },
-
-  /* Basic flex for options - between */
-  basicFlexBetween: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-
-  /* Basic flex for options - between */
-  basicFlexBetweenOptions: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    borderRadius: 3,
-    borderWidth: 1,
-    borderColor: '#333',
-  },
-
   /* Basic flex for options - around */
   basicFlexAround: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 20,
   },
-
 });

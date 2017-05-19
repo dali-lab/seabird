@@ -15,6 +15,15 @@ const { width, height } = Dimensions.get('window');
 
 export class NavWebView extends Component  {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      canGoBack: false,
+      canGoForward: false,
+      url: null,
+    }
+  };
+
   componentWillMount() {
     if (this.props.URL.length >= 30) {
       /* Format the url text here */
@@ -22,19 +31,19 @@ export class NavWebView extends Component  {
   }
 
   onNavigationStateChange = (navState) => {
-      this.setState({
-        canGoBack: navState.canGoBack,
-        canGoForward: navState.canGoForward,
-        url: navState.url
-      });
+    this.setState({
+      canGoBack: navState.canGoBack,
+      canGoForward: navState.canGoForward,
+      url: navState.url
+    });
   };
 
   goBack = () => {
-      this.refs[WEBVIEW_REF].goBack();
+    this.refs[WEBVIEW_REF].goBack();
   };
 
   goForward = () => {
-      this.refs[WEBVIEW_REF].goForward();
+    this.refs[WEBVIEW_REF].goForward();
   };
 
   render() {
@@ -44,19 +53,24 @@ export class NavWebView extends Component  {
         <TouchableOpacity onPress={() => this.props.navigator.pop()}>
             <Image source={require('./../Icons/cancel_icon.png')} style={styles.backIcon}/>
         </TouchableOpacity>
-          <TouchableOpacity disabled={!this.canGoBack} onPress={() => this.goBack}>
-              <Image source={require('./../Icons/backward_arrow.png')} style={styles.icon}/>
-          </TouchableOpacity>
-          <TextInput style={styles.urlStyle} value={this.props.URL}></TextInput>
-          <TouchableOpacity disabled={!this.canGoForward} onPress={() => this.goForward}>
-              <Image source={require('./../Icons/forward_arrow.png')} style={styles.icon}/>
-          </TouchableOpacity>
+        <TouchableOpacity disabled={!this.state.canGoBack} onPress={this.goBack}>
+            <Image source={require('./../Icons/backward_arrow.png')} style={styles.icon}/>
+        </TouchableOpacity>
+        <TextInput style={styles.urlStyle} value={this.props.URL}></TextInput>
+        <TouchableOpacity disabled={!this.state.canGoForward} onPress={this.goForward}>
+            <Image source={require('./../Icons/forward_arrow.png')} style={styles.icon}/>
+        </TouchableOpacity>
       </View>
-      <WebView ref={WEBVIEW_REF} style={{
+      <WebView
+        ref={WEBVIEW_REF}
+        style={{
           flex: 1,
-      }} onNavigationStateChange={this.onNavigationStateChange.bind(this)} source={{
+        }}
+        onNavigationStateChange={this.onNavigationStateChange.bind(this)}
+        source={{
           uri: this.props.URL
-      }}/>
+        }}
+      />
       </View>
     );
   }
@@ -65,35 +79,35 @@ export class NavWebView extends Component  {
 const styles = StyleSheet.create({
   /* Styles the web view button */
   backIcon: {
-      flex: 1,
-      height: 17,
-      width: 17,
-      resizeMode: 'center'
+    flex: 1,
+    height: 17,
+    width: 17,
+    resizeMode: 'center'
   },
 
   /* Styles the web view button */
   icon: {
-      flex: 1,
-      height: 20,
-      width: 20,
-      resizeMode: 'center'
+    flex: 1,
+    height: 20,
+    width: 20,
+    resizeMode: 'center'
   },
 
   /* Styles the forward button */
   forwardIcon: {
-      flex: 1,
-      height: 20,
-      resizeMode: 'center'
+    flex: 1,
+    height: 20,
+    resizeMode: 'center'
   },
 
   /* Styles the bottom web view navigation banner */
   topNavBar: {
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      alignItems: 'center',
-      justifyContent: 'space-around',
-      height: 60,
-      backgroundColor: '#EAEAEA',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    height: 60,
+    backgroundColor: '#EAEAEA',
   },
 
   /* Styles for the url in the top navigation bar */

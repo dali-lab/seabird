@@ -91,11 +91,8 @@ const NoBackSwipeDown ={
 };
 export default class Seabird extends Component {
 
-
-
     componentWillMount() {
         Firebase.isUserSignedIn(this.userIsSignedIn);
-        console.log('checking firebase')
     }
 
     userIsSignedIn = (flag) => {
@@ -122,60 +119,59 @@ export default class Seabird extends Component {
         viewName: '',
         URLName: '',
         currentEvent: '',
-        actionListItems: [],
         HOME_PORTALS: [
           {
             txtName: 'Dining',
             navName: 'dining',
-            imgName:  require('./Icons/Restaurant-50-White.png'),
+            imgName:  require('./Icons/dining.png'),
           }, {
             txtName: 'Events',
             navName: 'events',
-            imgName: require('./Icons/T-Shirt-50-White.png'),
+            imgName: require('./Icons/calendar.png'),
           }, {
             txtName: 'WebView',
             navName: 'web',
-            imgName: require('./Icons/News-50-White.png'),
+            imgName: require('./Icons/web.png'),
           }, {
             txtName: 'Campus Map',
             navName: 'map',
-            imgName: require('./Icons/Map-Marker-50-White.png'),
+            imgName: require('./Icons/map.png'),
           }, {
             txtName: 'Schedule',
             navName: 'schedule',
-            imgName: require('./Icons/Calendar-50-White.png'),
+            imgName: require('./Icons/schedule-01.png'),
           }, {
             txtName: 'WebView',
             navName: 'web',
-            imgName: require('./Icons/News-50-White.png'),
+            imgName: require('./Icons/web.png'),
           }, {
             txtName: 'Green Print',
             navName: 'tutorial',
-            imgName: require('./Icons/Print-50-White.png'),
+            imgName: require('./Icons/printer.png'),
           }, {
             txtName: 'Food',
             navName: 'food',
-            imgName: require('./Icons/Restaurant-50-White.png'),
+            imgName: require('./Icons/dining.png'),
           }, {
             txtName: 'Combo Keeper',
             navName: 'combokeeper',
-            imgName: require('./Icons/Sport-50-White.png'),
+            imgName: require('./Icons/combokeeper.png'),
           }, {
             txtName: 'Building Hours',
             navName: 'buildingHours',
-            imgName: require('./Icons/News-50-White.png'),
+            imgName: require('./Icons/buildinghours.png'),
           }, {
             txtName: 'Academics',
             navName: 'academics',
-            imgName: require('./Icons/News-50-White.png'),
+            imgName: require('./Icons/academics.png'),
           }, {
             txtName: 'Emergency',
             navName: 'emergency',
-            imgName: require('./Icons/T-Shirt-50-White.png'),
+            imgName: require('./Icons/emergency.png'),
           }, {
             txtName: 'Sports',
             navName: 'sports',
-            imgName: require('./Icons/T-Shirt-50-White.png'),
+            imgName: require('./Icons/emergency.png'),
           }
         ],
       }
@@ -304,8 +300,6 @@ export default class Seabird extends Component {
 
           case 'academics':
               return <ModuleDetails navigator={navigator}
-                  updateActionList={this.updateActionList}
-                  actionListItems={this.state.actionListItems}
                   viewName={this.state.viewName}
                   updateViewName={this.updateViewName}
                   updateViewURL={this.updateViewURL}/>;
@@ -324,8 +318,6 @@ export default class Seabird extends Component {
 
           case 'sports':
               return <SplitListView navigator={navigator}
-                updateActionList={this.updateActionList}
-                actionListItems={this.state.actionListItems}
                 viewName={this.state.viewName}
                 updateViewName={this.updateViewName}
                 updateViewURL={this.updateViewURL}/>;

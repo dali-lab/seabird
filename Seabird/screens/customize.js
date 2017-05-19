@@ -8,14 +8,30 @@ import {
   Dimensions,
   ScrollView,
   Button,
+  PixelRatio,
 } from 'react-native';
+import Hr from 'react-native-hr';
 import { NavBar } from './../components/navBar';
+import { TileCustomize } from '../components/tileCustomize';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 
 const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Customize';
 import SortableGrid from '../components/react-native-sortable-grid/index';
+
+let MODULE_FONT_SIZE = 18;
+let MODULE_TEXT_PADDING = 0;
+let TILE_WIDTH = width / 3.3
+let TILE_HEIGHT = height / 6
+
+
+if (PixelRatio.get() <= 2) {
+  MODULE_FONT_SIZE = 15;
+  MODULE_TEXT_PADDING = -2;
+  TILE_WIDTH = width / 3.6
+  TILE_HEIGHT = height / 6.5
+}
 
 var firebase = require("firebase/app");
 require("firebase/auth");
@@ -25,6 +41,9 @@ require("firebase/database");
 // NOTE: these should be percentages of screen height
 let SCROLL_UP_Y = 100;
 let SCROLL_DOWN_Y = 550;
+
+// height of 6 tiles
+let HEIGHT_OF_6TILES = 560;
 
 // used in the setInterval timer to track position of block being dragged
 let dragTracker = null;
@@ -53,6 +72,7 @@ export default class Customize extends Component {
     Database.listenUserHomeOrder((value) => {
       this.setState({ portal: JSON.parse(value)})
       Database.setUserHomeOrder(JSON.stringify(value));
+      console.log(this.state.portal);
     })
   }
 
@@ -72,6 +92,7 @@ export default class Customize extends Component {
 
   rearrange = (value) => {
     this.setState({ scrolling: true });
+    console.log(this.state.portal);
     for (var i = 0; i < this.state.portal.length; i++) {
         newHome[i] = this.state.portal[value.itemOrder[i].key]
     }
@@ -123,6 +144,25 @@ export default class Customize extends Component {
     _scrollView.scrollTo({y: yVal});
   }
 
+  pageBars = () => {
+
+    let numBars = Math.floor((this.state.portal.length-1)/6);
+    // numBars = 3;
+    let bars = [];
+
+    for (let i = 1; i <= numBars; i++) {
+      bars.push(
+        <View key={i} style={styles.barHolderView} top={HEIGHT_OF_6TILES*i}>
+          <Hr lineColor='steelblue' text={ `page ${i+1}` } textColor='steelblue' />
+        </View>
+      );
+    }
+
+    return (
+      bars
+    );
+  }
+
   render() {
     return (
       <View style={styles.pageContent}>
@@ -134,7 +174,15 @@ export default class Customize extends Component {
             scrollEnabled={this.state.scrolling}
             scrollEventThrottle={100}
             onScroll={this.handleScroll}
+            horizontal={false}
           >
+            <View style={styles.barHolderView}>
+              <Hr lineColor='steelblue' text='page 1' textColor='steelblue' />
+            </View>
+            <View style={styles.floatingView}>
+              {this.pageBars()}
+            </View>
+
             <SortableGrid
               itemsPerRow={2}
               dragActivationTreshold={300}
@@ -150,9 +198,16 @@ export default class Customize extends Component {
               ref={'SortableGrid'}
             >
               {this.state.portal.map((letter, index) => (
-                <View style={styles.option} key={index}>
-                  <Text style={styles.optionText}>{letter.txtName}</Text>
-                </View>))}
+                <TileCustomize
+                  key={index}
+                  navName={letter.navName}
+                  imgSource={letter.imgName}
+                  text={letter.txtName}
+                  tileStyle={styles.tile}
+                  tileTextSection={styles.tileTextSection}
+                  textStyle={styles.tileText}
+                />
+              ))}
             </SortableGrid>
           </ScrollView>
         </View>
@@ -260,10 +315,76 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
+  /* Style for the floating view to hold the dividers text */
+  floatingView: {
+    zIndex: 10,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  /* Style for the floating dividers bar */
+  barHolderView: {
+    zIndex: 20,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 25,
+  },
+
   /* Style for the Sortable Grid */
   grid: {
     height: 30,
-    backgroundColor: 'white',
+    backgroundColor: 'cadetblue',
+  },
+
+  /* Style for the tiles for the home screen */
+  tileView: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    width: TILE_WIDTH*2,
+    height: TILE_HEIGHT*2,
+    paddingBottom: 20,
+    marginTop: width / 15,
+    margin: width / 25,
+    borderRadius: (width / 2.8) / 2,
+    borderWidth: 2,
+    borderColor: 'white',
+  },
+
+  /* Style for the tiles for the home screen */
+  tile: {
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    width: TILE_WIDTH,
+    height: TILE_HEIGHT,
+    paddingBottom: 20,
+    marginTop: width / 15,
+    margin: width / 25,
+    borderRadius: (width / 2.8) / 2,
+    borderWidth: 2,
+    borderColor: 'white',
+  },
+
+  /* Style for the section of the tiles that hold the tet */
+  tileTextSection: {
+    marginTop: 0,
+  },
+
+  /* Style for the tiles' text for the home screen */
+  tileText: {
+    paddingTop: MODULE_TEXT_PADDING,
+    fontSize: MODULE_FONT_SIZE,
+    fontFamily: 'Avenir-Book',
+    fontWeight: '500',
+    textAlign: 'center',
+    color: '#fff',
   },
 });
 

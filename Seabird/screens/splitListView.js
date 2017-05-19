@@ -50,8 +50,7 @@ export default class SplitListView extends Component {
     )
   }
 
-  componentWillReceiveProps(nextProps) {
-      //this.props.updateActionList(JSON.stringify(nextProps.actionListItems))
+  /*componentWillReceiveProps(nextProps) {
       this.setState({ dataSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => true,
       }).cloneWithRows(nextProps.actionListItems),
@@ -59,22 +58,40 @@ export default class SplitListView extends Component {
   }
 
   componentWillMount() {
-    /* Going to the path /content/moduleDirectories/academics/ to get all the modules */
+    /* Going to the path /content/moduleDirectories/academics/ to get all the modules
     Database.listenContent("sports/mens", (value) => {
-      //console.log(value);
         this.setState({ dataSource: new ListView.DataSource({
           rowHasChanged: (r1, r2) => true,
         }).cloneWithRows(value),
       })
       this.props.updateActionList(JSON.stringify(value))
     })
+  }*/
+
+  firstSwitchAction = () => {
+    Database.listenContent("sports/mens", (value) => {
+        this.setState({ dataSource: new ListView.DataSource({
+          rowHasChanged: (r1, r2) => true,
+        }).cloneWithRows(value),
+      })
+    })
   }
+
+  secondSwitchAction = () => {
+    Database.listenContent("sports/womens", (value) => {
+        this.setState({ dataSource: new ListView.DataSource({
+          rowHasChanged: (r1, r2) => true,
+        }).cloneWithRows(value),
+      })
+    })
+  }
+
 
   render() {
     return (
       <View style={{flex: 1, backgroundColor: 'white'}}>
       <NavBar navigator={this.props.navigator} text="Sports"/>
-      <ButtonSwitches first="Mens" second="Womens" updateActionList={this.props.updateActionList}/>
+      <ButtonSwitches firstOption="Mens" secondOption="Womens" firstAction={this.firstSwitchAction.bind(this)} secondAction={this.secondSwitchAction.bind(this)}/>
       <CustomList
       dataSource={this.state.dataSource}
       navigator={this.props.navigator}

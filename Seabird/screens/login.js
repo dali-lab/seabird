@@ -30,7 +30,6 @@ export default class Root extends Component {
     };
   }
 
-
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
   }

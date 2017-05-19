@@ -41,10 +41,22 @@ Using the [AirBnb](https://github.com/airbnb/javascript) style guide for Javascr
 
 ## Authors :pencil:
 
-* Will Kaufman '20 - Backend Engineer
-* Ijemma Onwuzulike '19 - Front-end Engineer
-* Sean Cann '17 - Front-end Engineer & Partner
-* Tyler Fisher '17 - Front-end Engineer & Partner
+### 17s
+
+* Ricky Taboada '19 - Front-end Developer
+* Ijemma Onwuzulike '19 - Front-end Developer
+* Sean Cann '17 - Front-end Developer & Partner
+* Tyler Fisher '17 - Front-end Developer & Partner
+* Kathy Dong '17 - Designer
+* Young Jang '19 - Designer
+* Bella Jacoby '20 - Designer
+
+### 17W
+
+* Will Kaufman '20 - Backend Developer
+* Ijemma Onwuzulike '19 - Front-end Developer
+* Sean Cann '17 - Front-end Developer & Partner
+* Tyler Fisher '17 - Front-end Developer & Partner
 * Shuoqi Chen '18 - Designer
 * Emma Demers '20 - Designer
 
