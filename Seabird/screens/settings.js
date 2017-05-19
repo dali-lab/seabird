@@ -7,19 +7,18 @@ import {
   Animated,
   TextInput,
   Button,
-  AsyncStorage,
   Dimensions,
   TouchableHighlight,
-  PixelRatio
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
-var firebase = require( "firebase/app" );
+
 require( "firebase/auth" );
 
-const { height, width, } = Dimensions.get( 'window' );
+let firebase = require( "firebase/app" );
 
+const { height, width, } = Dimensions.get( 'window' );
 const NAVBAR_TEXT = 'Settings';
 
 export default class Settings extends Component {
@@ -54,9 +53,6 @@ export default class Settings extends Component {
     Database.listenUserLastName(( value ) => {
       this.setState({ userLastName: value });
     });
-    /*Database.listenUserEmail(( value ) => {
-      this.setState({ userEmail: value });
-    });*/
     this.setState({ userEmail: Firebase.getUser( ).email })
   }
 
@@ -65,7 +61,7 @@ export default class Settings extends Component {
     }).catch(function(error) {
       console.log(error)
     });
-    this.navigatePush('login')
+    this.navigate('login')
   };
 
   saveAllSettings = (first, last, email) => {
@@ -80,8 +76,7 @@ export default class Settings extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down"/>
         <View style={styles.mainContent}>
           <View style={styles.contentHeader}>
-            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName}
-              {this.state.userLastName}!</Text>
+            <Text style={styles.settingsTitle}>Hi, {this.state.userFirstName} {this.state.userLastName}!</Text>
             <Text style={styles.settingsText}>First Name:</Text>
             <TextInput
               ref='FirstName'
@@ -118,7 +113,7 @@ export default class Settings extends Component {
             </TouchableHighlight>
 
             <Button onPress={this.navigate.bind( this, 'customize' )} title="Customize" color="#841584"/>
-            <TouchableHighlight onPress={() => this.logoutUser()}style={styles.logoutButton}>
+            <TouchableHighlight onPress={() => this.logoutUser()} style={styles.logoutButton}>
               <Text style={styles.logoutButtonText}>Log out</Text>
             </TouchableHighlight>
           </View>

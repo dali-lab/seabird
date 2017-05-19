@@ -14,7 +14,9 @@ import {
   withRouter,
   AsyncStorage,
 } from 'react-router-native';
-import { Navigator, AppRegistry } from 'react-native';
+import {
+    Navigator, AppRegistry, Image, ActivityIndicator, Dimensions
+} from 'react-native';
 import Firebase from './firebase/firebase';
 import Database from './firebase/database';
 
@@ -38,14 +40,13 @@ import ModuleDetails from './screens/moduleDetail';
 import AppWebView from './screens/appWebView';
 import UserType from './screens/userType';
 import SplitListView from './screens/splitListView';
+import Loading from './screens/loading'
 
-const firebase = require("firebase/app");
 require("firebase/auth");
 require("firebase/database");
 
-let email = '';
-let password = '';
-let alreadyLogin = false;
+const { height, width } = Dimensions.get('window');
+const firebase = require("firebase/app");
 
 const NoBackSwipeFloatRight ={
   ...Navigator.SceneConfigs.FloatFromRight,
@@ -90,27 +91,32 @@ const NoBackSwipeDown ={
 };
 export default class Seabird extends Component {
 
-    userIsSignedIn = () => {
-        console.log('USER IS ALREADY SIGNED IN');
-        console.log(Firebase.getUser());
-        console.log(alreadyLogin)
-    };
-
     componentWillMount() {
-        // check if a current user is logged in already
-        // Firebase.isUserSignedIn(this.userIsSignedIn);
+        Firebase.isUserSignedIn(this.userIsSignedIn);
+        console.log('checking firebase')
     }
+
+    userIsSignedIn = (flag) => {
+        if (flag) {
+            this.setState({loggedIn: true})
+        }
+        this.setState({ checkedFirebase: true });
+    };
 
     constructor( props ) {
       super( props );
       Firebase.initialize( );
+      this.updateUserType = this.updateUserType.bind(this);
+      this.updateActionList = this.updateActionList.bind(this);
       this.updateViewName = this.updateViewName.bind(this);
       this.updateViewURL = this.updateViewURL.bind(this);
       this.passEvent = this.passEvent.bind(this);
       this.updateHome = this.updateHome.bind(this);
       this.orderChanged = this.orderChanged.bind(this);
       this.state = {
-        alreadyLogin: false,
+        checkedFirebase: false,
+        loggedIn: false,
+        userType: '',
         viewName: '',
         URLName: '',
         currentEvent: '',
@@ -172,42 +178,14 @@ export default class Seabird extends Component {
       }
     }
 
-    /*componentWillMount( ) {
-      OneSignal.addEventListener( 'received', this.onReceived );
-      OneSignal.addEventListener( 'opened', this.onOpened );
-      OneSignal.addEventListener( 'registered', this.onRegistered );
-      OneSignal.addEventListener( 'ids', this.onIds );
-      // Sending multiple tags
-      OneSignal.sendTags({ "UserID": "12345", "UserName": "Sean", "UserYear": "2017" });
-      // Calling promptLocation
-      OneSignal.promptLocation( );
+    updateUserType(user) {
+        this.setState({userType: user});
     }
 
-    componentWillUnmount( ) {
-      OneSignal.removeEventListener( 'received', this.onReceived );
-      OneSignal.removeEventListener( 'opened', this.onOpened );
-      OneSignal.removeEventListener( 'registered', this.onRegistered );
-      OneSignal.removeEventListener( 'ids', this.onIds );
+    updateActionList(info) {
+      let newInfo = JSON.parse(info);
+      this.setState({ actionListItems: newInfo })
     }
-
-    onReceived( notification ) {
-      // console.log("Notification received: ", notification);
-    }
-
-    onOpened( openResult ) {
-      // console.log('Message: ', openResult.notification.payload.body);
-      // console.log('Data: ', openResult.notification.payload.additionalData);
-      // console.log('isActive: ', openResult.notification.isAppInFocus);
-      // console.log('openResult: ', openResult);
-    }
-
-    onRegistered( notifData ) {
-      // console.log("Device had been registered for push notifications!", notifData);
-    }
-
-    onIds( device ) {
-      // console.log('Device info: ', device);
-    }*/
 
     updateViewName(name) {
       this.setState({ viewName: name })
@@ -236,14 +214,19 @@ export default class Seabird extends Component {
     renderScene = ( route, navigator ) => {
       switch(route.name) {
 
+          case 'loading':
+              return (<Loading navigator={navigator}/>);
+              break;
+
           case 'login':
             return (<Login navigator={navigator}
               updateHome={this.updateHome}/>);
               break;
 
           case 'root':
-              return <Root navigator={navigator} HOME_PORTALS={this.state.HOME_PORTALS}
-                  updateHome={this.updateHome}/>;
+              return <Root navigator={navigator}
+                           OME_PORTALS={this.state.HOME_PORTALS}
+                           updateHome={this.updateHome}/>;
                   break;
 
           case 'dining':
@@ -310,7 +293,10 @@ export default class Seabird extends Component {
               break;
 
           case 'signup':
-              return <Signup navigator={navigator}/>;
+              return <Signup
+                  navigator={navigator}
+                  userType={this.state.userType}
+                  updateHome={this.updateHome}/>;
               break;
 
           case 'academics':
@@ -339,7 +325,9 @@ export default class Seabird extends Component {
                 break;
 
           case 'userType':
-              return <UserType navigator={navigator}/>;
+              return <UserType
+                  navigator={navigator}
+                  updateUserType={this.updateUserType}/>;
               break;
       }
     };
@@ -367,22 +355,47 @@ export default class Seabird extends Component {
     };
 
     render( ) {
-      if (alreadyLogin) {
-        return ( <Navigator initialRoute={{
-          name: 'root',
-          title: 'My Initial Scene',
-          index: 0
-        }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
-      }
-
-      else {
-      return ( <Navigator initialRoute={{
-        name: 'login',
-        title: 'My Initial Scene',
-        index: 0
-      }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
+        if (this.state.checkedFirebase === false) {
+            return (
+                <Image
+                    source={require('./Icons/Login/gradient_background.png')}
+                    style={{
+                        height,
+                        width,
+                        resizeMode: 'stretch',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}>
+                    <ActivityIndicator
+                        style={{
+                            height: height,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: 8,
+                        }}
+                        size="large"
+                        color="white"
+                    />
+                </Image>
+            );
+        }
+        else {
+            if (this.state.loggedIn === true) {
+                return ( <Navigator initialRoute={{
+                    name: 'root',
+                    title: 'My Initial Scene',
+                    index: 0
+                }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
+            }
+            else {
+                return ( <Navigator initialRoute={{
+                    name: 'login',
+                    title: 'My Initial Scene',
+                    index: 0
+                }} renderScene={this.renderScene} configureScene={this.configureScene}/> );
+            }
+        }
     }
-  }
 }
 
 AppRegistry.registerComponent( 'Seabird', ( ) => Seabird );
