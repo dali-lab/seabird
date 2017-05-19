@@ -93,7 +93,6 @@ export default class Seabird extends Component {
 
     componentWillMount() {
         Firebase.isUserSignedIn(this.userIsSignedIn);
-        console.log('checking firebase')
     }
 
     userIsSignedIn = (flag) => {
