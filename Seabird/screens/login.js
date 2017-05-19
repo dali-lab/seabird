@@ -125,7 +125,7 @@ export default class Root extends Component {
                 style={styles.credentials}
                 onChangeText={username => this.setState({ username })}
                 placeholder="Email"
-                placeholderTextColor="white"
+                placeholderTextColor='rgba(255, 255, 255, 0.8)'
                 selectionColor="white"
                 keyboardType="email-address"
                 value={this.state.username}
@@ -151,7 +151,7 @@ export default class Root extends Component {
                 style={styles.credentials}
                 onChangeText={password => this.setState({ password })}
                 placeholder="Password"
-                placeholderTextColor="white"
+                placeholderTextColor='rgba(255, 255, 255, 0.8)'
                 selectionColor="white"
                 value={this.state.password}
                 onSubmitEditing={(event) => {

@@ -148,7 +148,7 @@ export default class Root extends Component {
           <TextInput
             style={styles.searchSectionInput}
             placeholder="Search Modules"
-            placeholderTextColor='rgba(255, 255, 255, 0.5)'
+            placeholderTextColor='rgba(255, 255, 255, 0.8)'
             selectionColor="white"
             onChangeText={(text) => {
               this.setState({ searchText: text });
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'transparent',
     borderWidth: 2,
-    borderColor: 'rgba(255,255,255,.5)',
+    borderColor: 'rgba(255,255,255,1)',
     borderRadius: 20,
   },
 
@@ -222,7 +222,6 @@ const styles = StyleSheet.create({
     height: 18,
     width: 18,
     resizeMode: 'contain',
-    opacity: 0.5,
   },
 
   /* Style for the navigation dots */

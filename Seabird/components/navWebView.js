@@ -24,12 +24,6 @@ export class NavWebView extends Component  {
     }
   };
 
-  componentWillMount() {
-    if (this.props.URL.length >= 30) {
-      /* Format the url text here */
-    }
-  }
-
   onNavigationStateChange = (navState) => {
     this.setState({
       canGoBack: navState.canGoBack,

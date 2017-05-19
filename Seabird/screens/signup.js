@@ -136,7 +136,8 @@ export default class Root extends Component {
                             style={styles.credentials}
                             onChangeText={name => this.setState({name})}
                             placeholder="Name"
-                            placeholderTextColor="white"
+                            placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                            selectionColor="white"
                             keyboardType="default"
                             value={this.state.name}
                             returnKeyType={"next"}
@@ -159,7 +160,8 @@ export default class Root extends Component {
                             style={styles.credentials}
                             onChangeText={year => this.setState({year})}
                             placeholder="Year"
-                            placeholderTextColor="white"
+                            placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                            selectionColor="white"
                             keyboardType="default"
                             value={this.state.year}
                             returnKeyType={"next"}
@@ -182,7 +184,8 @@ export default class Root extends Component {
                                 style={styles.credentials}
                                 onChangeText={username => this.setState({username})}
                                 placeholder="Email"
-                                placeholderTextColor="white"
+                                placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                                selectionColor="white"
                                 keyboardType="email-address"
                                 value={this.state.username}
                                 returnKeyType={"next"}
@@ -206,7 +209,8 @@ export default class Root extends Component {
                                 style={styles.credentials}
                                 onChangeText={password => this.setState({password})}
                                 placeholder="Password"
-                                placeholderTextColor="white"
+                                placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                                selectionColor="white"
                                 value={this.state.password}
                                 onSubmitEditing={(event) => {
                                     this.signup(this.state.username, this.state.password)
