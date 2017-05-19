@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   TextInput,
   Modal,
+  ActivityIndicator
 } from 'react-native';
 import Database from '../firebase/database';
 
@@ -29,15 +30,6 @@ export default class Root extends Component {
     };
   }
 
-  // userIsSignedIn = (flag) => {
-  //   if (flag) {
-  //     this.props.navigator.push({name: 'root'});
-  //   }
-  // };
-
-  // componentWillMount() {
-  //   Firebase.isUserSignedIn(this.userIsSignedIn)
-  //   }
 
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
@@ -66,124 +58,124 @@ export default class Root extends Component {
   }
 
   render() {
-    return (
-      <View>
+      return (
+          <View>
 
-        {/* Error popup */}
-        <Modal
-          animationType={'fade'}
-          transparent
-          visible={this.state.modalVisible}
-          onRequestClose={() => { alert('Modal has been closed.'); }}
-        >
-          <View style={styles.modalView}>
-            <View>
-              <Text style={styles.modalTitle}>Failed Login</Text>
-              <Text style={styles.modalText}>There is a login Error</Text>
+              {/* Error popup */}
+            <Modal
+                animationType={'fade'}
+                transparent
+                visible={this.state.modalVisible}
+                onRequestClose={() => { alert('Modal has been closed.'); }}
+            >
+              <View style={styles.modalView}>
+                <View>
+                  <Text style={styles.modalTitle}>Failed Login</Text>
+                  <Text style={styles.modalText}>There is a login Error</Text>
 
-              <TouchableHighlight
-                underlayColor="transparent" onPress={() => {
-                  this.setModalVisible(!this.state.modalVisible);
-                  this.state.username = '';
-                  this.state.password = '';
-                }}
-                style={styles.modalButton}
-              >
-                <Text style={styles.modalButtonText}>Retry</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
+                  <TouchableHighlight
+                      underlayColor="transparent" onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);
+                      this.state.username = '';
+                      this.state.password = '';
+                  }}
+                      style={styles.modalButton}
+                  >
+                    <Text style={styles.modalButtonText}>Retry</Text>
+                  </TouchableHighlight>
+                </View>
+              </View>
+            </Modal>
 
-        {/* Main background image */}
-        <Image
-          source={require('../Icons/Login/gradient_background.png')}
-          style={styles.gradientBackground}
-        >
-
-          {/* View that holds everything on the screen */}
-          <View style={styles.mainView}>
-
-            {/* Dartmouth logo */}
+              {/* Main background image */}
             <Image
-              source={require('../Icons/Login/dartmouth_logo.png')}
-              style={styles.logo}
-            />
+                source={require('../Icons/Login/gradient_background.png')}
+                style={styles.gradientBackground}
+            >
 
-            {/* Email text field*/}
-            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-              <Image
-                source={require('../Icons/Login/email.png')}
-                style={styles.emailField}
-              />
-              <TextInput
-                ref="Email"
-                style={styles.credentials}
-                onChangeText={username => this.setState({ username })}
-                placeholder="Email"
-                placeholderTextColor="white"
-                selectionColor="white"
-                keyboardType="email-address"
-                value={this.state.username}
-                returnKeyType={'next'}
-                onSubmitEditing={(event) => {
-                  this.refs.Password.focus();
-                }}
-              />
-            </View>
+                {/* View that holds everything on the screen */}
+              <View style={styles.mainView}>
 
-            {/* Divider between email text field and password text field*/}
-            <View style={styles.divider} />
-
-            {/* Password text field*/}
-            <View style={{ flexDirection: 'row', marginTop: 2 }}>
-              <Image
-                source={require('../Icons/Login/lock.png')}
-                style={styles.passwordField}
-              />
-              <TextInput
-                ref="Password"
-                secureTextEntry
-                style={styles.credentials}
-                onChangeText={password => this.setState({ password })}
-                placeholder="Password"
-                placeholderTextColor="white"
-                selectionColor="white"
-                value={this.state.password}
-                onSubmitEditing={(event) => {
-                  this.login(this.state.username, this.state.password);
-                }}
-              />
-            </View>
-
-            {/* Divider between password text field and login button*/}
-            <View style={styles.divider} />
-
-
-            {/* Login button*/}
-            <View style={{ marginTop: 15 }}>
-              <TouchableHighlight
-                underlayColor="transparent"
-                onPress={() => this.login(this.state.username, this.state.password)}
-              >
+                  {/* Dartmouth logo */}
                 <Image
-                  source={require('../Icons/Login/login_button.png')}
-                  style={styles.loginButton}
+                    source={require('../Icons/Login/dartmouth_logo.png')}
+                    style={styles.logo}
                 />
-              </TouchableHighlight>
-            </View>
 
-            {/* Not a member text*/}
-            <Text style={{ color: 'white', fontSize: 16 }}>Not a member?</Text>
+                  {/* Email text field*/}
+                <View style={{ flexDirection: 'row', marginTop: 20 }}>
+                  <Image
+                      source={require('../Icons/Login/email.png')}
+                      style={styles.emailField}
+                  />
+                  <TextInput
+                      ref="Email"
+                      style={styles.credentials}
+                      onChangeText={username => this.setState({ username })}
+                      placeholder="Email"
+                      placeholderTextColor="white"
+                      selectionColor="white"
+                      keyboardType="email-address"
+                      value={this.state.username}
+                      returnKeyType={'next'}
+                      onSubmitEditing={(event) => {
+                          this.refs.Password.focus();
+                      }}
+                  />
+                </View>
 
-            {/* Sign Up button*/}
-            <TouchableHighlight underlayColor="transparent" onPress={this.navigate.bind(this, 'userType', 'right')}>
-              <Text style={styles.signUpButton}>Sign Up!</Text>
-            </TouchableHighlight>
+                  {/* Divider between email text field and password text field*/}
+                <View style={styles.divider} />
+
+                  {/* Password text field*/}
+                <View style={{ flexDirection: 'row', marginTop: 2 }}>
+                  <Image
+                      source={require('../Icons/Login/lock.png')}
+                      style={styles.passwordField}
+                  />
+                  <TextInput
+                      ref="Password"
+                      secureTextEntry
+                      style={styles.credentials}
+                      onChangeText={password => this.setState({ password })}
+                      placeholder="Password"
+                      placeholderTextColor="white"
+                      selectionColor="white"
+                      value={this.state.password}
+                      onSubmitEditing={(event) => {
+                          this.login(this.state.username, this.state.password);
+                      }}
+                  />
+                </View>
+
+                  {/* Divider between password text field and login button*/}
+                <View style={styles.divider} />
+
+
+                  {/* Login button*/}
+                <View style={{ marginTop: 15 }}>
+                  <TouchableHighlight
+                      underlayColor="transparent"
+                      onPress={() => this.login(this.state.username, this.state.password)}
+                  >
+                    <Image
+                        source={require('../Icons/Login/login_button.png')}
+                        style={styles.loginButton}
+                    />
+                  </TouchableHighlight>
+                </View>
+
+                  {/* Not a member text*/}
+                <Text style={{ color: 'white', fontSize: 16 }}>Not a member?</Text>
+
+                  {/* Sign Up button*/}
+                <TouchableHighlight underlayColor="transparent" onPress={() => this.navigate('userType', 'right')}>
+                  <Text style={styles.signUpButton}>Sign Up!</Text>
+                </TouchableHighlight>
+              </View>
+            </Image>
           </View>
-        </Image>
-      </View>
-    );
+      );
   }
 }
 
@@ -197,6 +189,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  centering: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 8,
+    height: height
+    },
     // Style for the main view
   mainView: {
     flexDirection: 'column',

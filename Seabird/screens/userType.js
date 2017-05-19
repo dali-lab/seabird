@@ -51,7 +51,7 @@ export default class UserType extends Component {
                         {/*Back button*/}
                         <TouchableHighlight
                             underlayColor='transparent'
-                            onPress={this.navigate.bind(this, 'login', 'left')}
+                            onPress={() => this.navigate('login', 'left')}
                         >
                             <Image source={require('../Icons/Signup/back_button_icon.png')}
                                    style={styles.backButton}

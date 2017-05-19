@@ -61,7 +61,7 @@ export default class Settings extends Component {
     }).catch(function(error) {
       console.log(error)
     });
-    this.navigatePush('login')
+    this.navigate('login')
   };
 
   saveAllSettings = (first, last, email) => {
@@ -113,7 +113,7 @@ export default class Settings extends Component {
             </TouchableHighlight>
 
             <Button onPress={this.navigate.bind( this, 'customize' )} title="Customize" color="#841584"/>
-            <TouchableHighlight onPress={() => this.logoutUser()}style={styles.logoutButton}>
+            <TouchableHighlight onPress={() => this.logoutUser()} style={styles.logoutButton}>
               <Text style={styles.logoutButtonText}>Log out</Text>
             </TouchableHighlight>
           </View>

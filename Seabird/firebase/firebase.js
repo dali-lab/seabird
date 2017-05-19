@@ -31,8 +31,9 @@ class Firebase {
         // User is signed in
         callbackFunc(true);
       }
-        // No user is signed in
-      callbackFunc(false);
+      else {
+        callbackFunc(false);
+      }
     });
   }
 
