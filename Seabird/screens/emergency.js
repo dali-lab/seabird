@@ -64,38 +64,39 @@ export default class Emergency extends Component {
         />
         <View style={styles.mainContent}>
         <ScrollView ref={(scrollView) => { _scrollView = scrollView; }}>
-          <Text>All texts after this one are *functional*, clickable buttons</Text>
-          <Text>~~~</Text>
+          <Text style={styles.headerText}>Safety and Security</Text>
 
-          <TouchableHighlight onPress={() => Linking.openURL('https://dali.dartmouth.edu')}>
-              <Text>Open the DALI website externally</Text>
+          <Text style={styles.subheaderText}>good sam (non-emergency)</Text>
+          <TouchableHighlight style={styles.phoneNumberText} onPress={
+              () => Communications.phonecall('6316554692', true)
+            }><Text>(603) 646-4000</Text>
           </TouchableHighlight>
 
-          <Text>~~~</Text>
-
-          <TouchableHighlight onPress={() => Communications.web('https://dali.dartmouth.edu')}>
-              <Text>Another way to open the site externally</Text>
+          <Text style={styles.subheaderText}>emergency</Text>
+          <TouchableHighlight style={styles.phoneNumberText} onPress={
+              () => Communications.phonecall('6316554692', true)
+            }><Text>(603) 646-4000</Text>
           </TouchableHighlight>
 
-          <Text>~~~</Text>
-
-          <TouchableHighlight onPress={() => Communications.phonecall('6316554692', true)}>
-              <Text>This one makes a phonecall, but only works on device</Text>
+          <Text style={styles.headerText}>Dicks House</Text>
+          <Text style={styles.subheaderText}>appointments</Text>
+          <TouchableHighlight style={styles.phoneNumberText} onPress={
+              () => Communications.phonecall('6316554692', true)
+            }><Text>(603) 646-4000</Text>
           </TouchableHighlight>
 
-          <Text>~~~</Text>
-
-          <TouchableHighlight onPress={() => Communications.textWithoutEncoding('5555648583', "hey")}>
-              <Text>Send a text to "Kate" (on simulator, not device)</Text>
+          <Text style={styles.subheaderText}>counseling</Text>
+          <TouchableHighlight style={styles.phoneNumberText} onPress={
+              () => Communications.phonecall('6316554692', true)
+            }><Text>(603) 646-4000</Text>
           </TouchableHighlight>
 
-          <Text>~~~</Text>
-
-          <TouchableHighlight onPress={() => Communications.email(null, null, null, null, null)}>
-              <Text>Send an email (again, only on device)</Text>
+          <Text style={styles.headerText}>Residential Life</Text>
+          <TouchableHighlight style={styles.phoneNumberText} onPress={
+              () => Communications.phonecall('6316554692', true)
+            }><Text>(603) 646-4000</Text>
           </TouchableHighlight>
 
-          <Text>~~~</Text>
         </ScrollView>
         </View>
       </View>
@@ -117,7 +118,31 @@ const styles = StyleSheet.create({
     resizeMode: 'center'
   },
 
-  /* Style for the main section that will hold all the of the content */
+  /* Style for the header phrases */
+  headerText: {
+    paddingLeft: width / 27,
+    fontSize: 18,
+    fontFamily: 'Avenir Next',
+    textAlign: 'left'
+  },
+
+  /* Style for the subheader phrases */
+  subheaderText: {
+    paddingLeft: width / 18,
+    fontSize: 14,
+    fontFamily: 'Avenir Next',
+    textAlign: 'left'
+  },
+
+  /* Style for the phone numbers */
+  phoneNumberText: {
+    paddingLeft: width / 18,
+    fontSize: 14,
+    fontFamily: 'Avenir Next',
+    textAlign: 'left'
+  },
+
+  /* Style for the MAIN section with all the CONTENT */
   mainContent: {
     backgroundColor: 'white',
     justifyContent: 'flex-start',
