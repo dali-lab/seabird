@@ -13,6 +13,7 @@ import {
 import Hr from 'react-native-hr';
 import { NavBar } from './../components/navBar';
 import { TileCustomize } from '../components/tileCustomize';
+import { SortSwitch } from './../components/sortSwitch';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 
@@ -22,15 +23,16 @@ import SortableGrid from '../components/react-native-sortable-grid/index';
 
 let MODULE_FONT_SIZE = 18;
 let MODULE_TEXT_PADDING = 0;
-let TILE_WIDTH = width / 3.3
-let TILE_HEIGHT = height / 6
+let TILE_WIDTH = width / 3.3;
+let TILE_HEIGHT = height / 6;
+let TILE_COLOR = '#188E65';
 
 
 if (PixelRatio.get() <= 2) {
   MODULE_FONT_SIZE = 15;
   MODULE_TEXT_PADDING = -2;
-  TILE_WIDTH = width / 3.6
-  TILE_HEIGHT = height / 6.5
+  TILE_WIDTH = width / 3.6;
+  TILE_HEIGHT = height / 6.5;
 }
 
 var firebase = require("firebase/app");
@@ -43,7 +45,7 @@ let SCROLL_UP_Y = 100;
 let SCROLL_DOWN_Y = 550;
 
 // height of 6 tiles
-let HEIGHT_OF_6TILES = 560;
+let HEIGHT_OF_6TILES = TILE_HEIGHT*4.5; //560;
 
 // used in the setInterval timer to track position of block being dragged
 let dragTracker = null;
@@ -168,6 +170,9 @@ export default class Customize extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
+          <View style={styles.basicFlexAround}>
+            <SortSwitch title="PORTALS" firstOption="Rearrange" secondOption="Enable"/>
+          </View>
           {this.deletePortalsButton()}
           <ScrollView
             ref={(scrollView) => { _scrollView = scrollView; }}
@@ -175,6 +180,7 @@ export default class Customize extends Component {
             scrollEventThrottle={100}
             onScroll={this.handleScroll}
             horizontal={false}
+            height={height/1.4}
           >
             <View style={styles.barHolderView}>
               <Hr lineColor='steelblue' text='page 1' textColor='steelblue' />
@@ -198,15 +204,16 @@ export default class Customize extends Component {
               ref={'SortableGrid'}
             >
               {this.state.portal.map((letter, index) => (
-                <TileCustomize
-                  key={index}
-                  navName={letter.navName}
-                  imgSource={letter.imgName}
-                  text={letter.txtName}
-                  tileStyle={styles.tile}
-                  tileTextSection={styles.tileTextSection}
-                  textStyle={styles.tileText}
-                />
+                <View style={styles.tileView} key={index}>
+                   <TileCustomize
+                     key={index}
+                     navName={letter.navName}
+                     imgSource={letter.imgName}
+                     text={letter.txtName}
+                     tileStyle={styles.tile}
+                     textStyle={styles.tileText}
+                   />
+                 </View>
               ))}
             </SortableGrid>
           </ScrollView>
@@ -337,7 +344,7 @@ const styles = StyleSheet.create({
   /* Style for the Sortable Grid */
   grid: {
     height: 30,
-    backgroundColor: 'cadetblue',
+    backgroundColor: 'white',
   },
 
   /* Style for the tiles for the home screen */
@@ -345,15 +352,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    width: TILE_WIDTH*2,
-    height: TILE_HEIGHT*2,
+    width: TILE_WIDTH*1.5,
+    height: TILE_HEIGHT*1.5,
     paddingBottom: 20,
     marginTop: width / 15,
     margin: width / 25,
-    borderRadius: (width / 2.8) / 2,
-    borderWidth: 2,
-    borderColor: 'white',
   },
 
   /* Style for the tiles for the home screen */
@@ -369,12 +372,7 @@ const styles = StyleSheet.create({
     margin: width / 25,
     borderRadius: (width / 2.8) / 2,
     borderWidth: 2,
-    borderColor: 'white',
-  },
-
-  /* Style for the section of the tiles that hold the tet */
-  tileTextSection: {
-    marginTop: 0,
+    borderColor: TILE_COLOR,
   },
 
   /* Style for the tiles' text for the home screen */
@@ -384,8 +382,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Avenir-Book',
     fontWeight: '500',
     textAlign: 'center',
-    color: '#fff',
+    color: TILE_COLOR,
   },
+
+  /* Basic flex for options - around */
+  basicFlexAround: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+
 });
 
 AppRegistry.registerComponent('Customize', () => Customize);
