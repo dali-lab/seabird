@@ -35,33 +35,31 @@ export default class Root extends Component {
         this.setState({ modalVisible: visible });
     }
 
-    async login(email, password) {
-        try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
-            Database.listenUserHomeOrder((value) => {
-                if (value !== '' && value !== '[]') {
-                    this.props.updateHome(value);
-                    Database.setUserHomeOrder(value);
-                    this.navigate('root');
-                } else {
-                    this.navigate('root');
-                }
-            });
-        } catch (e) {
-            /* Toggles the error modal */
-            this.setModalVisible(!this.state.modalVisible);
+   async signup(email, password) {
+        if (email !== '' && password !== '') {
+            try {
+                await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+                    // Handle Errors here.
+                    let errorCode = error.code;
+                    let errorMessage = error.message;
+                    console.log(errorCode + ": " + errorMessage)
+                });
+                firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+                    let errorCode = error.code;
+                    let errorMessage = errorMessage;
+                    console.log(errorCode, errorMessage);
+                });
+                await Database.setUserFirstName(this.state.name);
+                await Database.setUserYear(this.state.year);
+                await Database.setUserType(this.props.userType);
+                await this.navigate('root');
+            }
+            catch (e) {
+                /* Toggles the error modal */
+                console.log(e)
+            }
         }
-    }
-
-    signup = (email, password) => {
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            let errorCode = error.code;
-            let errorMessage = error.message;
-            console.log(errorCode + ": " + errorMessage)
-        });
-        this.navigate('root')
-    };
+        };
 
     navigate(routeName, transitionType = 'floatRight') {
         this.props.navigator.push({name: routeName, transitionType});
@@ -212,9 +210,6 @@ export default class Root extends Component {
                                 placeholderTextColor='rgba(255, 255, 255, 0.8)'
                                 selectionColor="white"
                                 value={this.state.password}
-                                onSubmitEditing={(event) => {
-                                    this.signup(this.state.username, this.state.password)
-                                }}
                             />
                         </View>
 

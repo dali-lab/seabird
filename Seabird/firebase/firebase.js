@@ -30,11 +30,10 @@ class Firebase {
       if (user) {
         // User is signed in
         callbackFunc(true);
-        return true;
       }
-        // No user is signed in
-      callbackFunc(false);
-      return false;
+      else {
+        callbackFunc(false);
+      }
     });
   }
 

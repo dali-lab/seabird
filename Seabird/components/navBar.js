@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import { BackButton } from './backButton';
 import { HomeButton } from './homeButton';
-import LinearGradient from 'react-native-linear-gradient';
 
 // This is a navigation bar containing two buttons on either side, and text in the center.
 const { width } = Dimensions.get('window');
