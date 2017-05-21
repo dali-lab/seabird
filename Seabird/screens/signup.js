@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
         marginTop: 25,
     },
     // Style for the name text input field
-    nameField: {
+    nameField: { 
         height: height / 25,
         width: width / 13,
         resizeMode: 'contain',
