@@ -224,7 +224,7 @@ export default class Seabird extends Component {
 
           case 'root':
               return <Root navigator={navigator}
-                           OME_PORTALS={this.state.HOME_PORTALS}
+                           HOME_PORTALS={this.state.HOME_PORTALS}
                            updateHome={this.updateHome}/>;
                   break;
 

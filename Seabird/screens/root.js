@@ -14,6 +14,7 @@ import {
 import { NavBar } from './../components/navBar';
 import { PageList } from './../components/pageList';
 import Swiper from 'react-native-swiper';
+import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 
 const firebase = require('firebase/app');
