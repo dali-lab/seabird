@@ -52,6 +52,7 @@ export default class Root extends Component {
                 await Database.setUserFirstName(this.state.name);
                 await Database.setUserYear(this.state.year);
                 await Database.setUserType(this.props.userType);
+                await Database.setUserEmail(email);
                 await this.navigate('root');
             }
             catch (e) {
@@ -257,7 +258,7 @@ const styles = StyleSheet.create({
         marginTop: 25,
     },
     // Style for the name text input field
-    nameField: { 
+    nameField: {
         height: height / 25,
         width: width / 13,
         resizeMode: 'contain',

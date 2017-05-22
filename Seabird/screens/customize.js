@@ -73,7 +73,7 @@ export default class Customize extends Component {
   componentWillReceiveProps(nextProps) {
     Database.listenUserHomeOrder((value) => {
       this.setState({ portal: JSON.parse(value)})
-      Database.setUserHomeOrder(JSON.stringify(value));
+      Database.setUserHomeOrder(value);
       console.log(this.state.portal);
     })
   }
@@ -173,7 +173,7 @@ export default class Customize extends Component {
           <View style={styles.basicFlexAround}>
             <SortSwitch title="PORTALS" firstOption="Rearrange" secondOption="Enable"/>
           </View>
-          {this.deletePortalsButton()}
+          {/*{this.deletePortalsButton()}*/}
           <ScrollView
             ref={(scrollView) => { _scrollView = scrollView; }}
             scrollEnabled={this.state.scrolling}

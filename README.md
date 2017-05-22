@@ -31,9 +31,7 @@ More designs for the application can be found [here](https://github.com/dali-lab
 
 3. Go into the main directory and install all the necessary modules `cd seabird/Seabird && npm install`
 
-4. `cd` into the `/ios` directory and then `open Seabird.xcodeworkspace`
-
-5. Refer to the [seabird-backend](https://github.com/dali-lab/seabird-backend) repository for reference for the backend
+4. `react-native run-ios` to start the project
 
 ## Style Guide
 
