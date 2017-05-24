@@ -136,10 +136,6 @@ const styles = StyleSheet.create({
 
   /* Style for the phone numbers */
   phoneNumberText: {
-    paddingLeft: width / 18,
-    fontSize: 14,
-    fontFamily: 'Avenir Next',
-    textAlign: 'left'
   },
 
   /* Style for the MAIN section with all the CONTENT */
