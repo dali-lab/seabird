@@ -45,6 +45,14 @@ export class PageList extends Component {
       })
   }
 
+  componentWillMount() {
+      this.setState({
+        dataSource: new ListView.DataSource({
+          rowHasChanged: (r1, r2) => true,
+        }).cloneWithRows(this.props.modules),
+      })
+  }
+
   renderRow = (rowData, sectionID, rowID) => {
     return (
       <Tile

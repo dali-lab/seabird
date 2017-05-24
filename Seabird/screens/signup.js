@@ -52,6 +52,7 @@ export default class Root extends Component {
                 await Database.setUserFirstName(this.state.name);
                 await Database.setUserYear(this.state.year);
                 await Database.setUserType(this.props.userType);
+                await Database.setUserEmail(email);
                 await this.navigate('root');
             }
             catch (e) {

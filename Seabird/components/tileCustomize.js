@@ -10,36 +10,37 @@ import {
 } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
+let TILE_COLOR = '#188E65';
+
 export class TileCustomize extends Component {
 
   render() {
     return (
-      <TouchableHighlight underlayColor="rgba(0, 0, 0, 0)">
-        <View>
-          <View style={this.props.tileStyle}>
-            <Image source={this.props.imgSource} style={styles.icon} />
-          </View>
-          <View style={this.props.tileTextSection}>
-            <Text style={this.props.textStyle}>{this.props.text.toUpperCase()}</Text>
-          </View>
+      <View>
+        <View style={this.props.tileStyle}>
+          <Image source={this.props.imgSource} style={styles.icon} />
         </View>
-      </TouchableHighlight>
+        <View style={styles.textHolder}>
+          <Text style={this.props.textStyle}>{this.props.text.toUpperCase()}</Text>
+        </View>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    /* Style for the icons on the main buttons */
+  /* Style for the icons on the main buttons */
   icon: {
     top: 10,
     width: width / 5,
     height: width / 5,
     opacity: 1,
+    tintColor: TILE_COLOR,
   },
 
     /* Style for the main label holder */
   textHolder: {
-    top: 40,
-    height: 45,
+    marginTop: 0,
+    backgroundColor: 'transparent',
   },
 });
