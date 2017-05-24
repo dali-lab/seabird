@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import { PageList } from './../components/pageList';
+import { SearchBar } from './../components/searchBar';
 import Swiper from 'react-native-swiper';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
@@ -144,28 +145,17 @@ export default class Root extends Component {
         <View style={styles.mainHeader}>
           <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True" />
         </View>
-        <View style={styles.searchSection}>
-          <TextInput
-            style={styles.searchSectionInput}
-            placeholder="Search Modules"
-            placeholderTextColor='rgba(255, 255, 255, 0.8)'
-            selectionColor="white"
-            onChangeText={(text) => {
-              this.setState({ searchText: text });
-              this.searchModules(text);
-            }}
-          />
-          <TouchableHighlight
-            ref="SearchBar"
-            underlayColor="transparent"
-            style={styles.searchSectionButton}
-            onPress={() => console.log('Pressed search')}
-          >
-            <Image
-              style={styles.searchIcon} source={require('./../Icons/search_icon.png')}
-              />
-          </TouchableHighlight>
-        </View>
+        <SearchBar
+          placeholder="Search Modules"
+          searchSectionStyle={styles.searchSection}
+          searchInputStyle={styles.searchSectionInput}
+          searchButtonStyle={styles.searchSectionButton}
+          searchIconStyle={styles.searchIcon}
+          onTextChangeAction={this.searchModule}
+          onChangeText={(text) => {
+            this.setState({ searchText: text });
+            this.searchModules(text);
+          }}/>
         <Swiper
           containerCustomStyle={styles.wrapper}
           contentContainerCustomStyle={styles.wrapper}

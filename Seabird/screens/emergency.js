@@ -67,34 +67,34 @@ export default class Emergency extends Component {
           <Text style={styles.headerText}>Safety and Security</Text>
 
           <Text style={styles.subheaderText}>good sam (non-emergency)</Text>
-          <TouchableHighlight style={styles.phoneNumberText} onPress={
+          <TouchableHighlight onPress={
               () => Communications.phonecall('6316554692', true)
-            }><Text>(603) 646-4000</Text>
+            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
           </TouchableHighlight>
 
           <Text style={styles.subheaderText}>emergency</Text>
-          <TouchableHighlight style={styles.phoneNumberText} onPress={
+          <TouchableHighlight onPress={
               () => Communications.phonecall('6316554692', true)
-            }><Text>(603) 646-4000</Text>
+            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
           </TouchableHighlight>
 
           <Text style={styles.headerText}>Dicks House</Text>
           <Text style={styles.subheaderText}>appointments</Text>
-          <TouchableHighlight style={styles.phoneNumberText} onPress={
+          <TouchableHighlight onPress={
               () => Communications.phonecall('6316554692', true)
-            }><Text>(603) 646-4000</Text>
+            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
           </TouchableHighlight>
 
           <Text style={styles.subheaderText}>counseling</Text>
-          <TouchableHighlight style={styles.phoneNumberText} onPress={
+          <TouchableHighlight onPress={
               () => Communications.phonecall('6316554692', true)
-            }><Text>(603) 646-4000</Text>
+            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
           </TouchableHighlight>
 
           <Text style={styles.headerText}>Residential Life</Text>
-          <TouchableHighlight style={styles.phoneNumberText} onPress={
+          <TouchableHighlight onPress={
               () => Communications.phonecall('6316554692', true)
-            }><Text>(603) 646-4000</Text>
+            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
           </TouchableHighlight>
 
         </ScrollView>

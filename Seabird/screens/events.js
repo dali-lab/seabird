@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import { SortSwitch } from './../components/sortSwitch';
+import { SearchBar } from './../components/searchBar';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 import Moment from 'moment'
@@ -172,28 +173,17 @@ export default class Events extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.sectionHeader}>
-          <View style={styles.searchSection}>
-            <TextInput
-              style={styles.searchSectionInput}
-              placeholder="Search Events"
-              placeholderTextColor='rgba(255, 255, 255, 0.5)'
-              selectionColor="white"
-              onChangeText={(text) => {
-                this.setState({ searchText: text });
-                this.searchModules(text);
-              }}
-            />
-            <TouchableHighlight
-              ref="SearchBar"
-              underlayColor="transparent"
-              style={styles.searchSectionButton}
-              onPress={() => console.log('Pressed search')}
-            >
-              <Image
-                style={styles.searchIcon} source={require('./../Icons/search_icon.png')}
-                />
-            </TouchableHighlight>
-          </View>
+        <SearchBar
+          placeholder="Search Modules"
+          searchSectionStyle={styles.searchSection}
+          searchInputStyle={styles.searchSectionInput}
+          searchButtonStyle={styles.searchSectionButton}
+          searchIconStyle={styles.searchIcon}
+          onTextChangeAction={this.searchModule}
+          onChangeText={(text) => {
+            this.setState({ searchText: text });
+            this.searchModules(text);
+          }}/>
           <View style={styles.basicFlexAround}>
             <SortSwitch title="SORT" firstOption="Category" secondOption="Alphabet"/>
             <SortSwitch title="FILTER" firstOption="All" secondOption="Starred"/>
