@@ -13,7 +13,7 @@ import {
 import Hr from 'react-native-hr';
 import { NavBar } from './../components/navBar';
 import { TileCustomize } from '../components/tileCustomize';
-import { SortSwitch } from './../components/sortSwitch';
+import { ButtonSwitches } from './../components/buttonSwitches';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 
@@ -147,14 +147,13 @@ export default class Customize extends Component {
 
   pageBars = () => {
 
-    let numBars = Math.floor((this.state.portal.length-1)/6);
-    // numBars = 3;
+    let numBars = Math.floor((this.state.portal.length - 1) / 6);
     let bars = [];
 
     for (let i = 1; i <= numBars; i++) {
       bars.push(
-        <View key={i} style={styles.barHolderView} top={HEIGHT_OF_6TILES*i}>
-          <Hr lineColor='steelblue' text={ `page ${i+1}` } textColor='steelblue' />
+        <View key={i} style={styles.barHolderView} top={HEIGHT_OF_6TILES * i}>
+          <Hr lineColor='steelblue' text={ `page ${i + 1}` } textColor='steelblue' />
         </View>
       );
     }
@@ -170,7 +169,7 @@ export default class Customize extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
           <View style={styles.basicFlexAround}>
-            <SortSwitch title="PORTALS" firstOption="Rearrange" secondOption="Enable"/>
+          <ButtonSwitches firstOption="Rearrange" secondOption="Delete" secondAction={this.deletePortalsButton.bind(this)} />
           </View>
           {/*{this.deletePortalsButton()}*/}
           <ScrollView
@@ -323,7 +322,7 @@ const styles = StyleSheet.create({
 
   /* Style for the floating view to hold the dividers text */
   floatingView: {
-    zIndex: 10,
+    zIndex: 1,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
@@ -342,7 +341,6 @@ const styles = StyleSheet.create({
 
   /* Style for the Sortable Grid */
   grid: {
-    height: 30,
     backgroundColor: 'white',
   },
 

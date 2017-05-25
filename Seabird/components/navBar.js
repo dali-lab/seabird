@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   title: {
     color: '#fff',
     fontSize: SCHOOL_FONT_SIZE,
-    fontFamily: 'Avenir Next',
+    fontFamily: 'Lato',
     fontWeight: '600',
     marginTop: -3,
     backgroundColor: 'transparent',

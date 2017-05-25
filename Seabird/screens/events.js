@@ -144,7 +144,7 @@ export default class Events extends Component {
   // Form dates to distinguish from events
   renderRow = (rowData, sectionID, rowID) => {
     return (
-      <TouchableHighlight key={rowData.key} underlayColor="transparent" onPress={() => this.navigatePush('eventsdetails', rowData)}>
+      <TouchableHighlight key={rowData.key} underlayColor="transparent" onPress={() => this.navigatePush('eventsdetails', rowData)} style={{borderBottomWidth: 1, borderBottomColor: "#ccc"}}>
       <View style={styles.listSection}>
       <View style={styles.listSectionTime}>
         <Text style={styles.listSectionTimeText}>{Moment(rowData.startTime).format('h:mm a')}</Text>
@@ -152,7 +152,6 @@ export default class Events extends Component {
       <View style={styles.listSectionInfo}>
         <Text style={styles.listSectionTitle}>{rowData.event}</Text>
         <Text style={styles.listSectionText}>{rowData.location}</Text>
-        <View key={rowData.key} style={styles.separator} />
       </View>
       </View>
       </TouchableHighlight>
@@ -311,13 +310,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 
-  /* Style for the separator */
-  separator: {
-    width,
-    height: 1,
-    backgroundColor: '#bbb'
-  },
-
   /* Styles for the list headers above the events */
   listHeader: {
     paddingTop: 5,
@@ -329,7 +321,7 @@ const styles = StyleSheet.create({
 
   /* Style for the list headers' text */
   listHeaderText: {
-    fontFamily: 'Avenir',
+    fontFamily: 'Lato',
     fontSize: 14,
     fontWeight: 'bold',
     paddingLeft: 10,
@@ -357,7 +349,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#5D5D5C',
     fontWeight: '400',
-    fontFamily: 'Avenir'
+    fontFamily: 'Lato'
   },
 
   /* Style for the list section information */
@@ -378,7 +370,7 @@ const styles = StyleSheet.create({
   /* Style for the list section text */
   listSectionText: {
     width: width / 1.35,
-    fontFamily: 'Avenir Next',
+    fontFamily: 'Lato',
     fontSize: 12,
     height: 20,
     color: 'rgba(93, 93, 92, 0.7)',

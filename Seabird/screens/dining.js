@@ -253,23 +253,26 @@ const styles = StyleSheet.create({
 
   /* Style for the location's title */
   title: {
-    fontFamily: 'Avenir',
+    fontFamily: 'Lato',
     fontSize: 18,
     fontWeight: '500',
+    color: '#46443b',
   },
 
   /* Style for the location's actual building name */
   location: {
-    fontFamily: 'Avenir',
-    fontSize: 15,
-    fontWeight: '300',
+    fontFamily: 'Lato',
+    fontSize: 16,
+    fontWeight: '400',
     fontStyle: 'italic',
+    color: 'rgba(70, 68, 59, 0.9)',
   },
 
   /* Style for the location's time */
   time: {
     fontSize: 13,
     color: '#888',
+    paddingTop: 3,
   },
 
   /* Style for the location's image */

@@ -145,10 +145,6 @@ export default class Seabird extends Component {
             navName: 'web',
             imgName: require('./Icons/web.png'),
           }, {
-            txtName: 'Green Print',
-            navName: 'tutorial',
-            imgName: require('./Icons/printer.png'),
-          }, {
             txtName: 'Food',
             navName: 'food',
             imgName: require('./Icons/dining.png'),

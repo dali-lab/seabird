@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   /* Style for the deselected option */
   deselectedOption: {
     height: 30,
-    width: width / 3.5,
+    width: width / 3.4,
     backgroundColor: '#fff',
   },
 
