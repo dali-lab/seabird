@@ -619,7 +619,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = PPFP29RG7K;
+						DevelopmentTeam = FS2L42NVCT;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1110,7 +1110,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = PPFP29RG7K;
+				DEVELOPMENT_TEAM = FS2L42NVCT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
@@ -1133,7 +1133,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seabirdapps;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seabirdapps.testing;
 				PRODUCT_NAME = Seabird;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = "arm64 armv7";
@@ -1150,7 +1150,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PPFP29RG7K;
+				DEVELOPMENT_TEAM = FS2L42NVCT;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
@@ -1173,7 +1173,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.seabirdapps;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seabirdapps.testing;
 				PRODUCT_NAME = Seabird;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VALID_ARCHS = "arm64 armv7";
