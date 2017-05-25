@@ -77,7 +77,6 @@ export default class Events extends Component {
       var tempDataBlob = {};
       var start = 0
       var end = 0
-      console.log('value length: ' + value.length);
       for (var i = 0; i < value.length; i++) {
         var date = new Date(value[i].day).toDateString();
         if (!tempDataBlob[date]) {

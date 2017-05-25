@@ -323,7 +323,7 @@ class Database {
     Firebase.getDbRef(path).once('value').then((snapshot) => {
       const moduleContents = [];
       snapshot.forEach((childSnapshot) => {
-        moduleContents.push({ key: childSnapshot.key, title: childSnapshot.val().title, location: childSnapshot.val().location, time: childSnapshot.val().time })
+        moduleContents.push({ key: childSnapshot.key, title: childSnapshot.val().title, location: childSnapshot.val().location, time: childSnapshot.val().time, status: childSnapshot.val().status })
       });
       callbackFunc(moduleContents);
     }, (error) => {

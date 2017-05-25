@@ -33,33 +33,99 @@ export default class Dining extends Component {
       bounceValue: new Animated.Value(0),
       locationSource: new ListView.DataSource({
         rowHasChanged: (r1, r2) => r1 !== r2,
-      })
+        sectionHeaderHasChanged: (s1, s2) => s1 !== s2
+      }),
+      constDataSource: [],
     };
     queryDB("age")
   };
 
   componentWillMount() {
     Database.listenContentDining('dining', (value) => {
-      this.setState({ locationSource: this.state.locationSource.cloneWithRows(value),
+      this.setState({ constDataSource: value, locationSource: this.state.locationSource.cloneWithRows(value),
       })
     })
   }
 
+  // Search function called when user searches for events
+  searchModules = (text) => {
+    var searchKey = text
+    if (searchKey.length > 0) {
+      var updateList = []
+      for (var i = 0; i < this.state.constDataSource.length; i++) {
+        if (this.state.constDataSource[i].title.substring(0, searchKey.length).toUpperCase() === searchKey.toUpperCase()) {
+          updateList.push(this.state.constDataSource[i])
+        }
+      }
+        this.setState({ locationSource: this.state.locationSource.cloneWithRows(updateList) })
+
+    } else if (searchKey === '') {
+      this.setState({ locationSource: this.state.locationSource.cloneWithRows(this.state.constDataSource) })
+    }
+  };
+
   renderRow = (rowData) => {
-    return (
-      <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
-        <View style={styles.section}>
-          <View style={styles.locationTextSection}>
-          <Text style={styles.title}>{rowData.title}</Text>
-          <Text style={styles.location}>{rowData.location}</Text>
-          <Text style={styles.time}>{rowData.time}</Text>
+    if (7 <= currentHour && currentHour < 11) {
+      return (
+        <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
+          <View style={styles.section}>
+            <View style={styles.locationTextSection}>
+            <Text style={styles.title}>{rowData.title}</Text>
+            <Text style={styles.location}>{rowData.location}</Text>
+            <Text style={styles.time}>{rowData.time}</Text>
+            </View>
+            <View style={styles.locationImageSection}>
+              <Image source={require('./../Icons/breakfast-dark.png')} style={styles.locationImage} />
+            </View>
           </View>
-          <View style={styles.locationImageSection}>
-            <Image source={require('./../Icons/lunch.jpg')} style={styles.locationImage} />
+        </TouchableHighlight>
+      )
+    } else if (11 <= currentHour && currentHour < 16) {
+      return (
+        <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
+          <View style={styles.section}>
+            <View style={styles.locationTextSection}>
+            <Text style={styles.title}>{rowData.title}</Text>
+            <Text style={styles.location}>{rowData.location}</Text>
+            <Text style={styles.time}>{rowData.time}</Text>
+            </View>
+            <View style={styles.locationImageSection}>
+              <Image source={require('./../Icons/lunch.jpg')} style={styles.locationImage} />
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
-    )
+        </TouchableHighlight>
+      )
+    } else if (16 <= currentHour && currentHour < 21) {
+      return (
+        <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
+          <View style={styles.section}>
+            <View style={styles.locationTextSection}>
+            <Text style={styles.title}>{rowData.title}</Text>
+            <Text style={styles.location}>{rowData.location}</Text>
+            <Text style={styles.time}>{rowData.time}</Text>
+            </View>
+            <View style={styles.locationImageSection}>
+              <Image source={require('./../Icons/dinner.jpg')} style={styles.locationImage}/>
+            </View>
+          </View>
+        </TouchableHighlight>
+      )
+    } else {
+      return (
+        <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
+          <View style={styles.section}>
+            <View style={styles.locationTextSection}>
+            <Text style={styles.title}>{rowData.title}</Text>
+            <Text style={styles.location}>{rowData.location}</Text>
+            <Text style={styles.time}>{rowData.time}</Text>
+            </View>
+            <View style={styles.locationImageSection}>
+              <Image source={require('./../Icons/late_night.jpg')} style={styles.locationImage} />
+            </View>
+          </View>
+        </TouchableHighlight>
+      )
+    }
   };
 
   render() {
@@ -92,130 +158,6 @@ export default class Dining extends Component {
         </View>
       </View>
     )
-    {/*if (7 <= currentHour && currentHour < 11) {
-        return (
-            <View style={styles.pageContent}>
-              <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
-              <View style={styles.contentHeader}>
-                <Image
-                    source={require('./../Icons/breakfast-dark.png')}
-                    style={styles.imageContainer}>
-                  <Text style={styles.mealIntro}>Current swipe:</Text>
-                  <Text style={styles.currentSwipe}>Breakfast</Text>
-                  <Text style={styles.currentSwipeSub}>$5.25</Text>
-                </Image>
-              </View>
-              <View style={styles.infoLabels}>
-                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
-                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
-              </View>
-              <View style={styles.contentInformation}>
-                <ListView
-                    dataSource={this.state.locationSource}
-                    renderRow={this.renderRow}
-                    contentContainerStyle={styles.grid}
-                    enableEmptySections={true}>
-                </ListView>
-                <TouchableHighlight style={styles.CTA}>
-                  <Text style={styles.menuOptions}>full menus</Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-        )
-    }
-    else if (11 <= currentHour && currentHour < 16) {
-        return (
-            <View style={styles.pageContent}>
-              <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
-              <View style={styles.contentHeader}>
-                <Image
-                    source={require('./../Icons/lunch.jpg')}
-                    style={styles.imageContainer}>
-                  <Text style={styles.mealIntro}>Current swipe:</Text>
-                  <Text style={styles.currentSwipe}>Lunch</Text>
-                  <Text style={styles.currentSwipeSub}>$7.75</Text>
-                </Image>
-              </View>
-              <View style={styles.infoLabels}>
-                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
-                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
-              </View>
-              <View style={styles.contentInformation}>
-                <ListView
-                    dataSource={this.state.locationSource}
-                    renderRow={this.renderRow}
-                    contentContainerStyle={styles.grid}
-                    enableEmptySections={true}>
-                </ListView>
-                <TouchableHighlight style={styles.CTA}>
-                  <Text style={styles.menuOptions}>full menus</Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-        )
-    }
-    else if (16 <= currentHour && currentHour < 21) {
-        return (
-            <View style={styles.pageContent}>
-              <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
-              <View style={styles.contentHeader}>
-                <Image
-                    source={require('./../Icons/dinner.jpg')}
-                    style={styles.imageContainer}>
-                  <Text style={styles.mealIntro}>Current swipe:</Text>
-                  <Text style={styles.currentSwipe}>Dinner</Text>
-                  <Text style={styles.currentSwipeSub}>$10.00</Text>
-                </Image>
-              </View>
-              <View style={styles.infoLabels}>
-                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
-                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
-              </View>
-              <View style={styles.contentInformation}>
-                <ListView
-                    dataSource={this.state.locationSource}
-                    renderRow={this.renderRow}
-                    contentContainerStyle={styles.grid}
-                    enableEmptySections={true}>
-                </ListView>
-                <TouchableHighlight style={styles.CTA}>
-                  <Text style={styles.menuOptions}>full menus</Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-        )
-    }
-    else {
-        return (
-            <View style={styles.pageContent}>
-              <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
-              <View style={styles.contentHeader}>
-                <Image
-                    source={require('./../Icons/late_night.jpg')}
-                    style={styles.imageContainer}>
-                  <Text style={styles.mealIntro}>Current swipe:</Text>
-                  <Text style={styles.currentSwipe}>Late Night</Text>
-                  <Text style={styles.currentSwipeSub}>$5.25</Text>
-                </Image>
-              </View>
-              <View style={styles.infoLabels}>
-                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>HOURS</Text>
-                <Text style={{fontSize: 20, fontWeight: '400', height: 30}}>LOCATIONS</Text>
-              </View>
-              <View style={styles.contentInformation}>
-                <ListView
-                    dataSource={this.state.locationSource}
-                    renderRow={this.renderRow}
-                    contentContainerStyle={styles.grid}
-                    enableEmptySections={true}>
-                </ListView>
-                <TouchableHighlight style={styles.CTA}>
-                  <Text style={styles.menuOptions}>full menus</Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-        )
-    }*/}
   }
 }
 
@@ -291,6 +233,8 @@ const styles = StyleSheet.create({
     height: 120,
     backgroundColor: '#fff',
     flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
 
   /* Style for the section that holds the location's text */
@@ -330,7 +274,7 @@ const styles = StyleSheet.create({
 
   /* Style for the location's image */
   locationImage: {
-    height: 125,
+    height: 120,
     width: 125,
     resizeMode: 'cover',
   },
