@@ -11,47 +11,88 @@ import {
   Animated,
 } from 'react-native';
 import { NavBar } from './../components/navBar';
-import { queryDB } from "./../api"
-import { saveToDB } from "./../api"
+import { queryDB } from './../api';
+import { saveToDB } from './../api';
+import { SearchBar } from './../components/searchBar';
+import { SortSwitch } from './../components/sortSwitch';
+import { ButtonSwitches } from './../components/buttonSwitches';
+import Firebase from '../firebase/firebase';
+import Database from '../firebase/database';
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
 const NAVBAR_TEXT = 'Dining';
 
 let diningLocations = [];
-
-
 let currentHour = new Date().getHours();
-// let currentHour = 8;
-// let currentHour = 13;
-// let currentHour = 2;
-// let currentHour = 20;
-
-
 
 export default class Dining extends Component {
 
   constructor(props) {
     super(props);
-    let locations = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
     this.state = {
       bounceValue: new Animated.Value(0),
-      locationSource: locations.cloneWithRows(diningLocations),
+      locationSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => r1 !== r2,
+      })
     };
     queryDB("age")
   };
 
+  componentWillMount() {
+    Database.listenContentDining('dining', (value) => {
+      this.setState({ locationSource: this.state.locationSource.cloneWithRows(value),
+      })
+    })
+  }
+
   renderRow = (rowData) => {
     return (
-      <TouchableHighlight underlayColor='#ddd' style={{height: 50}}>
-        <View>
-          <Text style={styles.listItem}>{rowData}</Text>
+      <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
+        <View style={styles.section}>
+          <View style={styles.locationTextSection}>
+          <Text style={styles.title}>{rowData.title}</Text>
+          <Text style={styles.location}>{rowData.location}</Text>
+          <Text style={styles.time}>{rowData.time}</Text>
+          </View>
+          <View style={styles.locationImageSection}>
+            <Image source={require('./../Icons/lunch.jpg')} style={styles.locationImage} />
+          </View>
         </View>
       </TouchableHighlight>
     )
   };
 
   render() {
-    if (7 <= currentHour && currentHour < 11) {
+    return (
+      <View style={styles.pageContent}>
+        <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
+        <View style={styles.sectionHeader}>
+        <SearchBar
+          placeholder="Search Dining Locations"
+          searchSectionStyle={styles.searchSection}
+          searchInputStyle={styles.searchSectionInput}
+          searchButtonStyle={styles.searchSectionButton}
+          searchIconStyle={styles.searchIcon}
+          onTextChangeAction={this.searchModule}
+          onChangeText={(text) => {
+            this.setState({ searchText: text });
+            this.searchModules(text);
+          }}/>
+          <View style={styles.basicFlexAround}>
+            <ButtonSwitches title="SORT" firstOption="Nearest" secondOption="Status"/>
+          </View>
+        </View>
+        <View style={styles.mainContent}>
+          <ListView
+            dataSource={this.state.locationSource}
+            renderRow={this.renderRow}
+            style={styles.listStyle}
+            enableEmptySections={true}
+          />
+        </View>
+      </View>
+    )
+    {/*if (7 <= currentHour && currentHour < 11) {
         return (
             <View style={styles.pageContent}>
               <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
@@ -174,7 +215,7 @@ export default class Dining extends Component {
               </View>
             </View>
         )
-    }
+    }*/}
   }
 }
 
@@ -185,6 +226,113 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flexWrap: 'wrap',
     backgroundColor: 'white',
+  },
+
+  /* Style for the section that will hold the sorting function */
+  sectionHeader: {
+    height: 125,
+    backgroundColor: '#C6E4C0',
+
+  },
+
+  /* Style for the section that holds the search bar */
+  searchSection: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: width / 1.2,
+    height: 40,
+    marginTop: 15,
+    alignSelf: 'center',
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 20,
+  },
+
+  /* Style for the search bar */
+  searchSectionInput: {
+    width: width / 1.6,
+    height: 40,
+    color: 'white',
+    paddingLeft: 15,
+    paddingRight: 10,
+  },
+
+  /* Style for the search bar button */
+  searchSectionButton: {
+    width: 10,
+    height: 10,
+    alignSelf: 'center',
+    marginTop: -10,
+    paddingRight: 20,
+  },
+
+  /* Style for the search button's icon */
+  searchIcon: {
+    height: 18,
+    width: 18,
+    resizeMode: 'contain',
+  },
+
+  /* Style for the main section that will hold all the of the content */
+  mainContent: {
+    backgroundColor: 'white',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    height: height / 1.4,
+  },
+
+  /* Style for each section in the list view */
+  section: {
+    flex: 1,
+    height: 120,
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+  },
+
+  /* Style for the section that holds the location's text */
+  locationTextSection: {
+    flexDirection: 'column',
+    height: 200,
+    width: width / 1.5,
+    paddingTop: 10,
+    paddingLeft: 15,
+  },
+
+  /* Style for the section that holds the location's image */
+  locationImageSection: {
+    height: 200,
+  },
+
+  /* Style for the location's title */
+  title: {
+    fontFamily: 'Avenir',
+    fontSize: 18,
+    fontWeight: '500',
+  },
+
+  /* Style for the location's actual building name */
+  location: {
+    fontFamily: 'Avenir',
+    fontSize: 15,
+    fontWeight: '300',
+    fontStyle: 'italic',
+  },
+
+  /* Style for the location's time */
+  time: {
+    fontSize: 13,
+    color: '#888',
+  },
+
+  /* Style for the location's image */
+  locationImage: {
+    height: 125,
+    width: 125,
+    resizeMode: 'cover',
   },
 
   /* Styles the back button */

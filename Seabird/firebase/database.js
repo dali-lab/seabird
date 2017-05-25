@@ -314,6 +314,23 @@ class Database {
     });
   }
 
+  /**
+   * Listens for changes in the dining locations
+   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   */
+  static listenContentDining(modulePath, callbackFunc) {
+    const path = `/content/${modulePath}`;
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      const moduleContents = [];
+      snapshot.forEach((childSnapshot) => {
+        moduleContents.push({ key: childSnapshot.key, title: childSnapshot.val().title, location: childSnapshot.val().location, time: childSnapshot.val().time })
+      });
+      callbackFunc(moduleContents);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
 }
 
 module.exports = Database;

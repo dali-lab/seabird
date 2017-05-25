@@ -18,11 +18,13 @@ export class SearchBar extends Component {
       <View style={this.props.searchSectionStyle}>
         <TextInput
           style={this.props.searchInputStyle}
-          placeholder="Search Modules"
+          placeholder={this.props.placeholder}
           placeholderTextColor='rgba(255, 255, 255, 0.8)'
           selectionColor="white"
           onChangeText={(text) => {
-            this.props.onChangeText(text);
+            if (this.props.onChangeText) {
+              this.props.onChangeText(text);
+            }
           }}
         />
         <TouchableHighlight

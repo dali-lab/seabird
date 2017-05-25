@@ -73,6 +73,7 @@ export default class Events extends Component {
 
   componentWillMount() {
     Database.listenEvents((value) => {
+      console.log(value);
       var tempDataBlob = {};
       var start = 0
       var end = 0
@@ -87,7 +88,6 @@ export default class Events extends Component {
       this.setState({
         dataSource: this.state.dataSource.cloneWithRowsAndSections(tempDataBlob),
       })
-      console.log(value);
     })
   }
 
@@ -197,10 +197,6 @@ export default class Events extends Component {
             style={styles.listStyle}
             enableEmptySections={true}
           />
-          {/*
-          <TouchableHighlight style={styles.CTA} onPress={this.navigate.bind(this, 'eventscalendar', 'up')}>
-            <Text style={styles.CTAText}>Calendar View</Text>
-          </TouchableHighlight>*/}
         </View>
       </View>
     );
@@ -367,7 +363,6 @@ const styles = StyleSheet.create({
 
   /* Style for the list section information */
   listSectionInfo: {
-    //paddingTop: 10,
     flexDirection: 'column',
   },
 
