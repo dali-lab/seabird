@@ -19,7 +19,6 @@ import {
 } from 'react-native';
 import Firebase from './firebase/firebase';
 import Database from './firebase/database';
-
 import Login from './screens/login';
 import Root from './screens/root';
 import Dining from './screens/dining';
