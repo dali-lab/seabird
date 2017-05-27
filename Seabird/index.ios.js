@@ -40,6 +40,7 @@ import AppWebView from './screens/appWebView';
 import UserType from './screens/userType';
 import SplitListView from './screens/splitListView';
 import Loading from './screens/loading'
+import Edit from './screens/editProfile'
 
 require("firebase/auth");
 require("firebase/database");
@@ -248,6 +249,10 @@ export default class Seabird extends Component {
 
           case 'settings':
               return <Settings navigator={navigator}/>;
+              break;
+
+          case 'edit':
+              return <Edit navigator={navigator}/>;
               break;
 
           case 'more':

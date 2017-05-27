@@ -6,6 +6,24 @@ import Firebase from './firebase';
 
 class Database {
 
+    /**
+     * Write user data to the database.
+     * @param name: User first name
+     * @param last: User last name
+     * @param email: User email
+     * @param year: User class year
+     */
+  static writeUserData(name, last, email, year) {
+    const userId = Firebase.getUserID();
+    Firebase.getDbRef('users/' + userId).set({
+      firstName: name,
+      lastName: last,
+      email: email,
+      year: year
+    });
+  }
+
+
   /**
    * Get content for a portal
    * @param portalName
@@ -22,68 +40,32 @@ class Database {
 
   /**
    * Sets a users first name
-   * @param first
-   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
-  static setUserFirstName(first) {
-    const user = Firebase.getUser();
+  static setUserFirstName(userFirstName) {
     const userID = Firebase.getUserID();
     const path = `/users/${userID}`;
 
-    if (first !== null && first !== undefined) {
-      // set the user's display name to be their first name
-      user.updateProfile({
-        displayName: first,
-      });
-
-      return Firebase.getDbRef(path).update({
-        firstName: first,
-      });
-    }
+      Firebase.getDbRef(path).set({firstName: userFirstName});
   }
 
   /**
    * Sets a users last name
-   * @param last
-   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
    */
-  static setUserLastName(last) {
-    const userID = Firebase.getUserID();
-    const path = `/users/${userID}`;
+  static setUserLastName(userLastName) {
+      const userID = Firebase.getUserID();
+      const path = `/users/${userID}`;
 
-    if (last !== null || last !== undefined) {
-      return Firebase.getDbRef(path).update({
-        lastName: last,
-      });
-    }
+      Firebase.getDbRef(path).set({lastName: userLastName});
   }
 
   /**
-   * Sets a users last name
-   * @param email
-   * @returns {firebase.Promise<any>|!firebase.Promise.<void>}
+   * Sets a user's email
    */
-  static setUserEmail(email) {
-    const user = Firebase.getUser();
+  static setUserEmail(userEmail) {
     const userID = Firebase.getUserID();
     const path = `/users/${userID}`;
 
-    console.log(`EMAIL: ${email}`);
-    if (email !== null || email !== undefined) {
-      // set the user's email address in User as well
-      user.updateEmail(email).then(() => {
-        // Update successful
-        alert('Email updated!');
-      }, (error) => {
-        // An error happened
-        alert('The email address is badly formatted');
-        return null;
-      });
-
-      return Firebase.getDbRef(path).update({
-        email: user.email,
-      });
-    }
+    Firebase.getDbRef(path).set({email: userEmail});
   }
 
   /**
@@ -104,7 +86,6 @@ class Database {
   /**
   * Sets a users combos
   * @param userCombos
-  * @returns {firebase.Promis<any>|!firebase.Promise.<void>}
   */
   static setUserCombos(userCombos) {
     const userID = Firebase.getUserID();
@@ -121,7 +102,7 @@ class Database {
      */
   static setUserYear(userYear) {
     const userID = Firebase.getUserID();
-    const path = `/users/${userID}/year`;
+    const path = `/users/${userID}`;
 
     Firebase.getDbRef(path).set({year: userYear});
   }
@@ -158,7 +139,6 @@ class Database {
 
   /**
    * Listen for changes to a user's last name
-   * @param unc
    */
   static listenUserLastName(callbackFunc) {
     const userID = Firebase.getUserID();
@@ -172,6 +152,22 @@ class Database {
       callbackFunc(lastName);
     });
   }
+
+    /**
+     * Listen for changes to a user's email
+     */
+  static listenUserYear(callbackFunc) {
+    const userID = Firebase.getUserID();
+    const path = `/users/${userID}`;
+
+    Firebase.getDbRef(path).once('value').then((snapshot) => {
+      let year = '';
+      if (snapshot.val()) {
+        year = snapshot.val().year;
+      }
+        callbackFunc(year);
+      });
+    }
 
   /**
    * Listen for changes to a user's last name

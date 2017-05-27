@@ -80,6 +80,8 @@ export default class Settings extends Component {
 
         <Text style={styles.textHeader}>Profile</Text>
 
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
+
         <View style={{backgroundColor: 'rgba(241, 241, 241, 100)'}}>
           <Text style={styles.textFields}>{this.state.userEmail}</Text>
           <View style={styles.divider} />
@@ -87,45 +89,78 @@ export default class Settings extends Component {
           <View style={styles.divider} />
           <View style={{backgroundColor: 'rgba(241, 241, 241, 100)', flexDirection: 'row'}}>
             <TouchableHighlight
-                underlayColor="transparent">
-              <Text style={styles.textFields}>Edit Profile</Text>
+                underlayColor="transparent"
+                onPress={() => this.navigate('edit')}>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.textFields}>Edit Profile</Text>
+                <Image
+                    style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 233.5}}
+                    source={require('../Icons/Settings/forward_arrow.png')}
+                />
+              </View>
             </TouchableHighlight>
-            <Image
-                style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 231.5}}
-                source={require('../Icons/Settings/forward_arrow.png')}
-            />
           </View>
+
+          <View style={styles.divider} />
+
+          <View style={{backgroundColor: 'rgba(241, 241, 241, 100)', flexDirection: 'row'}}>
+            <TouchableHighlight
+                underlayColor="transparent"
+                onPress={() => this.logoutUser()}>
+              <View style={{flexDirection: 'row'}}>
+                <Text style={styles.textFields}>Logout</Text>
+                <Image
+                    style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 261}}
+                    source={require('../Icons/Settings/forward_arrow.png')}
+                />
+              </View>
+            </TouchableHighlight>
+          </View>
+
+          <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
         </View>
 
         <View style={{marginTop: 20}}>
         <Text style={styles.textHeader}>Privacy</Text>
         </View>
 
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
+
         <View style={{backgroundColor: 'rgba(241, 241, 241, 100)', flexDirection: 'row'}}>
           <TouchableHighlight
               underlayColor="transparent">
-            <Text style={styles.textFields}>Change Password</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.textFields}>Change Password</Text>
+              <Image
+                  style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 190}}
+                  source={require('../Icons/Settings/forward_arrow.png')}
+              />
+            </View>
           </TouchableHighlight>
-          <Image
-              style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 188}}
-              source={require('../Icons/Settings/forward_arrow.png')}
-          />
         </View>
+
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
 
         <View style={{marginTop: 20}}>
           <Text style={styles.textHeader}>Additional Information</Text>
         </View>
 
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
+
         <View style={{backgroundColor: 'rgba(241, 241, 241, 100)', flexDirection: 'row'}}>
           <TouchableHighlight
               underlayColor="transparent">
-            <Text style={styles.textFields}>About</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.textFields}>About</Text>
+              <Image
+                  style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 266}}
+                  source={require('../Icons/Settings/forward_arrow.png')}
+              />
+            </View>
           </TouchableHighlight>
-          <Image
-              style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 264}}
-              source={require('../Icons/Settings/forward_arrow.png')}
-          />
         </View>
+
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
 
         <View style={{flexDirection: 'column', alignItems: 'center', marginTop: 50}}>
           <TouchableHighlight
