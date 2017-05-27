@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Animated,
   Dimensions,
   TouchableHighlight,
   Image
@@ -21,56 +20,46 @@ const { height, width, } = Dimensions.get( 'window' );
 const NAVBAR_TEXT = 'Settings';
 
 export default class Settings extends Component {
-  // Initialize the hardcoded data
 
-  constructor( props ) {
+  constructor( props )
+  {
     super( props );
     this.state = {
-      bounceValue: new Animated.Value( 0 ),
-      changingEmail: false,
-      userWelcomeName: '',
       userFirstName: '',
       userLastName: '',
       userEmail: ''
     };
   }
 
-  navigate(routeName, transitionType = 'normal') {
+  navigate(routeName, transitionType = 'normal')
+  {
     this.props.navigator.push({ name: routeName, transitionType });
   }
 
-  navigatePush(routeName) {
-    this.props.navigator.push({
-      name: routeName,
-    });
-  }
-
-  componentWillMount( ) {
-    Database.listenUserFirstName(( value ) => {
+  componentWillMount( )
+  {
+    Database.listenUserFirstName(( value ) =>
+    {
       this.setState({ userFirstName: value });
     });
-    Database.listenUserLastName(( value ) => {
+    Database.listenUserLastName(( value ) =>
+    {
       this.setState({ userLastName: value });
     });
     this.setState({ userEmail: Firebase.getUser( ).email })
   }
 
-  logoutUser = () => {
-    firebase.auth().signOut().then(function() {
+  logoutUser = () =>
+  {
+    firebase.auth().signOut().then(function(){
     }).catch(function(error) {
       console.log(error)
     });
     this.navigate('login')
   };
 
-  saveAllSettings = (first, last, email) => {
-    Database.setUserFirstName(first);
-    Database.setUserLastName(last);
-    Database.setUserEmail(email);
-  };
-
-
-  render() {
+  render()
+  {
     return (
     <View>
 
@@ -128,7 +117,8 @@ export default class Settings extends Component {
 
         <View style={{backgroundColor: 'rgba(241, 241, 241, 100)', flexDirection: 'row'}}>
           <TouchableHighlight
-              underlayColor="transparent">
+              underlayColor="transparent"
+              onPress={() => this.navigate('change')}>
             <View style={{flexDirection: 'row'}}>
               <Text style={styles.textFields}>Change Password</Text>
               <Image
@@ -180,7 +170,6 @@ export default class Settings extends Component {
 
     )
   }
-
 }
 
 const styles = StyleSheet.create({

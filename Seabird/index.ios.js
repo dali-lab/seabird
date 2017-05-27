@@ -41,6 +41,7 @@ import UserType from './screens/userType';
 import SplitListView from './screens/splitListView';
 import Loading from './screens/loading'
 import Edit from './screens/editProfile'
+import Change from './screens/changePassword'
 
 require("firebase/auth");
 require("firebase/database");
@@ -216,6 +217,10 @@ export default class Seabird extends Component {
           case 'login':
             return (<Login navigator={navigator}
               updateHome={this.updateHome}/>);
+              break;
+
+          case 'change':
+              return (<Change navigator={navigator}/>);
               break;
 
           case 'root':

@@ -1,11 +1,9 @@
-
 import React, { Component } from 'react';
 import {
     AppRegistry,
     StyleSheet,
     Text,
     View,
-    Animated,
     Dimensions,
     TouchableHighlight,
     Image,
@@ -13,10 +11,6 @@ import {
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import Database from '../firebase/database';
-
-require( "firebase/auth" );
-
-let firebase = require( "firebase/app" );
 
 const { height, width, } = Dimensions.get( 'window' );
 const NAVBAR_TEXT = 'Edit Profile';
@@ -28,9 +22,6 @@ export default class Edit extends Component
         super( props );
         this.state =
         {
-            bounceValue: new Animated.Value( 0 ),
-            changingEmail: false,
-            userWelcomeName: '',
             userFirstName: '',
             userLastName: '',
             userEmail: '',
@@ -45,19 +36,22 @@ export default class Edit extends Component
 
     componentWillMount()
     {
-        Database.listenUserFirstName(( value ) => {
+        Database.listenUserFirstName(( value ) =>
+        {
             this.setState({ userFirstName: value });
         });
-        Database.listenUserLastName(( value ) => {
+        Database.listenUserLastName(( value ) =>
+        {
             this.setState({ userLastName: value });
         });
-        Database.listenUserYear(( value ) => {
+        Database.listenUserYear(( value ) =>
+        {
             this.setState({ userYear: value });
         });
-        Database.listenUserEmail(( value ) => {
+        Database.listenUserEmail(( value ) =>
+        {
             this.setState({ userEmail: value });
         });
-
     }
 
     saveAllSettings(first, last, email, year)
@@ -79,6 +73,7 @@ export default class Edit extends Component
                     <TextInput
                         style={styles.userText}
                         ref="Name"
+                        placeholder={this.state.userFirstName}
                         onChangeText={userFirstName => this.setState({ userFirstName })}
                         selectionColor='rgba(0, 0, 0, 100)'>
                         <Image
@@ -93,6 +88,7 @@ export default class Edit extends Component
                     <TextInput
                         style={styles.userText}
                         ref="Last Name"
+                        placeholder={this.state.userLastName}
                         onChangeText={userLastName => this.setState({ userLastName })}
                         selectionColor='rgba(0, 0, 0, 100)'>
                         <Image
@@ -107,6 +103,7 @@ export default class Edit extends Component
                     <TextInput
                         style={styles.userText}
                         ref="Email"
+                        placeholder={this.state.userEmail}
                         onChangeText={userEmail => this.setState({ userEmail })}
                         selectionColor='rgba(0, 0, 0, 100)'>
                         <Image
@@ -121,6 +118,7 @@ export default class Edit extends Component
                     <TextInput
                         style={styles.userText}
                         ref="Year"
+                        placeholder={this.state.userYear}
                         onChangeText={userYear => this.setState({ userYear })}
                         selectionColor='rgba(0, 0, 0, 100)'>
                         <Image
@@ -146,13 +144,10 @@ export default class Edit extends Component
                     </TouchableHighlight>
                 </View>
 
-
-
             </View>
 
         )
     }
-
 }
 
 const styles = StyleSheet.create({
