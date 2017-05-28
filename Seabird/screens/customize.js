@@ -16,12 +16,7 @@ import {
 import Hr from 'react-native-hr';
 import { NavBar } from './../components/navBar';
 import { TileCustomize } from '../components/tileCustomize';
-<<<<<<< HEAD
-import { SortSwitch } from './../components/sortSwitch';
-import { ButtonSwitches } from './../components/buttonSwitches.js';
-=======
 import { ButtonSwitches } from './../components/buttonSwitches';
->>>>>>> 13dfe6630d1dcc7fdd5a6874e526475bfd5f0b7c
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 
@@ -185,23 +180,13 @@ export default class Customize extends Component {
 
   pageBars = () => {
 
-<<<<<<< HEAD
     let numBars = Math.floor((this.state.activePortals.length-1)/6);
-    // numBars = 3;
-=======
-    let numBars = Math.floor((this.state.portal.length - 1) / 6);
->>>>>>> 13dfe6630d1dcc7fdd5a6874e526475bfd5f0b7c
     let bars = [];
 
     for (let i = 1; i <= numBars; i++) {
       bars.push(
-<<<<<<< HEAD
         <View key={i} style={styles.barHolderView} top={HEIGHT_OF_6TILES*i+25}>
           <Hr lineColor='steelblue' text={ `page ${i+1}` } textColor='steelblue' />
-=======
-        <View key={i} style={styles.barHolderView} top={HEIGHT_OF_6TILES * i}>
-          <Hr lineColor='steelblue' text={ `page ${i + 1}` } textColor='steelblue' />
->>>>>>> 13dfe6630d1dcc7fdd5a6874e526475bfd5f0b7c
         </View>
       );
     }
@@ -388,7 +373,6 @@ export default class Customize extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
-<<<<<<< HEAD
           <ButtonSwitches firstOption="My Portals" secondOption="All Portals" firstAction={this.firstSwitchAction.bind(this)} secondAction={this.secondSwitchAction.bind(this)}/>
           {/*<View style={styles.basicFlexAround}>
             <SortSwitch title="PORTALS" firstOption="Rearrange" secondOption="Enable"/>
