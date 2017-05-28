@@ -63,7 +63,7 @@ export default class BuildingHours extends Component {
           backgroundColor: '#fff',
         }}
       >
-        <NavBar navigator={this.props.navigator} text="Testing" />
+        <NavBar navigator={this.props.navigator} text="Building Hours" />
         <ActionList information={this.state.items} />
       </View>
     );

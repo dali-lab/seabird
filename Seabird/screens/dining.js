@@ -75,7 +75,13 @@ export default class Dining extends Component {
             <Text style={styles.time}>{rowData.time}</Text>
             </View>
             <View style={styles.locationImageSection}>
-              <Image source={require('./../Icons/breakfast-dark.png')} style={styles.locationImage} />
+            <Image source={require('./../Icons/breakfast-dark.png')} style={styles.locationImage}>
+              <View style={styles.backdropView}>
+                <Text style={styles.currentSwipe}>BREAKFAST</Text>
+                <Text style={styles.currentSwipeValue}>$5.25</Text>
+                <Text style={styles.currentSwipeSub}>until 11:00 am</Text>
+              </View>
+            </Image>
             </View>
           </View>
         </TouchableHighlight>
@@ -90,7 +96,13 @@ export default class Dining extends Component {
             <Text style={styles.time}>{rowData.time}</Text>
             </View>
             <View style={styles.locationImageSection}>
-              <Image source={require('./../Icons/lunch.jpg')} style={styles.locationImage} />
+            <Image source={require('./../Icons/lunch.jpg')} style={styles.locationImage}>
+              <View style={styles.backdropView}>
+                <Text style={styles.currentSwipe}>LUNCH</Text>
+                <Text style={styles.currentSwipeValue}>$7.75</Text>
+                <Text style={styles.currentSwipeSub}>until 4:00 pm</Text>
+              </View>
+            </Image>
             </View>
           </View>
         </TouchableHighlight>
@@ -105,7 +117,13 @@ export default class Dining extends Component {
             <Text style={styles.time}>{rowData.time}</Text>
             </View>
             <View style={styles.locationImageSection}>
-              <Image source={require('./../Icons/dinner.jpg')} style={styles.locationImage}/>
+            <Image source={require('./../Icons/dinner.jpg')} style={styles.locationImage}>
+              <View style={styles.backdropView}>
+                <Text style={styles.currentSwipe}>DINNER</Text>
+                <Text style={styles.currentSwipeValue}>$10.00</Text>
+                <Text style={styles.currentSwipeSub}>until 9:00 pm</Text>
+              </View>
+            </Image>
             </View>
           </View>
         </TouchableHighlight>
@@ -120,7 +138,13 @@ export default class Dining extends Component {
             <Text style={styles.time}>{rowData.time}</Text>
             </View>
             <View style={styles.locationImageSection}>
-              <Image source={require('./../Icons/late_night.jpg')} style={styles.locationImage} />
+              <Image source={require('./../Icons/late_night.jpg')} style={styles.locationImage}>
+                <View style={styles.backdropView}>
+                  <Text style={styles.currentSwipe}>LATE NIGHT</Text>
+                  <Text style={styles.currentSwipeValue}>$5.25</Text>
+                  <Text style={styles.currentSwipeSub}>until 2:00 am</Text>
+                </View>
+              </Image>
             </View>
           </View>
         </TouchableHighlight>
@@ -248,7 +272,18 @@ const styles = StyleSheet.create({
 
   /* Style for the section that holds the location's image */
   locationImageSection: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#000',
     height: 200,
+  },
+
+  /* Style for the backdrop for the text */
+  backdropView: {
+    height: 120,
+    width: 320,
+    backgroundColor: 'rgba(82, 185, 117, 0.33)',
   },
 
   /* Style for the location's title */
@@ -282,6 +317,40 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
 
+  /* Style for the current meal swipe */
+  currentSwipe: {
+    fontSize: 14,
+    fontFamily: 'Lato',
+    fontWeight: '400',
+    color: '#fff',
+    marginTop: 20,
+    width: 125,
+    textAlign: 'center',
+  },
+
+  /* Style for the current meal swipe's value text */
+  currentSwipeValue: {
+    fontSize: 25,
+    fontFamily: 'Lato',
+    fontWeight: '500',
+    color: '#fff',
+    marginTop: 5,
+    width: 125,
+    textAlign: 'center',
+  },
+
+  /* Style for the current meal swipe sub text */
+  currentSwipeSub: {
+    fontSize: 12,
+    fontFamily: 'Lato',
+    fontWeight: '400',
+    color: '#fff',
+    marginTop: 5,
+    fontStyle: 'italic',
+    width: 125,
+    textAlign: 'center',
+  },
+
   /* Styles the back button */
   backIcon: {
     flex: 0,
@@ -305,41 +374,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     transform: [{scale: height / 470}]
-  },
-
-  /* Style for the intro phrase */
-  mealIntro: {
-    fontSize: 12,
-    fontFamily: 'System',
-    textAlign: 'center',
-    color: '#fff',
-  },
-
-  /* Style for the current meal swipe */
-  currentSwipe: {
-    fontSize: 26,
-    fontFamily: 'System',
-    fontWeight: '600',
-    textAlign: 'center',
-    color: '#fff',
-  },
-
-  /* Style for the current meal swipe sub text */
-  currentSwipeSub: {
-    fontSize: 26,
-    fontFamily: 'System',
-    fontWeight: '400',
-    textAlign: 'center',
-    color: '#fff',
-  },
-
-  /* Style for the menu option */
-  menuOptions: {
-    fontSize: 16,
-    fontFamily: 'System',
-    textAlign: 'center',
-    marginTop: 12,
-    color: '#89E1A9',
   },
 
   /* Style for te content information */
