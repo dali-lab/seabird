@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
   tileText: {
     paddingTop: MODULE_TEXT_PADDING,
     fontSize: MODULE_FONT_SIZE,
-    fontFamily: 'Avenir-Book',
-    fontWeight: '500',
+    fontFamily: 'Lato',
+    fontWeight: '400',
     textAlign: 'center',
     color: '#fff',
   },

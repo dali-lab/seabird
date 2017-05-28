@@ -19,7 +19,7 @@ export class HomeButton extends Component {
     return (
       <TouchableHighlight underlayColor="transparent" onPress={this.navigate.bind(this, 'root')}>
         <Image
-          source={require('./../Icons/home_button.png')}
+          source={require('./../Icons/Components/home_icon.png')}
           style={styles.homeImage}
         />
       </TouchableHighlight>
@@ -29,9 +29,10 @@ export class HomeButton extends Component {
 const styles = StyleSheet.create({
   /* Style for the home button image */
   homeImage: {
-    height: 50,
-    width: 50,
-    marginTop: -23,
-    marginRight: 4,
+    height: 21,
+    width: 21,
+    resizeMode: 'contain',
+    marginRight: 15
+
   },
 });

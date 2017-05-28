@@ -55,7 +55,6 @@ const styles = StyleSheet.create({
   rootHeader: {
     width,
     height: 60,
-    backgroundColor: '#00713A',
     flexDirection: 'row',
     paddingTop: 25,
     alignItems: 'center',
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(122, 196, 28, 0.4)',
+    backgroundColor: 'rgba(66, 159, 109, 100)',
   },
 
   mainHeaderSecond: {
@@ -77,14 +76,14 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(122, 196, 28, 1)',
+    backgroundColor: 'rgba(66, 159, 109, 100)',
   },
 
   /* Style for the title of the navigation bar */
   title: {
     color: '#fff',
     fontSize: SCHOOL_FONT_SIZE,
-    fontFamily: 'Avenir Next',
+    fontFamily: 'Lato',
     fontWeight: '600',
     marginTop: -3,
     backgroundColor: 'transparent',

@@ -8,6 +8,7 @@ import {
   Dimensions,
   TouchableHighlight,
   ListView,
+  Image,
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import Moment from 'moment';
@@ -19,9 +20,6 @@ export default class EventDetail extends Component {
 
   constructor(props) {
     super();
-  }
-
-  componentWillMount() {
   }
 
   renderScene(route, navigator) { }
@@ -43,7 +41,11 @@ export default class EventDetail extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text="Event" />
         <View style={styles.mainContent}>
-          <View style={{ flex: 7 }}>
+          <Image source={require('./../Icons/lunch.jpg')} style={styles.eventImage}/>
+          <Text style={styles.eventTitle}>{this.props.currentEvent.event}</Text>
+          <Text style={styles.eventHour}>{Moment(this.props.currentEvent.startTime).format('h:mm A')} </Text>
+          <Text style={styles.eventDate}>{Moment(this.props.currentEvent.day).format('ddd, MMMM, do')}</Text>
+          {/*}<View style={{ flex: 7 }}>
             <Text style={styles.eventDate}>{Moment(this.props.currentEvent.day).format('dddd, MMMM do')}</Text>
           </View>
           <View style={{ flex: 2, flexDirection: 'row', alignSelf: 'center' }}>
@@ -53,8 +55,7 @@ export default class EventDetail extends Component {
           </View>
           <View style={{ flex: 30 }}>
             <Text style={styles.eventLocation}>{this.props.currentEvent.location}</Text>
-            {/* This is where we would add the event tags */}
-          </View>
+          </View>*/}
         </View>
       </View>
     );
@@ -96,6 +97,13 @@ const styles = StyleSheet.create({
     fontWeight: '300',
     color: '#000',
     letterSpacing: -0.56,
+  },
+
+  /* Style for the event's image */
+  eventImage: {
+    height: 175,
+    width,
+    resizeMode: 'cover',
   },
 
   /* Style for the event's date */

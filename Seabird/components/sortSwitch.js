@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   /* Style for the deselected option */
   deselectedOption: {
     height: 20,
-    width: width / 6.5,
+    width: width / 6.3,
     backgroundColor: 'transparent',
   },
 
@@ -119,6 +119,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     textAlign: 'center',
     color: '#444',
+    fontFamily: 'Lato',
   },
 
   /* Style for the deselected option text */
@@ -126,7 +127,8 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     fontSize: 11,
     textAlign: 'center',
-    color: '#444'
+    color: '#444',
+    fontFamily: 'Lato',
   },
 
   /* Style for the text next to the switches */

@@ -9,7 +9,6 @@ import {
   TouchableHighlight,
   TextInput,
   Modal,
-  ActivityIndicator
 } from 'react-native';
 import Database from '../firebase/database';
 
