@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -14,34 +15,34 @@
 		00E356F31AD99517003FC87E /* SeabirdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SeabirdTests.m */; };
 		034036557E154160AE5D14A4 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3E052C972143BDAD05E5E1 /* libRNSVG.a */; };
 		09C1C4256F624C739AB77BF9 /* libRNFIRAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B072D8B0B4B94E1BB36847D2 /* libRNFIRAnalytics.a */; };
+		0BFE44A584174DB6A35479FD /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54903A8E6679417F91D99DB7 /* Lato-BoldItalic.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
+		13F1995BB5BA423FB326EB4B /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 738E6EF14E2C40FAA64C0206 /* Lato-LightItalic.ttf */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1E954021C86443C398060A0C /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 047BA9CFB35D455997669976 /* libBVLinearGradient.a */; };
 		1F4B6F851EA3368A009EB67E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F4B6F841EA3368A009EB67E /* Images.xcassets */; };
+		33A635C78EE942789C3853E5 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5049C828F5A44C4BB1BFE4D /* Lato-Black.ttf */; };
 		394A396AA0BE123E4D6B20F8 /* libPods-Seabird.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1E4B387F0A0A32391374FA /* libPods-Seabird.a */; };
+		3A80A478C06342D1AA65868F /* Lato-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64E35467667B439596CB92AE /* Lato-Hairline.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		688118A3A0FC4C2BA5AEB425 /* libRCTOneSignal.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C86C3B033B438397D3CBBD /* libRCTOneSignal.a */; };
 		74E639A91ED522C200C3B7A2 /* libcxxreact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA91DF850E9000B6D8A /* libcxxreact.a */; };
 		74E639AA1ED522C200C3B7A2 /* libjschelpers.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EAD1DF850E9000B6D8A /* libjschelpers.a */; };
 		74E639AB1ED522C200C3B7A2 /* libyoga.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA51DF850E9000B6D8A /* libyoga.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		EC575A7E1EB6C17C0094BF31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		EC78CB1C1EB6CBA7008D7CFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC78CB1B1EB6CBA7008D7CFF /* GoogleService-Info.plist */; };
-		33A635C78EE942789C3853E5 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5049C828F5A44C4BB1BFE4D /* Lato-Black.ttf */; };
+		8508CAC28F8740DAB2676264 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD9CB7C6C6B94BCDBC2F448D /* Lato-Regular.ttf */; };
+		854FC418FE204888A53D4939 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 940766CA33A64D38A0FBF384 /* Lato-Italic.ttf */; };
 		8F73BD95BF3841CE97951233 /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBA0999AD0F04A9A85FBD57A /* Lato-BlackItalic.ttf */; };
 		8FE8732DE5EB41F38A5D5EDA /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C09558E8F3944938DA06CC4 /* Lato-Bold.ttf */; };
-		0BFE44A584174DB6A35479FD /* Lato-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54903A8E6679417F91D99DB7 /* Lato-BoldItalic.ttf */; };
-		3A80A478C06342D1AA65868F /* Lato-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64E35467667B439596CB92AE /* Lato-Hairline.ttf */; };
-		D8D188D4ABD24DB387A48309 /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85B7BE7B11E34BE5A0D63B06 /* Lato-HairlineItalic.ttf */; };
-		854FC418FE204888A53D4939 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 940766CA33A64D38A0FBF384 /* Lato-Italic.ttf */; };
 		A56126A99BBF4EA1A28963C6 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B3A2319D982F4B6284588254 /* Lato-Light.ttf */; };
-		13F1995BB5BA423FB326EB4B /* Lato-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 738E6EF14E2C40FAA64C0206 /* Lato-LightItalic.ttf */; };
-		8508CAC28F8740DAB2676264 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD9CB7C6C6B94BCDBC2F448D /* Lato-Regular.ttf */; };
+		D8D188D4ABD24DB387A48309 /* Lato-HairlineItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 85B7BE7B11E34BE5A0D63B06 /* Lato-HairlineItalic.ttf */; };
+		EC575A7E1EB6C17C0094BF31 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		EC78CB1C1EB6CBA7008D7CFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC78CB1B1EB6CBA7008D7CFF /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -282,31 +283,31 @@
 		3938E9BD9E3E88ED8538711B /* Pods-Seabird.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seabird.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Seabird/Pods-Seabird.debug.xcconfig"; sourceTree = "<group>"; };
 		3C3E052C972143BDAD05E5E1 /* libRNSVG.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSVG.a; sourceTree = "<group>"; };
 		44C86C3B033B438397D3CBBD /* libRCTOneSignal.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTOneSignal.a; sourceTree = "<group>"; };
+		54903A8E6679417F91D99DB7 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BoldItalic.ttf"; path = "../Fonts/Lato/Lato-BoldItalic.ttf"; sourceTree = "<group>"; };
 		55FB8F59D5364102A6DA6471 /* RNFIRAnalytics.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFIRAnalytics.xcodeproj; path = "../node_modules/react-native-firebase-analytics/ios/RNFIRAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		58575D995E18486BA88D5C90 /* RCTOneSignal.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTOneSignal.xcodeproj; path = "../node_modules/react-native-onesignal/ios/RCTOneSignal.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6145DECE1AD014ACB69D732B /* libPods-SeabirdTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SeabirdTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		644FB56FC97CECBFE94AF2B9 /* Pods-Seabird.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seabird.release.xcconfig"; path = "Pods/Target Support Files/Pods-Seabird/Pods-Seabird.release.xcconfig"; sourceTree = "<group>"; };
+		64E35467667B439596CB92AE /* Lato-Hairline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Hairline.ttf"; path = "../Fonts/Lato/Lato-Hairline.ttf"; sourceTree = "<group>"; };
 		6FC9682F4B254B21AFD6963A /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
+		738E6EF14E2C40FAA64C0206 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-LightItalic.ttf"; path = "../Fonts/Lato/Lato-LightItalic.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		85B7BE7B11E34BE5A0D63B06 /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-HairlineItalic.ttf"; path = "../Fonts/Lato/Lato-HairlineItalic.ttf"; sourceTree = "<group>"; };
+		8C09558E8F3944938DA06CC4 /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../Fonts/Lato/Lato-Bold.ttf"; sourceTree = "<group>"; };
+		940766CA33A64D38A0FBF384 /* Lato-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Italic.ttf"; path = "../Fonts/Lato/Lato-Italic.ttf"; sourceTree = "<group>"; };
 		B072D8B0B4B94E1BB36847D2 /* libRNFIRAnalytics.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFIRAnalytics.a; sourceTree = "<group>"; };
+		B3A2319D982F4B6284588254 /* Lato-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Light.ttf"; path = "../Fonts/Lato/Lato-Light.ttf"; sourceTree = "<group>"; };
+		B5049C828F5A44C4BB1BFE4D /* Lato-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Black.ttf"; path = "../Fonts/Lato/Lato-Black.ttf"; sourceTree = "<group>"; };
+		CBA0999AD0F04A9A85FBD57A /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-BlackItalic.ttf"; path = "../Fonts/Lato/Lato-BlackItalic.ttf"; sourceTree = "<group>"; };
 		DD1E4B387F0A0A32391374FA /* libPods-Seabird.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Seabird.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC277B991EC9035F0093CAF5 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Pods/FirebaseAnalytics/Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
 		EC277BB71EC903F50093CAF5 /* FirebaseCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCore.framework; path = Pods/FirebaseCore/Frameworks/FirebaseCore.framework; sourceTree = "<group>"; };
 		EC277BB91EC904630093CAF5 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Pods/FirebaseInstanceID/Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
 		EC277BBB1EC904B90093CAF5 /* GoogleToolboxForMac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleToolboxForMac.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/Seabird-bxvgyrakcasyecdgiacxmrtsvmzg/Build/Products/Debug-iphonesimulator/GoogleToolboxForMac/GoogleToolboxForMac.framework"; sourceTree = "<group>"; };
 		EC78CB1B1EB6CBA7008D7CFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Seabird/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		B5049C828F5A44C4BB1BFE4D /* Lato-Black.ttf */ = {isa = PBXFileReference; name = "Lato-Black.ttf"; path = "../Fonts/Lato/Lato-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CBA0999AD0F04A9A85FBD57A /* Lato-BlackItalic.ttf */ = {isa = PBXFileReference; name = "Lato-BlackItalic.ttf"; path = "../Fonts/Lato/Lato-BlackItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8C09558E8F3944938DA06CC4 /* Lato-Bold.ttf */ = {isa = PBXFileReference; name = "Lato-Bold.ttf"; path = "../Fonts/Lato/Lato-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		54903A8E6679417F91D99DB7 /* Lato-BoldItalic.ttf */ = {isa = PBXFileReference; name = "Lato-BoldItalic.ttf"; path = "../Fonts/Lato/Lato-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		64E35467667B439596CB92AE /* Lato-Hairline.ttf */ = {isa = PBXFileReference; name = "Lato-Hairline.ttf"; path = "../Fonts/Lato/Lato-Hairline.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		85B7BE7B11E34BE5A0D63B06 /* Lato-HairlineItalic.ttf */ = {isa = PBXFileReference; name = "Lato-HairlineItalic.ttf"; path = "../Fonts/Lato/Lato-HairlineItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		940766CA33A64D38A0FBF384 /* Lato-Italic.ttf */ = {isa = PBXFileReference; name = "Lato-Italic.ttf"; path = "../Fonts/Lato/Lato-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		B3A2319D982F4B6284588254 /* Lato-Light.ttf */ = {isa = PBXFileReference; name = "Lato-Light.ttf"; path = "../Fonts/Lato/Lato-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		738E6EF14E2C40FAA64C0206 /* Lato-LightItalic.ttf */ = {isa = PBXFileReference; name = "Lato-LightItalic.ttf"; path = "../Fonts/Lato/Lato-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		FD9CB7C6C6B94BCDBC2F448D /* Lato-Regular.ttf */ = {isa = PBXFileReference; name = "Lato-Regular.ttf"; path = "../Fonts/Lato/Lato-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FD9CB7C6C6B94BCDBC2F448D /* Lato-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Regular.ttf"; path = "../Fonts/Lato/Lato-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -548,6 +549,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		944F564F35A44C44BD91A66F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B5049C828F5A44C4BB1BFE4D /* Lato-Black.ttf */,
+				CBA0999AD0F04A9A85FBD57A /* Lato-BlackItalic.ttf */,
+				8C09558E8F3944938DA06CC4 /* Lato-Bold.ttf */,
+				54903A8E6679417F91D99DB7 /* Lato-BoldItalic.ttf */,
+				64E35467667B439596CB92AE /* Lato-Hairline.ttf */,
+				85B7BE7B11E34BE5A0D63B06 /* Lato-HairlineItalic.ttf */,
+				940766CA33A64D38A0FBF384 /* Lato-Italic.ttf */,
+				B3A2319D982F4B6284588254 /* Lato-Light.ttf */,
+				738E6EF14E2C40FAA64C0206 /* Lato-LightItalic.ttf */,
+				FD9CB7C6C6B94BCDBC2F448D /* Lato-Regular.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		CAFACFB672DD95D288626A6E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,24 +597,6 @@
 				ECD31B4B1EC10BD300203351 /* libBVLinearGradient.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		944F564F35A44C44BD91A66F /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B5049C828F5A44C4BB1BFE4D /* Lato-Black.ttf */,
-				CBA0999AD0F04A9A85FBD57A /* Lato-BlackItalic.ttf */,
-				8C09558E8F3944938DA06CC4 /* Lato-Bold.ttf */,
-				54903A8E6679417F91D99DB7 /* Lato-BoldItalic.ttf */,
-				64E35467667B439596CB92AE /* Lato-Hairline.ttf */,
-				85B7BE7B11E34BE5A0D63B06 /* Lato-HairlineItalic.ttf */,
-				940766CA33A64D38A0FBF384 /* Lato-Italic.ttf */,
-				B3A2319D982F4B6284588254 /* Lato-Light.ttf */,
-				738E6EF14E2C40FAA64C0206 /* Lato-LightItalic.ttf */,
-				FD9CB7C6C6B94BCDBC2F448D /* Lato-Regular.ttf */,
-			);
-			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -657,7 +657,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = FS2L42NVCT;
+						DevelopmentTeam = PPFP29RG7K;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -1158,7 +1158,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = FS2L42NVCT;
+				DEVELOPMENT_TEAM = PPFP29RG7K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
@@ -1174,7 +1174,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
 				INFOPLIST_FILE = Seabird/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -1198,7 +1198,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = FS2L42NVCT;
+				DEVELOPMENT_TEAM = PPFP29RG7K;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
@@ -1213,7 +1213,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/../node_modules/react-native-onesignal/ios/**";
 				INFOPLIST_FILE = Seabird/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
