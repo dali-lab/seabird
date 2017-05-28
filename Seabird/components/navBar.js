@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: SCHOOL_FONT_SIZE,
     fontFamily: 'Lato',
-    fontWeight: '600',
+    fontWeight: 'bold',
     marginTop: -3,
     backgroundColor: 'transparent',
   },

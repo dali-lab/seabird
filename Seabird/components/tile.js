@@ -12,7 +12,7 @@ import {
 const { height, width } = Dimensions.get('window');
 export class Tile extends Component {
 
-  navigate(routeName, transitionType = 'normal') {
+  navigate(routeName, transitionType = 'floatRight') {
     this.props.navigator.push({ name: routeName, transitionType });
   }
 

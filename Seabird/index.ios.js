@@ -129,10 +129,10 @@ export default class Seabird extends Component {
             txtName: 'Events',
             navName: 'events',
             imgName: require('./Icons/calendar.png'),
-          }, {
-            txtName: 'WebView',
-            navName: 'web',
-            imgName: require('./Icons/web.png'),
+          // }, {
+          //   txtName: 'WebView',
+          //   navName: 'web',
+          //   imgName: require('./Icons/web.png'),
           }, {
             txtName: 'Campus Map',
             navName: 'map',
