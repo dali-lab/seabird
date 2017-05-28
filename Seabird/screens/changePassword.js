@@ -97,12 +97,6 @@ const styles = StyleSheet.create({
         height: height / 21,
         resizeMode: 'stretch',
     },
-    divider: {
-        height: 1,
-        width: width,
-        backgroundColor: 'rgba(206, 206, 206, 100)',
-        marginLeft: 34
-    },
     userText: {
         textAlign: 'center',
         marginTop: 8,
