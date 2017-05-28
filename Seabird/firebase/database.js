@@ -10,11 +10,11 @@ class Database {
    * Get content for a portal
    * @param portalName
    */
-  static getPortalContent(portalName, callbackFunc) {
+  static getPortalContent(portalName, callbackFunc=console.log) {
     const path = `/content/${portalName}`;
 
     Firebase.getDbRef(path).once('value').then((snapshot) => {
-      console.log(snapshot.val());
+      // console.log(snapshot.val());
       callbackFunc(snapshot.val());
     });
 

@@ -9,11 +9,15 @@ import {
   ScrollView,
   Button,
   PixelRatio,
+  ListView,
+  TouchableHighlight,
+  Image,
 } from 'react-native';
 import Hr from 'react-native-hr';
 import { NavBar } from './../components/navBar';
 import { TileCustomize } from '../components/tileCustomize';
 import { SortSwitch } from './../components/sortSwitch';
+import { ButtonSwitches } from './../components/buttonSwitches.js';
 import Firebase from '../firebase/firebase';
 import Database from '../firebase/database';
 
@@ -45,7 +49,7 @@ let SCROLL_UP_Y = 100;
 let SCROLL_DOWN_Y = 550;
 
 // height of 6 tiles
-let HEIGHT_OF_6TILES = TILE_HEIGHT*4.5; //560;
+let HEIGHT_OF_6TILES = TILE_HEIGHT*5.1; //560;
 
 // used in the setInterval timer to track position of block being dragged
 let dragTracker = null;
@@ -59,20 +63,51 @@ export default class Customize extends Component {
     this.state = {
       scrolling: true,
       deletingPortals: false,
-      portal: [],
+      activePortals: [],
+      allPortals: [],
+      activePortalNames: [],
+      allPortalNames: [],
+      view: 1,
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => true,
+      }).cloneWithRows([1, 1, 1, 1]),
     };
     this.scrollY = 0;
   }
 
   componentWillMount() {
+    this.readPortals();
+  }
+
+  readPortals = () => {
     Database.listenUserHomeOrder((value) => {
-      this.setState({ portal: JSON.parse(value)})
-    })
+      console.log('component will mount / listen home order');
+      let portals = JSON.parse(value);
+      this.setState({ activePortals: portals})
+      let activePortalNames = [];
+      for (i=0; i<portals.length; i++) {
+        activePortalNames.push(portals[i].txtName);
+      }
+      this.setState({
+        activePortalNames: activePortalNames
+      })
+    });
+    Database.getPortalContent('allModules', ( value ) => {
+      let portals = JSON.parse(value.studentHomeOrder);
+      this.setState({ allPortals: portals });
+      let allPortalNames = [];
+      for (i=0; i<portals.length; i++) {
+        allPortalNames.push(portals[i].txtName);
+      }
+      this.setState({
+        allPortalNames: allPortalNames
+      })
+    });
   }
 
   componentWillReceiveProps(nextProps) {
     Database.listenUserHomeOrder((value) => {
-      this.setState({ portal: JSON.parse(value)})
+      this.setState({ activePortals: JSON.parse(value)})
       Database.setUserHomeOrder(value);
     })
   }
@@ -93,9 +128,8 @@ export default class Customize extends Component {
 
   rearrange = (value) => {
     this.setState({ scrolling: true });
-    console.log(this.state.portal);
-    for (var i = 0; i < this.state.portal.length; i++) {
-        newHome[i] = this.state.portal[value.itemOrder[i].key]
+    for (var i = 0; i < this.state.activePortals.length; i++) {
+        newHome[i] = this.state.activePortals[value.itemOrder[i].key]
     }
 
   }
@@ -147,13 +181,13 @@ export default class Customize extends Component {
 
   pageBars = () => {
 
-    let numBars = Math.floor((this.state.portal.length-1)/6);
+    let numBars = Math.floor((this.state.activePortals.length-1)/6);
     // numBars = 3;
     let bars = [];
 
     for (let i = 1; i <= numBars; i++) {
       bars.push(
-        <View key={i} style={styles.barHolderView} top={HEIGHT_OF_6TILES*i}>
+        <View key={i} style={styles.barHolderView} top={HEIGHT_OF_6TILES*i+25}>
           <Hr lineColor='steelblue' text={ `page ${i+1}` } textColor='steelblue' />
         </View>
       );
@@ -164,58 +198,189 @@ export default class Customize extends Component {
     );
   }
 
+  firstSwitchAction = () => {
+    this.setState({
+      view: 1,
+    })
+  }
+
+  secondSwitchAction = () => {
+    // console.log(this.state.activePortals)
+    console.log(this.state);
+    // let allPortals = [];
+    // for (i in this.state.allPortals) {
+    //   allPortals.push({
+    //     name: i,
+    //     checked: this.state.allPortals[i]
+    //   });
+    // }
+    let allPortalsSorted = this.state.allPortals;
+    allPortalsSorted.sort(function(a, b){
+      if(a.txtName < b.txtName) return -1;
+      if(a.txtName > b.txtName) return 1;
+      return 0;
+    });
+    this.setState({
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (r1, r2) => true,
+      }).cloneWithRows(allPortalsSorted),
+      view: 2,
+    })
+  }
+
+  deactivatePortal = (txtName) => {
+    // remove portal name from the list of active portals
+    let activePortalNames = this.state.activePortalNames;
+    let idx = activePortalNames.indexOf(txtName);
+    if (idx > -1) {
+      activePortalNames.splice(idx, 1);
+    }
+    this.setState({
+      activePortalNames: activePortalNames
+    })
+
+    // remove portal from all active portals
+    let activePortals = this.state.activePortals;
+    for (idx in activePortals) {
+      if (activePortals[idx].txtName == txtName) {
+        activePortals.splice(idx, 1);
+      }
+    }
+    this.setState({
+      activePortals: activePortals
+    })
+    Database.setUserHomeOrder(JSON.stringify(activePortals));
+    this.readPortals();
+  }
+
+  activatePortal = (txtName) => {
+    // add portal name to the list of active portals
+    let activePortalNames = this.state.activePortalNames;
+    activePortalNames.push(txtName);
+    this.setState({
+      activePortalNames: activePortalNames
+    })
+
+    // add portal to all active portals
+    let allPortals = this.state.allPortals;
+    let activePortals = this.state.activePortals;
+    for (idx in allPortals) {
+      if (allPortals[idx].txtName == txtName) {
+        activePortals.push(allPortals[idx]);
+      }
+    }
+    this.setState({
+      activePortals: activePortals
+    })
+    Database.setUserHomeOrder(JSON.stringify(activePortals));
+    this.readPortals();
+  }
+
+  displayItems = () => {
+    if (this.state.view == 1) {
+      return (
+        <ScrollView
+          ref={(scrollView) => { _scrollView = scrollView; }}
+          scrollEnabled={this.state.scrolling}
+          scrollEventThrottle={100}
+          onScroll={this.handleScroll}
+          horizontal={false}
+          height={height/1.4}
+        >
+          <View style={styles.barHolderView}>
+            <Hr lineColor='steelblue' text='page 1' textColor='steelblue' />
+          </View>
+          <View style={styles.floatingView}>
+            {this.pageBars()}
+          </View>
+
+          <SortableGrid
+            itemsPerRow={2}
+            dragActivationTreshold={300}
+            onDragStart={() => {
+              dragTracker = setInterval(this.dragging, 100);
+              this.setState({ scrolling: false });
+            }}
+            onDragRelease={(itemOrder) => {
+              clearInterval(dragTracker);
+              this.rearrange(itemOrder);
+            }}
+            style={styles.grid}
+            ref={'SortableGrid'}
+          >
+            {this.state.activePortals.map((letter, index) => (
+              <View style={styles.tileView} key={index}>
+                 <TileCustomize
+                   key={index}
+                   navName={letter.navName}
+                   imgSource={letter.imgName}
+                   text={letter.txtName}
+                   tileStyle={styles.tile}
+                   textStyle={styles.tileText}
+                 />
+               </View>
+            ))}
+          </SortableGrid>
+        </ScrollView>
+      );
+    }
+    else {
+      // note that the key of ListView is set to random to force a rerender of each row
+      return (
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
+          <ListView
+            key={Math.random()}
+            scrollEnabled={true}
+            style={styles.section}
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow.bind(this)}
+          />
+        </View>
+      );
+    }
+  }
+
+  renderRow = (rowData, sectionID, rowID) => {
+    let portalIsActive = (this.state.activePortalNames.indexOf(rowData.txtName) >= 0);
+    if (portalIsActive) {
+      return (
+        <View>
+          <TouchableHighlight underlayColor="transparent" onPress={() => this.deactivatePortal(rowData.txtName)}>
+            <View style={styles.rowSection}>
+              <View style={styles.circleFilled} />
+              <Text style={styles.sectionText}>{rowData.txtName}</Text>
+            </View>
+          </TouchableHighlight>
+          <View key={rowID} style={styles.separator} />
+        </View>
+      )
+    }
+    else {
+      return (
+        <View>
+          <TouchableHighlight underlayColor="transparent" onPress={() => this.activatePortal(rowData.txtName)}>
+            <View style={styles.rowSection}>
+              <View style={styles.circleOpen} />
+              <Text style={styles.sectionText}>{rowData.txtName}</Text>
+            </View>
+          </TouchableHighlight>
+          <View key={rowID} style={styles.separator} />
+        </View>
+      )
+    }
+  }
+
   render() {
     return (
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
-          <View style={styles.basicFlexAround}>
+          <ButtonSwitches firstOption="My Portals" secondOption="All Portals" firstAction={this.firstSwitchAction.bind(this)} secondAction={this.secondSwitchAction.bind(this)}/>
+          {/*<View style={styles.basicFlexAround}>
             <SortSwitch title="PORTALS" firstOption="Rearrange" secondOption="Enable"/>
           </View>
-          {/*{this.deletePortalsButton()}*/}
-          <ScrollView
-            ref={(scrollView) => { _scrollView = scrollView; }}
-            scrollEnabled={this.state.scrolling}
-            scrollEventThrottle={100}
-            onScroll={this.handleScroll}
-            horizontal={false}
-            height={height/1.4}
-          >
-            <View style={styles.barHolderView}>
-              <Hr lineColor='steelblue' text='page 1' textColor='steelblue' />
-            </View>
-            <View style={styles.floatingView}>
-              {this.pageBars()}
-            </View>
-
-            <SortableGrid
-              itemsPerRow={2}
-              dragActivationTreshold={300}
-              onDragStart={() => {
-                dragTracker = setInterval(this.dragging, 100);
-                this.setState({ scrolling: false });
-              }}
-              onDragRelease={(itemOrder) => {
-                clearInterval(dragTracker);
-                this.rearrange(itemOrder);
-              }}
-              style={styles.grid}
-              ref={'SortableGrid'}
-            >
-              {this.state.portal.map((letter, index) => (
-                <View style={styles.tileView} key={index}>
-                   <TileCustomize
-                     key={index}
-                     navName={letter.navName}
-                     imgSource={letter.imgName}
-                     text={letter.txtName}
-                     tileStyle={styles.tile}
-                     textStyle={styles.tileText}
-                   />
-                 </View>
-              ))}
-            </SortableGrid>
-          </ScrollView>
+          {this.deletePortalsButton()}*/}
+          {this.displayItems()}
         </View>
       </View>
     );
@@ -243,6 +408,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     width,
+    height: height / 1.1,
   },
 
   /* Style for the section that holds the swipe headers */
@@ -337,12 +503,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 25,
+    marginTop: 15,
+    height: 20,
   },
 
   /* Style for the Sortable Grid */
   grid: {
-    height: 30,
     backgroundColor: 'white',
   },
 
@@ -354,7 +520,7 @@ const styles = StyleSheet.create({
     width: TILE_WIDTH*1.5,
     height: TILE_HEIGHT*1.5,
     paddingBottom: 20,
-    marginTop: width / 15,
+    marginTop: width / 60,
     margin: width / 25,
   },
 
@@ -367,7 +533,7 @@ const styles = StyleSheet.create({
     width: TILE_WIDTH,
     height: TILE_HEIGHT,
     paddingBottom: 20,
-    marginTop: width / 15,
+    marginTop: width / 60,
     margin: width / 25,
     borderRadius: (width / 2.8) / 2,
     borderWidth: 2,
@@ -388,6 +554,64 @@ const styles = StyleSheet.create({
   basicFlexAround: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+  },
+
+  /* Style for the section of the list view */
+  rowSection: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    height: 60,
+  },
+
+  /* Style for the text of the section of the list view */
+  sectionText: {
+    paddingLeft: width / 30,
+    fontSize: 25,
+    fontFamily: 'Avenir',
+    color: '#136B3D',
+    marginTop: 15,
+  },
+
+  /* Style for the section separators */
+  separator: {
+    width: width / 1.1,
+    height: 1,
+    alignSelf: 'flex-end',
+    backgroundColor: '#CFE0D8',
+  },
+
+  /* Style for the section's button */
+  sectionButton: {
+    flex: 0,
+    height: 20,
+    width: 20,
+    marginRight: 15,
+    marginTop: 20,
+  },
+
+  /* filled circle shape */
+  circleFilled: {
+    flex: 0,
+    height: 20,
+    width: 20,
+    marginLeft: 15,
+    marginTop: 20,
+    borderRadius: 20/2,
+    backgroundColor: '#136B3D'
+  },
+
+  /* open circle shape */
+  circleOpen: {
+    flex: 0,
+    height: 20,
+    width: 20,
+    marginLeft: 15,
+    marginTop: 20,
+    borderRadius: 20/2,
+    borderWidth: 1,
+    borderColor: '#136B3D',
+    backgroundColor: 'transparent'
   },
 
 });

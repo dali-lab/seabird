@@ -140,14 +140,14 @@ export default class Seabird extends Component {
             txtName: 'Schedule',
             navName: 'schedule',
             imgName: require('./Icons/schedule-01.png'),
-          }, {
-            txtName: 'WebView',
-            navName: 'web',
-            imgName: require('./Icons/web.png'),
-          }, {
-            txtName: 'Green Print',
-            navName: 'tutorial',
-            imgName: require('./Icons/printer.png'),
+          // }, {
+          //   txtName: 'WebView',
+          //   navName: 'web',
+          //   imgName: require('./Icons/web.png'),
+          // }, {
+          //   txtName: 'Green Print',
+          //   navName: 'tutorial',
+          //   imgName: require('./Icons/printer.png'),
           }, {
             txtName: 'Food',
             navName: 'food',

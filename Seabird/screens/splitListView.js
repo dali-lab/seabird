@@ -90,13 +90,14 @@ export default class SplitListView extends Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: 'white'}}>
-      <NavBar navigator={this.props.navigator} text="Sports"/>
-      <ButtonSwitches firstOption="Mens" secondOption="Womens" firstAction={this.firstSwitchAction.bind(this)} secondAction={this.secondSwitchAction.bind(this)}/>
-      <CustomList
-      dataSource={this.state.dataSource}
-      navigator={this.props.navigator}
-      updateViewName={this.props.updateViewName}
-      updateViewURL={this.props.updateViewURL}/>
+        <NavBar navigator={this.props.navigator} text="Sports"/>
+        <ButtonSwitches firstOption="Mens" secondOption="Womens" firstAction={this.firstSwitchAction.bind(this)} secondAction={this.secondSwitchAction.bind(this)}/>
+        <CustomList
+          dataSource={this.state.dataSource}
+          navigator={this.props.navigator}
+          updateViewName={this.props.updateViewName}
+          updateViewURL={this.props.updateViewURL}
+        />
       </View>
     );
   }
