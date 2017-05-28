@@ -64,7 +64,7 @@ export default class Edit extends Component
     render()
     {
         return (
-            <View>
+            <View style={{flex: 1, backgroundColor: 'white'}}>
 
                 <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
 
@@ -76,10 +76,6 @@ export default class Edit extends Component
                         placeholder={this.state.userFirstName}
                         onChangeText={userFirstName => this.setState({ userFirstName })}
                         selectionColor='rgba(0, 0, 0, 100)'>
-                        <Image
-                            style={styles.textFields}
-                            source={require('../Icons/Edit/rectangle.png')}
-                        />
                     </TextInput>
                 </View>
 
@@ -91,10 +87,6 @@ export default class Edit extends Component
                         placeholder={this.state.userLastName}
                         onChangeText={userLastName => this.setState({ userLastName })}
                         selectionColor='rgba(0, 0, 0, 100)'>
-                        <Image
-                            style={styles.textFields}
-                            source={require('../Icons/Edit/rectangle.png')}
-                        />
                     </TextInput>
                 </View>
 
@@ -106,10 +98,6 @@ export default class Edit extends Component
                         placeholder={this.state.userEmail}
                         onChangeText={userEmail => this.setState({ userEmail })}
                         selectionColor='rgba(0, 0, 0, 100)'>
-                        <Image
-                            style={styles.textFields}
-                            source={require('../Icons/Edit/rectangle.png')}
-                        />
                     </TextInput>
                 </View>
 
@@ -121,10 +109,6 @@ export default class Edit extends Component
                         placeholder={this.state.userYear}
                         onChangeText={userYear => this.setState({ userYear })}
                         selectionColor='rgba(0, 0, 0, 100)'>
-                        <Image
-                            style={styles.textFields}
-                            source={require('../Icons/Edit/rectangle.png')}
-                        />
                     </TextInput>
                 </View>
 
@@ -172,6 +156,12 @@ const styles = StyleSheet.create({
         marginLeft: 34
     },
     userText: {
+        width: width / 1.22,
+        height: height / 20,
+        borderWidth: 1,
+        borderColor: "#ccc",
+        borderRadius: 6,
+        paddingLeft: 5,
         marginLeft: 37,
         marginTop: 8,
         marginRight: 37,

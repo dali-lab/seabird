@@ -110,8 +110,8 @@ export default class Root extends Component {
                       ref="Email"
                       style={styles.credentials}
                       onChangeText={username => this.setState({ username })}
-                      placeholder="Email"
-                      placeholderTextColor="white"
+                      placeholder="EMAIL"
+                      placeholderTextColor="rgba(255, 255, 255, 0.5)"
                       selectionColor="white"
                       keyboardType="email-address"
                       value={this.state.username}
@@ -136,8 +136,8 @@ export default class Root extends Component {
                       secureTextEntry
                       style={styles.credentials}
                       onChangeText={password => this.setState({ password })}
-                      placeholder="Password"
-                      placeholderTextColor="white"
+                      placeholder="PASSWORD"
+                      placeholderTextColor="rgba(255, 255, 255, 0.5)"
                       selectionColor="white"
                       value={this.state.password}
                       onSubmitEditing={(event) => {
@@ -162,14 +162,17 @@ export default class Root extends Component {
                     />
                   </TouchableHighlight>
                 </View>
-
+                <View style={{alignItems: 'center', flexDirection: 'column', justifyContent: 'flex-end', height: height / 4.8,}}>
+                <View style={{backgroundColor: 'rgba(18, 89, 80, 0.3)', width, height: 60,}}>
                   {/* Not a member text*/}
-                <Text style={{ color: 'white', fontSize: 16 }}>Not a member?</Text>
+                <Text style={{ color: 'white', fontSize: 16, textAlign: 'center', marginTop: 7,}}>Not a member?</Text>
 
                   {/* Sign Up button*/}
                 <TouchableHighlight underlayColor="transparent" onPress={() => this.navigate('userType', 'right')}>
                   <Text style={styles.signUpButton}>Sign Up!</Text>
                 </TouchableHighlight>
+                </View>
+              </View>
               </View>
             </Image>
           </View>
@@ -201,24 +204,27 @@ const styles = StyleSheet.create({
   },
     // Style for the logo
   logo: {
+    marginTop: 30,
     height: width / 2,
     width: width / 2,
     resizeMode: 'contain',
   },
     // Style for the email text input field
   emailField: {
-    height: height / 22,
+    height: height / 26,
     width: width / 13,
     resizeMode: 'contain',
     marginLeft: width / 10,
+    top: 15,
   },
     // Style for the password field
   passwordField: {
-    height: height / 22,
+    height: height / 26,
     width: width / 13,
     resizeMode: 'contain',
     marginLeft: width / 10,
     marginTop: 3.5,
+    top: 10,
   },
   /* Style for the credentials text input */
   credentials: {
@@ -226,15 +232,18 @@ const styles = StyleSheet.create({
     width: width / 1.39,
     textAlign: 'left',
     height: height / 17,
-
     paddingLeft: 10,
+    marginTop: 10,
+    fontFamily: 'Lato',
+    fontWeight: '400',
   },
   /* Style for the divider that will be the underline area */
   divider: {
     height: 1,
     width: width / 1.39,
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
+
   loginButton: {
     height: height / 16,
     width: width / 1.39,
@@ -245,6 +254,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
 
 //   /* Style for the modal view */
