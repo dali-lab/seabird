@@ -19,7 +19,6 @@ import {
 } from 'react-native';
 import Firebase from './firebase/firebase';
 import Database from './firebase/database';
-
 import Login from './screens/login';
 import Root from './screens/root';
 import Dining from './screens/dining';
@@ -41,6 +40,8 @@ import AppWebView from './screens/appWebView';
 import UserType from './screens/userType';
 import SplitListView from './screens/splitListView';
 import Loading from './screens/loading'
+import Edit from './screens/editProfile'
+import Change from './screens/changePassword'
 
 require("firebase/auth");
 require("firebase/database");
@@ -218,6 +219,10 @@ export default class Seabird extends Component {
               updateHome={this.updateHome}/>);
               break;
 
+          case 'change':
+              return (<Change navigator={navigator}/>);
+              break;
+
           case 'root':
               return <Root navigator={navigator}
                            HOME_PORTALS={this.state.HOME_PORTALS}
@@ -249,6 +254,10 @@ export default class Seabird extends Component {
 
           case 'settings':
               return <Settings navigator={navigator}/>;
+              break;
+
+          case 'edit':
+              return <Edit navigator={navigator}/>;
               break;
 
           case 'more':

@@ -4,7 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight,
+  TouchableOpacity,
   Image,
   Dimensions,
   ListView,
@@ -64,38 +64,46 @@ export default class Emergency extends Component {
         />
         <View style={styles.mainContent}>
         <ScrollView ref={(scrollView) => { _scrollView = scrollView; }}>
+
+        <TouchableOpacity onPress={() => Communications.phonecall('6316554692', true)}>
+            <View style={styles.holder}>
+                <Text style={styles.text}>Make phonecall</Text>
+            </View>
+        </TouchableOpacity>
+
           <Text style={styles.headerText}>Safety and Security</Text>
 
           <Text style={styles.subheaderText}>good sam (non-emergency)</Text>
-          <TouchableHighlight onPress={
+
+          <TouchableOpacity onPress={
               () => Communications.phonecall('6316554692', true)
             }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
           <Text style={styles.subheaderText}>emergency</Text>
-          <TouchableHighlight onPress={
+          <TouchableOpacity onPress={
               () => Communications.phonecall('6316554692', true)
             }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
           <Text style={styles.headerText}>Dicks House</Text>
           <Text style={styles.subheaderText}>appointments</Text>
-          <TouchableHighlight onPress={
+          <TouchableOpacity onPress={
               () => Communications.phonecall('6316554692', true)
             }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
           <Text style={styles.subheaderText}>counseling</Text>
-          <TouchableHighlight onPress={
+          <TouchableOpacity onPress={
               () => Communications.phonecall('6316554692', true)
             }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
           <Text style={styles.headerText}>Residential Life</Text>
-          <TouchableHighlight onPress={
+          <TouchableOpacity onPress={
               () => Communications.phonecall('6316554692', true)
             }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
         </ScrollView>
         </View>
@@ -134,7 +142,7 @@ const styles = StyleSheet.create({
     textAlign: 'left'
   },
 
-  /* Style for the phone numbers */
+  /* Style for the phone numbers TouchableOpacitysr */
   phoneNumberText: {
   },
 
