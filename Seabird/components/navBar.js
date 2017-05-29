@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(66, 159, 109, 100)',
+    backgroundColor: 'rgba(66, 159, 109, 1)',
   },
 
   mainHeaderSecond: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'rgba(66, 159, 109, 100)',
+    backgroundColor: 'rgba(66, 159, 109, 1)',
   },
 
   /* Style for the title of the navigation bar */

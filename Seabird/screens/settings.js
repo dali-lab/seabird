@@ -69,14 +69,14 @@ export default class Settings extends Component {
 
         <Text style={styles.textHeader}>Profile</Text>
 
-        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 1)'}} />
 
-        <View style={{backgroundColor: 'rgba(241, 241, 241, 100)'}}>
+        <View style={{backgroundColor: 'rgba(241, 241, 241, 1)'}}>
           <Text style={styles.textFields}>{this.state.userEmail}</Text>
           <View style={styles.divider} />
           <Text style={styles.textFields}>{this.state.userFirstName} {this.state.userLastName}</Text>
           <View style={styles.divider} />
-          <View style={{backgroundColor: 'rgba(241, 241, 241, 100)', flexDirection: 'row'}}>
+          <View style={{backgroundColor: 'rgba(241, 241, 241, 1)', flexDirection: 'row'}}>
             <TouchableHighlight
                 underlayColor="transparent"
                 onPress={() => this.navigate('edit')}>
@@ -92,7 +92,7 @@ export default class Settings extends Component {
 
           <View style={styles.divider} />
 
-          <View style={{backgroundColor: 'rgba(241, 241, 241, 100)', flexDirection: 'row'}}>
+          <View style={{backgroundColor: 'rgba(241, 241, 241, 1)', flexDirection: 'row'}}>
             <TouchableHighlight
                 underlayColor="transparent"
                 onPress={() => this.logoutUser()}>
@@ -106,16 +106,16 @@ export default class Settings extends Component {
             </TouchableHighlight>
           </View>
 
-          <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
+          <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 1)'}} />
         </View>
 
         <View style={{marginTop: 20}}>
         <Text style={styles.textHeader}>Privacy</Text>
         </View>
 
-        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 1)'}} />
 
-        <View style={{backgroundColor: 'rgba(241, 241, 241, 100)', flexDirection: 'row'}}>
+        <View style={{backgroundColor: 'rgba(241, 241, 241, 1)', flexDirection: 'row'}}>
           <TouchableHighlight
               underlayColor="transparent"
               onPress={() => this.navigate('change')}>
@@ -129,15 +129,15 @@ export default class Settings extends Component {
           </TouchableHighlight>
         </View>
 
-        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 1)'}} />
 
         <View style={{marginTop: 20}}>
           <Text style={styles.textHeader}>Additional Information</Text>
         </View>
 
-        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 1)'}} />
 
-        <View style={{backgroundColor: 'rgba(241, 241, 241, 100)', flexDirection: 'row'}}>
+        <View style={{backgroundColor: 'rgba(241, 241, 241, 1)', flexDirection: 'row'}}>
           <TouchableHighlight
               underlayColor="transparent">
             <View style={{flexDirection: 'row'}}>
@@ -150,7 +150,7 @@ export default class Settings extends Component {
           </TouchableHighlight>
         </View>
 
-        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 100)'}} />
+        <View style={{height: 1, width: width, backgroundColor: 'rgba(206, 206, 206, 1)'}} />
 
         <View style={{flexDirection: 'column', alignItems: 'center', marginTop: 50}}>
           <TouchableHighlight
@@ -176,13 +176,13 @@ const styles = StyleSheet.create({
   textHeader: {
     marginLeft: 12,
     fontSize: 20,
-    color: 'rgba(7, 128, 75, 100)',
+    color: 'rgba(7, 128, 75, 1)',
     marginBottom: 4,
     fontFamily: 'Lato'
   },
   textFields: {
     marginLeft: 34,
-    color: 'rgba(116, 116, 116, 100)',
+    color: 'rgba(116, 116, 116, 1)',
     fontSize: 15,
     marginTop: 12,
     marginBottom: 12,
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     width: width,
-    backgroundColor: 'rgba(206, 206, 206, 100)',
+    backgroundColor: 'rgba(206, 206, 206, 1)',
     marginLeft: 34
     },
 });

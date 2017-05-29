@@ -186,7 +186,7 @@ export default class Customize extends Component {
     for (let i = 1; i <= numBars; i++) {
       bars.push(
         <View key={i} style={styles.barHolderView} top={HEIGHT_OF_6TILES*i+5}>
-          <Hr lineColor='rgba(66, 159, 109, 100)' text={ `page ${i+1}` } textColor='rgba(66, 159, 109, 100)' />
+          <Hr lineColor='rgba(66, 159, 109, 1)' text={ `page ${i+1}` } textColor='rgba(66, 159, 109, 1)' />
         </View>
       );
     }
@@ -286,7 +286,7 @@ export default class Customize extends Component {
           height={height/1.4}
         >
           <View style={styles.barHolderView}>
-            <Hr lineColor='rgba(66, 159, 109, 100)' text='page 1' textColor='rgba(66, 159, 109, 100)' />
+            <Hr lineColor='rgba(66, 159, 109, 1)' text='page 1' textColor='rgba(66, 159, 109, 1)' />
           </View>
           <View style={styles.floatingView}>
             {this.pageBars()}
@@ -296,7 +296,7 @@ export default class Customize extends Component {
             itemsPerRow={2}
             dragActivationTreshold={300}
             onDragStart={() => {
-              dragTracker = setInterval(this.dragging, 100);
+              dragTracker = setInterval(this.dragging, 1);
               this.setState({ scrolling: false });
             }}
             onDragRelease={(itemOrder) => {

@@ -73,7 +73,6 @@ export class NavWebView extends Component  {
 const styles = StyleSheet.create({
   /* Styles the web view button */
   backIcon: {
-    flex: 1,
     height: 17,
     width: 17,
     resizeMode: 'center'
@@ -81,7 +80,6 @@ const styles = StyleSheet.create({
 
   /* Styles the web view button */
   icon: {
-    flex: 1,
     height: 20,
     width: 20,
     resizeMode: 'center'
@@ -89,7 +87,6 @@ const styles = StyleSheet.create({
 
   /* Styles the forward button */
   forwardIcon: {
-    flex: 1,
     height: 20,
     resizeMode: 'center'
   },

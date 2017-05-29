@@ -117,7 +117,7 @@ export default class ComboKeeper extends Component {
             onEndEditing={() => _scrollView.scrollTo({y: 0})}
           />
           <TouchableHighlight style={styles.saveButton} onPress={() => this.saveCombos([this.state.firstSlot, this.state.secondSlot, this.state.thirdSlot, this.state.otherServices])}>
-            <Text style={styles.saveButtonText}>SAVE</Text>
+            <Text style={styles.saveButtonText}>Save Changes</Text>
           </TouchableHighlight>
           </ScrollView>
         </View>
@@ -154,12 +154,15 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     marginLeft: width / 15,
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    color: 'rgba(7, 128, 75, 1)',
+    fontFamily: 'Lato',
+    fontWeight: 'bold',
   },
 
   /* Style for the smaller text input area */
   smallInput: {
-    height: height / 15,
+    height: height / 18,
     borderWidth: 1,
     borderColor: '#d6d6d6',
     borderRadius: 5,
@@ -184,19 +187,20 @@ const styles = StyleSheet.create({
 
   /* Style for the save button */
   saveButton: {
-    height: 40,
-    width: width / 3,
+    height: 35,
+    width: width / 2.7,
     alignSelf: 'flex-end',
-    borderRadius: 3,
     backgroundColor: '#00713A',
+    marginTop: 10,
+    marginRight: width / 16,
   },
 
   /* Style for the save button text */
   saveButtonText: {
     color: 'white',
-    fontSize: 18,
-    fontFamily: 'Arial',
-    paddingTop: 10,
+    fontSize: 15,
+    fontFamily: 'Lato',
+    paddingTop: 7,
     textAlign: 'center'
   }
 });

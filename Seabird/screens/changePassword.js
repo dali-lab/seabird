@@ -42,7 +42,7 @@ export default class Edit extends Component
             alignItems: 'center',
             marginBottom: 40,
           }}>
-            <TextInput style={styles.userText} secureTextEntry={true} ref="Current Password" placeholder="enter information" selectionColor='rgba(0, 0, 0, 100)'></TextInput>
+            <TextInput style={styles.userText} secureTextEntry={true} ref="Current Password" placeholder="enter information" selectionColor='#058e4b'></TextInput>
           </View>
 
           <Text style={styles.textHeader}>New Password</Text>
@@ -51,7 +51,7 @@ export default class Edit extends Component
             alignItems: 'center',
             marginBottom: 50,
           }}>
-            <TextInput secureTextEntry={true} style={styles.userText} ref="New Password" placeholder="enter information" onChangeText={userFirstName => this.setState({ userFirstName })} selectionColor='rgba(0, 0, 0, 100)'></TextInput>
+            <TextInput secureTextEntry={true} style={styles.userText} ref="New Password" placeholder="enter information" onChangeText={userFirstName => this.setState({ userFirstName })} selectionColor='#058e4b'></TextInput>
           </View>
 
           <TouchableHighlight underlayColor="transparent">
@@ -82,7 +82,7 @@ export default class Edit extends Component
 const styles = StyleSheet.create({
   textHeader: {
     fontSize: 18,
-    color: 'rgba(7, 128, 75, 100)',
+    color: 'rgba(7, 128, 75, 1)',
     marginBottom: 4,
     fontFamily: 'Lato',
     fontWeight: 'bold',
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     width: width / 1.6,
     height: height / 18,
-    color: 'rgba(0, 0, 0, 100)',
+    color: 'rgba(0, 0, 0, 1)',
   },
 });
 

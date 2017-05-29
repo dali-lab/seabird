@@ -75,7 +75,7 @@ export default class Edit extends Component
                         ref="Name"
                         placeholder={this.state.userFirstName}
                         onChangeText={userFirstName => this.setState({ userFirstName })}
-                        selectionColor='rgba(0, 0, 0, 100)'>
+                        selectionColor='#058e4b'>
                     </TextInput>
                 </View>
 
@@ -86,7 +86,7 @@ export default class Edit extends Component
                         ref="Last Name"
                         placeholder={this.state.userLastName}
                         onChangeText={userLastName => this.setState({ userLastName })}
-                        selectionColor='rgba(0, 0, 0, 100)'>
+                        selectionColor='#058e4b'>
                     </TextInput>
                 </View>
 
@@ -97,7 +97,7 @@ export default class Edit extends Component
                         ref="Email"
                         placeholder={this.state.userEmail}
                         onChangeText={userEmail => this.setState({ userEmail })}
-                        selectionColor='rgba(0, 0, 0, 100)'>
+                        selectionColor='#058e4b'>
                     </TextInput>
                 </View>
 
@@ -108,7 +108,7 @@ export default class Edit extends Component
                         ref="Year"
                         placeholder={this.state.userYear}
                         onChangeText={userYear => this.setState({ userYear })}
-                        selectionColor='rgba(0, 0, 0, 100)'>
+                        selectionColor='#058e4b'>
                     </TextInput>
                 </View>
 
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     textHeader: {
         marginLeft: 32,
         fontSize: 18,
-        color: 'rgba(7, 128, 75, 100)',
+        color: 'rgba(7, 128, 75, 1)',
         marginBottom: 4,
         fontFamily: 'Lato',
         fontWeight: 'bold'
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     divider: {
         height: 1,
         width: width,
-        backgroundColor: 'rgba(206, 206, 206, 100)',
+        backgroundColor: 'rgba(206, 206, 206, 1)',
         marginLeft: 34
     },
     userText: {
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
         marginRight: 37,
         fontFamily: 'Lato',
         fontSize: 16,
-        color: 'rgba(0, 0, 0, 100)'
+        color: 'rgba(0, 0, 0, 1)'
     }
 });
 
