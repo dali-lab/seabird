@@ -143,12 +143,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Lato',
         fontWeight: 'bold'
     },
-    textFields: {
-        width: width / 1.22,
-        height: height / 20,
-        resizeMode: 'stretch',
-        marginLeft: -5
-    },
     divider: {
         height: 1,
         width: width,
@@ -157,11 +151,11 @@ const styles = StyleSheet.create({
     },
     userText: {
         width: width / 1.22,
-        height: height / 20,
+        height: height / 18,
         borderWidth: 1,
         borderColor: "#ccc",
         borderRadius: 6,
-        paddingLeft: 5,
+        paddingLeft: 8,
         marginLeft: 37,
         marginTop: 8,
         marginRight: 37,

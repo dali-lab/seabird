@@ -17,137 +17,137 @@ require('firebase/database');
 
 export default class UserType extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            userType: '',
-        };
-    }
+  constructor( props ) {
+    super( props );
+    this.state = {
+      userType: ''
+    };
+  }
 
-    navigate(routeName, transitionType = 'floatRight') {
-        this.props.navigator.push({name: routeName, transitionType});
-    }
+  navigate(routeName, transitionType = 'floatRight') {
+    this.props.navigator.push({name: routeName, transitionType});
+  }
 
-    setUser() {
-        if (this.state.userType !== '') {
-            this.props.updateUserType(this.state.userType);
-            this.navigate('signup');
-        }
+  setUser() {
+    if (this.state.userType !== '') {
+        this.props.updateUserType(this.state.userType);
+        this.navigate('signup');
     }
+  }
 
     render() {
-        return (
-            <View>
+      return (
+        <View>
 
-                {/* Main background image */}
-                <Image
-                    source={require('../Icons/Login/gradient_background.png')}
-                    style={styles.gradientBackground}
-                >
+            {/* Main background image */}
+            <Image
+                source={require('../Icons/Login/gradient_background.png')}
+                style={styles.gradientBackground}
+            >
 
-                    {/* View that holds everything on the screen */}
-                    <View style={styles.mainView}>
+                {/* View that holds everything on the screen */}
+                <View style={styles.mainView}>
 
-                        {/*Back button*/}
-                        <TouchableHighlight
-                            underlayColor='transparent'
-                            onPress={() => this.navigate('login', 'left')}
-                        >
-                            <Image source={require('../Icons/Signup/back_button_icon.png')}
-                                   style={styles.backButton}
-                            />
-                        </TouchableHighlight>
+                    {/*Back button*/}
+                    <TouchableHighlight
+                        underlayColor='transparent'
+                        onPress={() => this.navigate('login', 'left')}
+                    >
+                        <Image source={require('../Icons/Signup/back_button_icon.png')}
+                               style={styles.backButton}
+                        />
+                    </TouchableHighlight>
 
-                        {/* Welcome to text */}
-                        <Text
-                            style={styles.lightText}
-                        >Welcome to</Text>
+                    {/* Welcome to text */}
+                    <Text
+                        style={styles.lightText}
+                    >Welcome to</Text>
 
-                        {/*Dartmouth text*/}
-                        <Text
-                            style={{color: 'white', fontWeight: '500', fontSize: 28}}
-                        >DARTMOUTH</Text>
+                    {/*Dartmouth text*/}
+                    <Text
+                        style={{color: 'white', fontWeight: '500', fontSize: 28}}
+                    >DARTMOUTH</Text>
 
-                        {/* Dartmouth logo */}
-                        <Image
-                            source={require('../Icons/Login/dartmouth_logo.png')}
-                            style={styles.logo}
-                        >
-                        </Image>
+                    {/* Dartmouth logo */}
+                    <Image
+                        source={require('../Icons/Login/dartmouth_logo.png')}
+                        style={styles.logo}
+                    >
+                    </Image>
 
-                        {/*I am a text field*/}
-                        <Text
-                            style={{color: 'white', fontStyle: 'italic', fontSize: 21, fontWeight: '100', marginTop: 10}}
-                        >I am a... {this.state.userType}</Text>
+                    {/*I am a text field*/}
+                    <Text
+                        style={{color: 'white', fontStyle: 'italic', fontSize: 21, fontWeight: '100', marginTop: 10}}
+                    >I am a... {this.state.userType}</Text>
 
-                        <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 12}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 12}}>
 
-                            <View>
-                                <TouchableHighlight
-                                                underlayColor="transparent"
-                                                onPress={userType => this.setState({ userType: 'student' })}>
-                                    <View style={{flexDirection: 'column', alignItems: 'center', marginRight: 20, marginLeft: -2}}>
-                                        <Image
-                                            source={require('../Icons/userType/student.png')}
-                                            style={{height: width / 7, width: width / 7, resizeMode: 'contain'}}>
-                                        </Image>
-                                        <Text
-                                            style={{textAlign: 'center', color: 'white', fontWeight: '400'}}
-                                        >STUDENT</Text>
-                                    </View>
-                                </TouchableHighlight>
-                            </View>
-
-                            <View>
-                                <TouchableHighlight
-                                                underlayColor="transparent"
-                                                onPress={userType => this.setState({ userType: 'alum' })}>
-                                    <View style={{flexDirection: 'column', alignItems: 'center', marginRight: -10}}>
-                                        <Image
-                                            source={require('../Icons/userType/alum.png')}
-                                            style={{height: width / 7, width: width / 7, resizeMode: 'contain'}}>
-                                        </Image>
-                                        <Text
-                                            style={{textAlign: 'center', color: 'white', fontWeight: '400'}}
-                                        >ALUMNI</Text>
-                                    </View>
-                                </TouchableHighlight>
-                            </View>
-
-                            <View>
-
-                                <TouchableHighlight
-                                                    underlayColor="transparent"
-                                                    onPress={userType => this.setState({ userType: 'professor' })}>
-                                    <View style={{flexDirection: 'column', alignItems: 'center', marginLeft: 20, marginRight: -13}}>
-                                        <Image
-                                            source={require('../Icons/userType/prof.png')}
-                                            style={{height: width / 7, width: width / 7, resizeMode: 'contain'}}>
-                                        </Image>
-                                        <Text
-                                            style={{textAlign: 'center', color: 'white', fontWeight: '400'}}
-                                        >PROFESSOR</Text>
-                                    </View>
-                                </TouchableHighlight>
-                            </View>
-
+                        <View>
+                          <TouchableHighlight
+                              underlayColor="transparent"
+                              onPress={userType => this.setState({ userType: 'student' })}>
+                              <View style={{flexDirection: 'column', alignItems: 'center', marginRight: 20, marginLeft: -2}}>
+                                  <Image
+                                      source={require('../Icons/userType/student.png')}
+                                      style={{height: width / 7, width: width / 7, resizeMode: 'contain'}}>
+                                  </Image>
+                                  <Text
+                                      style={{textAlign: 'center', color: 'white', fontWeight: '400'}}
+                                  >STUDENT</Text>
+                              </View>
+                          </TouchableHighlight>
                         </View>
 
-
-                        {/*Next button*/}
-                        <View style={{marginTop: 15}}>
+                        <View>
                             <TouchableHighlight
-                                                underlayColor="transparent"
-                                                onPress={() => this.setUser()}>
-                                <Image source={require('../Icons/userType/next.png')}
-                                       style={styles.loginButton}
-                                />
+                                underlayColor="transparent"
+                                onPress={userType => this.setState({ userType: 'alum' })}>
+                                <View style={{flexDirection: 'column', alignItems: 'center', marginRight: -10}}>
+                                    <Image
+                                        source={require('../Icons/userType/alum.png')}
+                                        style={{height: width / 7, width: width / 7, resizeMode: 'contain'}}>
+                                    </Image>
+                                    <Text
+                                        style={{textAlign: 'center', color: 'white', fontWeight: '400'}}
+                                    >ALUMNI</Text>
+                                </View>
                             </TouchableHighlight>
                         </View>
+
+                        <View>
+
+                            <TouchableHighlight
+                                underlayColor="transparent"
+                                onPress={userType => this.setState({ userType: 'professor' })}>
+                                <View style={{flexDirection: 'column', alignItems: 'center', marginLeft: 20, marginRight: -13}}>
+                                    <Image
+                                        source={require('../Icons/userType/prof.png')}
+                                        style={{height: width / 7, width: width / 7, resizeMode: 'contain'}}>
+                                    </Image>
+                                    <Text
+                                        style={{textAlign: 'center', color: 'white', fontWeight: '400'}}
+                                    >PROFESSOR</Text>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+
                     </View>
-                </Image>
-            </View>
-        )
+
+
+                    {/*Next button*/}
+                    <View style={{marginTop: 15}}>
+                        <TouchableHighlight
+                                            underlayColor="transparent"
+                                            onPress={() => this.setUser()}>
+                            <Image source={require('../Icons/userType/next.png')}
+                                   style={styles.loginButton}
+                            />
+                        </TouchableHighlight>
+                    </View>
+                </View>
+            </Image>
+        </View>
+      )
     }
 }
 

@@ -87,11 +87,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato',
     fontWeight: 'bold',
   },
-  textFields: {
-    width: width / 1.6,
-    height: height / 21,
-    resizeMode: 'stretch'
-  },
   userText: {
     textAlign: 'center',
     marginTop: 8,
@@ -101,7 +96,7 @@ const styles = StyleSheet.create({
     borderColor: "#979797",
     borderRadius: 6,
     width: width / 1.6,
-    height: height / 21,
+    height: height / 18,
     color: 'rgba(0, 0, 0, 100)',
   },
 });
