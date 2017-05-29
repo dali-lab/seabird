@@ -143,7 +143,7 @@ export default class Root extends Component {
     return (
       <Image source={require( '../Icons/Login/gradient_background.png' )} style={styles.gradientBackground}>
         <View style={styles.mainHeader}>
-          <NavBar navigator={this.props.navigator} schoolTitle="Seabird University" rightButton="True" />
+          <NavBar navigator={this.props.navigator} schoolTitle="Dartmouth College" rightButton="True" />
         </View>
         <SearchBar
           placeholder="Search Modules"

@@ -172,7 +172,7 @@ export default class Seabird extends Component {
           }, {
             txtName: 'Sports',
             navName: 'sports',
-            imgName: require('./Icons/emergency.png'),
+            imgName: require('./Icons/sports_1.png'),
           }
         ],
       }
