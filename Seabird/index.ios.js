@@ -42,6 +42,7 @@ import SplitListView from './screens/splitListView';
 import Loading from './screens/loading'
 import Edit from './screens/editProfile'
 import Change from './screens/changePassword'
+import Web from './screens/web';
 
 require("firebase/auth");
 require("firebase/database");
@@ -238,7 +239,7 @@ export default class Seabird extends Component {
               break;
 
           case 'web':
-              return <Map navigator={navigator}/>;
+              return <Web navigator={navigator}/>;
               break;
 
           case 'events':

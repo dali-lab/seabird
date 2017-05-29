@@ -31,11 +31,11 @@ export class NavBar extends Component {
       return (
         <View style={styles.mainHeader}>
           <TouchableHighlight style={styles.userIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'settings', 'down')}>
-            <Image source={require('./../Icons/User-Menu-Male-48.png')} />
+            <Image source={require('./../Icons/user.png')} style={styles.icon}/>
           </TouchableHighlight>
           <Text style={styles.title}>{this.props.schoolTitle.toUpperCase()}</Text>
           <TouchableHighlight style={styles.settingsIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'customize', 'down')}>
-            <Image source={require('./../Icons/Settings-48.png')} />
+            <Image source={require('./../Icons/settings.png')} style={styles.icon}/>
           </TouchableHighlight>
         </View>
       );
@@ -94,10 +94,15 @@ const styles = StyleSheet.create({
     top: 10,
   },
 
+  icon: {
+    height: 20,
+    width: 20
+  },
+
   /* Style for the settings icon up in the top bar */
   settingsIcon: {
     flex: 0,
-    height: 30,
+    height: 20,
     marginRight: 15,
   },
 
