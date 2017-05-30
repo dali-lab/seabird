@@ -7,13 +7,16 @@ import {
     Dimensions,
     TouchableHighlight,
     Image,
-    TextInput
+    TextInput,
+    ScrollView
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import Database from '../firebase/database';
 
 const { height, width, } = Dimensions.get( 'window' );
 const NAVBAR_TEXT = 'Edit Profile';
+
+let _scrollView: ScrollView;
 
 export default class Edit extends Component
 {
@@ -60,6 +63,9 @@ export default class Edit extends Component
         this.navigate('root');
     };
 
+    scrollScreen = (yVal) => {
+      _scrollView.scrollTo({y: yVal});
+    }
 
     render()
     {
@@ -68,6 +74,7 @@ export default class Edit extends Component
 
                 <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
 
+                <ScrollView ref={(scrollView) => { _scrollView = scrollView; }}>
                 <View style={{marginTop: 25}}>
                     <Text style={styles.textHeader}>First Name</Text>
                     <TextInput
@@ -75,8 +82,8 @@ export default class Edit extends Component
                         ref="Name"
                         placeholder={this.state.userFirstName}
                         onChangeText={userFirstName => this.setState({ userFirstName })}
-                        selectionColor='#058e4b'>
-                    </TextInput>
+                        selectionColor='#058e4b'
+                        />
                 </View>
 
                 <View style={{marginTop: 20}}>
@@ -86,8 +93,10 @@ export default class Edit extends Component
                         ref="Last Name"
                         placeholder={this.state.userLastName}
                         onChangeText={userLastName => this.setState({ userLastName })}
-                        selectionColor='#058e4b'>
-                    </TextInput>
+                        selectionColor='#058e4b'
+                        onFocus={() => _scrollView.scrollTo({y: 30})}
+                        onEndEditing={() => _scrollView.scrollTo({y: 0})}
+                        />
                 </View>
 
                 <View style={{marginTop: 20}}>
@@ -97,8 +106,10 @@ export default class Edit extends Component
                         ref="Email"
                         placeholder={this.state.userEmail}
                         onChangeText={userEmail => this.setState({ userEmail })}
-                        selectionColor='#058e4b'>
-                    </TextInput>
+                        selectionColor='#058e4b'
+                        onFocus={() => _scrollView.scrollTo({y: 50})}
+                        onEndEditing={() => _scrollView.scrollTo({y: 0})}
+                        />
                 </View>
 
                 <View style={{marginTop: 20}}>
@@ -108,8 +119,10 @@ export default class Edit extends Component
                         ref="Year"
                         placeholder={this.state.userYear}
                         onChangeText={userYear => this.setState({ userYear })}
-                        selectionColor='#058e4b'>
-                    </TextInput>
+                        selectionColor='#058e4b'
+                        onFocus={() => _scrollView.scrollTo({y: 100})}
+                        onEndEditing={() => _scrollView.scrollTo({y: 0})}
+                        />
                 </View>
 
                 <View style={{flexDirection: 'column', alignItems: 'center', marginTop: 50}}>
@@ -127,7 +140,7 @@ export default class Edit extends Component
                         </Image>
                     </TouchableHighlight>
                 </View>
-
+                </ScrollView>
             </View>
 
         )

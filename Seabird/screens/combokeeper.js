@@ -48,21 +48,16 @@ export default class ComboKeeper extends Component {
   componentWillMount() {
     Database.listenUserCombos((value) => {
       if (value != null && value != undefined) {
-        /*var combos = JSON.parse(value)
-        this.setState({firstSlot: combos[0].firstSlot})
-        this.setState({secondSlot: combos[1].secondSlot})
-        this.setState({thirdSlot: combos[2].thirdSlot})
-        this.setState({otherServices: combos[3].otherServices})*/
       }
     })
   }
 
   saveCombos = (combos) => {
     var userCombos = [
-      {firstSlot: combos[0]},
-      {secondSlot: combos[1]},
-      {thirdSlot: combos[2]},
-      {otherServices: combos[3]},
+      { firstSlot: combos[0] },
+      { secondSlot: combos[1] },
+      { thirdSlot: combos[2] },
+      { otherServices: combos[3] },
     ]
     Database.setUserCombos(JSON.stringify(userCombos))
   }
