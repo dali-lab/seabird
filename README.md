@@ -17,12 +17,16 @@ More designs for the application can be found [here](https://drive.google.com/dr
 
 ## Architecture :boom:
 
-- React Native is used for the front-end development of this project
+- [React Native](https://facebook.github.io/react-native/docs/getting-started.html) is used for the front-end development of this project
   - A main aspect of this project is to deploy on both iOS and Android; React Native gives this project the ability to do so.
   - Make sure to `npm install` to ensure that all of your `node_modules` are all in place
-- For the backed, Firebase and Google Scripts are being used to provide the app's information.
+- For the backend, [Firebase](https://firebase.google.com/docs/web/setup) and [Google App Scripts](https://developers.google.com/apps-script/) are being used to provide the app's information.
   - Originally the information was stored in a Google Spreadsheet, which was inefficient and non-scalable, so we decided to use well-documented options that would be easy to use as more information is being used in the application.
   - To address this issue, we decided to use Google Script to move all the data from Google sheets to Firebase so the app only had to use Firebase's API rather than Google Scripts' and Google Spreadsheets' APIs.
+- This project doesn't make sure of CocoaPods, but it uses a number of node_modules installed from [npm](https://www.npmjs.com/)
+  - [Sortable Grid](https://www.npmjs.com/package/react-native-sortable-grid)
+  - [iOS Deploy](https://www.npmjs.com/package/ios-deploy)
+  - [Hr](https://www.npmjs.com/package/react-native-hr)
 - Designers have been using Figma for this project
   - Sketch is only offer to Mac Users. We decided to use Figma as an alternative so in the future the designers are able to understand a different environment that non-Mac users could use when designing.
 
@@ -76,10 +80,4 @@ We are using the [AirBnb](https://github.com/airbnb/javascript) style guide for 
 6. [Style Guide](https://drive.google.com/open?id=0BzOSaA4mjaaGRlBwZDJJTm9pR3c "Style Guide")
 
 ## Acknowledgments :mag:
-[React Native Documentation](https://facebook.github.io/react-native/docs/getting-started.html)
-
-[Firebase Documentation](https://firebase.google.com/docs/web/setup)
-
-[Google Scripts Documentation](https://developers.google.com/apps-script/)
-
-[MongoDB Documentation](https://docs.mongodb.com/)
+Thanks to Tim, John, Kathy, and Armin for either guiding the project or provide helpful knowledge!
