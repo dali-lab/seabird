@@ -121,10 +121,8 @@ export class ActionList extends Component {
                 />
             </TouchableHighlight>
           </View>
-          <View style={styles.basicFlexAround}>
             <SortSwitch title="SORT" firstOption="Category" secondOption="Alphabet"/>
             <SortSwitch title="FILTER" firstOption="All" secondOption="Starred"/>
-          </View>
         </View>
         <ScrollView>
         <Text style={styles.listContentHeader}>Food</Text>
@@ -192,8 +190,10 @@ const styles = StyleSheet.create({
 
   /* Style for the section that will hold the sorting function */
   sectionHeader: {
-    height: 120,
-    backgroundColor: 'rgba(61, 134, 68, 0.3)',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: 180,
+    backgroundColor: 'rgb(191, 222, 205)',
 
   },
 

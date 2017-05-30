@@ -23,6 +23,7 @@ import Login from './screens/login';
 import Root from './screens/root';
 import Dining from './screens/dining';
 import Events from './screens/events';
+import FilterEvents from './screens/filterEvents';
 import Settings from './screens/settings';
 import More from './screens/more';
 import Customize from './screens/customize';
@@ -245,6 +246,10 @@ export default class Seabird extends Component {
           case 'events':
             return <Events navigator={navigator}
             passEvent={this.passEvent}/>;
+            break;
+
+          case 'filterevents':
+            return <FilterEvents navigator={navigator}/>;
             break;
 
           case 'eventsdetails':

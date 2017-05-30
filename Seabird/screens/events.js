@@ -90,7 +90,7 @@ export default class Events extends Component {
     })
   }
 
-  navigate(routeName, transitionType = 'normal') {
+  navigate(routeName, transitionType = 'up') {
     this.props.navigator.push({ name: routeName, transitionType: transitionType, })
   }
 
@@ -171,12 +171,6 @@ export default class Events extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.sectionHeader}>
-        <View style={styles.basicFlexAround}>
-          <SortSwitch firstOption="All" secondOption="Favorites"/>
-        </View>
-        <TouchableHighlight underlayColor="rgb(160, 208, 181)" onPress={() => console.log('testing')} style={styles.filterButton}>
-          <Text style={styles.filterButtonText}>FILTER EVENTS</Text>
-        </TouchableHighlight>
         <SearchBar
           placeholder="Search Modules"
           searchSectionStyle={styles.searchSection}
@@ -188,6 +182,10 @@ export default class Events extends Component {
             this.setState({ searchText: text });
             this.searchModules(text);
           }}/>
+          <SortSwitch firstOption="All" secondOption="Favorites"/>
+        <TouchableHighlight underlayColor="rgb(160, 208, 181)" onPress={() => this.navigate('filterevents')} style={styles.filterButton}>
+          <Text style={styles.filterButtonText}>FILTER EVENTS</Text>
+        </TouchableHighlight>
         </View>
         <View style={styles.mainContent}>
           <ListView
@@ -208,7 +206,7 @@ const styles = StyleSheet.create({
   sectionHeader: {
     flexDirection: 'column',
     justifyContent: 'center',
-    height: 175,
+    height: 185,
     backgroundColor: 'rgb(191, 222, 205)',
   },
 

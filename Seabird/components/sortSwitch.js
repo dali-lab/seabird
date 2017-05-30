@@ -138,9 +138,10 @@ const styles = StyleSheet.create({
 
   /* Style for the text next to the switches */
   optionText: {
-    paddingTop: 5,
+    paddingTop: 8,
     fontSize: 14,
     marginRight: 10,
+    color: '#444',
     textAlign: 'center',
   },
 
@@ -164,5 +165,6 @@ const styles = StyleSheet.create({
   basicFlexAround: {
     flexDirection: 'row',
     justifyContent: 'space-around',
+    marginTop: 20,
   },
 })
