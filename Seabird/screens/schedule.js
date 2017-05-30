@@ -21,21 +21,14 @@ export default class Schedule extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.mainContent}>
-          <View style={{ flex: 1 }}>
+          <View>
             <Image
               source={require('./../Icons/General-Schedule.png')}
               style={{
-                height: (height / 90) * 70,
-                width: (width / 90) * 70,
+                height: height / 1.1,
+                width: width / 1.05,
               }}
             />
-          </View>
-          <View style={{ flex: 1 }}>
-            <TouchableHighlight>
-              <View style={styles.uploadImage}>
-                <Text style={styles.CTA}>Upload an Image</Text>
-              </View>
-            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -50,18 +43,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
-  pageContent: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-
   /* Style for the main section that will hold all the of the Schedule content */
   mainContent: {
     flex: 1,
-    height: height / 2,
     backgroundColor: 'white',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 
@@ -74,18 +61,6 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     width: width / 1.5,
     marginTop: height / 8,
-  },
-
-  /* Style for the CTA button */
-  CTA: {
-    width: width / 2,
-    height: 50,
-    borderWidth: 2,
-    borderColor: '#89E1A9',
-    borderRadius: 25,
-    paddingTop: 15,
-    color: '#89E1A9',
-    textAlign: 'center',
   },
 });
 

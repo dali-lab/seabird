@@ -197,8 +197,7 @@ const styles = StyleSheet.create({
   /* Style for the section that will hold the sorting function */
   sectionHeader: {
     height: 125,
-    backgroundColor: '#C6E4C0',
-
+    backgroundColor: 'rgb(191, 222, 205)',
   },
 
   /* Style for the section that holds the search bar */

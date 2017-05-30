@@ -65,44 +65,31 @@ export default class Emergency extends Component {
         <View style={styles.mainContent}>
         <ScrollView ref={(scrollView) => { _scrollView = scrollView; }}>
 
-        <TouchableOpacity onPress={() => Communications.phonecall('6316554692', true)}>
-            <View style={styles.holder}>
-                <Text style={styles.text}>Make phonecall</Text>
-            </View>
-        </TouchableOpacity>
-
           <Text style={styles.headerText}>Safety and Security</Text>
-
-          <Text style={styles.subheaderText}>good sam (non-emergency)</Text>
-
           <TouchableOpacity onPress={
-              () => Communications.phonecall('6316554692', true)
-            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
+              () => Communications.phonecall('6036464000', true)
+            } style={styles.callButtonGreen}><Text style={styles.phoneNumberText}>Good Sam</Text>
           </TouchableOpacity>
 
-          <Text style={styles.subheaderText}>emergency</Text>
           <TouchableOpacity onPress={
-              () => Communications.phonecall('6316554692', true)
-            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
+              () => Communications.phonecall('6036464000', true)
+            } style={styles.callButtonRed}><Text style={styles.phoneNumberText}>Emergency</Text>
           </TouchableOpacity>
 
           <Text style={styles.headerText}>Dicks House</Text>
-          <Text style={styles.subheaderText}>appointments</Text>
           <TouchableOpacity onPress={
-              () => Communications.phonecall('6316554692', true)
-            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
+              () => Communications.phonecall('6036464000', true)
+            } style={styles.callButtonGreen}><Text style={styles.phoneNumberText}>Appointments</Text>
           </TouchableOpacity>
 
-          <Text style={styles.subheaderText}>counseling</Text>
           <TouchableOpacity onPress={
-              () => Communications.phonecall('6316554692', true)
-            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
+              () => Communications.phonecall('6036464000', true)
+            } style={styles.callButtonGreen}><Text style={styles.phoneNumberText}>Counseling</Text>
           </TouchableOpacity>
 
-          <Text style={styles.headerText}>Residential Life</Text>
           <TouchableOpacity onPress={
-              () => Communications.phonecall('6316554692', true)
-            }><Text style={styles.phoneNumberText}>(603) 646-4000</Text>
+              () => Communications.phonecall('6036464000', true)
+            } style={styles.callButtonGreen}><Text style={styles.phoneNumberText}>Res Life</Text>
           </TouchableOpacity>
 
         </ScrollView>
@@ -129,21 +116,46 @@ const styles = StyleSheet.create({
   /* Style for the header phrases */
   headerText: {
     paddingLeft: width / 27,
-    fontSize: 18,
-    fontFamily: 'Avenir Next',
-    textAlign: 'left'
+    fontSize: 22,
+    fontFamily: 'Lato',
+    textAlign: 'left',
+    color: 'rgba(7, 128, 75, 1)',
+    marginTop: 10,
   },
 
   /* Style for the subheader phrases */
   subheaderText: {
     paddingLeft: width / 18,
-    fontSize: 14,
-    fontFamily: 'Avenir Next',
+    fontSize: 18,
+    fontFamily: 'Lato',
     textAlign: 'left'
+  },
+
+  /* Style for the call button that is green */
+  callButtonGreen: {
+    backgroundColor: 'rgba(7, 128, 75, 1)',
+    height: 40,
+    width: width / 2,
+    alignSelf: 'center',
+    marginTop: 15,
+  },
+
+  /* Style for the call button that is red */
+  callButtonRed: {
+    backgroundColor: 'rgba(213, 35, 35, 1)',
+    height: 40,
+    width: width / 2,
+    alignSelf: 'center',
+    marginTop: 15,
   },
 
   /* Style for the phone numbers TouchableOpacitysr */
   phoneNumberText: {
+    color: 'white',
+    fontFamily: 'Lato',
+    marginTop: 7,
+    fontSize: 16,
+    textAlign: 'center',
   },
 
   /* Style for the MAIN section with all the CONTENT */
