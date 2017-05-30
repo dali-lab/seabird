@@ -9,6 +9,7 @@ import {
   TouchableHighlight,
   TextInput,
   Modal,
+  ScrollView,
 } from 'react-native';
 import Database from '../firebase/database';
 
@@ -17,6 +18,8 @@ const firebase = require('firebase/app');
 
 require('firebase/auth');
 require('firebase/database');
+
+let _scrollView: ScrollView;
 
 export default class Root extends Component {
 
@@ -55,6 +58,10 @@ export default class Root extends Component {
     this.props.navigator.push({ name: routeName, transitionType });
   }
 
+  scrollScreen = (yVal) => {
+    _scrollView.scrollTo({y: yVal});
+  }
+
   render() {
       return (
           <View>
@@ -85,6 +92,7 @@ export default class Root extends Component {
               </View>
             </Modal>
 
+            <ScrollView ref={(scrollView) => { _scrollView = scrollView; }}>
               {/* Main background image */}
             <Image
                 source={require('../Icons/Login/gradient_background.png')}
@@ -119,6 +127,8 @@ export default class Root extends Component {
                       onSubmitEditing={(event) => {
                           this.refs.Password.focus();
                       }}
+                      onFocus={() => _scrollView.scrollTo({y: 80})}
+                      onEndEditing={() => _scrollView.scrollTo({y: 0})}
                   />
                 </View>
 
@@ -143,6 +153,8 @@ export default class Root extends Component {
                       onSubmitEditing={(event) => {
                           this.login(this.state.username, this.state.password);
                       }}
+                      onFocus={() => _scrollView.scrollTo({y: 100})}
+                      onEndEditing={() => _scrollView.scrollTo({y: 0})}
                   />
                 </View>
 
@@ -175,6 +187,7 @@ export default class Root extends Component {
               </View>
               </View>
             </Image>
+            </ScrollView>
           </View>
       );
   }
