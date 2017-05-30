@@ -80,7 +80,6 @@ export default class Customize extends Component {
 
   readPortals = () => {
     Database.listenUserHomeOrder((value) => {
-      console.log('component will mount / listen home order');
       let portals = JSON.parse(value);
       this.setState({ activePortals: portals})
       let activePortalNames = [];
@@ -203,15 +202,6 @@ export default class Customize extends Component {
   }
 
   secondSwitchAction = () => {
-    // console.log(this.state.activePortals)
-    console.log(this.state);
-    // let allPortals = [];
-    // for (i in this.state.allPortals) {
-    //   allPortals.push({
-    //     name: i,
-    //     checked: this.state.allPortals[i]
-    //   });
-    // }
     let allPortalsSorted = this.state.allPortals;
     allPortalsSorted.sort(function(a, b){
       if(a.txtName < b.txtName) return -1;
@@ -374,14 +364,6 @@ export default class Customize extends Component {
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} type="down" />
         <View style={styles.mainContent}>
           <ButtonSwitches firstOption="My Portals" secondOption="All Portals" firstAction={this.firstSwitchAction.bind(this)} secondAction={this.secondSwitchAction.bind(this)}/>
-          {/*<View style={styles.basicFlexAround}>
-            <SortSwitch title="PORTALS" firstOption="Rearrange" secondOption="Enable"/>
-=======
-          <View style={styles.basicFlexAround}>
-          <ButtonSwitches firstOption="Rearrange" secondOption="Delete" secondAction={this.deletePortalsButton.bind(this)} />
->>>>>>> 13dfe6630d1dcc7fdd5a6874e526475bfd5f0b7c
-          </View>
-          {this.deletePortalsButton()}*/}
           {this.displayItems()}
         </View>
       </View>

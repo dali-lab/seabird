@@ -131,10 +131,10 @@ export default class Seabird extends Component {
             txtName: 'Events',
             navName: 'events',
             imgName: require('./Icons/calendar.png'),
-          // }, {
-          //   txtName: 'WebView',
-          //   navName: 'web',
-          //   imgName: require('./Icons/web.png'),
+          }, {
+            txtName: 'News',
+            navName: 'news',
+            imgName: require('./Icons/web.png'),
           }, {
             txtName: 'Campus Map',
             navName: 'map',
@@ -143,14 +143,14 @@ export default class Seabird extends Component {
             txtName: 'Schedule',
             navName: 'schedule',
             imgName: require('./Icons/schedule-01.png'),
-          // }, {
-          //   txtName: 'WebView',
-          //   navName: 'web',
-          //   imgName: require('./Icons/web.png'),
-          // }, {
-          //   txtName: 'Green Print',
-          //   navName: 'tutorial',
-          //   imgName: require('./Icons/printer.png'),
+          }, {
+            txtName: 'School Facts',
+            navName: 'facts',
+            imgName: require('./Icons/web.png'),
+          }, {
+             txtName: 'Research',
+             navName: 'research',
+             imgName: require('./Icons/web.png'),
           }, {
             txtName: 'Food',
             navName: 'food',
@@ -239,8 +239,22 @@ export default class Seabird extends Component {
               return <Dining navigator={navigator}/>;
               break;
 
-          case 'web':
-              return <Web navigator={navigator}/>;
+          case 'news':
+              return <Web navigator={navigator}
+              url="http://www.thedartmouth.com"
+              title="News"/>;
+              break;
+
+          case 'facts':
+              return <Web navigator={navigator}
+              url="http://dartmouth.edu/dartmouth-glance"
+              title="Dartmouth Facts"/>;
+              break;
+
+          case 'research':
+              return <Web navigator={navigator}
+              url="http://dartmouth.edu/research"
+              title="Research"/>;
               break;
 
           case 'events':

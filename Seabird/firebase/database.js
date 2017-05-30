@@ -32,7 +32,6 @@ class Database {
     const path = `/content/${portalName}`;
 
     Firebase.getDbRef(path).once('value').then((snapshot) => {
-      // console.log(snapshot.val());
       callbackFunc(snapshot.val());
     });
 
