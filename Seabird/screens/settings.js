@@ -61,11 +61,11 @@ export default class Settings extends Component {
   render()
   {
     return (
-    <View>
+    <View style={{width}}>
 
       <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT}/>
 
-      <View style={{marginTop: 20}}>
+      <View style={{marginTop: 20, width}}>
 
         <Text style={styles.textHeader}>Profile</Text>
 
@@ -80,10 +80,10 @@ export default class Settings extends Component {
             <TouchableHighlight
                 underlayColor="transparent"
                 onPress={() => this.navigate('edit')}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between', width}}>
                 <Text style={styles.textFields}>Edit Profile</Text>
                 <Image
-                    style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 233.5}}
+                    style={{marginRight: 10, height: 20, width: 20, resizeMode: 'contain', alignSelf: 'center'}}
                     source={require('../Icons/Settings/forward_arrow.png')}
                 />
               </View>
@@ -96,10 +96,10 @@ export default class Settings extends Component {
             <TouchableHighlight
                 underlayColor="transparent"
                 onPress={() => this.logoutUser()}>
-              <View style={{flexDirection: 'row'}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width}}>
                 <Text style={styles.textFields}>Logout</Text>
                 <Image
-                    style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 261}}
+                    style={{marginRight: 10, height: 20, width: 20, resizeMode: 'contain', alignSelf: 'center'}}
                     source={require('../Icons/Settings/forward_arrow.png')}
                 />
               </View>
@@ -119,10 +119,10 @@ export default class Settings extends Component {
           <TouchableHighlight
               underlayColor="transparent"
               onPress={() => this.navigate('change')}>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width}}>
               <Text style={styles.textFields}>Change Password</Text>
               <Image
-                  style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 190}}
+                  style={{marginRight: 10, height: 20, width: 20, resizeMode: 'contain', alignSelf: 'center'}}
                   source={require('../Icons/Settings/forward_arrow.png')}
               />
             </View>
@@ -140,10 +140,10 @@ export default class Settings extends Component {
         <View style={{backgroundColor: 'rgba(241, 241, 241, 1)', flexDirection: 'row'}}>
           <TouchableHighlight
               underlayColor="transparent">
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width}}>
               <Text style={styles.textFields}>About</Text>
               <Image
-                  style={{marginTop: 13, height: 20, width: 20, resizeMode: 'contain', marginLeft: 266}}
+                  style={{marginRight: 10, height: 20, width: 20, resizeMode: 'contain', alignSelf: 'center'}}
                   source={require('../Icons/Settings/forward_arrow.png')}
               />
             </View>

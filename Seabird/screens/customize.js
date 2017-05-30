@@ -29,13 +29,18 @@ let MODULE_TEXT_PADDING = 0;
 let TILE_WIDTH = width / 3.3;
 let TILE_HEIGHT = height / 6;
 let TILE_COLOR = '#188E65';
-
+// height of 6 tiles
+let HEIGHT_OF_6TILES = TILE_HEIGHT*4.7;
 
 if (PixelRatio.get() <= 2) {
   MODULE_FONT_SIZE = 15;
   MODULE_TEXT_PADDING = -2;
   TILE_WIDTH = width / 3.6;
   TILE_HEIGHT = height / 6.5;
+}
+
+if (PixelRatio.get() >= 3) {
+  HEIGHT_OF_6TILES = TILE_HEIGHT*4.8;
 }
 
 var firebase = require("firebase/app");
@@ -46,9 +51,6 @@ require("firebase/database");
 // NOTE: these should be percentages of screen height
 let SCROLL_UP_Y = 100;
 let SCROLL_DOWN_Y = 550;
-
-// height of 6 tiles
-let HEIGHT_OF_6TILES = TILE_HEIGHT*5.1; //560;
 
 // used in the setInterval timer to track position of block being dragged
 let dragTracker = null;
@@ -156,11 +158,9 @@ export default class Customize extends Component {
     if (this.refs.SortableGrid.dragPosition) {
       let blockY = this.refs.SortableGrid.dragPosition.y;
       if (blockY < SCROLL_UP_Y) {
-        console.log('scrolling screen up');
         this.scrollScreen(-20);
       }
       else if (blockY > SCROLL_DOWN_Y) {
-        console.log('scrolling screen down');
         this.scrollScreen(20);
       }
     }
@@ -379,13 +379,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  /* Styles the back button */
-  backIcon: {
-    flex: 0,
-    height: 20,
-    resizeMode: 'center',
-  },
-
   /* Style for the main section that will hold all the of the DDS content */
   mainContent: {
     flexDirection: 'column',
@@ -393,14 +386,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width,
     height: height / 1.1,
-  },
-
-  /* Style for the section that holds the swipe headers */
-  contentHeader: {
-    width: 325,
-    height: 125,
-    marginTop: 20,
-    backgroundColor: 'red',
   },
 
   /* Style for the intro phrase */
@@ -416,59 +401,6 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 0,
     marginBottom: 20,
-  },
-
-  /* Style for the current meal swipe */
-  settingsTitle: {
-    fontSize: 16,
-    fontFamily: 'System',
-    fontWeight: '300',
-    textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 30,
-  },
-
-  contentInformation: {
-    width,
-  },
-
-  settingsList: {
-    padding: 25,
-    backgroundColor: '#FBFBFB',
-    borderBottomWidth: 1,
-    borderColor: '#eee',
-    width,
-  },
-
-  listItem: {
-    fontSize: 22,
-    fontFamily: 'System',
-    fontWeight: '400',
-    borderBottomWidth: 1,
-    borderBottomColor: 'black',
-  },
-
-  /* Style for the divider in the list */
-  divider: {
-    height: 1,
-    backgroundColor: '#bbb',
-  },
-
-  /* Style for the options for the customized tiles */
-  option: {
-    justifyContent: 'center',
-    borderRadius: 5,
-    width: width / 2.5,
-    height: height / 4.5,
-    backgroundColor: 'white',
-    backgroundColor: '#ddd',
-    alignSelf: 'center',
-  },
-
-  /* Style for the options' text */
-  optionText: {
-    fontSize: 12,
-    textAlign: 'center',
   },
 
   /* Style for the floating view to hold the dividers text */
@@ -493,7 +425,8 @@ const styles = StyleSheet.create({
 
   /* Style for the Sortable Grid */
   grid: {
-    backgroundColor: 'white',
+    marginTop: -width / 11,
+    backgroundColor: '#fff',
   },
 
   /* Style for the tiles for the home screen */

@@ -104,7 +104,7 @@ export class ActionList extends Component {
               style={styles.searchSectionInput}
               placeholder="Search Modules"
               placeholderTextColor='rgba(255, 255, 255, 0.5)'
-              selectionColor="white"
+              selectionColor="#fff"
               onChangeText={(text) => {
                 this.setState({ searchText: text });
                 this.searchModules(text);
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'transparent',
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: '#fff',
     borderRadius: 20,
   },
 
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   searchSectionInput: {
     width: width / 1.6,
     height: 40,
-    color: 'white',
+    color: '#fff',
     paddingLeft: 15,
     paddingRight: 10,
   },
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '400',
     fontFamily: 'Verdana',
-    color: 'white',
+    color: '#fff',
   },
 
   /* Style for the section's title for each item - red */

@@ -54,7 +54,6 @@ export class PageList extends Component {
   }
 
   renderRow = (rowData, sectionID, rowID) => {
-    console.log('checking: ' + this.props.modules[rowID].txtName);
     return (
       <Tile
         navigator={this.props.navigator}

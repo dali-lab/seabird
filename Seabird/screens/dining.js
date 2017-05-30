@@ -9,6 +9,7 @@ import {
   Dimensions,
   ListView,
   Animated,
+  PixelRatio
 } from 'react-native';
 import { NavBar } from './../components/navBar';
 import { queryDB } from './../api';
@@ -24,6 +25,16 @@ const NAVBAR_TEXT = 'Dining';
 
 let diningLocations = [];
 let currentHour = new Date().getHours();
+
+let TITLE_SIZE = 18
+let LOCATION_SIZE = 16
+let TIME_SIZE = 13
+
+if (PixelRatio.get() <= 2) {
+  TITLE_SIZ = 16
+  LOCATION_SIZE = 14
+  TIME_SIZE = 11
+}
 
 export default class Dining extends Component {
 
@@ -67,7 +78,7 @@ export default class Dining extends Component {
   renderRow = (rowData) => {
     if (7 <= currentHour && currentHour < 11) {
       return (
-        <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
+        <TouchableHighlight underlayColor='#ddd' style={{height: height / 5.55}}>
           <View style={styles.section}>
             <View style={styles.locationTextSection}>
             <Text style={styles.title}>{rowData.title}</Text>
@@ -88,7 +99,7 @@ export default class Dining extends Component {
       )
     } else if (11 <= currentHour && currentHour < 16) {
       return (
-        <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
+        <TouchableHighlight underlayColor='#ddd' style={{height: height / 5.55}}>
           <View style={styles.section}>
             <View style={styles.locationTextSection}>
             <Text style={styles.title}>{rowData.title}</Text>
@@ -109,7 +120,7 @@ export default class Dining extends Component {
       )
     } else if (16 <= currentHour && currentHour < 21) {
       return (
-        <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
+        <TouchableHighlight underlayColor='#ddd' style={{height: height / 5.55}}>
           <View style={styles.section}>
             <View style={styles.locationTextSection}>
             <Text style={styles.title}>{rowData.title}</Text>
@@ -130,7 +141,7 @@ export default class Dining extends Component {
       )
     } else {
       return (
-        <TouchableHighlight underlayColor='#ddd' style={{height: 120}}>
+        <TouchableHighlight underlayColor='#ddd' style={{height: height / 5.55}}>
           <View style={styles.section}>
             <View style={styles.locationTextSection}>
             <Text style={styles.title}>{rowData.title}</Text>
@@ -275,7 +286,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: 'transparent',
-    height: 200,
+    height: height / 2,
   },
 
   /* Style for the backdrop for the text */
