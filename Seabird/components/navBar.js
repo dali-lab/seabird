@@ -31,7 +31,7 @@ export class NavBar extends Component {
       return (
         <View style={styles.mainHeader}>
           <TouchableHighlight style={styles.userIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'settings', 'down')}>
-            <Image source={require('./../Icons/user.png')} style={styles.icon}/>
+            <Image source={require('./../Icons/user.png')} style={styles.firstIcon}/>
           </TouchableHighlight>
           <Text style={styles.title}>{this.props.schoolTitle.toUpperCase()}</Text>
           <TouchableHighlight style={styles.settingsIcon} underlayColor="transparent" onPress={this.navigate.bind(this, 'customize', 'down')}>
@@ -94,15 +94,20 @@ const styles = StyleSheet.create({
     top: 10,
   },
 
-  icon: {
+  firstIcon: {
     height: 20,
-    width: 20
+    width: 20,
+  },
+
+  icon: {
+    height: 25,
+    width: 25
   },
 
   /* Style for the settings icon up in the top bar */
   settingsIcon: {
     flex: 0,
-    height: 20,
+    height: 30,
     marginRight: 15,
   },
 

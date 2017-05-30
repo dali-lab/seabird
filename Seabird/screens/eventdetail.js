@@ -45,34 +45,22 @@ export default class EventDetail extends Component {
           <View style={styles.firstSection}>
             <Text style={styles.eventTitle}>{this.props.currentEvent.event}</Text>
             <Text style={styles.eventLocation}>{this.props.currentEvent.location}</Text>
-            <Image source={require('./../Icons/lunch.jpg')} style={styles.eventImage}/>
           </View>
           <View style={styles.secondSection}>
             <View style={styles.subLeftSection}>
-              <View style={{height: 50, width: 50, backgroundColor: 'rgba(59, 116, 79, 0.43)', borderRadius: 25, flexDirection: 'column', justifyContent: 'center', marginLeft: 5, marginRight: 15}}>
-                <Text style={{fontSize: 22, fontWeight: 'bold', textAlign: 'center'}}>{Moment(this.props.currentEvent.day).format('d')}</Text>
+              <View style={{height: 50, width: 50, backgroundColor: 'rgba(223, 238, 230, 1)', borderRadius: 25, flexDirection: 'column', justifyContent: 'center', marginLeft: 5, marginRight: 15}}>
+                <Text style={{fontSize: 24, fontWeight: 'bold', textAlign: 'center', width: 30, color: 'rgb(79, 79, 79)', alignSelf: 'center'}}>{Moment(this.props.currentEvent.day).format('d')}</Text>
                 </View>
             </View>
             <View style={styles.subRightSection}>
-              <View style={{flexDirection: 'row', justifyContent: 'space-between', width: width / 1.6}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between', width: width / 1.5}}>
                 <Text style={styles.eventDate}>{Moment(this.props.currentEvent.day).format('MMMM, do YYYY')}</Text>
-                <Text style={styles.eventHour}>{Moment(this.props.currentEvent.startTime).format('h:mm a')} </Text>
+                <Text style={styles.eventHour}>{Moment(this.props.currentEvent.startTime).format('h:mm a')}</Text>
               </View>
               <Text style={styles.eventDay}>{Moment(this.props.currentEvent.day).format('dddd')}</Text>
             </View>
           </View>
           </View>
-          {/*}<View style={{ flex: 7 }}>
-            <Text style={styles.eventDate}>{Moment(this.props.currentEvent.day).format('dddd, MMMM do')}</Text>
-          </View>
-          <View style={{ flex: 2, flexDirection: 'row', alignSelf: 'center' }}>
-            <Text style={styles.eventHour}>{Moment(this.props.currentEvent.startTime).format('h:mm A')} </Text>
-            <Text style={styles.eventHour} />
-            <Text style={styles.eventTitle}>{this.props.currentEvent.event}</Text>
-          </View>
-          <View style={{ flex: 30 }}>
-            <Text style={styles.eventLocation}>{this.props.currentEvent.location}</Text>
-          </View>*/}
         </View>
       </View>
     );
@@ -103,13 +91,15 @@ const styles = StyleSheet.create({
     height: 400,
     paddingTop: 10,
     paddingLeft: 10,
+    borderRadius: 3,
+    marginTop: 5,
   },
 
   /* Style for the first section in the main section */
   firstSection: {
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
-    height: 130,
+    height: 60,
     width: width / 1.03,
     alignSelf: 'center',
   },
@@ -171,18 +161,18 @@ const styles = StyleSheet.create({
 
   /* Style for the event's date */
   eventDate: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Lato',
     fontWeight: '400',
-    color: '#888',
+    color: '#5d5d5c',
   },
 
   /* Style for the event's day */
   eventDay: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Lato',
     fontWeight: '400',
-    color: '#777',
+    color: '#5d5d5c',
   },
 
   /* Style for the event's time */
@@ -190,27 +180,27 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato',
     fontSize: 14,
     fontWeight: '400',
-    color: '#777',
+    color: '#5d5d5c',
     textAlign: 'right',
   },
 
   /* Style for the event's title */
   eventTitle: {
     fontFamily: 'Lato',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '400',
-    color: '#111',
+    color: '#5d5d5c',
     marginLeft: 10,
-    width:  width / 1.7,
+    width:  width / 1.2,
   },
 
   /* Style for the event's location */
   eventLocation: {
     fontFamily: 'Lato',
-    fontSize: 16,
+    fontSize: 14,
     fontStyle: 'italic',
     fontWeight: '400',
-    color: '#ccc',
+    color: 'rgba(93, 93, 92, 0.6)',
     marginLeft: 20,
     width: width / 1.7,
   },

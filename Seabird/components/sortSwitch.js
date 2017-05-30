@@ -70,11 +70,11 @@ export class SortSwitch extends Component {
           <View style={styles.basicFlexBetweenOptions}>
             <TouchableHighlight underlayColor="transparent" style={this.state.firstPressStatus ? styles.selectedOption : styles.deselectedOption}
             onPress={this.firstToggleButton.bind(this)}>
-              <Text style={this.state.firstPressStatus  ? styles.selectedOptionText : styles.deselectedOptionText}>{this.props.firstOption}</Text>
+              <Text style={this.state.firstPressStatus  ? styles.selectedOptionText : styles.deselectedOptionText}>{this.props.firstOption.toUpperCase()}</Text>
             </TouchableHighlight>
             <TouchableHighlight underlayColor="transparent" style={this.state.secondPressStatus ? styles.selectedOption : styles.deselectedOption}
             onPress={this.secondToggleButton.bind(this)}>
-              <Text style={this.state.secondPressStatus ? styles.selectedOptionText : styles.deselectedOptionText}>{this.props.secondOption}</Text>
+              <Text style={this.state.secondPressStatus ? styles.selectedOptionText : styles.deselectedOptionText}>{this.props.secondOption.toUpperCase()}</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -101,34 +101,39 @@ const styles = StyleSheet.create({
 
   /* Style for the selected option */
   selectedOption: {
-    height: 25,
-    width: width / 6.5,
-    backgroundColor: 'rgb(92, 201, 140)',
+    height: 30,
+    width: width / 3.4,
+    backgroundColor: 'rgba(255, 255, 255, 1)',
+    borderRadius: 17,
   },
 
   /* Style for the deselected option */
   deselectedOption: {
-    height: 20,
-    width: width / 6.3,
-    backgroundColor: 'transparent',
+    height: 30,
+    width: width / 3.4,
+    backgroundColor: 'rgba(191, 222, 205, 0.6)',
+    borderRadius: 17,
   },
 
   /* Style for the selected option text */
   selectedOptionText: {
-    paddingTop: 5,
-    fontSize: 11,
+    paddingTop: 6,
+    fontSize: 14,
     textAlign: 'center',
+    alignSelf: 'center',
     color: '#444',
     fontFamily: 'Lato',
+    fontWeight: '400',
   },
 
   /* Style for the deselected option text */
   deselectedOptionText: {
-    paddingTop: 5,
-    fontSize: 11,
+    paddingTop: 6,
+    fontSize: 14,
     textAlign: 'center',
     color: '#444',
     fontFamily: 'Lato',
+    fontWeight: '400',
   },
 
   /* Style for the text next to the switches */
@@ -149,15 +154,15 @@ const styles = StyleSheet.create({
   basicFlexBetweenOptions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderRadius: 3,
-    borderWidth: 1,
-    borderColor: '#333',
+    alignItems: 'center',
+    borderRadius: 17,
+    borderWidth: 2,
+    borderColor: '#fff',
   },
 
   /* Basic flex for options - around */
   basicFlexAround: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 20,
   },
 })

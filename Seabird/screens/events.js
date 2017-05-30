@@ -144,7 +144,7 @@ export default class Events extends Component {
   // Form dates to distinguish from events
   renderRow = (rowData, sectionID, rowID) => {
     return (
-      <TouchableHighlight key={rowData.key} underlayColor="transparent" onPress={() => this.navigatePush('eventsdetails', rowData)} style={{borderBottomWidth: 1, borderBottomColor: "#ccc"}}>
+      <TouchableHighlight key={rowData.key} underlayColor="transparent" onPress={() => this.navigatePush('eventsdetails', rowData)} style={{borderBottomWidth: 1, borderBottomColor: "#f2f2f2"}}>
       <View style={styles.listSection}>
       <View style={styles.listSectionTime}>
         <Text style={styles.listSectionTimeText}>{Moment(rowData.startTime).format('h:mm a')}</Text>
@@ -171,6 +171,12 @@ export default class Events extends Component {
       <View style={styles.pageContent}>
         <NavBar navigator={this.props.navigator} text={NAVBAR_TEXT} />
         <View style={styles.sectionHeader}>
+        <View style={styles.basicFlexAround}>
+          <SortSwitch firstOption="All" secondOption="Favorites"/>
+        </View>
+        <TouchableHighlight underlayColor="rgb(160, 208, 181)" onPress={() => console.log('testing')} style={styles.filterButton}>
+          <Text style={styles.filterButtonText}>FILTER EVENTS</Text>
+        </TouchableHighlight>
         <SearchBar
           placeholder="Search Modules"
           searchSectionStyle={styles.searchSection}
@@ -182,10 +188,6 @@ export default class Events extends Component {
             this.setState({ searchText: text });
             this.searchModules(text);
           }}/>
-          <View style={styles.basicFlexAround}>
-            <SortSwitch title="SORT" firstOption="Category" secondOption="Alphabet"/>
-            <SortSwitch title="FILTER" firstOption="All" secondOption="Starred"/>
-          </View>
         </View>
         <View style={styles.mainContent}>
           <ListView
@@ -204,9 +206,10 @@ export default class Events extends Component {
 const styles = StyleSheet.create({
   /* Style for the section that will hold the sorting function */
   sectionHeader: {
-    height: 125,
-    backgroundColor: '#C6E4C0',
-
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: 175,
+    backgroundColor: 'rgb(191, 222, 205)',
   },
 
   /* Style for the section that holds the search bar */
@@ -250,6 +253,27 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
 
+  /* Style for the filter events button */
+  filterButton: {
+    width: width / 1.6,
+    height: 33,
+    borderRadius: 3,
+    backgroundColor: 'rgb(146, 193, 167)',
+    alignSelf: 'center',
+    right: -4,
+    marginTop: 14,
+  },
+
+  /* Style for the filter events button's text */
+  filterButtonText: {
+    fontFamily: 'Lato',
+    fontSize: 15,
+    color: '#444',
+    textAlign: 'center',
+    alignSelf: 'center',
+    marginTop: 5,
+  },
+
   pageContent: {
     flex: 1,
     backgroundColor: 'white',
@@ -285,26 +309,6 @@ const styles = StyleSheet.create({
     letterSpacing: -0.56,
   },
 
-  /* Style for the menu option */
-  CTAText: {
-    fontSize: 16,
-    fontFamily: 'System',
-    textAlign: 'center',
-    marginTop: 12,
-    color: '#89E1A9',
-  },
-
-  /* Style for the Call To Action button */
-  CTA: {
-    width: width / 2,
-    height: 50,
-    borderWidth: 2,
-    borderColor: '#89E1A9',
-    borderRadius: 25,
-    marginTop: 20,
-    alignSelf: 'center',
-  },
-
   /* Style for the entire list view */
   listStyle: {
     backgroundColor: '#fff',
@@ -323,7 +327,7 @@ const styles = StyleSheet.create({
   listHeaderText: {
     fontFamily: 'Lato',
     fontSize: 14,
-    fontWeight: 'bold',
+    textAlign: 'center',
     paddingLeft: 10,
   },
 
