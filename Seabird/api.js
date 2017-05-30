@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 
 // Gets data from DB.
 export function queryDB(child) {
@@ -8,12 +8,9 @@ export function queryDB(child) {
       fetch(`https://sbackend-25143.firebaseio.com/${child}.json`)
       .then(response => response.json())
       .then((responseJson) => {
-        // console.log('responseJson');
-        // console.log(responseJson);
         resolve(ddsLocations);
       })
       .catch((error) => {
-        // console.log(error);
         reject(error);
       });
     },

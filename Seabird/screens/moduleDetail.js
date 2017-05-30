@@ -38,7 +38,6 @@ export default class ModuleDetails extends Component {
   componentWillMount() {
     /* Going to the path /content/moduleDirectories/academics/ to get all the modules */
     Database.listenContent("moduleDirectories/academics", (value) => {
-      console.log(value);
         this.setState({ dataSource: new ListView.DataSource({
           rowHasChanged: (r1, r2) => true,
         }).cloneWithRows(value),

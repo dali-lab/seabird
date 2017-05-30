@@ -114,7 +114,6 @@ export class ActionList extends Component {
               ref="SearchBar"
               underlayColor="transparent"
               style={styles.searchSectionButton}
-              onPress={() => console.log('Pressed search')}
             >
               <Image
                 style={styles.searchIcon} source={require('./../Icons/search_icon.png')}

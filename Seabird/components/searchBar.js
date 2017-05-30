@@ -31,7 +31,6 @@ export class SearchBar extends Component {
           ref="SearchBar"
           underlayColor="transparent"
           style={this.props.searchButtonStyle}
-          onPress={() => console.log('Pressed search')}
         >
           <Image
             style={this.props.searchIconStyle} source={require('./../Icons/search_icon.png')}

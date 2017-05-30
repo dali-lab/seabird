@@ -26,7 +26,6 @@ export default class Web extends Component {
       bounceValue: new Animated.Value(0),
       portalContent: null,
     };
-    // this.portalContent = Database.getPortalContent('portal1');
   }
 
   componentDidMount() {
@@ -60,7 +59,6 @@ export default class Web extends Component {
     // once the database has given us the contents of this portal...
     url = this.state.portalContent.url;
     navbarText = this.state.portalContent.title;
-    console.log(this.props.url);
     return (
       <View style={styles.container}>
         <NavBar navigator={this.props.navigator} text={this.props.title} />

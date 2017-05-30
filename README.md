@@ -6,21 +6,25 @@ This specific application is for the Dartmouth App. This app is being built in R
 
 The following images are the most recent implementations and designs for the project:
 
-![Implemented Design 1](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/home-screen.png "Home Screen")
-![Implemented Design 2](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/news-screen.png "News Screen")
-![Implemented Design 3](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/dds-screen.png "DDS Screen")
+![Implemented Design 1](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/login.png "Login Screen")
+![Implemented Design 2](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/user_type.png "User Type Screen")
+![Implemented Design 3](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/home.png "Home Screen")
+![Implemented Design 4](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/settings.png "News Screen")
+![Implemented Design 5](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/customize.png "Dining Screen")
+![Implemented Design 6](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/events.png "Events Screen")
 
-More designs for the application can be found [here](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots)
+More designs for the application can be found [here](https://drive.google.com/drive/u/0/folders/0B3gzFbdZqpokSnNncDBQYVJMODg)
 
 ## Architecture :boom:
 
 - React Native is used for the front-end development of this project
   - A main aspect of this project is to deploy on both iOS and Android; React Native gives this project the ability to do so.
   - Make sure to `npm install` to ensure that all of your `node_modules` are all in place
-- For the backend, Express, Mongoose, and MongoDB are all being used to store the user's information, keep track of module details and links, and also track the general content and designs for each page.
+- For the backed, Firebase and Google Scripts are being used to provide the app's information.
   - Originally the information was stored in a Google Spreadsheet, which was inefficient and non-scalable, so we decided to use well-documented options that would be easy to use as more information is being used in the application.
-- Designers have been using Sketch primarily for this project
-  - Sketch gives the designers the ability to share designs quickly and easily. They are able to export CSS attributes, making it easier for the developers when implementing the designs. Sketch also makes the task of presenting the latest mockups a lot seamless for a team.
+  - To address this issue, we decided to use Google Script to move all the data from Google sheets to Firebase so the app only had to use Firebase's API rather than Google Scripts' and Google Spreadsheets' APIs.
+- Designers have been using Figma for this project
+  - Sketch is only offer to Mac Users. We decided to use Figma as an alternative so in the future the designers are able to understand a different environment that non-Mac users could use when designing.
 
 ## Setup :wrench:
 
@@ -35,7 +39,7 @@ More designs for the application can be found [here](https://github.com/dali-lab
 
 ## Style Guide
 
-Using the [AirBnb](https://github.com/airbnb/javascript) style guide for Javascript for this project
+We are using the [AirBnb](https://github.com/airbnb/javascript) style guide for this JSX project
 
 ## Authors :pencil:
 
@@ -73,5 +77,9 @@ Using the [AirBnb](https://github.com/airbnb/javascript) style guide for Javascr
 
 ## Acknowledgments :mag:
 [React Native Documentation](https://facebook.github.io/react-native/docs/getting-started.html)
+
+[Firebase Documentation](https://firebase.google.com/docs/web/setup)
+
+[Google Scripts Documentation](https://developers.google.com/apps-script/)
 
 [MongoDB Documentation](https://docs.mongodb.com/)
