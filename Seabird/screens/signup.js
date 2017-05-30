@@ -9,229 +9,240 @@ import {
     TouchableHighlight,
     TextInput,
     Modal,
+    ScrollView
 } from 'react-native';
 import Database from '../firebase/database';
 
 const { height, width } = Dimensions.get('window');
 const firebase = require('firebase/app');
-
 require('firebase/auth');
 require('firebase/database');
 
+let _scrollView: ScrollView;
+
 export default class Root extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
-            password: '',
-            name: '',
-            year: '',
-            modalVisible: false,
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+        username: '',
+        password: '',
+        name: '',
+        year: '',
+        modalVisible: false,
+    };
+  }
 
-    setModalVisible(visible) {
-        this.setState({ modalVisible: visible });
-    }
+  setModalVisible(visible) {
+      this.setState({ modalVisible: visible });
+  }
 
-   async signup(email, password) {
-        if (email !== '' && password !== '') {
-            try {
-                await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-                    // Handle Errors here.
-                    let errorCode = error.code;
-                    let errorMessage = error.message;
-                    console.log(errorCode + ": " + errorMessage)
-                });
-                firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-                    let errorCode = error.code;
-                    let errorMessage = errorMessage;
-                    console.log(errorCode, errorMessage);
-                });
-                await Database.setUserFirstName(this.state.name);
-                await Database.setUserYear(this.state.year);
-                await Database.setUserType(this.props.userType);
-                await Database.setUserEmail(email);
-                await this.navigate('root');
-            }
-            catch (e) {
-                /* Toggles the error modal */
-                console.log(e)
-            }
-        }
-        };
+ async signup(email, password) {
+    if (email !== '' && password !== '') {
+      try {
+        await firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
+            // Handle Errors here.
+            let errorCode = error.code;
+            let errorMessage = error.message;
+            console.log(errorCode + ": " + errorMessage)
+        });
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+            let errorCode = error.code;
+            let errorMessage = errorMessage;
+            console.log(errorCode, errorMessage);
+        });
+        await Database.setUserFirstName(this.state.name);
+        await Database.setUserYear(this.state.year);
+        await Database.setUserType(this.props.userType);
+        await Database.setUserEmail(email);
+        await this.navigate('root');
+      } catch (e) {
+        /* Toggles the error modal */
+        console.log(e)
+      }
+    }
+  };
 
     navigate(routeName, transitionType = 'floatRight') {
         this.props.navigator.push({name: routeName, transitionType});
     }
 
-    render() {
-        return (
-            <View>
-
-                {/* Error popup */}
-                <Modal
-                    animationType={'fade'}
-                    transparent={true}
-                    visible={this.state.modalVisible}
-                    onRequestClose={() => {alert('Modal has been closed.')}}
-                >
-                    <View style={styles.modalView}>
-                        <View>
-                            <Text style={styles.modalTitle}>Failed Login</Text>
-                            <Text style={styles.modalText}>There is a login Error</Text>
-
-                            <TouchableHighlight underlayColor="transparent" onPress={() => {
-                                this.setModalVisible(!this.state.modalVisible);
-                                this.state.username = '';
-                                this.state.password = '';
-                            }}
-                                                style={styles.modalButton}>
-                                <Text style={styles.modalButtonText}>Retry</Text>
-                            </TouchableHighlight>
-                        </View>
-                    </View>
-                </Modal>
-
-                {/* Main background image */}
-                <Image
-                    source={require('../Icons/Login/gradient_background.png')}
-                    style={styles.gradientBackground}
-                >
-
-                    {/* View that holds everything on the screen */}
-                    <View style={styles.mainView}>
-
-                        {/*Back button*/}
-                        <TouchableHighlight
-                            underlayColor='transparent'
-                            onPress={this.navigate.bind(this, 'userType', 'left')}
-                        >
-                            <Image source={require('../Icons/Signup/back_button_icon.png')}
-                                   style={styles.backButton}
-                                />
-                    </TouchableHighlight>
-
-                        {/* Let's get you started! text */}
-                        <Text
-                            style={{color: 'white', fontStyle: 'italic', fontSize: 25, marginTop: -60}}
-                        >Let's get you started!</Text>
-
-                        {/* Dartmouth logo */}
-                        <Image
-                            source={require('../Icons/Login/dartmouth_logo.png')}
-                            style={styles.logo}
-                        >
-                        </Image>
-
-                        {/* Name text field */}
-                        <View style={{flexDirection: 'row', marginTop: 2}}>
-                            <Image source={require('../Icons/Signup/name_icon.png')}
-                                   style={styles.nameField}>
-                            </Image>
-                        <TextInput
-                            ref='Name'
-                            style={styles.credentials}
-                            onChangeText={name => this.setState({name})}
-                            placeholder="Name"
-                            placeholderTextColor='rgba(255, 255, 255, 0.8)'
-                            selectionColor="white"
-                            keyboardType="default"
-                            value={this.state.name}
-                            returnKeyType={"next"}
-                            onSubmitEditing={(event) => {
-                                this.refs.Password.focus();
-                            }}
-                        />
-                        </View>
-
-                        {/* Divider between year text field and email text field */}
-                        <View style={styles.divider}/>
-
-                        {/*Year text field */}
-                        <View style={{flexDirection: 'row', marginTop: 2}}>
-                            <Image source={require('../Icons/Signup/year_icon.png')}
-                                   style={styles.yearField}>
-                            </Image>
-                        <TextInput
-                            ref='Year'
-                            style={styles.credentials}
-                            onChangeText={year => this.setState({year})}
-                            placeholder="Year"
-                            placeholderTextColor='rgba(255, 255, 255, 0.8)'
-                            selectionColor="white"
-                            keyboardType="default"
-                            value={this.state.year}
-                            returnKeyType={"next"}
-                            onSubmitEditing={(event) => {
-                                this.refs.Password.focus();
-                            }}
-                        />
-                    </View>
-
-                        {/* Divider between year text field and email text field */}
-                        <View style={styles.divider}/>
-
-                        {/*Email text field*/}
-                        <View style={{flexDirection: 'row', marginTop: 2}}>
-                            <Image source={require('../Icons/Login/email.png')}
-                                   style={styles.emailField}>
-                            </Image>
-                            <TextInput
-                                ref='Email'
-                                style={styles.credentials}
-                                onChangeText={username => this.setState({username})}
-                                placeholder="Email"
-                                placeholderTextColor='rgba(255, 255, 255, 0.8)'
-                                selectionColor="white"
-                                keyboardType="email-address"
-                                value={this.state.username}
-                                returnKeyType={"next"}
-                                onSubmitEditing={(event) => {
-                                    this.refs.Password.focus();
-                                }}
-                            />
-                        </View>
-
-                        {/*Divider between email text field and password text field*/}
-                        <View style={styles.divider}/>
-
-                        {/*Password text field*/}
-                        <View style={{flexDirection: 'row', marginTop: 2}}>
-                            <Image source={require('../Icons/Login/lock.png')}
-                                   style={styles.passwordField}>
-                            </Image>
-                            <TextInput
-                                ref='Password'
-                                secureTextEntry={true}
-                                style={styles.credentials}
-                                onChangeText={password => this.setState({password})}
-                                placeholder="Password"
-                                placeholderTextColor='rgba(255, 255, 255, 0.8)'
-                                selectionColor="white"
-                                value={this.state.password}
-                            />
-                        </View>
-
-                        {/*Divider between password text field and login button*/}
-                        <View style={styles.divider}/>
-
-
-                        {/*Signup button*/}
-                        <View style={{marginTop: 15}}>
-                            <TouchableHighlight underlayColor="transparent"
-                                                onPress={() => this.signup(this.state.username, this.state.password)}>
-                                <Image source={require('../Icons/Signup/signup_button.png')}
-                                       style={styles.loginButton}
-                                />
-                            </TouchableHighlight>
-                        </View>
-                    </View>
-                </Image>
-            </View>
-        )
+    scrollScreen = (yVal) => {
+      _scrollView.scrollTo({y: yVal});
     }
+
+    render() {
+      return (
+        <View>
+          {/* Error popup */}
+          <Modal
+              animationType={'fade'}
+              transparent={true}
+              visible={this.state.modalVisible}
+              onRequestClose={() => {alert('Modal has been closed.')}}>
+              <View style={styles.modalView}>
+                <View>
+                  <Text style={styles.modalTitle}>Failed Login</Text>
+                  <Text style={styles.modalText}>There is a login Error</Text>
+                  <TouchableHighlight underlayColor="transparent" onPress={() => {
+                      this.setModalVisible(!this.state.modalVisible);
+                      this.state.username = '';
+                      this.state.password = '';}}
+                  style={styles.modalButton}>
+                      <Text style={styles.modalButtonText}>Retry</Text>
+                  </TouchableHighlight>
+                </View>
+              </View>
+            </Modal>
+
+      <ScrollView ref={(scrollView) => { _scrollView = scrollView; }}>
+        {/* Main background image */}
+        <Image
+            source={require('../Icons/Login/gradient_background.png')}
+            style={styles.gradientBackground}
+        >
+
+            {/* View that holds everything on the screen */}
+            <View style={styles.mainView}>
+
+                {/*Back button*/}
+                <TouchableHighlight
+                    underlayColor='transparent'
+                    onPress={this.navigate.bind(this, 'userType', 'left')}
+                >
+                    <Image source={require('../Icons/Signup/back_button_icon.png')}
+                           style={styles.backButton}
+                        />
+            </TouchableHighlight>
+
+                {/* Let's get you started! text */}
+                <Text
+                    style={{color: 'white', fontStyle: 'italic', fontSize: 25, marginTop: -60}}
+                >Let's get you started!</Text>
+
+                {/* Dartmouth logo */}
+                <Image
+                    source={require('../Icons/Login/dartmouth_logo.png')}
+                    style={styles.logo}
+                >
+                </Image>
+
+                {/* Name text field */}
+                <View style={{flexDirection: 'row', marginTop: 2}}>
+                    <Image source={require('../Icons/Signup/name_icon.png')}
+                           style={styles.nameField}>
+                    </Image>
+                <TextInput
+                    ref='Name'
+                    style={styles.credentials}
+                    onChangeText={name => this.setState({name})}
+                    placeholder="Name"
+                    placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                    selectionColor="white"
+                    keyboardType="default"
+                    value={this.state.name}
+                    returnKeyType={"next"}
+                    onSubmitEditing={(event) => {
+                        this.refs.Password.focus();
+                    }}
+                    onFocus={() => _scrollView.scrollTo({y: 70})}
+                    onEndEditing={() => _scrollView.scrollTo({y: 0})}
+                />
+                </View>
+
+                {/* Divider between year text field and email text field */}
+                <View style={styles.divider}/>
+
+                {/*Year text field */}
+                <View style={{flexDirection: 'row', marginTop: 2}}>
+                    <Image source={require('../Icons/Signup/year_icon.png')}
+                           style={styles.yearField}>
+                    </Image>
+                <TextInput
+                    ref='Year'
+                    style={styles.credentials}
+                    onChangeText={year => this.setState({year})}
+                    placeholder="Year"
+                    placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                    selectionColor="white"
+                    keyboardType="default"
+                    value={this.state.year}
+                    returnKeyType={"next"}
+                    onSubmitEditing={(event) => {
+                        this.refs.Password.focus();
+                    }}
+                    onFocus={() => _scrollView.scrollTo({y: 80})}
+                    onEndEditing={() => _scrollView.scrollTo({y: 0})}
+                />
+            </View>
+
+                {/* Divider between year text field and email text field */}
+                <View style={styles.divider}/>
+
+                {/*Email text field*/}
+                <View style={{flexDirection: 'row', marginTop: 2}}>
+                    <Image source={require('../Icons/Login/email.png')}
+                           style={styles.emailField}>
+                    </Image>
+                    <TextInput
+                        ref='Email'
+                        style={styles.credentials}
+                        onChangeText={username => this.setState({username})}
+                        placeholder="Email"
+                        placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                        selectionColor="white"
+                        keyboardType="email-address"
+                        value={this.state.username}
+                        returnKeyType={"next"}
+                        onSubmitEditing={(event) => {
+                            this.refs.Password.focus();
+                        }}
+                        onFocus={() => _scrollView.scrollTo({y: 90})}
+                        onEndEditing={() => _scrollView.scrollTo({y: 0})}
+                    />
+                </View>
+
+                {/*Divider between email text field and password text field*/}
+                <View style={styles.divider}/>
+
+                {/*Password text field*/}
+                <View style={{flexDirection: 'row', marginTop: 2}}>
+                    <Image source={require('../Icons/Login/lock.png')}
+                           style={styles.passwordField}>
+                    </Image>
+                    <TextInput
+                        ref='Password'
+                        secureTextEntry={true}
+                        style={styles.credentials}
+                        onChangeText={password => this.setState({password})}
+                        placeholder="Password"
+                        placeholderTextColor='rgba(255, 255, 255, 0.8)'
+                        selectionColor="white"
+                        value={this.state.password}
+                        onFocus={() => _scrollView.scrollTo({y: 100})}
+                        onEndEditing={() => _scrollView.scrollTo({y: 0})}
+                    />
+                </View>
+
+                {/*Divider between password text field and login button*/}
+                <View style={styles.divider}/>
+
+
+                {/*Signup button*/}
+                <View style={{marginTop: 15}}>
+                    <TouchableHighlight underlayColor="transparent"
+                                        onPress={() => this.signup(this.state.username, this.state.password)}>
+                        <Image source={require('../Icons/Signup/signup_button.png')}
+                               style={styles.loginButton}
+                        />
+                    </TouchableHighlight>
+                </View>
+            </View>
+        </Image>
+        </ScrollView>
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
