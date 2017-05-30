@@ -6,12 +6,12 @@ This specific application is for the Dartmouth App. This app is being built in R
 
 The following images are the most recent implementations and designs for the project:
 
-![Implemented Design 1](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/login.png "Login Screen")
-![Implemented Design 2](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/user_type.png "User Type Screen")
-![Implemented Design 3](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/home.png "Home Screen")
-![Implemented Design 4](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/settings.png "News Screen")
-![Implemented Design 5](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/customize.png "Dining Screen")
-![Implemented Design 6](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/events.png "Events Screen")
+![Implemented Design 1](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/login.png "Login Screen" =250x)
+![Implemented Design 2](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/user_type.png "User Type Screen" =250x)
+![Implemented Design 3](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/home.png "Home Screen" =250x)
+![Implemented Design 4](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/settings.png "News Screen" =250x)
+![Implemented Design 5](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/customize.png "Dining Screen" =250x)
+![Implemented Design 6](https://github.com/dali-lab/seabird/blob/master/Seabird/Screenshots/events.png "Events Screen" =250x)
 
 More designs for the application can be found [here](https://drive.google.com/drive/u/0/folders/0B3gzFbdZqpokSnNncDBQYVJMODg)
 
