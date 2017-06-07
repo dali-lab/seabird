@@ -27,19 +27,23 @@ More designs for the application can be found [here](https://drive.google.com/dr
   - [Sortable Grid](https://www.npmjs.com/package/react-native-sortable-grid)
   - [iOS Deploy](https://www.npmjs.com/package/ios-deploy)
   - [Hr](https://www.npmjs.com/package/react-native-hr)
-- Followed the basic structure of a React Native project
-  - Held most of the data (props) that would be used throughout the entire app in the `index.ios.js` file
-  - Created folders that hold different types of views and components used throughout the app
-  - `components` - Reusable components that could be placed in different locations. They were fairly generic and great for multiple uses
-  - `screens` - Views that were fairly unique that needed to be defined as it's own distinct page
-  - `Icons` - Contained all the images and icons used throughout the app
-  - `Fonts` - This app uses custom fonts. So this folder holds all the fonts that were used
-  - `Screenshots` - Images that were used to populate this README and for any other presentational purposes
-  - `Documents` - Includes Word files
-  - `firebase` - Includes the necessary firebase and analytics files
-  - There were other folders that were either automatically generated when install a new npm project (`__tests__, node_modules, android, ios`)
 - Designers have been using Figma for this project
   - Sketch is only offer to Mac Users. We decided to use Figma as an alternative so in the future the designers are able to understand a different environment that non-Mac users could use when designing.
+
+#### Project Structure
+Followed the basic structure of a React Native project
+  - Held most of the data (props) that would be used throughout the entire app in the [`index.ios.js`](https://github.com/dali-lab/seabird/blob/master/Seabird/index.ios.js) file
+  - Created folders that hold different types of views and components used throughout the app
+  - [`components`](https://github.com/dali-lab/seabird/tree/master/Seabird/components) - Reusable components that could be placed in different locations. They were fairly generic and great for multiple uses
+  - [`screens`](screens) - Views that were fairly unique that needed to be defined as it's own distinct page
+  - [`Icons`](https://github.com/dali-lab/seabird/tree/master/Seabird/Icons) - Contained all the images and icons used throughout the app
+  - [`Fonts`](https://github.com/dali-lab/seabird/tree/master/Seabird/Fonts) - This app uses custom fonts. So this folder holds all the fonts that were used
+  - [`Screenshots`](https://github.com/dali-lab/seabird/tree/master/Seabird/Screenshots) - Images that were used to populate this README and for any other presentational purposes
+  - [`Documents`](https://github.com/dali-lab/seabird/tree/master/Seabird/Documents) - Includes Word files
+  - [`firebase`](https://github.com/dali-lab/seabird/tree/master/Seabird/firebase) - Includes the necessary firebase and analytics files
+  - There were other folders that were either automatically generated when install a new npm project (`__tests__, node_modules, android, ios`)
+
+Even though this project is implemented using React Native, we only have a functional iOS version.
 
 ## Setup :wrench:
 
@@ -51,6 +55,8 @@ More designs for the application can be found [here](https://drive.google.com/dr
 3. Go into the main directory and install all the necessary modules `cd seabird/Seabird && npm install`
 
 ## Deployment :rocket:
+
+In order for this project to run successfully, you must be connected to the Internet
 
 1. `react-native run-ios` to start the project
 
